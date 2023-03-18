@@ -33,9 +33,9 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/StudyBuddy?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
-    username: root
-    password:
+    url: jdbc:mysql://nlf20jz4tp9nu6e6:pngwbxm72ainfdy0@r4wkv4apxn9btls2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/toa8rjl30bvll45y
+    username: nlf20jz4tp9nu6e6
+    password: pngwbxm72ainfdy0
     hikari:
       poolName: Hikari
       auto-commit: false
