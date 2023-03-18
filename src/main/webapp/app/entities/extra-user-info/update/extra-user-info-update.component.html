@@ -1,0 +1,97 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-extra-user-info-heading"
+        data-cy="ExtraUserInfoCreateUpdateHeading"
+        jhiTranslate="studyBuddyApp.extraUserInfo.home.createOrEditLabel"
+      >
+        Crear o editar Extra User Info
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.extraUserInfo.phone" for="field_phone">Phone</label>
+          <input type="text" class="form-control" name="phone" id="field_phone" data-cy="phone" formControlName="phone" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.extraUserInfo.degree" for="field_degree">Degree</label>
+          <input type="text" class="form-control" name="degree" id="field_degree" data-cy="degree" formControlName="degree" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.extraUserInfo.profilePicture" for="field_profilePicture"
+            >Profile Picture</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="profilePicture"
+            id="field_profilePicture"
+            data-cy="profilePicture"
+            formControlName="profilePicture"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.extraUserInfo.birthDay" for="field_birthDay">Birth Day</label>
+          <div class="input-group">
+            <input
+              id="field_birthDay"
+              data-cy="birthDay"
+              type="text"
+              class="form-control"
+              name="birthDay"
+              ngbDatepicker
+              #birthDayDp="ngbDatepicker"
+              formControlName="birthDay"
+            />
+            <button type="button" class="btn btn-secondary" (click)="birthDayDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.extraUserInfo.score" for="field_score">Score</label>
+          <input type="number" class="form-control" name="score" id="field_score" data-cy="score" formControlName="score" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.extraUserInfo.userVotes" for="field_userVotes">User Votes</label>
+          <input type="number" class="form-control" name="userVotes" id="field_userVotes" data-cy="userVotes" formControlName="userVotes" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.extraUserInfo.user" for="field_user">User</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.login }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

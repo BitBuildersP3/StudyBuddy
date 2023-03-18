@@ -1,0 +1,53 @@
+{
+  "applications": ["StudyBuddy"],
+  "changelogDate": "20230318204537",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "section",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "excerpt",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "creationDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "time",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Section",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "files",
+      "otherEntityRelationshipName": "section",
+      "relationshipName": "files",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "courses",
+      "otherEntityRelationshipName": "section",
+      "relationshipName": "courses",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

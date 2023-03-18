@@ -1,0 +1,137 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-pomodoro-heading" data-cy="PomodoroCreateUpdateHeading" jhiTranslate="studyBuddyApp.pomodoro.home.createOrEditLabel">
+        Crear o editar Pomodoro
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.pomodoro.beginTime" for="field_beginTime">Begin Time</label>
+          <div class="input-group">
+            <input
+              id="field_beginTime"
+              data-cy="beginTime"
+              type="text"
+              class="form-control"
+              name="beginTime"
+              ngbDatepicker
+              #beginTimeDp="ngbDatepicker"
+              formControlName="beginTime"
+            />
+            <button type="button" class="btn btn-secondary" (click)="beginTimeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.pomodoro.endTime" for="field_endTime">End Time</label>
+          <div class="input-group">
+            <input
+              id="field_endTime"
+              data-cy="endTime"
+              type="text"
+              class="form-control"
+              name="endTime"
+              ngbDatepicker
+              #endTimeDp="ngbDatepicker"
+              formControlName="endTime"
+            />
+            <button type="button" class="btn btn-secondary" (click)="endTimeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.pomodoro.totalTime" for="field_totalTime">Total Time</label>
+          <input type="number" class="form-control" name="totalTime" id="field_totalTime" data-cy="totalTime" formControlName="totalTime" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.pomodoro.status" for="field_status">Status</label>
+          <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.pomodoro.task" for="field_task">Task</label>
+          <input type="text" class="form-control" name="task" id="field_task" data-cy="task" formControlName="task" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.pomodoro.beginBreak" for="field_beginBreak">Begin Break</label>
+          <div class="input-group">
+            <input
+              id="field_beginBreak"
+              data-cy="beginBreak"
+              type="text"
+              class="form-control"
+              name="beginBreak"
+              ngbDatepicker
+              #beginBreakDp="ngbDatepicker"
+              formControlName="beginBreak"
+            />
+            <button type="button" class="btn btn-secondary" (click)="beginBreakDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.pomodoro.endBreak" for="field_endBreak">End Break</label>
+          <div class="input-group">
+            <input
+              id="field_endBreak"
+              data-cy="endBreak"
+              type="text"
+              class="form-control"
+              name="endBreak"
+              ngbDatepicker
+              #endBreakDp="ngbDatepicker"
+              formControlName="endBreak"
+            />
+            <button type="button" class="btn btn-secondary" (click)="endBreakDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.pomodoro.totalBreak" for="field_totalBreak">Total Break</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalBreak"
+            id="field_totalBreak"
+            data-cy="totalBreak"
+            formControlName="totalBreak"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.pomodoro.user" for="field_user">User</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.login }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="section">
+      <h2 data-cy="sectionDetailsHeading"><span jhiTranslate="studyBuddyApp.section.detail.title">Section</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ section.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.section.name">Name</span></dt>
+        <dd>
+          <span>{{ section.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.section.description">Description</span></dt>
+        <dd>
+          <span>{{ section.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.section.excerpt">Excerpt</span></dt>
+        <dd>
+          <span>{{ section.excerpt }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.section.creationDate">Creation Date</span></dt>
+        <dd>
+          <span>{{ section.creationDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.section.time">Time</span></dt>
+        <dd>
+          <span>{{ section.time }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.section.status">Status</span></dt>
+        <dd>
+          <span>{{ section.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.section.courses">Courses</span></dt>
+        <dd>
+          <div *ngIf="section.courses">
+            <a [routerLink]="['/courses', section.courses.id, 'view']">{{ section.courses.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/section', section.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

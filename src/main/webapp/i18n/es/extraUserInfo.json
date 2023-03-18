@@ -1,0 +1,30 @@
+{
+  "studyBuddyApp": {
+    "extraUserInfo": {
+      "home": {
+        "title": "Extra User Infos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Extra User Info",
+        "createOrEditLabel": "Crear o editar Extra User Info",
+        "notFound": "Ningún Extra User Infos encontrado"
+      },
+      "created": "Un nuevo Extra User Info ha sido creado con el identificador {{ param }}",
+      "updated": "Un Extra User Info ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Extra User Info ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Extra User Info {{ id }}?"
+      },
+      "detail": {
+        "title": "Extra User Info"
+      },
+      "id": "ID",
+      "phone": "Phone",
+      "degree": "Degree",
+      "profilePicture": "Profile Picture",
+      "birthDay": "Birth Day",
+      "score": "Score",
+      "userVotes": "User Votes",
+      "user": "User"
+    }
+  }
+}

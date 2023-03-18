@@ -1,0 +1,32 @@
+{
+  "studyBuddyApp": {
+    "files": {
+      "home": {
+        "title": "Files",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Files",
+        "createOrEditLabel": "Crear o editar Files",
+        "notFound": "Ningún Files encontrado"
+      },
+      "created": "Un nuevo Files ha sido creado con el identificador {{ param }}",
+      "updated": "Un Files ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Files ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Files {{ id }}?"
+      },
+      "detail": {
+        "title": "Files"
+      },
+      "id": "ID",
+      "type": "Type",
+      "url1": "Url 1",
+      "url2": "Url 2",
+      "url3": "Url 3",
+      "status": "Status",
+      "name": "Name",
+      "excerpt": "Excerpt",
+      "publishDate": "Publish Date",
+      "section": "Section"
+    }
+  }
+}

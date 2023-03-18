@@ -1,0 +1,134 @@
+<div>
+  <h2 id="page-heading" data-cy="SectionHeading">
+    <span jhiTranslate="studyBuddyApp.section.home.title">Sections</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="studyBuddyApp.section.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-section"
+        [routerLink]="['/section/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="studyBuddyApp.section.home.createLabel"> Crear nuevo Section </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="sections?.length === 0">
+    <span jhiTranslate="studyBuddyApp.section.home.notFound">Ningún Sections encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="sections && sections.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.section.name">Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.section.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="excerpt">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.section.excerpt">Excerpt</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="creationDate">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.section.creationDate">Creation Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="time">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.section.time">Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.section.status">Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="courses.id">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.section.courses">Courses</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let section of sections; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/section', section.id, 'view']">{{ section.id }}</a>
+          </td>
+          <td>{{ section.name }}</td>
+          <td>{{ section.description }}</td>
+          <td>{{ section.excerpt }}</td>
+          <td>{{ section.creationDate | formatMediumDate }}</td>
+          <td>{{ section.time }}</td>
+          <td>{{ section.status }}</td>
+          <td>
+            <div *ngIf="section.courses">
+              <a [routerLink]="['/courses', section.courses.id, 'view']">{{ section.courses.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/section', section.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/section', section.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(section)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="news">
+      <h2 data-cy="newsDetailsHeading"><span jhiTranslate="studyBuddyApp.news.detail.title">News</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ news.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.news.name">Name</span></dt>
+        <dd>
+          <span>{{ news.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.news.excerpt">Excerpt</span></dt>
+        <dd>
+          <span>{{ news.excerpt }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.news.body">Body</span></dt>
+        <dd>
+          <span>{{ news.body }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.news.image">Image</span></dt>
+        <dd>
+          <span>{{ news.image }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.news.creationDate">Creation Date</span></dt>
+        <dd>
+          <span>{{ news.creationDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.news.user">User</span></dt>
+        <dd>
+          <span>{{ news.user?.login }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/news', news.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

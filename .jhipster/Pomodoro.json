@@ -1,0 +1,56 @@
+{
+  "applications": ["StudyBuddy"],
+  "changelogDate": "20230318204337",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "pomodoro",
+  "fields": [
+    {
+      "fieldName": "beginTime",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "endTime",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "totalTime",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "task",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "beginBreak",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "endBreak",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "totalBreak",
+      "fieldType": "Double"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Pomodoro",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

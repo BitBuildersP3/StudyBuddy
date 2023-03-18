@@ -1,0 +1,120 @@
+
+application {
+  config {
+    baseName StudyBuddy,
+    applicationType monolith,
+    packageName com.cenfotec,
+    authenticationType session,
+    devDatabaseType mysql,
+    prodDatabaseType mysql,
+    clientFramework angular,
+    buildTool maven,
+    languages [es,en],
+    nativeLanguage es,
+    enableTranslation true
+  }
+  entities *
+}
+
+entity ExtraUserInfo {
+	phone String ,
+    degree String,
+    profilePicture String,
+    birthDay LocalDate,
+    score Double,
+    userVotes Double
+}
+entity News {
+name String,
+excerpt String,
+body String,
+image String,
+creationDate LocalDate
+}
+
+entity Events {
+name String,
+description String,
+startDate LocalDate,
+endDate LocalDate,
+url String,
+status String,
+address String
+}
+entity TodoList{
+task String,
+priority Integer,
+status String,
+}
+entity Pomodoro{
+beginTime LocalDate,
+endTime LocalDate,
+totalTime Double,
+status String,
+task String, 
+beginBreak LocalDate,
+endBreak LocalDate,
+totalBreak Double
+}
+
+//relacion with category
+//relation with user
+entity Courses {
+name String,
+description String, 
+previewImg String,
+status String,
+score Double, 
+excerpt String,
+userId Integer,
+userVotes Double
+}
+
+//relatio with course
+entity Section {
+name String,
+description String, 
+excerpt String,
+creationDate LocalDate,
+time Integer, 
+status String
+}
+
+//Relation with the class
+entity Files {
+type String,
+url1 String,
+url2 String,
+url3 String,
+status String,
+name String,
+excerpt String,
+publishDate LocalDate
+}
+
+entity Category{
+name String 
+}
+
+relationship OneToOne {
+  Pomodoro{user(login)} to User,
+  ExtraUserInfo{user(login)} to User
+}
+
+relationship OneToMany {
+  Category{courses} to Courses{category},
+  Section{files} to Files{section}
+}
+
+relationship ManyToOne {
+  TodoList{user(login)} to User,
+  News{user(login)} to User,
+  Events{user(login)} to User,
+  Section{courses} to Courses{section},
+} 
+
+relationship ManyToMany {
+  Courses{user(login)} to User
+} 
+     
+

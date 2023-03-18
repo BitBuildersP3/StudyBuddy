@@ -1,0 +1,31 @@
+{
+  "studyBuddyApp": {
+    "events": {
+      "home": {
+        "title": "Events",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Events",
+        "createOrEditLabel": "Create or edit a Events",
+        "notFound": "No Events found"
+      },
+      "created": "A new Events is created with identifier {{ param }}",
+      "updated": "A Events is updated with identifier {{ param }}",
+      "deleted": "A Events is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Events {{ id }}?"
+      },
+      "detail": {
+        "title": "Events"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "url": "Url",
+      "status": "Status",
+      "address": "Address",
+      "user": "User"
+    }
+  }
+}

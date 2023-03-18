@@ -1,0 +1,55 @@
+{
+  "applications": ["StudyBuddy"],
+  "changelogDate": "20230318204637",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "files",
+  "fields": [
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "url1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "url2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "url3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "excerpt",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "publishDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Files",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "section",
+      "otherEntityRelationshipName": "files",
+      "relationshipName": "section",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

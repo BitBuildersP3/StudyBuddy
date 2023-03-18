@@ -1,0 +1,27 @@
+{
+  "applications": ["StudyBuddy"],
+  "changelogDate": "20230318204737",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "category",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Category",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "courses",
+      "otherEntityRelationshipName": "category",
+      "relationshipName": "courses",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

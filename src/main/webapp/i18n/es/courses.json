@@ -1,0 +1,34 @@
+{
+  "studyBuddyApp": {
+    "courses": {
+      "home": {
+        "title": "Courses",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Courses",
+        "createOrEditLabel": "Crear o editar Courses",
+        "notFound": "Ningún Courses encontrado"
+      },
+      "created": "Un nuevo Courses ha sido creado con el identificador {{ param }}",
+      "updated": "Un Courses ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Courses ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Courses {{ id }}?"
+      },
+      "detail": {
+        "title": "Courses"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "previewImg": "Preview Img",
+      "status": "Status",
+      "score": "Score",
+      "excerpt": "Excerpt",
+      "userId": "User Id",
+      "userVotes": "User Votes",
+      "user": "User",
+      "category": "Category",
+      "section": "Section"
+    }
+  }
+}

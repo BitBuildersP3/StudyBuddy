@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="courses">
+      <h2 data-cy="coursesDetailsHeading"><span jhiTranslate="studyBuddyApp.courses.detail.title">Courses</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ courses.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.courses.name">Name</span></dt>
+        <dd>
+          <span>{{ courses.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.courses.description">Description</span></dt>
+        <dd>
+          <span>{{ courses.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.courses.previewImg">Preview Img</span></dt>
+        <dd>
+          <span>{{ courses.previewImg }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.courses.status">Status</span></dt>
+        <dd>
+          <span>{{ courses.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.courses.score">Score</span></dt>
+        <dd>
+          <span>{{ courses.score }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.courses.excerpt">Excerpt</span></dt>
+        <dd>
+          <span>{{ courses.excerpt }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.courses.userId">User Id</span></dt>
+        <dd>
+          <span>{{ courses.userId }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.courses.userVotes">User Votes</span></dt>
+        <dd>
+          <span>{{ courses.userVotes }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.courses.user">User</span></dt>
+        <dd>
+          <span *ngFor="let user of courses.users; let last = last"> {{ user.login }}{{ last ? '' : ', ' }} </span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.courses.category">Category</span></dt>
+        <dd>
+          <div *ngIf="courses.category">
+            <a [routerLink]="['/category', courses.category.id, 'view']">{{ courses.category.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

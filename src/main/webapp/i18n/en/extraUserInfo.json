@@ -1,0 +1,30 @@
+{
+  "studyBuddyApp": {
+    "extraUserInfo": {
+      "home": {
+        "title": "Extra User Infos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Extra User Info",
+        "createOrEditLabel": "Create or edit a Extra User Info",
+        "notFound": "No Extra User Infos found"
+      },
+      "created": "A new Extra User Info is created with identifier {{ param }}",
+      "updated": "A Extra User Info is updated with identifier {{ param }}",
+      "deleted": "A Extra User Info is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Extra User Info {{ id }}?"
+      },
+      "detail": {
+        "title": "Extra User Info"
+      },
+      "id": "ID",
+      "phone": "Phone",
+      "degree": "Degree",
+      "profilePicture": "Profile Picture",
+      "birthDay": "Birth Day",
+      "score": "Score",
+      "userVotes": "User Votes",
+      "user": "User"
+    }
+  }
+}

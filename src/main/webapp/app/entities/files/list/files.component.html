@@ -1,0 +1,138 @@
+<div>
+  <h2 id="page-heading" data-cy="FilesHeading">
+    <span jhiTranslate="studyBuddyApp.files.home.title">Files</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="studyBuddyApp.files.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-files"
+        [routerLink]="['/files/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="studyBuddyApp.files.home.createLabel"> Crear nuevo Files </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="files?.length === 0">
+    <span jhiTranslate="studyBuddyApp.files.home.notFound">Ningún Files encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="files && files.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="type">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.files.type">Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="url1">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.files.url1">Url 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="url2">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.files.url2">Url 2</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="url3">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.files.url3">Url 3</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.files.status">Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.files.name">Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="excerpt">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.files.excerpt">Excerpt</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="publishDate">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.files.publishDate">Publish Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="section.id">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.files.section">Section</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let files of files; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/files', files.id, 'view']">{{ files.id }}</a>
+          </td>
+          <td>{{ files.type }}</td>
+          <td>{{ files.url1 }}</td>
+          <td>{{ files.url2 }}</td>
+          <td>{{ files.url3 }}</td>
+          <td>{{ files.status }}</td>
+          <td>{{ files.name }}</td>
+          <td>{{ files.excerpt }}</td>
+          <td>{{ files.publishDate | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="files.section">
+              <a [routerLink]="['/section', files.section.id, 'view']">{{ files.section.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/files', files.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/files', files.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(files)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

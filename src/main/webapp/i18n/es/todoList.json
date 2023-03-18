@@ -1,0 +1,27 @@
+{
+  "studyBuddyApp": {
+    "todoList": {
+      "home": {
+        "title": "Todo Lists",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Todo List",
+        "createOrEditLabel": "Crear o editar Todo List",
+        "notFound": "Ningún Todo Lists encontrado"
+      },
+      "created": "Un nuevo Todo List ha sido creado con el identificador {{ param }}",
+      "updated": "Un Todo List ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Todo List ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Todo List {{ id }}?"
+      },
+      "detail": {
+        "title": "Todo List"
+      },
+      "id": "ID",
+      "task": "Task",
+      "priority": "Priority",
+      "status": "Status",
+      "user": "User"
+    }
+  }
+}

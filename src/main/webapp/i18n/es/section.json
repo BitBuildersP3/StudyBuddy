@@ -1,0 +1,31 @@
+{
+  "studyBuddyApp": {
+    "section": {
+      "home": {
+        "title": "Sections",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Section",
+        "createOrEditLabel": "Crear o editar Section",
+        "notFound": "Ningún Sections encontrado"
+      },
+      "created": "Un nuevo Section ha sido creado con el identificador {{ param }}",
+      "updated": "Un Section ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Section ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Section {{ id }}?"
+      },
+      "detail": {
+        "title": "Section"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "excerpt": "Excerpt",
+      "creationDate": "Creation Date",
+      "time": "Time",
+      "status": "Status",
+      "files": "Files",
+      "courses": "Courses"
+    }
+  }
+}

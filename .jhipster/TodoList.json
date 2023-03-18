@@ -1,0 +1,35 @@
+{
+  "applications": ["StudyBuddy"],
+  "changelogDate": "20230318204237",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "todo_list",
+  "fields": [
+    {
+      "fieldName": "task",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "priority",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "TodoList",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

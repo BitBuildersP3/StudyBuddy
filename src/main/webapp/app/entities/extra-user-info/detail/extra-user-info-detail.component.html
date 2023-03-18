@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="extraUserInfo">
+      <h2 data-cy="extraUserInfoDetailsHeading"><span jhiTranslate="studyBuddyApp.extraUserInfo.detail.title">Extra User Info</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ extraUserInfo.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.extraUserInfo.phone">Phone</span></dt>
+        <dd>
+          <span>{{ extraUserInfo.phone }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.extraUserInfo.degree">Degree</span></dt>
+        <dd>
+          <span>{{ extraUserInfo.degree }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.extraUserInfo.profilePicture">Profile Picture</span></dt>
+        <dd>
+          <span>{{ extraUserInfo.profilePicture }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.extraUserInfo.birthDay">Birth Day</span></dt>
+        <dd>
+          <span>{{ extraUserInfo.birthDay | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.extraUserInfo.score">Score</span></dt>
+        <dd>
+          <span>{{ extraUserInfo.score }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.extraUserInfo.userVotes">User Votes</span></dt>
+        <dd>
+          <span>{{ extraUserInfo.userVotes }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.extraUserInfo.user">User</span></dt>
+        <dd>
+          <span>{{ extraUserInfo.user?.login }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/extra-user-info', extraUserInfo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

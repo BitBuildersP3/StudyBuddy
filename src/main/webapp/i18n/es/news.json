@@ -1,0 +1,29 @@
+{
+  "studyBuddyApp": {
+    "news": {
+      "home": {
+        "title": "News",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo News",
+        "createOrEditLabel": "Crear o editar News",
+        "notFound": "Ningún News encontrado"
+      },
+      "created": "Un nuevo News ha sido creado con el identificador {{ param }}",
+      "updated": "Un News ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un News ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar News {{ id }}?"
+      },
+      "detail": {
+        "title": "News"
+      },
+      "id": "ID",
+      "name": "Name",
+      "excerpt": "Excerpt",
+      "body": "Body",
+      "image": "Image",
+      "creationDate": "Creation Date",
+      "user": "User"
+    }
+  }
+}

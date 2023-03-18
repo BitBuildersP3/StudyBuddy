@@ -1,0 +1,29 @@
+{
+  "studyBuddyApp": {
+    "news": {
+      "home": {
+        "title": "News",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new News",
+        "createOrEditLabel": "Create or edit a News",
+        "notFound": "No News found"
+      },
+      "created": "A new News is created with identifier {{ param }}",
+      "updated": "A News is updated with identifier {{ param }}",
+      "deleted": "A News is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete News {{ id }}?"
+      },
+      "detail": {
+        "title": "News"
+      },
+      "id": "ID",
+      "name": "Name",
+      "excerpt": "Excerpt",
+      "body": "Body",
+      "image": "Image",
+      "creationDate": "Creation Date",
+      "user": "User"
+    }
+  }
+}

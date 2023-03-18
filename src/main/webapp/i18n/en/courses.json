@@ -1,0 +1,34 @@
+{
+  "studyBuddyApp": {
+    "courses": {
+      "home": {
+        "title": "Courses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Courses",
+        "createOrEditLabel": "Create or edit a Courses",
+        "notFound": "No Courses found"
+      },
+      "created": "A new Courses is created with identifier {{ param }}",
+      "updated": "A Courses is updated with identifier {{ param }}",
+      "deleted": "A Courses is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Courses {{ id }}?"
+      },
+      "detail": {
+        "title": "Courses"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "previewImg": "Preview Img",
+      "status": "Status",
+      "score": "Score",
+      "excerpt": "Excerpt",
+      "userId": "User Id",
+      "userVotes": "User Votes",
+      "user": "User",
+      "category": "Category",
+      "section": "Section"
+    }
+  }
+}

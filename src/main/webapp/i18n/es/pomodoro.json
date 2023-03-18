@@ -1,0 +1,32 @@
+{
+  "studyBuddyApp": {
+    "pomodoro": {
+      "home": {
+        "title": "Pomodoros",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Pomodoro",
+        "createOrEditLabel": "Crear o editar Pomodoro",
+        "notFound": "Ningún Pomodoros encontrado"
+      },
+      "created": "Un nuevo Pomodoro ha sido creado con el identificador {{ param }}",
+      "updated": "Un Pomodoro ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Pomodoro ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Pomodoro {{ id }}?"
+      },
+      "detail": {
+        "title": "Pomodoro"
+      },
+      "id": "ID",
+      "beginTime": "Begin Time",
+      "endTime": "End Time",
+      "totalTime": "Total Time",
+      "status": "Status",
+      "task": "Task",
+      "beginBreak": "Begin Break",
+      "endBreak": "End Break",
+      "totalBreak": "Total Break",
+      "user": "User"
+    }
+  }
+}
