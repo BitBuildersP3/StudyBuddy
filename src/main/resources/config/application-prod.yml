@@ -52,7 +52,7 @@ spring:
     host: smtp.sendgrid.net
     port: 587
     username: apikey
-    password: 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
+    password: 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
   thymeleaf:
     cache: true
 
