@@ -52,7 +52,7 @@ spring:
     host: smtp.sendgrid.net
     port: 587
     username: apikey
-    password: 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
+    password: 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
   thymeleaf:
     cache: true
 
@@ -102,7 +102,7 @@ jhipster:
       # security key (this key should be unique for your application, and kept secret)
       key: 7d1ef659d0ab8c9b0613a1b6291f82c9e270e754e1f71d62e2806b94ccfa556cdee010f40f496854b2a83015639c5a9a68c5
   mail: # specific JHipster mail property, for standard properties see MailProperties
-    base-url: http://my-server-url-to-change # Modify according to your server's URL
+    base-url: https://study-buddy-pj.herokuapp.com # Modify according to your server's URL
   logging:
     use-json-format: false # By default, logs are not in Json format
     logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
