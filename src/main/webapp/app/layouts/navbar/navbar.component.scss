@@ -15,14 +15,6 @@ Navbar
   width: 1.75em;
 }
 
-.navbar {
-  padding: 0.2rem 1rem;
-
-  a.nav-link {
-    font-weight: 400;
-  }
-}
-
 /* ==========================================================================
 Logo styles
 ========================================================================== */
@@ -31,6 +23,6 @@ Logo styles
   width: 45px;
   display: inline-block;
   vertical-align: middle;
-  background: url('../../../content/images/logo-jhipster.png') no-repeat center center;
+  background: url('../../../content/images/logo-bit.png') no-repeat center center;
   background-size: contain;
 }
