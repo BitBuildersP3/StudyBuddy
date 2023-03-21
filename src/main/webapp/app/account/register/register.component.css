@@ -5,24 +5,30 @@ form {
   flex-direction: column;
   border: 2px solid #275D8C; /* Borde de 2px de ancho, solido y de color blanco */
   border-radius: 10px;
+  margin-bottom: 25px;
 }
 
 h1 {
   text-align: center;
   color: #275D8C;
+  margin-bottom: 25px;
 }
 
 .btnCrearCuenta{
   text-align: center;
   background-color: #275D8C;
-
   color: #fff;
-  border: 3px solid #275D8C; /* Borde de 2px de ancho, solido y de color blanco */
+  border: 3px solid #275D8C;
   border-radius: 5px;
   margin-top: 10px;
   padding: 10px 20px;
   font-size: 20px;
   font-weight: bold;
+}
+
+.btnCrearCuenta:hover {
+  background-color: #fff;
+  color: #275D8C;
 }
 
 * {
@@ -49,4 +55,12 @@ h1 {
   text-align: center;
 }
 
+.alert-warning{
+  background-color: #D8E8F0;
+  border: 2px solid #275D8C; /* Borde de 2px de ancho, solido y de color blanco */
+  border-radius: 10px;
+}
 
+.alert-link{
+  color: #275D8C;
+}
