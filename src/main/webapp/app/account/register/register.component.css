@@ -1,4 +1,52 @@
-form-label{
-  background-color: #f3f3f0;
+form {
+  background-color: #D8E8F0;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #275D8C; /* Borde de 2px de ancho, solido y de color blanco */
+  border-radius: 10px;
 }
+
+h1 {
+  text-align: center;
+  color: #275D8C;
+}
+
+.btnCrearCuenta{
+  text-align: center;
+  background-color: #275D8C;
+
+  color: #fff;
+  border: 3px solid #275D8C; /* Borde de 2px de ancho, solido y de color blanco */
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+* {
+  padding: 0;
+  font-family: Raleway, sans-serif;
+  text-align: center;
+}
+
+.form-label {
+
+  text-align: center;
+  font-size: 20px;
+
+}
+
+.form-label::after {
+  content: ":";
+
+}
+
+
+
+.form-control input {
+  text-align: center;
+}
+
+
