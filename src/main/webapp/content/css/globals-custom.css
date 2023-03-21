@@ -414,3 +414,18 @@
   padding-right: 0;
   border-right: none;
 }
+
+/* Customs */
+.container-main {
+  padding: 0px !important;
+  width: 100%;
+}
+
+.logo-img {
+  height: 45px;
+  width: 45px;
+  display: inline-block;
+  vertical-align: middle;
+  background: url('../../../content/images/logo-bit.png') no-repeat center center;
+  background-size: contain;
+}
