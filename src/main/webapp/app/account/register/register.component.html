@@ -1,4 +1,5 @@
 <div>
+  <!-- Alertas -->
   <div class="d-flex justify-content-center">
     <div class="col-md-8">
       <h1 jhiTranslate="register.title" data-cy="registerTitle">Registro</h1>
@@ -25,8 +26,10 @@
     </div>
   </div>
 
+  <!-- Alertas -->
   <div class="d-flex justify-content-center">
     <div class="col-md-8">
+      <!-- POST del Form -->
       <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
         <div class="mb-3">
           <label class="form-label" for="login" jhiTranslate="global.form.username.label">Usuario</label>
@@ -40,7 +43,7 @@
             data-cy="username"
             #login
           />
-
+          <!-- POST del Form -->
           <div *ngIf="registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)">
             <small
               class="form-text text-danger"
