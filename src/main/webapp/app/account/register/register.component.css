@@ -6,6 +6,10 @@ form {
   border: 2px solid #275D8C; /* Borde de 2px de ancho, solido y de color blanco */
   border-radius: 10px;
   margin-bottom: 25px;
+
+ 
+  margin: auto;
+  width: 50%; /* Ajusta el ancho del formulario a tu preferencia */
 }
 
 h1 {
@@ -50,7 +54,6 @@ h1 {
 }
 
 
-
 .form-control input {
   text-align: center;
 }
@@ -59,8 +62,15 @@ h1 {
   background-color: #D8E8F0;
   border: 2px solid #275D8C; /* Borde de 2px de ancho, solido y de color blanco */
   border-radius: 10px;
+  margin: auto;
+  width: 50%; /* Ajusta el ancho del formulario a tu preferencia */
 }
 
 .alert-link{
   color: #275D8C;
+}
+
+input {
+  padding-left: 10px;
+  border-radius: 20px;
 }
