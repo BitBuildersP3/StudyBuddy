@@ -15,6 +15,15 @@ Navbar
   width: 1.75em;
 }
 
+.dropdown-item:hover {
+  background-color: #3e8acc;
+  opacity: 0.7;
+}
+
+#account-menu:hover {
+  color: #fff;
+}
+
 /* ==========================================================================
 Logo styles
 ========================================================================== */
