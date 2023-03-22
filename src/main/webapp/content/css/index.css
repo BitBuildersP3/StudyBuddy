@@ -403,6 +403,10 @@ h6 {
   color: black;
   margin-bottom: 50px;
   font-size: 24px;
+  text-align: justify;
+}
+.a-link {
+  color: black;
 }
 
 #hero .btn-get-started {
