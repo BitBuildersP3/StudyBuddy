@@ -1,78 +1,54 @@
 <div class="row">
-  <div class="col-md-3">
-    <span class="hipster img-fluid rounded"></span>
-  </div>
-
-  <div class="col-md-9">
-    <h1 class="display-4"><span jhiTranslate="home.title">¡Bienvenido, Java Hipster!</span> (Study Buddy)</h1>
-    <jhi-cloudinary-button></jhi-cloudinary-button>
-    <p class="lead" jhiTranslate="home.subtitle">Esta es su página de inicio</p>
-
-    <div [ngSwitch]="account !== null">
-      <div class="alert alert-success" *ngSwitchCase="true">
-        <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message" [translateValues]="{ username: account.login }"
-          >Está conectado como "{{ account.login }}".
-        </span>
-      </div>
-
-      <div class="alert alert-warning" *ngSwitchCase="false">
-        <span jhiTranslate="global.messages.info.authenticated.prefix">Si desea </span>
-        <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">iniciar sesión</a
-        ><span jhiTranslate="global.messages.info.authenticated.suffix"
-          >, puede intentar con las cuentas predeterminadas:<br />- Administrador (usuario="admin" y contraseña="admin") <br />- Usuario
-          (usuario="user" y contraseña="user").</span
+  <!-- <h1 class="display-4"><span jhiTranslate="home.title">¡Bienvenido!</span> </h1> -->
+  <!-- <jhi-cloudinary-button></jhi-cloudinary-button> -->
+  <!-- <p class="lead" jhiTranslate="home.subtitle">Esta es su página de inicio</p> -->
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+          data-aos="fade-up"
+          data-aos-delay="200"
         >
-      </div>
+          <h1>Bienvenidos a Study Buddy</h1>
+          <h2>
+            Somos una plataforma de aprendizaje en línea, con la finalidad de brindar acceso a cursos con amplia variedad para ayudar a las
+            personas a adquirir nuevas habilidades y conocimientos de manera flexible y accesible.
+          </h2>
+          <div class="d-flex justify-content-center justify-content-lg-start">
+            <a class="btn-get-started scrollto">
+              <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">iniciar sesión</a>
+            </a>
+            <span></span>
 
-      <div class="alert alert-warning" *ngSwitchCase="false">
-        <span jhiTranslate="global.messages.info.register.noaccount">¿Aún no tienes una cuenta?</span>&nbsp;
-        <a class="alert-link" routerLink="account/register" jhiTranslate="global.messages.info.register.link">Crea una cuenta</a>
+            <a class="glightbox btn-watch-video">
+              <i class="bi bi-play-circle"></i>
+              <a class="alert-link" routerLink="account/register" jhiTranslate="global.messages.info.register.link">Crea una cuenta</a
+              ><span></span
+            ></a>
+          </div>
+
+          <!-- <div [ngSwitch]="account !== null">
+            <div class="alert alert-success" *ngSwitchCase="true">
+              <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
+                [translateValues]="{ username: account.login }">Está conectado como "{{ account.login }}".
+              </span>
+            </div>
+
+            <div class="alert" *ngSwitchCase="false">
+            </div>
+
+            <div class="alert " *ngSwitchCase="false">
+              <span jhiTranslate="global.messages.info.register.noaccount">¿Aún no tienes una cuenta?</span>&nbsp;
+            </div>
+          </div> -->
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+          <img src="../../content/images/hero-img.png" class="img-fluid animated" alt="" />
+        </div>
       </div>
     </div>
-
-    <p jhiTranslate="home.question">Si tiene preguntas sobre JHipster:</p>
-
-    <ul>
-      <li>
-        <a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.homepage"
-          >Página de inicio de JHipster</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://stackoverflow.com/tags/jhipster/info"
-          target="_blank"
-          rel="noopener noreferrer"
-          jhiTranslate="home.link.stackoverflow"
-          >JHipster en Stack Overflow</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/jhipster/generator-jhipster/issues?state=open"
-          target="_blank"
-          rel="noopener noreferrer"
-          jhiTranslate="home.link.bugtracker"
-          >JHipster seguimiento de errores</a
-        >
-      </li>
-      <li>
-        <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.chat"
-          >Sala de chat pública de JHipster</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.follow"
-          >contacto @jhipster en Twitter</a
-        >
-      </li>
-    </ul>
-
-    <p>
-      <span jhiTranslate="home.like">Si te gusta JHipster, danos una estrella en</span>
-      <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.github"
-        >GitHub</a
-      >!
-    </p>
-  </div>
+  </section>
+  <!-- End Hero -->
 </div>
