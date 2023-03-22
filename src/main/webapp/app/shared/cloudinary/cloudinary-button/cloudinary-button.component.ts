@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'jhi-cloudinary-button',
   templateUrl: './cloudinary-button.component.html',
   styleUrls: ['./cloudinary-button.component.scss'],
 })
 export class CloudinaryButtonComponent implements OnInit {
+  @Input() text: string | undefined;
   cloudName = 'dwxpyowvn'; // replace with your own cloud name
   uploadPreset = 'ml_default'; // replace with your own upload preset
   myWidget: any;
