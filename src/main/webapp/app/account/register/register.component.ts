@@ -43,6 +43,23 @@ export class RegisterComponent implements AfterViewInit {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
     }),
+    // Se agregaron los campos de phone, degree, profilePicture y birthDay.
+    phone: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
+    }),
+    degree: new FormControl('', {
+      nonNullable: false,
+      validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
+    }),
+    profilePicture: new FormControl('', {
+      nonNullable: false,
+      validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
+    }),
+    birthDay: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
+    }),
   });
 
   constructor(private translateService: TranslateService, private registerService: RegisterService) {}
@@ -65,7 +82,9 @@ export class RegisterComponent implements AfterViewInit {
     } else {
       const { login, email } = this.registerForm.getRawValue();
       this.registerService
-        .save({ login, email, password, langKey: this.translateService.currentLang })
+
+        // Se agregaron los campos de phone, degree, profilePicture y birthDay. Pero no estan siendo aceptados por el proyect.
+        .save({ login, email, password, langKey: this.translateService.currentLang, phone, degree, birthDay, profilePicture })
         .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
     }
   }
