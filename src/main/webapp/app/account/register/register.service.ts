@@ -10,10 +10,10 @@ export class RegisterService {
   constructor(private http: HttpClient, private applicationConfigService: ApplicationConfigService) {}
 
 
-  // Llama al Api de de Usuario y ExtraInfo para meter los datos.
+
   save(registration: Registration): Observable<{}> {
-    this.http.post(this.applicationConfigService.getEndpointFor('api/register'), registration);
-    return this.http.post(this.applicationConfigService.getEndpointFor('api/registerExtra'), registration);
+    // Llama al Api de de Usuario y ExtraInfo para meter los datos.
+    return this.http.post(this.applicationConfigService.getEndpointFor('api/registerExtra'), registration) && this.http.post(this.applicationConfigService.getEndpointFor('api/register'), registration);
 
   }
 
