@@ -9,6 +9,7 @@ import { RegisterService } from './register.service';
 @Component({
   selector: 'jhi-register',
   templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements AfterViewInit {
   @ViewChild('login', { static: false })
