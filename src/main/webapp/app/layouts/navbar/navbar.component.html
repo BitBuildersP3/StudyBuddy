@@ -18,6 +18,10 @@
     </a>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="account !== null">
       <ul class="navbar-nav ms-auto p-4 p-lg-0">
+        <li class="nav-item pointer pad-2" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <jhi-cloudinary-button #MyAlert></jhi-cloudinary-button>
+          <img (click)="openModal()" class="profile-image rounded-circle" src="{{ profileImg }}" />
+        </li>
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
             <span>

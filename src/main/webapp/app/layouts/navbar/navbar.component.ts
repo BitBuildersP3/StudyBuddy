@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SessionStorageService } from 'ngx-webstorage';
@@ -10,6 +10,7 @@ import { AccountService } from 'app/core/auth/account.service';
 import { LoginService } from 'app/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { EntityNavbarItems } from 'app/entities/entity-navbar-items';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'jhi-navbar',
@@ -17,6 +18,7 @@ import { EntityNavbarItems } from 'app/entities/entity-navbar-items';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  profileImg = `https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364359/cld-sample.jpg`;
   inProduction?: boolean;
   isNavbarCollapsed = true;
   languages = LANGUAGES;
@@ -53,6 +55,13 @@ export class NavbarComponent implements OnInit {
   changeLanguage(languageKey: string): void {
     this.sessionStorageService.store('locale', languageKey);
     this.translateService.use(languageKey);
+  }
+
+  openModal() {
+    Swal.fire({
+      title: 'Tu foto de perfil',
+      html: `<img src="${this.profileImg}" style="widtd = 20.75em; height: 20.75em"/> `,
+    });
   }
 
   collapseNavbar(): void {
