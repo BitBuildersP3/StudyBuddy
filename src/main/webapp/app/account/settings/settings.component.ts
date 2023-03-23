@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { LANGUAGES } from 'app/config/language.constants';
+import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
 
 const initialAccount: any = {} as Account;
 
@@ -38,7 +39,11 @@ export class SettingsComponent implements OnInit {
     login: new FormControl(initialAccount.login, { nonNullable: true }),
   });
 
-  constructor(private accountService: AccountService, private translateService: TranslateService) {}
+  constructor(
+    private accountService: AccountService,
+    private translateService: TranslateService,
+    private extraInfoService: ExtraUserInfoService
+  ) {}
 
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => {
@@ -52,8 +57,22 @@ export class SettingsComponent implements OnInit {
     this.success = false;
 
     const account = this.settingsForm.getRawValue();
+
     // eslint-disable-next-line no-console
     console.log(account);
+
+    this.extraInfoService.getInfoTest(account).subscribe(data => {
+      this.success = true;
+      this.accountService.authenticate(account);
+
+      // eslint-disable-next-line no-console
+      console.log(data);
+
+      if (account.langKey !== this.translateService.currentLang) {
+        this.translateService.use(account.langKey);
+      }
+    });
+
     // this.accountService.save(account).subscribe(() => {
     //   this.success = true;
     //

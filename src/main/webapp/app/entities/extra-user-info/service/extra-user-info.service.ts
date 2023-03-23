@@ -99,6 +99,18 @@ export class ExtraUserInfoService {
     return extraUserInfoCollection;
   }
 
+  getInfoTest(data: any): Observable<EntityResponseType> {
+    return this.http
+      .get<RestExtraUserInfo>(`${this.resourceUrl}/byUser`, { observe: 'response' })
+      .pipe(map(res => this.convertResponseFromServer(res)));
+  }
+
+  protected getInfoByTheUser(userInfo: number): Observable<EntityResponseType> {
+    return this.http
+      .get<RestExtraUserInfo>(`${this.resourceUrl}/one/${userInfo}`, { observe: 'response' })
+      .pipe(map(res => this.convertResponseFromServer(res)));
+  }
+
   protected convertDateFromClient<T extends IExtraUserInfo | NewExtraUserInfo | PartialUpdateExtraUserInfo>(extraUserInfo: T): RestOf<T> {
     return {
       ...extraUserInfo,

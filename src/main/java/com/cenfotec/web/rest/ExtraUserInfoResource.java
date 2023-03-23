@@ -164,14 +164,26 @@ public class ExtraUserInfoResource {
     @GetMapping("/extra-user-infos")
     public List<ExtraUserInfo> getAllExtraUserInfos(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all ExtraUserInfos");
-        org.springframework.security.core.context.SecurityContext securityContext = SecurityContextHolder.getContext();
-        Optional<String> authentication = SecurityUtils.getCurrentUserLogin();
-        System.out.println(authentication);
         if (eagerload) {
             return extraUserInfoRepository.findAllWithEagerRelationships();
         } else {
             return extraUserInfoRepository.findAll();
         }
+    }
+
+    /**
+     * {@code GET  /extra-user-infos} : get all the extraUserInfos.
+     *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of extraUserInfos in body.
+     */
+    @GetMapping("/extra-user-infos/byUser")
+    public Optional<ExtraUserInfo> getExtraUserInfosByUser(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+        log.debug("REST request to get ExtraUserInfos by the user");
+        String name = SecurityUtils.getCurrentUserLogin().orElse(null);
+        Optional<ExtraUserInfo> val = extraUserInfoRepository.findByUserIsCurrentUser(name);
+        System.out.println(val);
+        return val;
     }
 
     /**
