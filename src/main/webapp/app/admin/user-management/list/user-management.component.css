@@ -24,17 +24,17 @@ tr:hover {
 
 .btn-primary {
   background-color: #275D8C;
-  color: white;
+
 }
 
 .btn-success {
-  background-color: #D8E8F2;
-  color: white;
+  background-color: #275D8C;
+
 }
 
 .btn-danger {
   background-color: #A67665;
-  color: white;
+
 }
 
 .titulo {
