@@ -6,7 +6,7 @@ import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { LANGUAGES } from 'app/config/language.constants';
 
-const initialAccount: Account = {} as Account;
+const initialAccount: any = {} as Account;
 
 @Component({
   selector: 'jhi-settings',
@@ -30,6 +30,7 @@ export class SettingsComponent implements OnInit {
       validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email],
     }),
     langKey: new FormControl(initialAccount.langKey, { nonNullable: true }),
+    test: new FormControl(initialAccount.test, { nonNullable: true }),
 
     activated: new FormControl(initialAccount.activated, { nonNullable: true }),
     authorities: new FormControl(initialAccount.authorities, { nonNullable: true }),
@@ -51,14 +52,16 @@ export class SettingsComponent implements OnInit {
     this.success = false;
 
     const account = this.settingsForm.getRawValue();
-    this.accountService.save(account).subscribe(() => {
-      this.success = true;
-
-      this.accountService.authenticate(account);
-
-      if (account.langKey !== this.translateService.currentLang) {
-        this.translateService.use(account.langKey);
-      }
-    });
+    // eslint-disable-next-line no-console
+    console.log(account);
+    // this.accountService.save(account).subscribe(() => {
+    //   this.success = true;
+    //
+    //   this.accountService.authenticate(account);
+    //
+    //   if (account.langKey !== this.translateService.currentLang) {
+    //     this.translateService.use(account.langKey);
+    //   }
+    // });
   }
 }

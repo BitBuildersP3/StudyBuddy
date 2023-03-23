@@ -2,6 +2,7 @@ package com.cenfotec.web.rest;
 
 import com.cenfotec.domain.ExtraUserInfo;
 import com.cenfotec.repository.ExtraUserInfoRepository;
+import com.cenfotec.security.SecurityUtils;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
@@ -161,6 +164,9 @@ public class ExtraUserInfoResource {
     @GetMapping("/extra-user-infos")
     public List<ExtraUserInfo> getAllExtraUserInfos(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all ExtraUserInfos");
+        org.springframework.security.core.context.SecurityContext securityContext = SecurityContextHolder.getContext();
+        Optional<String> authentication = SecurityUtils.getCurrentUserLogin();
+        System.out.println(authentication);
         if (eagerload) {
             return extraUserInfoRepository.findAllWithEagerRelationships();
         } else {
