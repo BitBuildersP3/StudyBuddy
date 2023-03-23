@@ -61,26 +61,26 @@ export class SettingsComponent implements OnInit {
     // eslint-disable-next-line no-console
     console.log(account);
 
-    this.extraInfoService.getInfoTest(account).subscribe(data => {
-      this.success = true;
-      this.accountService.authenticate(account);
+    // this.extraInfoService.getInfoByCurrentUser().subscribe(data => {
+    //   this.success = true;
+    //   this.accountService.authenticate(account);
 
-      // eslint-disable-next-line no-console
-      console.log(data);
+    //   // eslint-disable-next-line no-console
+    //   console.log(data);
+
+    //   // if (account.langKey !== this.translateService.currentLang) {
+    //   //   this.translateService.use(account.langKey);
+    //   // }
+    // });
+
+    this.accountService.save(account).subscribe(() => {
+      this.success = true;
+
+      this.accountService.authenticate(account);
 
       if (account.langKey !== this.translateService.currentLang) {
         this.translateService.use(account.langKey);
       }
     });
-
-    // this.accountService.save(account).subscribe(() => {
-    //   this.success = true;
-    //
-    //   this.accountService.authenticate(account);
-    //
-    //   if (account.langKey !== this.translateService.currentLang) {
-    //     this.translateService.use(account.langKey);
-    //   }
-    // });
   }
 }

@@ -181,9 +181,8 @@ public class ExtraUserInfoResource {
     public Optional<ExtraUserInfo> getExtraUserInfosByUser(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get ExtraUserInfos by the user");
         String name = SecurityUtils.getCurrentUserLogin().orElse(null);
-        Optional<ExtraUserInfo> val = extraUserInfoRepository.findByUserIsCurrentUser(name);
-        System.out.println(val);
-        return val;
+        Optional<ExtraUserInfo> retVal = extraUserInfoRepository.findByUserIsCurrentUser(name);
+        return retVal;
     }
 
     /**
