@@ -44,6 +44,7 @@ h6 {
 }
 
 .principalConteiner {
+  gap: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -61,6 +62,7 @@ h6 {
   width: 20%;
   flex-direction: row;
   display: flex;
+  padding: 1rem;
 }
 .info {
   width: 100%;
@@ -69,8 +71,10 @@ h6 {
   align-items: center;
 }
 .imgg {
+  max-width: 300px;
   width: 100%;
   height: auto;
+  object-fit: cover;
 }
 
 .botones {

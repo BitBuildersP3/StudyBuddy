@@ -3,11 +3,6 @@
     <span jhiTranslate="studyBuddyApp.courses.home.title">Courses</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="studyBuddyApp.courses.home.refreshListLabel">Refrescar lista</span>
-      </button>
-
       <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
@@ -32,7 +27,10 @@
             <h5>
               <p>{{ courses.name }}</p>
               <span>
-                <p>{{ courses.description }}</p>
+                <p>Descripción:{{ courses.description }}</p>
+              </span>
+              <span>
+                <p>Estado:{{ courses.status }}</p>
               </span>
             </h5>
           </div>

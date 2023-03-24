@@ -41,19 +41,12 @@ export class CoursesUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ courses }) => {
       this.courses = courses;
       const elemento = window.localStorage.getItem('UploadFile');
-
       console.log('ESTE ES EL ELMENTO' + elemento);
       if (courses) {
         this.updateForm(courses);
       }
-
       this.loadRelationshipsOptions();
     });
-  }
-
-  obtenerElemento() {
-    const elemento = localStorage.getItem('image');
-    console.log(elemento);
   }
 
   previousState(): void {
@@ -81,7 +74,7 @@ export class CoursesUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    this.previousState();
+    //this.previousState();
   }
 
   protected onSaveError(): void {
