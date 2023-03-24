@@ -22,36 +22,37 @@
   <!-- lista -->
 
   <div class="principalConteiner">
-    <div *ngFor="let courses of courses">
+    <div class="item-cont" *ngFor="let courses of courses">
       <div class="secondConteiner">
         <div class="card-image">
           <img class="imgg" [src]="courses.previewImg" alt="Nombre del curso {{ courses.description }}" />
         </div>
-        <div class="info">
-          <h5>
-            <p>{{ courses.name }}</p>
-            <span>
-              <p>{{ courses.description }}</p>
-            </span>
-          </h5>
+        <div class="txt-cont">
+          <div class="info">
+            <h5>
+              <p>{{ courses.name }}</p>
+              <span>
+                <p>{{ courses.description }}</p>
+              </span>
+            </h5>
+          </div>
         </div>
-      </div>
+        <!-- Botones -->
+        <div class="botones">
+          <button type="submit" [routerLink]="['/courses', courses.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+            <fa-icon icon="eye"></fa-icon>
+            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+          </button>
+          <button type="submit" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+            <fa-icon icon="pencil-alt"></fa-icon>
+            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+          </button>
 
-      <!-- Botones -->
-      <div class="botones">
-        <button type="submit" [routerLink]="['/courses', courses.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
-          <fa-icon icon="eye"></fa-icon>
-          <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
-        </button>
-        <button type="submit" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
-          <fa-icon icon="pencil-alt"></fa-icon>
-          <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
-        </button>
-
-        <button type="submit" (click)="delete(courses)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-          <fa-icon icon="times"></fa-icon>
-          <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
-        </button>
+          <button type="submit" (click)="delete(courses)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+            <fa-icon icon="times"></fa-icon>
+            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

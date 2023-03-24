@@ -39,6 +39,10 @@ h6 {
   transition: all 0.3s;
 }
 
+.item-cont {
+  width: 50%;
+}
+
 .principalConteiner {
   display: flex;
   flex-direction: column;
@@ -54,13 +58,9 @@ h6 {
 }
 
 .card-image {
-  width: 200px;
-  height: 100px;
+  width: 20%;
   flex-direction: row;
   display: flex;
-  margin-top: 21px;
-  margin-left: 14px;
-  margin-right: 14px;
 }
 .info {
   width: 100%;
@@ -71,4 +71,16 @@ h6 {
 .imgg {
   width: 100%;
   height: auto;
+}
+
+.botones {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.txt-cont {
+  width: 40%;
 }
