@@ -25,11 +25,18 @@ h1,
 h2,
 h3,
 h4,
-h5,
 h6 {
   font-family: 'Nunito', sans-serif;
 }
-
+.h5 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+}
+.sub {
+  text-align: justify;
+  font-size: 16px;
+  color: #666666;
+}
 /*--------------------------------------------------------------
   # Main
   --------------------------------------------------------------*/

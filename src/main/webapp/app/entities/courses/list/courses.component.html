@@ -1,6 +1,8 @@
 <div>
   <h2 id="page-heading" data-cy="CoursesHeading">
-    <span jhiTranslate="studyBuddyApp.courses.home.title">Courses</span>
+    <div class="d-flex justify-content-center font-weight: bold;">
+      <span>Cursos existentes</span>
+    </div>
 
     <div class="d-flex justify-content-end">
       <button
@@ -10,7 +12,7 @@
         [routerLink]="['/courses/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="studyBuddyApp.courses.home.createLabel"> Crear nuevo Courses </span>
+        <span> Crear nuevo Curso </span>
       </button>
     </div>
   </h2>
@@ -26,12 +28,14 @@
           <div class="info">
             <h5>
               <p>{{ courses.name }}</p>
-              <span>
-                <p>Descripción:{{ courses.description }}</p>
+
+              <span class="sub">
+                <p>Descripción: {{ courses.description }}</p>
               </span>
-              <span>
-                <p>Estado:{{ courses.status }}</p>
+              <span class="sub">
+                <p>Estado: {{ courses.status }}</p>
               </span>
+              <span class="sub" *ngFor="let user of courses.users; let last = last"> Dueño: {{ user.login }}{{ last ? '' : ', ' }} </span>
             </h5>
           </div>
         </div>
@@ -59,8 +63,8 @@
   <jhi-alert-error></jhi-alert-error>
 
   <jhi-alert></jhi-alert>
-
-  <!-- <div class="alert alert-warning" id="no-result" *ngIf="courses?.length === 0">
+  <!-- 
+ <div class="alert alert-warning" id="no-result" *ngIf="courses?.length === 0">
     <span jhiTranslate="studyBuddyApp.courses.home.notFound">Ningún Courses encontrado</span>
   </div>
 
@@ -183,5 +187,5 @@
       </tbody>
     </table>
   </div>
-</div> -->
+</div>  -->
 </div>
