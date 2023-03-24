@@ -40,12 +40,20 @@ export class CoursesUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ courses }) => {
       this.courses = courses;
+      const elemento = window.localStorage.getItem('UploadFile');
+
+      console.log('ESTE ES EL ELMENTO' + elemento);
       if (courses) {
         this.updateForm(courses);
       }
 
       this.loadRelationshipsOptions();
     });
+  }
+
+  obtenerElemento() {
+    const elemento = localStorage.getItem('image');
+    console.log(elemento);
   }
 
   previousState(): void {
@@ -56,6 +64,9 @@ export class CoursesUpdateComponent implements OnInit {
     this.isSaving = true;
     const courses = this.coursesFormService.getCourses(this.editForm);
     if (courses.id !== null) {
+      const elemento = window.localStorage.getItem('UploadFile');
+      console.log('ESTE ES EL ELMENTO' + elemento);
+      courses.previewImg = elemento;
       this.subscribeToSaveResponse(this.coursesService.update(courses));
     } else {
       this.subscribeToSaveResponse(this.coursesService.create(courses));

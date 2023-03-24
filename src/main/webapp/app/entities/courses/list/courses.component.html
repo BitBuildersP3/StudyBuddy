@@ -1,3 +1,4 @@
+<!-- <link rel="stylesheet" href="courses.css" /> -->
 <div>
   <h2 id="page-heading" data-cy="CoursesHeading">
     <span jhiTranslate="studyBuddyApp.courses.home.title">Courses</span>
@@ -19,6 +20,62 @@
       </button>
     </div>
   </h2>
+
+  <!-- Start Card -->
+  <div class="principalConteiner">
+    <div *ngFor="let courses of courses">
+      <div class="col-xxl-4 col-md-6">
+        <div class="card info-card sales-card">
+          <div class="filter">
+            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+          </div>
+
+          <!-- despliegue de la info del curso  -->
+          <div class="card-body">
+            <h5 class="card-title">
+              <p>{{ courses.name }}</p>
+              <span>
+                <p>{{ courses.description }}</p>
+              </span>
+            </h5>
+          </div>
+          <!-- Imagen del curso -->
+          <div class="card-body001">
+            <img class="imgg" [src]="courses.previewImg" alt="Nombre del curso {{ courses.description }}" />
+          </div>
+
+          <div class="d-flex align-items-center">
+            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"></div>
+            <div class="ps-3">
+              <h6>
+                <p>Puntaje: {{ courses.score }}</p>
+              </h6>
+              <span class="text-success small pt-1 fw-bold">
+                <p>Estado: {{ courses.status }}</p>
+              </span>
+              <span class="text-muted small pt-2 ps-1">
+                <p>Creador: {{ courses.userVotes }}</p>
+              </span>
+            </div>
+          </div>
+          <button type="submit" [routerLink]="['/courses', courses.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+            <fa-icon icon="eye"></fa-icon>
+            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+          </button>
+          <button type="submit" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+            <fa-icon icon="pencil-alt"></fa-icon>
+            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+          </button>
+
+          <button type="submit" (click)="delete(courses)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+            <fa-icon icon="times"></fa-icon>
+            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End  Card -->
 
   <jhi-alert-error></jhi-alert-error>
 
@@ -74,12 +131,12 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="userId">
+          <!-- <th scope="col" jhiSortBy="userId">
             <div class="d-flex">
               <span jhiTranslate="studyBuddyApp.courses.userId">User Id</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
-          </th>
+          </th> -->
           <th scope="col" jhiSortBy="userVotes">
             <div class="d-flex">
               <span jhiTranslate="studyBuddyApp.courses.userVotes">User Votes</span>
@@ -92,7 +149,7 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="category.id">
+          <th scope="col" jhiSortBy="category.name">
             <div class="d-flex">
               <span jhiTranslate="studyBuddyApp.courses.category">Category</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
@@ -101,6 +158,7 @@
           <th scope="col"></th>
         </tr>
       </thead>
+
       <tbody>
         <tr *ngFor="let courses of courses; trackBy: trackId" data-cy="entityTable">
           <td>
@@ -108,11 +166,11 @@
           </td>
           <td>{{ courses.name }}</td>
           <td>{{ courses.description }}</td>
+          <!-- <img src="{{ courses.previewImg }}" > -->
           <td>{{ courses.previewImg }}</td>
           <td>{{ courses.status }}</td>
           <td>{{ courses.score }}</td>
           <td>{{ courses.excerpt }}</td>
-          <td>{{ courses.userId }}</td>
           <td>{{ courses.userVotes }}</td>
           <td>
             <span *ngFor="let user of courses.users; let last = last"> {{ user.login }}{{ last ? '' : ', ' }} </span>
