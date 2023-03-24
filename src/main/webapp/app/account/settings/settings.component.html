@@ -163,7 +163,7 @@
         />
         <label class="form-label" for="degree">Titulo</label>
         <input
-          type="degree"
+          type="text"
           class="form-control"
           id="degree"
           name="degree"
@@ -173,13 +173,23 @@
         />
         <label class="form-label" for="birthDay">Fecha de nacimiento</label>
         <input
-          type="birthDay"
+          type="text"
           class="form-control"
           id="birthDay"
           name="birthDay"
           placeholder="{{ 'global.form.birthDay.placeholder' }}"
           formControlName="birthDay"
           data-cy="birthDay"
+        />
+        <!-- <label class="form-label" for="birthDay">Fecha de nacimiento</label> -->
+        <input
+          type="text"
+          class="form-control d-lg-none"
+          id="id"
+          name="id"
+          placeholder="{{ 'global.form.id.placeholder' }}"
+          formControlName="id"
+          data-cy="id"
         />
 
         <button

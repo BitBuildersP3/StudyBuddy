@@ -29,7 +29,7 @@ export class AccountService {
     return this.http.post(this.applicationConfigService.getEndpointFor('api/account'), account);
   }
 
-  authenticate(identity: Account | null): void {
+  authenticate(identity: any | null): void {
     this.userIdentity = identity;
     this.authenticationState.next(this.userIdentity);
     if (!identity) {

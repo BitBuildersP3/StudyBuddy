@@ -43,6 +43,10 @@ export class SettingsComponent implements OnInit {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(1), Validators.maxLength(50)],
     }),
+    id: new FormControl(initialAccount.id, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(1), Validators.maxLength(50)],
+    }),
 
     activated: new FormControl(initialAccount.activated, { nonNullable: true }),
     authorities: new FormControl(initialAccount.authorities, { nonNullable: true }),
@@ -58,8 +62,6 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.extraInfoService.getInfoByCurrentUser().subscribe(data => {
-      // eslint-disable-next-line no-console
-      console.log(data.body);
       this.accountService.identity().subscribe(account => {
         if (account) {
           const customForm = { ...account, ...data.body };
@@ -73,11 +75,31 @@ export class SettingsComponent implements OnInit {
   save(): void {
     this.success = false;
 
-    const account = this.settingsForm.getRawValue();
+    const response = this.settingsForm.getRawValue();
+
+    const extraInfo = {
+      id: response.id,
+      birthday: response.birthDay,
+      degree: response.degree,
+      phone: response.phone,
+    };
+
+    const account = {
+      activated: response.activated,
+      authorities: response.authorities,
+      email: response.email,
+      firstName: response.firstName,
+      langKey: response.langKey,
+      lastName: response.lastName,
+      login: response.login,
+    };
+    // eslint-disable-next-line no-console
+    console.log(extraInfo);
 
     // eslint-disable-next-line no-console
     console.log(account);
-    this.accountService.save(account).subscribe(() => {
+
+    this.accountService.save(response).subscribe(() => {
       this.success = true;
 
       this.accountService.authenticate(account);
@@ -85,6 +107,10 @@ export class SettingsComponent implements OnInit {
       if (account.langKey !== this.translateService.currentLang) {
         this.translateService.use(account.langKey);
       }
+    });
+
+    this.extraInfoService.partialUpdate(extraInfo).subscribe(() => {
+      this.success = true;
     });
   }
 }
