@@ -151,10 +151,36 @@
           </select>
         </div>
 
-        <!-- <div class="mb-3">
-          <label class="form-label" for="test">Test</label>
-          <input type="text" class="form-control" id="test" name="test" placeholder="test" formControlName="test" data-cy="test" />
-        </div> -->
+        <label class="form-label" for="phone">Telefono</label>
+        <input
+          type="phone"
+          class="form-control"
+          id="phone"
+          name="phone"
+          placeholder="{{ 'global.form.phone.placeholder' }}"
+          formControlName="phone"
+          data-cy="phone"
+        />
+        <label class="form-label" for="degree">Titulo</label>
+        <input
+          type="degree"
+          class="form-control"
+          id="degree"
+          name="degree"
+          placeholder="{{ 'global.form.degree.placeholder' }}"
+          formControlName="degree"
+          data-cy="degree"
+        />
+        <label class="form-label" for="birthDay">Fecha de nacimiento</label>
+        <input
+          type="birthDay"
+          class="form-control"
+          id="birthDay"
+          name="birthDay"
+          placeholder="{{ 'global.form.birthDay.placeholder' }}"
+          formControlName="birthDay"
+          data-cy="birthDay"
+        />
 
         <button
           type="submit"
