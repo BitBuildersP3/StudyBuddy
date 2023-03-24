@@ -75,17 +75,22 @@ export class RegisterComponent implements AfterViewInit {
     this.error = false;
     this.errorEmailExists = false;
     this.errorUserExists = false;
+    const test = this.registerForm.getRawValue();
+    console.log(test);
 
     const { password, confirmPassword } = this.registerForm.getRawValue();
+
     if (password !== confirmPassword) {
       this.doNotMatch = true;
     } else {
       const { login, email } = this.registerForm.getRawValue();
-      this.registerService
+
+     // this.registerService
+
 
         // Se agregaron los campos de phone, degree, profilePicture y birthDay. Pero no estan siendo aceptados por el proyect.
-        .save({ login, email, password, langKey: this.translateService.currentLang, phone, degree, birthDay, profilePicture })
-        .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
+        // .save({ login, email, password, langKey: this.translateService.currentLang, phone, degree, birthDay, profilePicture })
+       // .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
     }
   }
 
