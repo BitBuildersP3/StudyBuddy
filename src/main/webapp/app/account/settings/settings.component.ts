@@ -5,8 +5,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { LANGUAGES } from 'app/config/language.constants';
+import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
 
-const initialAccount: Account = {} as Account;
+const initialAccount: any = {} as Account;
 
 @Component({
   selector: 'jhi-settings',
@@ -30,6 +31,7 @@ export class SettingsComponent implements OnInit {
       validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email],
     }),
     langKey: new FormControl(initialAccount.langKey, { nonNullable: true }),
+    test: new FormControl(initialAccount.test, { nonNullable: true }),
 
     activated: new FormControl(initialAccount.activated, { nonNullable: true }),
     authorities: new FormControl(initialAccount.authorities, { nonNullable: true }),
@@ -37,7 +39,11 @@ export class SettingsComponent implements OnInit {
     login: new FormControl(initialAccount.login, { nonNullable: true }),
   });
 
-  constructor(private accountService: AccountService, private translateService: TranslateService) {}
+  constructor(
+    private accountService: AccountService,
+    private translateService: TranslateService,
+    private extraInfoService: ExtraUserInfoService
+  ) {}
 
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => {
@@ -51,6 +57,22 @@ export class SettingsComponent implements OnInit {
     this.success = false;
 
     const account = this.settingsForm.getRawValue();
+
+    // eslint-disable-next-line no-console
+    console.log(account);
+
+    // this.extraInfoService.getInfoByCurrentUser().subscribe(data => {
+    //   this.success = true;
+    //   this.accountService.authenticate(account);
+
+    //   // eslint-disable-next-line no-console
+    //   console.log(data);
+
+    //   // if (account.langKey !== this.translateService.currentLang) {
+    //   //   this.translateService.use(account.langKey);
+    //   // }
+    // });
+
     this.accountService.save(account).subscribe(() => {
       this.success = true;
 

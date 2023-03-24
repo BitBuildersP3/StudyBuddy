@@ -99,6 +99,12 @@ export class ExtraUserInfoService {
     return extraUserInfoCollection;
   }
 
+  getInfoByCurrentUser(): Observable<EntityResponseType> {
+    return this.http
+      .get<RestExtraUserInfo>(`${this.resourceUrl}/byUser`, { observe: 'response' })
+      .pipe(map(res => this.convertResponseFromServer(res)));
+  }
+
   protected convertDateFromClient<T extends IExtraUserInfo | NewExtraUserInfo | PartialUpdateExtraUserInfo>(extraUserInfo: T): RestOf<T> {
     return {
       ...extraUserInfo,
