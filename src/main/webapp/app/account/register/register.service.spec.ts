@@ -31,7 +31,11 @@ describe('RegisterService Service', () => {
       const email = 'test@test.com';
       const password = 'pass';
       const langKey = 'FR';
-      const registration = new Registration(login, email, password, langKey);
+      const phone = '123456789';
+      const degree = 'degreeTest';
+      const profilePicture = 'profilePictureTest';
+      const birthDay = 'birthDayTest';
+      const registration = new Registration(login, email, password, langKey, phone, degree, profilePicture, birthDay);
 
       // WHEN
       service.save(registration).subscribe();
