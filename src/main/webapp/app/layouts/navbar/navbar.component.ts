@@ -11,6 +11,7 @@ import { LoginService } from 'app/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { EntityNavbarItems } from 'app/entities/entity-navbar-items';
 import Swal from 'sweetalert2';
+import { EntityResponseType, ExtraUserInfoService } from '../../entities/extra-user-info/service/extra-user-info.service';
 
 @Component({
   selector: 'jhi-navbar',
@@ -18,7 +19,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  profileImg = `https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364359/cld-sample.jpg`;
+  profileImg: string | null | undefined = `https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364359/cld-sample.jpg`;
   inProduction?: boolean;
   isNavbarCollapsed = true;
   languages = LANGUAGES;
@@ -33,7 +34,8 @@ export class NavbarComponent implements OnInit {
     private sessionStorageService: SessionStorageService,
     private accountService: AccountService,
     private profileService: ProfileService,
-    private router: Router
+    private router: Router,
+    private extraUserInfoService: ExtraUserInfoService
   ) {
     if (VERSION) {
       this.version = VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`;
@@ -49,6 +51,13 @@ export class NavbarComponent implements OnInit {
 
     this.accountService.getAuthenticationState().subscribe(account => {
       this.account = account;
+    });
+
+    this.extraUserInfoService.getInfoByCurrentUser().subscribe({
+      next: (res: EntityResponseType) => {
+        console.log(res);
+        this.profileImg = res.body?.profilePicture;
+      },
     });
   }
 
