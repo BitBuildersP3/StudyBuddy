@@ -31,7 +31,7 @@ export class ExtraUserInfoService {
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
-  create(extraUserInfo: NewExtraUserInfo): Observable<EntityResponseType> {
+  create(extraUserInfo: any): Observable<EntityResponseType> {
     console.log("Info Objeto extraUserInfo: CREATE ", extraUserInfo);
     const copy = this.convertDateFromClient(extraUserInfo);
     return this.http

@@ -6,6 +6,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/config/error.constants';
 import { RegisterService } from './register.service';
 
+// Imports nuevos
+import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
+
+
+
 @Component({
   selector: 'jhi-register',
   templateUrl: './register.component.html',
@@ -57,7 +62,8 @@ export class RegisterComponent implements AfterViewInit {
     }),
   });
 
-  constructor(private translateService: TranslateService, private registerService: RegisterService) {}
+  // , private extraUserInfoService: ExtraUserInfoService
+  constructor(private translateService: TranslateService, private registerService: RegisterService , private extraUserInfoService: ExtraUserInfoService) {}
 
   ngAfterViewInit(): void {
     if (this.login) {
@@ -82,23 +88,12 @@ export class RegisterComponent implements AfterViewInit {
 
 
 
-      // Aqui tengo que partir el objeto en dos partes, para enviarlos a ambos servicios.
-
-      /*
-      Me Falta agregar estos campos.
-        profilePicture?: string | null;
-        birthDay?: dayjs.Dayjs | null;
-
-       */
-
-// import me the "save" method from register.service.ts
-      // this.registerService.
-
-      // using the save method from register.service.ts put the login parameters in the user table.
 
       this.registerService
-        .save({ login, email, password, langKey: this.translateService.currentLang, phone, degree , birthDay })
+        .save({ login, email, password, langKey: this.translateService.currentLang })
         .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
+
+      this.registerExtraInfo(phone, degree, birthDay, login);
     }
   }
 
@@ -110,5 +105,14 @@ export class RegisterComponent implements AfterViewInit {
     } else {
       this.error = true;
     }
+  }
+
+  // Registra la información extra del usuario en la base de datos.
+  private registerExtraInfo(pPhone: String, pDegree: String, pBirthDay: any, pLogin: any): void {
+
+    // Cambiar foto default de perfil URL
+    const newCustomExtraUserInfo = { phone: pPhone, degree: pDegree, profilePicture: "profile.png", birthDay: pBirthDay, score: 0, userVotes: 0, user: pLogin };
+    console.log("Objeto newCustomExtraUserInfo: " + newCustomExtraUserInfo);
+    this.extraUserInfoService.create(newCustomExtraUserInfo);
   }
 }

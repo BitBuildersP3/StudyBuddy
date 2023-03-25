@@ -32,10 +32,8 @@ describe('RegisterService Service', () => {
       const email = 'test@test.com';
       const password = 'pass';
       const langKey = 'FR';
-      const phone = '123456789';
-      const degree = 'Master';
-      const birthDay ='2022-03-24';
-      const registration = new Registration(login, email, password, langKey, phone, degree, birthDay)
+
+      const registration = new Registration(login, email, password, langKey)
 
       // WHEN
       service.save(registration).subscribe();
@@ -46,7 +44,7 @@ describe('RegisterService Service', () => {
       });
 
       // THEN
-      expect(testRequest.request.body).toEqual({ email, langKey, login, password, phone, degree });
+      expect(testRequest.request.body).toEqual({ email, langKey, login, password});
     });
   });
 });
