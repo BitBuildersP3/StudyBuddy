@@ -87,8 +87,14 @@ export class RegisterComponent implements AfterViewInit {
 
        */
 
-       // .save({ login, email, password, langKey: this.translateService.currentLang, phone, degree })
-        // .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
+// import me the "save" method from register.service.ts
+      // this.registerService.
+
+      // using the save method from register.service.ts put the login parameters in the user table.
+
+      this.registerService
+        .save({ login, email, password, langKey: this.translateService.currentLang, phone, degree })
+        .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
     }
   }
 

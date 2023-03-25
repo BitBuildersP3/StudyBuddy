@@ -10,6 +10,17 @@ export class RegisterService {
   constructor(private http: HttpClient, private applicationConfigService: ApplicationConfigService) {}
 
   save(registration: Registration): Observable<{}> {
-    return this.http.post(this.applicationConfigService.getEndpointFor('api/register'), registration);
+
+    console.log("Objeto registration: " + registration);
+   const userRegistration = this.extractUser(registration);
+    console.log("Objeto registration: " + userRegistration);
+    return this.http.post(this.applicationConfigService.getEndpointFor('api/register'), userRegistration);
+  }
+
+
+// Extrae en un objeto, los datos para el usuario base.
+   extractUser(registration: Registration): object {
+    const { login, email, password, langKey } = registration;
+    return { login: login, email: email, password: password, langKey: langKey };
   }
 }
