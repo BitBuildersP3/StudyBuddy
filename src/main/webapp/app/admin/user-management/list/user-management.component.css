@@ -1,9 +1,9 @@
 table {
   background-color: #59A8D9;
   border-radius: 10px;
-}.table-striped
+}
 
- table-responsive{
+table-striped{
   background-color: #59A8D9;
   border-radius: 10px;
 }
