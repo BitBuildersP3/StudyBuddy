@@ -187,7 +187,7 @@
 
             <small
               class="form-text text-danger"
-              *ngIf="registerForm.get('phone')?.errors?.minlength"
+              *ngIf="registerForm.get('degree')?.errors?.minlength"
             >
               Se requiere que su número telefónico tenga por lo menos 5 caracteres
             </small>
@@ -208,6 +208,36 @@
           <!-- Termina profilePicture -->
 
           <!-- Inicia birthday -->
+        <div class="mb-3">
+          <label class="form-label" for="birthDay" >Fecha de Nacimiento</label>
+          <input
+            type="birthDay"
+            class="form-control"
+            id="birthDay"
+            name="birthDay"
+            placeholder="AAAA/MM/DD"
+            ngbDatepicker
+            #birthDayDp="ngbDatepicker"
+            formControlName="birthDay"
+            data-cy="birthDay"
+
+          />
+          <!-- Como meto el calendario en el input para que se vea bonito -->
+          <button type="button" class="btn btn-secondary" (click)="birthDayDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+        </div>
+
+          <div *ngIf="registerForm.get('birthDay')!.invalid && (registerForm.get('birthDay')!.dirty || registerForm.get('birthDay')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="registerForm.get('birthDay')?.errors?.required"
+            >
+              Se requiere una fecha de nacimiento.
+            </small>
+
+
+          </div>
+
+
 
           <!-- Termina birthday -->
 

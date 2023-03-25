@@ -4,6 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { RegisterService } from './register.service';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { Registration } from './register.model';
+import dayjs, {Dayjs} from "dayjs";
 
 describe('RegisterService Service', () => {
   let service: RegisterService;
@@ -33,7 +34,8 @@ describe('RegisterService Service', () => {
       const langKey = 'FR';
       const phone = '123456789';
       const degree = 'Master';
-      const registration = new Registration(login, email, password, langKey, phone, degree);
+      const birthDay ='2022-03-24';
+      const registration = new Registration(login, email, password, langKey, phone, degree, birthDay)
 
       // WHEN
       service.save(registration).subscribe();

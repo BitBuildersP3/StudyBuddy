@@ -43,6 +43,10 @@ export class RegisterComponent implements AfterViewInit {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254)],
     }),
+    birthDay: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
     password: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
@@ -71,7 +75,7 @@ export class RegisterComponent implements AfterViewInit {
     if (password !== confirmPassword) {
       this.doNotMatch = true;
     } else {
-      const { login, email, phone, degree } = this.registerForm.getRawValue();
+      const { login, email, phone, degree, birthDay } = this.registerForm.getRawValue();
       ;
 
       console.log(this.registerForm.getRawValue());
@@ -93,7 +97,7 @@ export class RegisterComponent implements AfterViewInit {
       // using the save method from register.service.ts put the login parameters in the user table.
 
       this.registerService
-        .save({ login, email, password, langKey: this.translateService.currentLang, phone, degree })
+        .save({ login, email, password, langKey: this.translateService.currentLang, phone, degree , birthDay })
         .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
     }
   }
