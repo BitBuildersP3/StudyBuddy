@@ -45,7 +45,6 @@ export class SettingsComponent implements OnInit {
     }),
     id: new FormControl(initialAccount.id, {
       nonNullable: true,
-      validators: [Validators.required, Validators.minLength(1), Validators.maxLength(50)],
     }),
 
     activated: new FormControl(initialAccount.activated, { nonNullable: true }),
@@ -79,7 +78,7 @@ export class SettingsComponent implements OnInit {
 
     const extraInfo = {
       id: response.id,
-      birthday: response.birthDay,
+      birthDay: response.birthDay,
       degree: response.degree,
       phone: response.phone,
     };
@@ -93,11 +92,6 @@ export class SettingsComponent implements OnInit {
       lastName: response.lastName,
       login: response.login,
     };
-    // eslint-disable-next-line no-console
-    console.log(extraInfo);
-
-    // eslint-disable-next-line no-console
-    console.log(account);
 
     this.accountService.save(response).subscribe(() => {
       this.success = true;
