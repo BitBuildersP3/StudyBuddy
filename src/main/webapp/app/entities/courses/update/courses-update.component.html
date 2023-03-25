@@ -87,7 +87,7 @@
             [compareWith]="compareCategory"
           >
             <option [ngValue]="null"></option>
-            <option [ngValue]="categoryOption" *ngFor="let categoryOption of categoriesSharedCollection">{{ categoryOption.id }}</option>
+            <option [ngValue]="categoryOption" *ngFor="let categoryOption of categoriesSharedCollection">{{ categoryOption.name }}</option>
           </select>
         </div>
       </div>

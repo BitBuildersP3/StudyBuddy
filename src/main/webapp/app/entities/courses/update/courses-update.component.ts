@@ -19,7 +19,7 @@ import { CategoryService } from 'app/entities/category/service/category.service'
 export class CoursesUpdateComponent implements OnInit {
   isSaving = false;
   courses: ICourses | null = null;
-
+  idUser: number = 0;
   usersSharedCollection: IUser[] = [];
   categoriesSharedCollection: ICategory[] = [];
 

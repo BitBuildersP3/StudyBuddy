@@ -5,6 +5,8 @@ import { takeUntil } from 'rxjs/operators';
 
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
+import { ExtraUserInfoComponent } from 'app/entities/extra-user-info/list/extra-user-info.component';
+import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
 
 @Component({
   selector: 'jhi-home',
@@ -13,10 +15,10 @@ import { Account } from 'app/core/auth/account.model';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
-
+  idUser: number = 0;
   private readonly destroy$ = new Subject<void>();
 
-  constructor(private accountService: AccountService, private router: Router) {}
+  constructor(private accountService: AccountService, private router: Router, protected ExtraUserInfoComponent: ExtraUserInfoService) {}
 
   ngOnInit(): void {
     this.accountService
