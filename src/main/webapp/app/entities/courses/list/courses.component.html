@@ -35,7 +35,8 @@
               <span class="sub">
                 <p>Estado: {{ courses.status }}</p>
               </span>
-              <span class="sub" *ngFor="let user of courses.users; let last = last"> Dueño: {{ user.login }}{{ last ? '' : ', ' }} </span>
+              <span class="sub"> Dueño: {{ courses.userId }} </span>
+              <!-- <span class="sub" *ngFor="let user of courses.users; let last = last"> Dueño: {{ user.login }}{{ last ? '' : ', ' }} </span> -->
             </h5>
           </div>
         </div>

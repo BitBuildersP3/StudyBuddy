@@ -11,6 +11,7 @@ import { IUser } from 'app/entities/user/user.model';
 import { UserService } from 'app/entities/user/user.service';
 import { ICategory } from 'app/entities/category/category.model';
 import { CategoryService } from 'app/entities/category/service/category.service';
+import { EntityResponseType, ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
 
 @Component({
   selector: 'jhi-courses-update',
@@ -30,7 +31,8 @@ export class CoursesUpdateComponent implements OnInit {
     protected coursesFormService: CoursesFormService,
     protected userService: UserService,
     protected categoryService: CategoryService,
-    protected activatedRoute: ActivatedRoute
+    protected activatedRoute: ActivatedRoute,
+    protected extraUser: ExtraUserInfoService
   ) {}
 
   compareUser = (o1: IUser | null, o2: IUser | null): boolean => this.userService.compareUser(o1, o2);
@@ -40,12 +42,18 @@ export class CoursesUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ courses }) => {
       this.courses = courses;
-      const elemento = window.localStorage.getItem('UploadFile');
-      console.log('ESTE ES EL ELMENTO' + elemento);
       if (courses) {
         this.updateForm(courses);
       }
       this.loadRelationshipsOptions();
+    });
+
+    this.extraUser.getInfoByCurrentUser().subscribe({
+      next: (res: EntityResponseType) => {
+        // @ts-ignore
+        this.idUser = res.body?.user.id;
+        console.log(this.idUser);
+      },
     });
   }
 
@@ -56,12 +64,13 @@ export class CoursesUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const courses = this.coursesFormService.getCourses(this.editForm);
+
     if (courses.id !== null) {
-      const elemento = window.localStorage.getItem('UploadFile');
-      console.log('ESTE ES EL ELMENTO' + elemento);
-      courses.previewImg = elemento;
       this.subscribeToSaveResponse(this.coursesService.update(courses));
     } else {
+      const elemento = window.localStorage.getItem('UploadFile');
+      courses.previewImg = elemento;
+      courses.userId = this.idUser;
       this.subscribeToSaveResponse(this.coursesService.create(courses));
     }
   }
@@ -74,6 +83,7 @@ export class CoursesUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
+    localStorage.clear();
     //this.previousState();
   }
 
