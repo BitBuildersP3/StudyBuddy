@@ -31,7 +31,21 @@ export class SettingsComponent implements OnInit {
       validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email],
     }),
     langKey: new FormControl(initialAccount.langKey, { nonNullable: true }),
-    test: new FormControl(initialAccount.test, { nonNullable: true }),
+    phone: new FormControl(initialAccount.phone, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(1), Validators.maxLength(50)],
+    }),
+    degree: new FormControl(initialAccount.degree, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(1), Validators.maxLength(50)],
+    }),
+    birthDay: new FormControl(initialAccount.birthDay, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(1), Validators.maxLength(50)],
+    }),
+    id: new FormControl(initialAccount.id, {
+      nonNullable: true,
+    }),
 
     activated: new FormControl(initialAccount.activated, { nonNullable: true }),
     authorities: new FormControl(initialAccount.authorities, { nonNullable: true }),
@@ -46,34 +60,40 @@ export class SettingsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.accountService.identity().subscribe(account => {
-      if (account) {
-        this.settingsForm.patchValue(account);
-      }
+    this.extraInfoService.getInfoByCurrentUser().subscribe(data => {
+      this.accountService.identity().subscribe(account => {
+        if (account) {
+          const customForm = { ...account, ...data.body };
+
+          this.settingsForm.patchValue(customForm);
+        }
+      });
     });
   }
 
   save(): void {
     this.success = false;
 
-    const account = this.settingsForm.getRawValue();
+    const response = this.settingsForm.getRawValue();
 
-    // eslint-disable-next-line no-console
-    console.log(account);
+    const extraInfo = {
+      id: response.id,
+      birthDay: response.birthDay,
+      degree: response.degree,
+      phone: response.phone,
+    };
 
-    // this.extraInfoService.getInfoByCurrentUser().subscribe(data => {
-    //   this.success = true;
-    //   this.accountService.authenticate(account);
+    const account = {
+      activated: response.activated,
+      authorities: response.authorities,
+      email: response.email,
+      firstName: response.firstName,
+      langKey: response.langKey,
+      lastName: response.lastName,
+      login: response.login,
+    };
 
-    //   // eslint-disable-next-line no-console
-    //   console.log(data);
-
-    //   // if (account.langKey !== this.translateService.currentLang) {
-    //   //   this.translateService.use(account.langKey);
-    //   // }
-    // });
-
-    this.accountService.save(account).subscribe(() => {
+    this.accountService.save(response).subscribe(() => {
       this.success = true;
 
       this.accountService.authenticate(account);
@@ -81,6 +101,10 @@ export class SettingsComponent implements OnInit {
       if (account.langKey !== this.translateService.currentLang) {
         this.translateService.use(account.langKey);
       }
+    });
+
+    this.extraInfoService.partialUpdate(extraInfo).subscribe(() => {
+      this.success = true;
     });
   }
 }

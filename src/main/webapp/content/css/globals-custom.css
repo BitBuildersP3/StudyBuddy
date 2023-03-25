@@ -429,3 +429,35 @@
   background: url('../../../content/images/logo-bit.png') no-repeat center center;
   background-size: contain;
 }
+
+/* Custom Form Styles */
+.custom-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.mb-3 {
+  max-width: 35rem;
+  width: 100%;
+}
+
+.custom-form label {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+.custom-form input {
+  border-radius: 10px;
+  font-size: 1.3rem;
+  padding: 1rem;
+  border: 2px solid #bdbdbd;
+}
+
+.light-blue-txt {
+  color: #3e8acc;
+}
+
+.submit-btn {
+  padding: 1rem !important;
+  border-radius: 10px;
+  width: 100%;
+}
