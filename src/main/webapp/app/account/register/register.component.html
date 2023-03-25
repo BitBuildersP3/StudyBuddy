@@ -130,7 +130,87 @@
         </div>
         <!-- Termina Email  -->
 
-        
+        <!-- Nuevos Inputs -->
+            <!-- Inicia Phone -->
+        <div class="mb-3">
+          <label class="form-label" for="phone" >Número Telefónico</label>
+          <input
+            type="phone"
+            class="form-control"
+            id="phone"
+            name="phone"
+            placeholder="Teléfono"
+            formControlName="phone"
+            data-cy="phone"
+          />
+
+          <div *ngIf="registerForm.get('phone')!.invalid && (registerForm.get('phone')!.dirty || registerForm.get('phone')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="registerForm.get('phone')?.errors?.required"
+            >
+              Se requiere un número telefónico.
+            </small>
+
+            <small
+              class="form-text text-danger"
+              *ngIf="registerForm.get('phone')?.errors?.minlength"
+            >
+              Se requiere que su número telefónico tenga por lo menos 5 caracteres
+            </small>
+
+            <small
+              class="form-text text-danger"
+              *ngIf="registerForm.get('phone')?.errors?.maxlength"
+            >
+              Su número telefónico no puede tener más de 50 caracteres
+            </small>
+          </div>
+        </div>
+
+            <!-- Termina Phone -->
+
+            <!-- Inicia degree -->
+        <div class="mb-3">
+          <label class="form-label" for="degree" >Nivel Académico</label>
+          <input
+            type="degree"
+            class="form-control"
+            id="degree"
+            name="degree"
+            placeholder="Nivel Académico"
+            formControlName="degree"
+            data-cy="degree"
+          />
+
+          <div *ngIf="registerForm.get('degree')!.invalid && (registerForm.get('degree')!.dirty || registerForm.get('degree')!.touched)">
+
+            <small
+              class="form-text text-danger"
+              *ngIf="registerForm.get('phone')?.errors?.minlength"
+            >
+              Se requiere que su número telefónico tenga por lo menos 5 caracteres
+            </small>
+
+            <small
+              class="form-text text-danger"
+              *ngIf="registerForm.get('degree')?.errors?.maxlength"
+            >
+              Su número telefónico no puede tener más de 50 caracteres
+            </small>
+          </div>
+        </div>
+            <!-- Termina degree -->
+
+
+          <!-- Inicia profilePicture -->
+
+          <!-- Termina profilePicture -->
+
+          <!-- Inicia birthday -->
+
+          <!-- Termina birthday -->
+
         <!-- Empieza Contrasenna  -->
         <div class="mb-3">
           <label class="form-label" for="password" jhiTranslate="global.form.newpassword.label">Nueva contraseña</label>
@@ -223,12 +303,7 @@
 
         <!-- Termina Contrasenna  -->
 
-        <!-- Nuevos Inputs -->
-              <!-- Inicia Phone -->
 
-
-
-              <!-- Termina Phone -->
 
 
         <!-- Boton de "Enviar" -->
