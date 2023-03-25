@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 @Component({
   selector: 'jhi-cloudinary-button',
   templateUrl: './cloudinary-button.component.html',
@@ -6,6 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CloudinaryButtonComponent implements OnInit {
   @Input() text: string | undefined;
+  @Output() urlChanged = new EventEmitter<string>();
+
   cloudName = 'dwxpyowvn'; // replace with your own cloud name
   uploadPreset = 'ml_default'; // replace with your own upload preset
   myWidget: any;
@@ -34,6 +36,7 @@ export class CloudinaryButtonComponent implements OnInit {
         if (!error && result && result.event === 'success') {
           console.log('Done! Here is the image info: ', result.info);
           // @ts-ignore
+          this.urlChanged.emit(result.info.secure_url);
           window.localStorage.setItem('UploadFile', result.info.secure_url);
         }
       }

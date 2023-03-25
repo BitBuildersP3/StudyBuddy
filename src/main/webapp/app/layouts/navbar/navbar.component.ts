@@ -11,7 +11,11 @@ import { LoginService } from 'app/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { EntityNavbarItems } from 'app/entities/entity-navbar-items';
 import Swal from 'sweetalert2';
-import { EntityResponseType, ExtraUserInfoService } from '../../entities/extra-user-info/service/extra-user-info.service';
+import {
+  EntityResponseType,
+  ExtraUserInfoService,
+  PartialUpdateExtraUserInfo,
+} from '../../entities/extra-user-info/service/extra-user-info.service';
 
 @Component({
   selector: 'jhi-navbar',
@@ -20,6 +24,7 @@ import { EntityResponseType, ExtraUserInfoService } from '../../entities/extra-u
 })
 export class NavbarComponent implements OnInit {
   profileImg: string | null | undefined = `https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364359/cld-sample.jpg`;
+  partialExtraUserInfo: PartialUpdateExtraUserInfo = { id: 0, profilePicture: '' };
   inProduction?: boolean;
   isNavbarCollapsed = true;
   languages = LANGUAGES;
@@ -57,6 +62,8 @@ export class NavbarComponent implements OnInit {
       next: (res: EntityResponseType) => {
         console.log(res);
         this.profileImg = res.body?.profilePicture;
+        this.partialExtraUserInfo.id = <number>res.body?.id;
+        this.partialExtraUserInfo.profilePicture = <string>res.body?.profilePicture;
       },
     });
   }
@@ -65,12 +72,18 @@ export class NavbarComponent implements OnInit {
     this.sessionStorageService.store('locale', languageKey);
     this.translateService.use(languageKey);
   }
-
+  //this method shows the image
   openModal() {
     Swal.fire({
       title: 'Tu foto de perfil',
       html: `<img src="${this.profileImg}" style="widtd = 20.75em; height: 20.75em"/> `,
     });
+  }
+
+  updateProfileImg(url: string) {
+    this.partialExtraUserInfo.profilePicture = url;
+    this.extraUserInfoService.partialUpdate(this.partialExtraUserInfo).subscribe();
+    this.profileImg = url;
   }
 
   collapseNavbar(): void {
