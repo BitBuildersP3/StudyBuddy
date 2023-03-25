@@ -37,4 +37,7 @@ public interface ExtraUserInfoRepository extends JpaRepository<ExtraUserInfo, Lo
 
     @Query("select extraUserInfo from ExtraUserInfo extraUserInfo left join fetch extraUserInfo.user where extraUserInfo.id =:id")
     Optional<ExtraUserInfo> findOneWithToOneRelationships(@Param("id") Long id);
+
+    @Query("select extraUserInfo from ExtraUserInfo extraUserInfo where extraUserInfo.user.login = :name")
+    Optional<ExtraUserInfo> findByUserIsCurrentUser(@Param("name") String name);
 }
