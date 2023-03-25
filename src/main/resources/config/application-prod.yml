@@ -33,9 +33,9 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://nlf20jz4tp9nu6e6:pngwbxm72ainfdy0@r4wkv4apxn9btls2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/toa8rjl30bvll45y
-    username: nlf20jz4tp9nu6e6
-    password: pngwbxm72ainfdy0
+    url: jdbc:mysql://lse9p0efia68b2cu:vqnvp2qi8xry625e@g84t6zfpijzwx08q.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/cb4uv0v21vde2dzz
+    username: lse9p0efia68b2cu
+    password: vqnvp2qi8xry625e
     hikari:
       poolName: Hikari
       auto-commit: false
