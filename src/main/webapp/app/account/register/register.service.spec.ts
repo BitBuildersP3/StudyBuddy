@@ -4,6 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { RegisterService } from './register.service';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { Registration } from './register.model';
+import dayjs, {Dayjs} from "dayjs";
 
 describe('RegisterService Service', () => {
   let service: RegisterService;
@@ -31,7 +32,8 @@ describe('RegisterService Service', () => {
       const email = 'test@test.com';
       const password = 'pass';
       const langKey = 'FR';
-      const registration = new Registration(login, email, password, langKey);
+
+      const registration = new Registration(login, email, password, langKey)
 
       // WHEN
       service.save(registration).subscribe();
@@ -42,7 +44,7 @@ describe('RegisterService Service', () => {
       });
 
       // THEN
-      expect(testRequest.request.body).toEqual({ email, langKey, login, password });
+      expect(testRequest.request.body).toEqual({ email, langKey, login, password});
     });
   });
 });

@@ -6,6 +6,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/config/error.constants';
 import { RegisterService } from './register.service';
 
+// Imports nuevos
+import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
+
+
+
 @Component({
   selector: 'jhi-register',
   templateUrl: './register.component.html',
@@ -35,6 +40,18 @@ export class RegisterComponent implements AfterViewInit {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email],
     }),
+    phone: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254)],
+    }),
+    degree: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254)],
+    }),
+    birthDay: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
     password: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
@@ -45,7 +62,8 @@ export class RegisterComponent implements AfterViewInit {
     }),
   });
 
-  constructor(private translateService: TranslateService, private registerService: RegisterService) {}
+  // , private extraUserInfoService: ExtraUserInfoService
+  constructor(private translateService: TranslateService, private registerService: RegisterService , private extraUserInfoService: ExtraUserInfoService) {}
 
   ngAfterViewInit(): void {
     if (this.login) {
@@ -63,10 +81,20 @@ export class RegisterComponent implements AfterViewInit {
     if (password !== confirmPassword) {
       this.doNotMatch = true;
     } else {
-      const { login, email } = this.registerForm.getRawValue();
+      const { login, email, phone, degree, birthDay } = this.registerForm.getRawValue();
+      ;
+
+      console.log(this.registerForm.getRawValue());
+
+      // Foto por defecto de perfil
+      const profilePicture = "https://cdn.shopify.com/s/files/1/1428/7694/articles/smiling_quokka_600x600.png";
+
+
       this.registerService
-        .save({ login, email, password, langKey: this.translateService.currentLang })
+        .save({ login, email, password, langKey: this.translateService.currentLang, phone, degree, profilePicture, birthDay })
         .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
+
+      // this.registerExtraInfo(phone, degree, birthDay, login);
     }
   }
 
@@ -78,5 +106,14 @@ export class RegisterComponent implements AfterViewInit {
     } else {
       this.error = true;
     }
+  }
+
+  // Registra la información extra del usuario en la base de datos.
+  private registerExtraInfo(pPhone: String, pDegree: String, pBirthDay: any, pLogin: any): void {
+
+    // Cambiar foto default de perfil URL
+    const newCustomExtraUserInfo = { phone: pPhone, degree: pDegree, profilePicture: "profile.png", birthDay: pBirthDay, score: 0, userVotes: 0, user: pLogin };
+    console.log("Objeto newCustomExtraUserInfo: " + newCustomExtraUserInfo);
+    this.extraUserInfoService.create(newCustomExtraUserInfo);
   }
 }
