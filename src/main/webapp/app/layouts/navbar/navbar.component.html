@@ -68,7 +68,7 @@
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
               <a
                 class="dropdown-item"
-                routerLink="#"
+                routerLink="category"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
                 (click)="collapseNavbar()"
@@ -80,25 +80,13 @@
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
               <a
                 class="dropdown-item"
-                routerLink="#"
+                routerLink="admin/user-management"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
                 (click)="collapseNavbar()"
               >
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span>Panele de Usuarios</span>
-              </a>
-            </li>
-            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
-              <a
-                class="dropdown-item"
-                routerLink="#"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span>Roles de Usuarios</span>
+                <span>Gestion de usuarios</span>
               </a>
             </li>
           </ul>
