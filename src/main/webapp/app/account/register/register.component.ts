@@ -86,14 +86,15 @@ export class RegisterComponent implements AfterViewInit {
 
       console.log(this.registerForm.getRawValue());
 
-
+      // Foto por defecto de perfil
+      const profilePicture = "https://cdn.shopify.com/s/files/1/1428/7694/articles/smiling_quokka_600x600.png";
 
 
       this.registerService
-        .save({ login, email, password, langKey: this.translateService.currentLang })
+        .save({ login, email, password, langKey: this.translateService.currentLang, phone, degree, profilePicture, birthDay })
         .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
 
-      this.registerExtraInfo(phone, degree, birthDay, login);
+      // this.registerExtraInfo(phone, degree, birthDay, login);
     }
   }
 
