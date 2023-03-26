@@ -73,7 +73,14 @@ public class AccountResource {
         if (isPasswordLengthInvalid(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
-        User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
+
+        // Agrege esto para poder pasar los parametros al extra User
+        userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase()).ifPresent(u -> {throw new LoginAlreadyUsedException();});
+        userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail()).ifPresent(u -> {throw new EmailAlreadyUsedException();});
+
+        // Se modificaron parametros de entrada.
+        // Se omitieron los valores de votos porque estos se settean en 0.
+        User user = userService.registerUser(managedUserVM, managedUserVM.getPassword(), managedUserVM.getPhone(), managedUserVM.getDegree(), managedUserVM.getProfilePicture(), managedUserVM.getBirthDay());
         mailService.sendActivationEmail(user);
     }
 

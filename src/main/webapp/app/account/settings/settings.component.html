@@ -1,9 +1,8 @@
 <div>
   <div class="d-flex justify-content-center">
     <div class="col-md-8">
-      <h2 jhiTranslate="settings.title" [translateValues]="{ username: settingsForm.value.login }" *ngIf="settingsForm.value.login">
-        Ajustes del usuario [<strong>{{ settingsForm.value.login }}</strong
-        >]
+      <h2 class="text-center" *ngIf="settingsForm.value.login">
+        Ajustes del usuario <strong class="light-blue-txt">{{ settingsForm.value.login }}</strong>
       </h2>
 
       <div class="alert alert-success" *ngIf="success" jhiTranslate="settings.messages.success">
@@ -12,7 +11,15 @@
 
       <jhi-alert-error></jhi-alert-error>
 
-      <form name="form" role="form" (ngSubmit)="save()" [formGroup]="settingsForm" *ngIf="settingsForm.value.login" novalidate>
+      <form
+        class="form-styles custom-form align-items-center"
+        name="form"
+        role="form"
+        (ngSubmit)="save()"
+        [formGroup]="settingsForm"
+        *ngIf="settingsForm.value.login"
+        novalidate
+      >
         <div class="mb-3">
           <label class="form-label" for="firstName" jhiTranslate="settings.form.firstname">Nombre</label>
           <input
@@ -144,22 +151,72 @@
           </div>
         </div>
 
-        <div class="mb-3" *ngIf="languages && languages.length > 0">
-          <label for="langKey" jhiTranslate="settings.form.language">Idioma</label>
-          <select class="form-control" id="langKey" name="langKey" formControlName="langKey" data-cy="langKey">
-            <option *ngFor="let language of languages" [value]="language">{{ language | findLanguageFromKey }}</option>
-          </select>
+        <div class="mb-3">
+          <label class="form-label" for="phone">Teléfono</label>
+          <input
+            type="phone"
+            class="form-control"
+            id="phone"
+            name="phone"
+            placeholder="Su teléfono"
+            formControlName="phone"
+            data-cy="phone"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="degree">Título</label>
+          <input
+            type="text"
+            class="form-control"
+            id="degree"
+            name="degree"
+            placeholder="Su título"
+            formControlName="degree"
+            data-cy="degree"
+          />
         </div>
 
-        <button
-          type="submit"
-          [disabled]="settingsForm.invalid"
-          class="btn btn-primary"
-          jhiTranslate="settings.form.button"
-          data-cy="submit"
-        >
-          Guardar
-        </button>
+        <div class="mb-3">
+          <label class="form-label" for="birthDay">Fecha de nacimiento</label>
+          <div class="input-group">
+            <input
+              placeholder="Su fecha de nacimiento"
+              id="birthDay"
+              data-cy="birthDay"
+              type="text"
+              class="form-control"
+              name="birthDay"
+              ngbDatepicker
+              #birthDayDp="ngbDatepicker"
+              formControlName="birthDay"
+            />
+            <button type="button" class="btn btn-secondary" (click)="birthDayDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control d-lg-none"
+            id="id"
+            name="id"
+            placeholder="{{ 'global.form.id.placeholder' }}"
+            formControlName="id"
+            data-cy="id"
+          />
+        </div>
+
+        <div class="mb-3">
+          <button
+            type="submit"
+            [disabled]="settingsForm.invalid"
+            class="btn btn-primary submit-btn"
+            jhiTranslate="settings.form.button"
+            data-cy="submit"
+          >
+            Guardar
+          </button>
+        </div>
       </form>
     </div>
   </div>

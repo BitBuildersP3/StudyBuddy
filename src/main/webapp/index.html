@@ -11,16 +11,12 @@
     <base href="/" />
     <link rel="icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.webapp" />
+    <link rel="stylesheet" href="content/css/globals-custom.css" />
     <link rel="stylesheet" href="content/css/loading.css" />
+    <link rel="stylesheet" href="content/css/index.css" />
     <!-- jhipster-needle-add-resources-to-root - JHipster will add new resources here -->
   </head>
   <body>
-    <!--[if lt IE 9]>
-      <p class="browserupgrade">
-        You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve
-        your experience.
-      </p>
-    <![endif]-->
     <jhi-main>
       <div class="app-loading">
         <div class="lds-pacman">
@@ -69,33 +65,6 @@
           </ol>
 
           <h2>Getting more help</h2>
-
-          <h3>If you have a question on how to use JHipster</h3>
-          <p>
-            Go to Stack Overflow with the
-            <a href="http://stackoverflow.com/tags/jhipster" target="_blank" rel="noopener noreferrer">"jhipster"</a> tag.
-          </p>
-
-          <h3>If you have a bug or a feature request</h3>
-          <p>
-            First read our
-            <a href="https://github.com/jhipster/generator-jhipster/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer"
-              >contributing guidelines</a
-            >.
-          </p>
-          <p>
-            Then, fill a ticket on our
-            <a href="https://github.com/jhipster/generator-jhipster/issues/new/choose" target="_blank" rel="noopener noreferrer"
-              >bug tracker</a
-            >, we'll be happy to resolve your issue!
-          </p>
-
-          <h3>If you want to chat with contributors and other users</h3>
-          <p>
-            Join our chat room on
-            <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">Gitter.im</a>. Please note
-            that this is a public chat room, and that we expect you to respect other people and write in a correct English language!
-          </p>
           <!-- end of troubleshooting content -->
         </div>
       </div>
@@ -103,6 +72,9 @@
     <noscript>
       <h1>You must enable JavaScript to view this page.</h1>
     </noscript>
+    <!--    cloudinary scripts -->
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
       // show an error message if the app loading takes more than 4 sec
       window.onload = function () {
@@ -115,14 +87,5 @@
         }
       }
     </script>
-    <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>-->
   </body>
 </html>

@@ -11,16 +11,22 @@ Navbar
 }
 
 .profile-image {
-  height: 1.75em;
-  width: 1.75em;
+  height: 4.45em;
+  width: 4.45em;
 }
 
-.navbar {
-  padding: 0.2rem 1rem;
+.view-profile-image {
+  height: 4.75em;
+  width: 4.75em;
+}
 
-  a.nav-link {
-    font-weight: 400;
-  }
+.dropdown-item:hover {
+  background-color: #3e8acc;
+  opacity: 0.7;
+}
+
+#account-menu:hover {
+  color: #fff;
 }
 
 /* ==========================================================================
@@ -31,6 +37,6 @@ Logo styles
   width: 45px;
   display: inline-block;
   vertical-align: middle;
-  background: url('../../../content/images/logo-jhipster.png') no-repeat center center;
+  background: url('../../../content/images/logo-bit.png') no-repeat center center;
   background-size: contain;
 }
