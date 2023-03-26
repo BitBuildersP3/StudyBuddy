@@ -200,8 +200,8 @@ jhipster:
     license: unlicensed
     license-url:
   security:
-    content-security-policy: "default-src 'self'; frame-src 'self' https://upload-widget.cloudinary.com/ data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://storage.googleapis.com https://upload-widget.cloudinary.com/global/all.js; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:"
-    # ===================================================================
+    content-security-policy: "default-src 'self'; frame-src 'self' https://upload-widget.cloudinary.com/ data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://storage.googleapis.com https://upload-widget.cloudinary.com/global/all.js; style-src 'self' 'unsafe-inline'; img-src 'self'  https://res.cloudinary.com/ data:; font-src 'self' data:"
+# ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class
 # to have type-safe configuration, like in the JHipsterProperties above
