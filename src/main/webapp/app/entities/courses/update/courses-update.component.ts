@@ -23,6 +23,7 @@ export class CoursesUpdateComponent implements OnInit {
   idUser: number = 0;
   usersSharedCollection: IUser[] = [];
   categoriesSharedCollection: ICategory[] = [];
+  previewURL: string = '';
 
   editForm: CoursesFormGroup = this.coursesFormService.createCoursesFormGroup();
 
@@ -57,6 +58,10 @@ export class CoursesUpdateComponent implements OnInit {
     });
   }
 
+  saveUrl(URL: string): void {
+    this.previewURL = URL;
+  }
+
   previousState(): void {
     window.history.back();
   }
@@ -68,8 +73,7 @@ export class CoursesUpdateComponent implements OnInit {
     if (courses.id !== null) {
       this.subscribeToSaveResponse(this.coursesService.update(courses));
     } else {
-      const elemento = window.localStorage.getItem('UploadFile');
-      courses.previewImg = elemento;
+      courses.previewImg = this.previewURL;
       courses.userId = this.idUser;
       this.subscribeToSaveResponse(this.coursesService.create(courses));
     }
@@ -83,8 +87,7 @@ export class CoursesUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    localStorage.clear();
-    //this.previousState();
+    this.previousState();
   }
 
   protected onSaveError(): void {

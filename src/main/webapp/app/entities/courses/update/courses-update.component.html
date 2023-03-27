@@ -33,7 +33,7 @@
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="studyBuddyApp.courses.previewImg" for="field_previewImg">Preview Img</label>
 
-          <jhi-cloudinary-button></jhi-cloudinary-button>
+          <jhi-cloudinary-button (urlChanged)="saveUrl($event)" [text]="$any('Subir Foto')"></jhi-cloudinary-button>
         </div>
 
         <div class="row mb-3">
