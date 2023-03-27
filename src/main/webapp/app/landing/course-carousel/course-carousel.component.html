@@ -1,0 +1,25 @@
+<ngb-carousel *ngIf="slides">
+  <ng-template ngbSlide *ngFor="let slide of slides">
+    <div class="picsum-img-wrapper">
+      <img class="w-100" src="{{ slide.image }}" alt="{{ slide.slideTitle }}" />
+    </div>
+    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, 0.7)">
+      <div class="carousel-caption">
+        <div class="container">
+          <div class="row justify-content-start">
+            <div class="text-start col-sm-10 col-lg-8 justify-content-start">
+              <h3 class="text-primary text-uppercase mb-3 animated slideInDown">Best Courses</h3>
+              <h1 class="display-3 text-white animated slideInDown">{{ slide.slideTitle }}</h1>
+              <p class="fs-5 text-white mb-4 pb-2">
+                {{ slide.slideExerpt }}
+              </p>
+              <a href="/courses/{{ slide.redirect }}/view" class="text-uppercase btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"
+                >View Course</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ngb-carousel>
