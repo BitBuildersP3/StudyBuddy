@@ -10,6 +10,8 @@ export interface ICourses {
   score?: number | null;
   excerpt?: string | null;
   userId?: number | null;
+  ownerName?: string | null;
+  userName?: string | null;
   userVotes?: number | null;
   users?: Pick<IUser, 'id' | 'login'>[] | null;
   category?: Pick<ICategory, 'id'> | null;

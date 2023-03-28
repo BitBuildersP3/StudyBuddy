@@ -2,8 +2,10 @@ package com.cenfotec.service;
 
 import com.cenfotec.config.Constants;
 import com.cenfotec.domain.Authority;
+import com.cenfotec.domain.ExtraUserInfo;
 import com.cenfotec.domain.User;
 import com.cenfotec.repository.AuthorityRepository;
+import com.cenfotec.repository.ExtraUserInfoRepository;
 import com.cenfotec.repository.PersistentTokenRepository;
 import com.cenfotec.repository.UserRepository;
 import com.cenfotec.security.AuthoritiesConstants;
@@ -15,6 +17,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -37,6 +40,9 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    // Repositorio del Extra User Agregado
+    private final ExtraUserInfoRepository extraUserInfoRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     private final PersistentTokenRepository persistentTokenRepository;
@@ -47,12 +53,14 @@ public class UserService {
 
     public UserService(
         UserRepository userRepository,
-        PasswordEncoder passwordEncoder,
+        ExtraUserInfoRepository extraUserInfoRepository, PasswordEncoder passwordEncoder,
         PersistentTokenRepository persistentTokenRepository,
         AuthorityRepository authorityRepository,
         CacheManager cacheManager
     ) {
         this.userRepository = userRepository;
+        // Repositorio del Extra User Agregado
+        this.extraUserInfoRepository = extraUserInfoRepository;
         this.passwordEncoder = passwordEncoder;
         this.persistentTokenRepository = persistentTokenRepository;
         this.authorityRepository = authorityRepository;
@@ -99,7 +107,7 @@ public class UserService {
             });
     }
 
-    public User registerUser(AdminUserDTO userDTO, String password) {
+    public User registerUser(AdminUserDTO userDTO, String password, String phone, String degree, String profilePicture, LocalDate birthDay) {
         userRepository
             .findOneByLogin(userDTO.getLogin().toLowerCase())
             .ifPresent(existingUser -> {
@@ -138,6 +146,24 @@ public class UserService {
         userRepository.save(newUser);
         this.clearUserCaches(newUser);
         log.debug("Created Information for User: {}", newUser);
+
+        // Creado para guardar la info del "Extra-User-Info"
+        ExtraUserInfo newUserExtra = new ExtraUserInfo();
+
+        // Ligar Usuario
+        newUserExtra.setUser(newUser);
+
+        // Atributos
+        newUserExtra.setPhone(phone);
+        newUserExtra.setDegree(degree);
+        newUserExtra.setProfilePicture(profilePicture);
+        newUserExtra.setBirthDay(birthDay);
+        newUserExtra.setScore((double) 0);
+        newUserExtra.setUserVotes((double) 0);
+
+        extraUserInfoRepository.save(newUserExtra);
+        log.debug("Created Information for UserExtra: {}", newUserExtra);
+
         return newUser;
     }
 

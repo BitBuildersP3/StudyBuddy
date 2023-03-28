@@ -204,4 +204,19 @@ public class UserResource {
         userService.deleteUser(login);
         return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName, "userManagement.deleted", login)).build();
     }
+
+
+    /*
+    // Traer el usuario por id
+    @GetMapping("/user/{id}")
+    public ResponseEntity<AdminUserDTO> getUserById(@PathVariable @Pattern(regexp = Constants.LOGIN_REGEX) String id) {
+        log.debug("REST request to get User : {}", id);
+        // Buscar la manera de agregar el metodo get en "userService"
+        AdminUserDTO usuarioDTO = userService.getUserWithAuthorities(id);
+        return ResponseEntity.ok().body(usuarioDTO);
+    }
+*/
+
+
+
 }

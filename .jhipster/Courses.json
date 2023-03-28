@@ -1,5 +1,5 @@
 {
-  "applications": ["StudyBuddy"],
+  "applications": "*",
   "changelogDate": "20230318204437",
   "dto": "no",
   "embedded": false,
@@ -32,6 +32,14 @@
     {
       "fieldName": "userId",
       "fieldType": "Integer"
+    },
+    {
+      "fieldName": "ownerName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "userName",
+      "fieldType": "String"
     },
     {
       "fieldName": "userVotes",

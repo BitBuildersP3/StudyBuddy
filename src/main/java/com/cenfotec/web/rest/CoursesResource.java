@@ -142,6 +142,12 @@ public class CoursesResource {
                 if (courses.getUserId() != null) {
                     existingCourses.setUserId(courses.getUserId());
                 }
+                if (courses.getOwnerName() != null) {
+                    existingCourses.setOwnerName(courses.getOwnerName());
+                }
+                if (courses.getUserName() != null) {
+                    existingCourses.setUserName(courses.getUserName());
+                }
                 if (courses.getUserVotes() != null) {
                     existingCourses.setUserVotes(courses.getUserVotes());
                 }

@@ -15,6 +15,7 @@ import { UserManagementDeleteDialogComponent } from '../delete/user-management-d
 @Component({
   selector: 'jhi-user-mgmt',
   templateUrl: './user-management.component.html',
+  styleUrls: ['./user-management.component.css'],
 })
 export class UserManagementComponent implements OnInit {
   currentAccount: Account | null = null;
