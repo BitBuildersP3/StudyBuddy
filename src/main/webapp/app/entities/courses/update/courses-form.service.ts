@@ -25,6 +25,8 @@ type CoursesFormGroupContent = {
   score: FormControl<ICourses['score']>;
   excerpt: FormControl<ICourses['excerpt']>;
   userId: FormControl<ICourses['userId']>;
+  ownerName: FormControl<ICourses['ownerName']>;
+  userName: FormControl<ICourses['userName']>;
   userVotes: FormControl<ICourses['userVotes']>;
   users: FormControl<ICourses['users']>;
   category: FormControl<ICourses['category']>;
@@ -54,6 +56,8 @@ export class CoursesFormService {
       score: new FormControl(coursesRawValue.score),
       excerpt: new FormControl(coursesRawValue.excerpt),
       userId: new FormControl(coursesRawValue.userId),
+      ownerName: new FormControl(coursesRawValue.ownerName),
+      userName: new FormControl(coursesRawValue.userName),
       userVotes: new FormControl(coursesRawValue.userVotes),
       users: new FormControl(coursesRawValue.users ?? []),
       category: new FormControl(coursesRawValue.category),
