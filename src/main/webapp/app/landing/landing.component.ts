@@ -9,13 +9,13 @@ import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 export class LandingComponent implements OnInit {
   slides = [
     {
-      image: 'https://picsum.photos/900/500?random=1',
+      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1680045268/home_ajor4j.jpg',
       slideTitle: 'First slide label',
       slideExerpt: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
       redirect: '1',
     },
     {
-      image: 'https://picsum.photos/900/500?random=2',
+      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1680045450/peter-gombos-8y3e2M6APy4-unsplash_dgh1ui.jpg',
       slideTitle: 'Second slide label',
       slideExerpt: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
       redirect: '2',
@@ -24,19 +24,19 @@ export class LandingComponent implements OnInit {
 
   news = [
     {
-      image: 'https://picsum.photos/900/500?random=1',
+      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364349/samples/animals/kitten-playing.gif',
       title: 'First slide label',
       exerpt: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
       redirect: '1',
     },
     {
-      image: 'https://picsum.photos/900/500?random=2',
+      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364349/samples/animals/kitten-playing.gif',
       title: 'Second slide label',
       exerpt: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
       redirect: '2',
     },
     {
-      image: 'https://picsum.photos/900/500?random=3',
+      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364349/samples/animals/kitten-playing.gif',
       title: 'Third slide label',
       exerpt: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
       redirect: '3',
@@ -45,25 +45,25 @@ export class LandingComponent implements OnInit {
 
   instructors = [
     {
-      image: 'https://picsum.photos/900/500?random=8',
+      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364359/cld-sample.jpg',
       name: 'First slide label',
       about: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
       redirect: '1',
     },
     {
-      image: 'https://picsum.photos/900/500?random=9',
+      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364359/cld-sample.jpg',
       name: 'First slide label',
       about: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
       redirect: '1',
     },
     {
-      image: 'https://picsum.photos/900/500?random=10',
+      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364359/cld-sample.jpg',
       name: 'First slide label',
       about: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
       redirect: '1',
     },
     {
-      image: 'https://picsum.photos/900/500?random=11',
+      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364359/cld-sample.jpg',
       name: 'First slide label',
       about: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
       redirect: '1',
