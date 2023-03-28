@@ -45,25 +45,25 @@ export class LandingComponent implements OnInit {
 
   instructors = [
     {
-      image: 'https://picsum.photos/900/500?random=1',
+      image: 'https://picsum.photos/900/500?random=8',
       name: 'First slide label',
       about: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
       redirect: '1',
     },
     {
-      image: 'https://picsum.photos/900/500?random=1',
+      image: 'https://picsum.photos/900/500?random=9',
       name: 'First slide label',
       about: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
       redirect: '1',
     },
     {
-      image: 'https://picsum.photos/900/500?random=1',
+      image: 'https://picsum.photos/900/500?random=10',
       name: 'First slide label',
       about: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
       redirect: '1',
     },
     {
-      image: 'https://picsum.photos/900/500?random=1',
+      image: 'https://picsum.photos/900/500?random=11',
       name: 'First slide label',
       about: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
       redirect: '1',

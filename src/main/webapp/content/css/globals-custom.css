@@ -466,3 +466,7 @@ p {
 * {
   font-family: 'Nunito', sans-serif;
 }
+
+.container-main .card {
+  min-height: 45rem;
+}

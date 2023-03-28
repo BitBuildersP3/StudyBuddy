@@ -8,11 +8,11 @@
       <div *ngFor="let instructor of instructors" class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
         <div class="team-item bg-light">
           <div class="overflow-hidden">
-            <img class="img-fluid" src="https://picsum.photos/900/500?random=4" alt="" />
+            <img class="img-fluid" src="{{ instructor.image }}" alt="" />
           </div>
           <div class="text-center p-4">
-            <h5 class="mb-0">{{ instructor.name }}</h5>
-            <small>{{ instructor.about }}</small>
+            <h3 class="mb-0">{{ instructor.name }}</h3>
+            <p>{{ instructor.about }}</p>
           </div>
         </div>
       </div>
