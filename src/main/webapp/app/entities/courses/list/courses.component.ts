@@ -45,8 +45,8 @@ export class CoursesComponent implements OnInit {
     });
   }
 
-  enrolled(): void {
-    console.log('VOY A MATRICULAR');
+  enrolled(idCourse: any): void {
+    console.log(idCourse);
   }
 
   delete(courses: ICourses): void {

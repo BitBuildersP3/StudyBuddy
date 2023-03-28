@@ -50,14 +50,7 @@
             <fa-icon icon="pencil-alt"></fa-icon>
             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Matricular</span>
           </button> -->
-          <button
-            type="button"
-            [routerLink]="['/courses', courses.id, 'edit']"
-            id="cancel-save"
-            data-cy="entityCreateCancelButton"
-            class="btn btn-secondary"
-            (click)="enrolled()"
-          >
+          <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="enrolled(courses)">
             <span>MATRICULAR</span>
           </button>
 
