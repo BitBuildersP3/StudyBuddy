@@ -1,0 +1,192 @@
+<div>
+  <h2 id="page-heading" data-cy="CoursesHeading">
+    <div class="d-flex justify-content-center font-weight: bold;">
+      <span>Cursos Matriculados</span>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-courses"
+        [routerLink]="['/courses/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Crear nuevo Curso </span>
+      </button>
+    </div>
+  </h2>
+  <!-- lista -->
+
+  <div class="principalConteiner">
+    <div class="item-cont" *ngFor="let courses of courses">
+      <div class="secondConteiner">
+        <div class="card-image">
+          <img class="imgg" [src]="courses.previewImg" alt="Nombre del curso {{ courses.description }}" />
+        </div>
+        <div class="txt-cont">
+          <div class="info">
+            <h5>
+              <p>{{ courses.name }}</p>
+
+              <span class="sub">
+                <p>Descripción: {{ courses.description }}</p>
+              </span>
+              <span class="sub">
+                <p>Estado: {{ courses.status }}</p>
+              </span>
+              <span class="sub"> Dueño: {{ courses.ownerName }} </span>
+              <!-- <span class="sub" *ngFor="let user of courses.users; let last = last"> Dueño: {{ user.login }}{{ last ? '' : ', ' }} </span> -->
+            </h5>
+          </div>
+        </div>
+        <!-- Botones -->
+        <div class="botones">
+          <button type="submit" [routerLink]="['/courses', courses.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+            <fa-icon icon="eye"></fa-icon>
+            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+          </button>
+          <button type="submit" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+            <fa-icon icon="pencil-alt"></fa-icon>
+            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+          </button>
+
+          <button type="submit" (click)="delete(courses)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+            <fa-icon icon="times"></fa-icon>
+            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin lista  -->
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+  <!-- 
+   <div class="alert alert-warning" id="no-result" *ngIf="courses?.length === 0">
+      <span jhiTranslate="studyBuddyApp.courses.home.notFound">Ningún Courses encontrado</span>
+    </div>
+  
+    <div class="table-responsive table-entities" id="entities" *ngIf="courses && courses.length > 0">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="name">
+              <div class="d-flex">
+                <span jhiTranslate="studyBuddyApp.courses.name">Name</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="description">
+              <div class="d-flex">
+                <span jhiTranslate="studyBuddyApp.courses.description">Description</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="previewImg">
+              <div class="d-flex">
+                <span jhiTranslate="studyBuddyApp.courses.previewImg">Preview Img</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="status">
+              <div class="d-flex">
+                <span jhiTranslate="studyBuddyApp.courses.status">Status</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="score">
+              <div class="d-flex">
+                <span jhiTranslate="studyBuddyApp.courses.score">Score</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="excerpt">
+              <div class="d-flex">
+                <span jhiTranslate="studyBuddyApp.courses.excerpt">Excerpt</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="userId">
+              <div class="d-flex">
+                <span jhiTranslate="studyBuddyApp.courses.userId">User Id</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th> 
+            <th scope="col" jhiSortBy="userVotes">
+              <div class="d-flex">
+                <span jhiTranslate="studyBuddyApp.courses.userVotes">User Votes</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="user.login">
+              <div class="d-flex">
+                <span jhiTranslate="studyBuddyApp.courses.user">User</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="category.name">
+              <div class="d-flex">
+                <span jhiTranslate="studyBuddyApp.courses.category">Category</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor="let courses of courses; trackBy: trackId" data-cy="entityTable">
+            <td>
+              <a [routerLink]="['/courses', courses.id, 'view']">{{ courses.id }}</a>
+            </td>
+            <td>{{ courses.name }}</td>
+            <td>{{ courses.description }}</td>
+            <td>{{ courses.previewImg }}</td>
+            <td>{{ courses.status }}</td>
+            <td>{{ courses.score }}</td>
+            <td>{{ courses.excerpt }}</td>
+            <td>{{ courses.userVotes }}</td>
+            <td>
+              <span *ngFor="let user of courses.users; let last = last"> {{ user.login }}{{ last ? '' : ', ' }} </span>
+            </td>
+            <td>
+              <div *ngIf="courses.category">
+                <a [routerLink]="['/category', courses.category.id, 'view']">{{ courses.category.id }}</a>
+              </div>
+            </td>
+            <td class="text-end">
+              <div class="btn-group">
+                <button type="submit" [routerLink]="['/courses', courses.id, 'view']" class="btn btn-info btn-sm"
+                  data-cy="entityDetailsButton">
+                  <fa-icon icon="eye"></fa-icon>
+                  <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                </button>
+  
+                <button type="submit" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary btn-sm"
+                  data-cy="entityEditButton">
+                  <fa-icon icon="pencil-alt"></fa-icon>
+                  <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                </button>
+  
+                <button type="submit" (click)="delete(courses)" class="btn btn-danger btn-sm"
+                  data-cy="entityDeleteButton">
+                  <fa-icon icon="times"></fa-icon>
+                  <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>  -->
+</div>

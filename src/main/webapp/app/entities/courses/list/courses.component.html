@@ -46,15 +46,25 @@
             <fa-icon icon="eye"></fa-icon>
             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
           </button>
-          <button type="submit" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+          <!-- <button type="submit" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
             <fa-icon icon="pencil-alt"></fa-icon>
-            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Matricular</span>
+          </button> -->
+          <button
+            type="button"
+            [routerLink]="['/courses', courses.id, 'edit']"
+            id="cancel-save"
+            data-cy="entityCreateCancelButton"
+            class="btn btn-secondary"
+            (click)="enrolled()"
+          >
+            <span>MATRICULAR</span>
           </button>
 
-          <button type="submit" (click)="delete(courses)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+          <!-- <button type="submit" (click)="delete(courses)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
             <fa-icon icon="times"></fa-icon>
             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
-          </button>
+          </button> -->
         </div>
       </div>
     </div>

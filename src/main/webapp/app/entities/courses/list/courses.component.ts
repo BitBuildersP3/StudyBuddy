@@ -8,7 +8,7 @@ import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/conf
 import { EntityArrayResponseType, CoursesService } from '../service/courses.service';
 import { CoursesDeleteDialogComponent } from '../delete/courses-delete-dialog.component';
 import { SortService } from 'app/shared/sort/sort.service';
-
+import { EntityResponseType, ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
 @Component({
   selector: 'jhi-courses',
   templateUrl: './courses.component.html',
@@ -17,7 +17,8 @@ import { SortService } from 'app/shared/sort/sort.service';
 export class CoursesComponent implements OnInit {
   courses?: ICourses[];
   isLoading = false;
-
+  idUser: number = 0;
+  ownerName: any;
   predicate = 'id';
   ascending = true;
 
@@ -26,13 +27,26 @@ export class CoursesComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected sortService: SortService,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    protected extraUser: ExtraUserInfoService
   ) {}
 
   trackId = (_index: number, item: ICourses): number => this.coursesService.getCoursesIdentifier(item);
 
   ngOnInit(): void {
     this.load();
+    this.extraUser.getInfoByCurrentUser().subscribe({
+      next: (res: EntityResponseType) => {
+        // @ts-ignore
+        this.idUser = res.body?.user.id;
+        this.ownerName = res.body?.user?.login;
+        console.log(res.body);
+      },
+    });
+  }
+
+  enrolled(): void {
+    console.log('VOY A MATRICULAR');
   }
 
   delete(courses: ICourses): void {
