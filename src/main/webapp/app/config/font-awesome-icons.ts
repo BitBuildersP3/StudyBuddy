@@ -1,5 +1,6 @@
 import {
   faArrowLeft,
+  faArrowRight,
   faAsterisk,
   faBan,
   faBars,
@@ -45,6 +46,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeIcons = [
+  faArrowRight,
   faArrowLeft,
   faArrowsToCircle,
   faAsterisk,

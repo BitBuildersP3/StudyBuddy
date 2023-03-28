@@ -22,6 +22,27 @@ export class LandingComponent implements OnInit {
     },
   ];
 
+  news = [
+    {
+      image: 'https://picsum.photos/900/500?random=1',
+      title: 'First slide label',
+      exerpt: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+      redirect: '1',
+    },
+    {
+      image: 'https://picsum.photos/900/500?random=2',
+      title: 'Second slide label',
+      exerpt: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+      redirect: '2',
+    },
+    {
+      image: 'https://picsum.photos/900/500?random=2',
+      title: 'Third slide label',
+      exerpt: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+      redirect: '3',
+    },
+  ];
+
   constructor() {}
 
   ngOnInit(): void {}
