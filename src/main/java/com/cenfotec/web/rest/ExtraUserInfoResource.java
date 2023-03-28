@@ -2,7 +2,6 @@ package com.cenfotec.web.rest;
 
 import com.cenfotec.domain.ExtraUserInfo;
 import com.cenfotec.repository.ExtraUserInfoRepository;
-import com.cenfotec.security.SecurityUtils;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -13,8 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
@@ -172,20 +169,6 @@ public class ExtraUserInfoResource {
     }
 
     /**
-     * {@code GET  /extra-user-infos} : get all the extraUserInfos.
-     *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of extraUserInfos in body.
-     */
-    @GetMapping("/extra-user-infos/byUser")
-    public Optional<ExtraUserInfo> getExtraUserInfosByUser(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
-        log.debug("REST request to get ExtraUserInfos by the user");
-        String name = SecurityUtils.getCurrentUserLogin().orElse(null);
-        Optional<ExtraUserInfo> retVal = extraUserInfoRepository.findByUserIsCurrentUser(name);
-        return retVal;
-    }
-
-    /**
      * {@code GET  /extra-user-infos/:id} : get the "id" extraUserInfo.
      *
      * @param id the id of the extraUserInfo to retrieve.
@@ -212,5 +195,19 @@ public class ExtraUserInfoResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    /**
+     * {@code GET  /extra-user-infos} : get all the extraUserInfos.
+     *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of extraUserInfos in body.
+     */
+    @GetMapping("/extra-user-infos/byUser")
+    public Optional<ExtraUserInfo> getExtraUserInfosByUser(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+        log.debug("REST request to get ExtraUserInfos by the user");
+        String name = SecurityUtils.getCurrentUserLogin().orElse(null);
+        Optional<ExtraUserInfo> retVal = extraUserInfoRepository.findByUserIsCurrentUser(name);
+        return retVal;
     }
 }

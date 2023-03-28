@@ -48,6 +48,12 @@ public class Courses implements Serializable {
     @Column(name = "user_votes")
     private Double userVotes;
 
+    @Column(name = "owner_name")
+    private String ownerName;
+
+    @Column(name = "user_name")
+    private String userName;
+
     @ManyToMany
     @JoinTable(
         name = "rel_courses__user",
@@ -185,6 +191,32 @@ public class Courses implements Serializable {
         this.userVotes = userVotes;
     }
 
+    public String getOwnerName() {
+        return this.ownerName;
+    }
+
+    public Courses ownerName(String ownerName) {
+        this.setOwnerName(ownerName);
+        return this;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getUserName() {
+        return this.userName;
+    }
+
+    public Courses userName(String userName) {
+        this.setUserName(userName);
+        return this;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public Set<User> getUsers() {
         return this.users;
     }
@@ -284,6 +316,8 @@ public class Courses implements Serializable {
             ", excerpt='" + getExcerpt() + "'" +
             ", userId=" + getUserId() +
             ", userVotes=" + getUserVotes() +
+            ", ownerName='" + getOwnerName() + "'" +
+            ", userName='" + getUserName() + "'" +
             "}";
     }
 }

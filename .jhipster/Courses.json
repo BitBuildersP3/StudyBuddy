@@ -36,6 +36,14 @@
     {
       "fieldName": "userVotes",
       "fieldType": "Double"
+    },
+    {
+      "fieldName": "ownerName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "userName",
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,

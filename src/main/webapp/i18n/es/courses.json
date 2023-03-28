@@ -26,6 +26,8 @@
       "excerpt": "Excerpt",
       "userId": "User Id",
       "userVotes": "User Votes",
+      "ownerName": "Owner Name",
+      "userName": "User Name",
       "user": "User",
       "category": "Category",
       "section": "Section"

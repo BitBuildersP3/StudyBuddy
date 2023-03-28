@@ -28,6 +28,8 @@ describe('Courses Form Service', () => {
             excerpt: expect.any(Object),
             userId: expect.any(Object),
             userVotes: expect.any(Object),
+            ownerName: expect.any(Object),
+            userName: expect.any(Object),
             users: expect.any(Object),
             category: expect.any(Object),
           })
@@ -48,6 +50,8 @@ describe('Courses Form Service', () => {
             excerpt: expect.any(Object),
             userId: expect.any(Object),
             userVotes: expect.any(Object),
+            ownerName: expect.any(Object),
+            userName: expect.any(Object),
             users: expect.any(Object),
             category: expect.any(Object),
           })

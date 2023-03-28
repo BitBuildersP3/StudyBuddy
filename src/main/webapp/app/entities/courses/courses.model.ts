@@ -11,6 +11,8 @@ export interface ICourses {
   excerpt?: string | null;
   userId?: number | null;
   userVotes?: number | null;
+  ownerName?: string | null;
+  userName?: string | null;
   users?: Pick<IUser, 'id' | 'login'>[] | null;
   category?: Pick<ICategory, 'id'> | null;
 }

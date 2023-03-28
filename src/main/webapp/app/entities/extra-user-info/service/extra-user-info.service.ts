@@ -31,8 +31,12 @@ export class ExtraUserInfoService {
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
+  getInfoByCurrentUser(): Observable<EntityResponseType> {
+    return this.http
+      .get<RestExtraUserInfo>(`${this.resourceUrl}/byUser`, { observe: 'response' })
+      .pipe(map(res => this.convertResponseFromServer(res)));
+  }
   create(extraUserInfo: any): Observable<EntityResponseType> {
-    console.log("Info Objeto extraUserInfo: CREATE ", extraUserInfo);
     const copy = this.convertDateFromClient(extraUserInfo);
     return this.http
       .post<RestExtraUserInfo>(this.resourceUrl, copy, { observe: 'response' })
@@ -40,7 +44,6 @@ export class ExtraUserInfoService {
   }
 
   update(extraUserInfo: IExtraUserInfo): Observable<EntityResponseType> {
-    console.log("Info Objeto extraUserInfo: Update ", extraUserInfo);
     const copy = this.convertDateFromClient(extraUserInfo);
     return this.http
       .put<RestExtraUserInfo>(`${this.resourceUrl}/${this.getExtraUserInfoIdentifier(extraUserInfo)}`, copy, { observe: 'response' })
@@ -99,12 +102,6 @@ export class ExtraUserInfoService {
       return [...extraUserInfosToAdd, ...extraUserInfoCollection];
     }
     return extraUserInfoCollection;
-  }
-
-  getInfoByCurrentUser(): Observable<EntityResponseType> {
-    return this.http
-      .get<RestExtraUserInfo>(`${this.resourceUrl}/byUser`, { observe: 'response' })
-      .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
   protected convertDateFromClient<T extends IExtraUserInfo | NewExtraUserInfo | PartialUpdateExtraUserInfo>(extraUserInfo: T): RestOf<T> {

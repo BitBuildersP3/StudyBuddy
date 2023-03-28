@@ -46,6 +46,14 @@
         <dd>
           <span>{{ courses.userVotes }}</span>
         </dd>
+        <dt><span jhiTranslate="studyBuddyApp.courses.ownerName">Owner Name</span></dt>
+        <dd>
+          <span>{{ courses.ownerName }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.courses.userName">User Name</span></dt>
+        <dd>
+          <span>{{ courses.userName }}</span>
+        </dd>
         <dt><span jhiTranslate="studyBuddyApp.courses.user">User</span></dt>
         <dd>
           <span *ngFor="let user of courses.users; let last = last"> {{ user.login }}{{ last ? '' : ', ' }} </span>
