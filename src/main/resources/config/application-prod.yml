@@ -33,7 +33,7 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://lse9p0efia68b2cu:vqnvp2qi8xry625e@g84t6zfpijzwx08q.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/cb4uv0v21vde2dzz
+    url: jdbc:mysql://lse9p0efia68b2cu:vqnvp2qi8xry625e@g84t6zfpijzwx08q.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/cb4uv0v21v de2dzz
     username: lse9p0efia68b2cu
     password: vqnvp2qi8xry625e
     hikari:

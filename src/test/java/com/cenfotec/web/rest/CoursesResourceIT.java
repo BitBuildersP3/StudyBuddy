@@ -60,6 +60,12 @@ class CoursesResourceIT {
     private static final Integer DEFAULT_USER_ID = 1;
     private static final Integer UPDATED_USER_ID = 2;
 
+    private static final String DEFAULT_OWNER_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_OWNER_NAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_USER_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_USER_NAME = "BBBBBBBBBB";
+
     private static final Double DEFAULT_USER_VOTES = 1D;
     private static final Double UPDATED_USER_VOTES = 2D;
 
@@ -98,6 +104,8 @@ class CoursesResourceIT {
             .score(DEFAULT_SCORE)
             .excerpt(DEFAULT_EXCERPT)
             .userId(DEFAULT_USER_ID)
+            .ownerName(DEFAULT_OWNER_NAME)
+            .userName(DEFAULT_USER_NAME)
             .userVotes(DEFAULT_USER_VOTES);
         return courses;
     }
@@ -117,6 +125,8 @@ class CoursesResourceIT {
             .score(UPDATED_SCORE)
             .excerpt(UPDATED_EXCERPT)
             .userId(UPDATED_USER_ID)
+            .ownerName(UPDATED_OWNER_NAME)
+            .userName(UPDATED_USER_NAME)
             .userVotes(UPDATED_USER_VOTES);
         return courses;
     }
@@ -151,6 +161,8 @@ class CoursesResourceIT {
         assertThat(testCourses.getScore()).isEqualTo(DEFAULT_SCORE);
         assertThat(testCourses.getExcerpt()).isEqualTo(DEFAULT_EXCERPT);
         assertThat(testCourses.getUserId()).isEqualTo(DEFAULT_USER_ID);
+        assertThat(testCourses.getOwnerName()).isEqualTo(DEFAULT_OWNER_NAME);
+        assertThat(testCourses.getUserName()).isEqualTo(DEFAULT_USER_NAME);
         assertThat(testCourses.getUserVotes()).isEqualTo(DEFAULT_USER_VOTES);
     }
 
@@ -196,6 +208,8 @@ class CoursesResourceIT {
             .andExpect(jsonPath("$.[*].score").value(hasItem(DEFAULT_SCORE.doubleValue())))
             .andExpect(jsonPath("$.[*].excerpt").value(hasItem(DEFAULT_EXCERPT)))
             .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID)))
+            .andExpect(jsonPath("$.[*].ownerName").value(hasItem(DEFAULT_OWNER_NAME)))
+            .andExpect(jsonPath("$.[*].userName").value(hasItem(DEFAULT_USER_NAME)))
             .andExpect(jsonPath("$.[*].userVotes").value(hasItem(DEFAULT_USER_VOTES.doubleValue())));
     }
 
@@ -235,6 +249,8 @@ class CoursesResourceIT {
             .andExpect(jsonPath("$.score").value(DEFAULT_SCORE.doubleValue()))
             .andExpect(jsonPath("$.excerpt").value(DEFAULT_EXCERPT))
             .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID))
+            .andExpect(jsonPath("$.ownerName").value(DEFAULT_OWNER_NAME))
+            .andExpect(jsonPath("$.userName").value(DEFAULT_USER_NAME))
             .andExpect(jsonPath("$.userVotes").value(DEFAULT_USER_VOTES.doubleValue()));
     }
 
@@ -265,6 +281,8 @@ class CoursesResourceIT {
             .score(UPDATED_SCORE)
             .excerpt(UPDATED_EXCERPT)
             .userId(UPDATED_USER_ID)
+            .ownerName(UPDATED_OWNER_NAME)
+            .userName(UPDATED_USER_NAME)
             .userVotes(UPDATED_USER_VOTES);
 
         restCoursesMockMvc
@@ -287,6 +305,8 @@ class CoursesResourceIT {
         assertThat(testCourses.getScore()).isEqualTo(UPDATED_SCORE);
         assertThat(testCourses.getExcerpt()).isEqualTo(UPDATED_EXCERPT);
         assertThat(testCourses.getUserId()).isEqualTo(UPDATED_USER_ID);
+        assertThat(testCourses.getOwnerName()).isEqualTo(UPDATED_OWNER_NAME);
+        assertThat(testCourses.getUserName()).isEqualTo(UPDATED_USER_NAME);
         assertThat(testCourses.getUserVotes()).isEqualTo(UPDATED_USER_VOTES);
     }
 
@@ -362,7 +382,7 @@ class CoursesResourceIT {
         Courses partialUpdatedCourses = new Courses();
         partialUpdatedCourses.setId(courses.getId());
 
-        partialUpdatedCourses.description(UPDATED_DESCRIPTION).score(UPDATED_SCORE).excerpt(UPDATED_EXCERPT);
+        partialUpdatedCourses.description(UPDATED_DESCRIPTION).score(UPDATED_SCORE).excerpt(UPDATED_EXCERPT).userVotes(UPDATED_USER_VOTES);
 
         restCoursesMockMvc
             .perform(
@@ -384,7 +404,9 @@ class CoursesResourceIT {
         assertThat(testCourses.getScore()).isEqualTo(UPDATED_SCORE);
         assertThat(testCourses.getExcerpt()).isEqualTo(UPDATED_EXCERPT);
         assertThat(testCourses.getUserId()).isEqualTo(DEFAULT_USER_ID);
-        assertThat(testCourses.getUserVotes()).isEqualTo(DEFAULT_USER_VOTES);
+        assertThat(testCourses.getOwnerName()).isEqualTo(DEFAULT_OWNER_NAME);
+        assertThat(testCourses.getUserName()).isEqualTo(DEFAULT_USER_NAME);
+        assertThat(testCourses.getUserVotes()).isEqualTo(UPDATED_USER_VOTES);
     }
 
     @Test
@@ -407,6 +429,8 @@ class CoursesResourceIT {
             .score(UPDATED_SCORE)
             .excerpt(UPDATED_EXCERPT)
             .userId(UPDATED_USER_ID)
+            .ownerName(UPDATED_OWNER_NAME)
+            .userName(UPDATED_USER_NAME)
             .userVotes(UPDATED_USER_VOTES);
 
         restCoursesMockMvc
@@ -429,6 +453,8 @@ class CoursesResourceIT {
         assertThat(testCourses.getScore()).isEqualTo(UPDATED_SCORE);
         assertThat(testCourses.getExcerpt()).isEqualTo(UPDATED_EXCERPT);
         assertThat(testCourses.getUserId()).isEqualTo(UPDATED_USER_ID);
+        assertThat(testCourses.getOwnerName()).isEqualTo(UPDATED_OWNER_NAME);
+        assertThat(testCourses.getUserName()).isEqualTo(UPDATED_USER_NAME);
         assertThat(testCourses.getUserVotes()).isEqualTo(UPDATED_USER_VOTES);
     }
 

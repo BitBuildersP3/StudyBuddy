@@ -80,6 +80,18 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="ownerName">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.courses.ownerName">Owner Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="userName">
+            <div class="d-flex">
+              <span jhiTranslate="studyBuddyApp.courses.userName">User Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col" jhiSortBy="userVotes">
             <div class="d-flex">
               <span jhiTranslate="studyBuddyApp.courses.userVotes">User Votes</span>
@@ -113,6 +125,8 @@
           <td>{{ courses.score }}</td>
           <td>{{ courses.excerpt }}</td>
           <td>{{ courses.userId }}</td>
+          <td>{{ courses.ownerName }}</td>
+          <td>{{ courses.userName }}</td>
           <td>{{ courses.userVotes }}</td>
           <td>
             <span *ngFor="let user of courses.users; let last = last"> {{ user.login }}{{ last ? '' : ', ' }} </span>

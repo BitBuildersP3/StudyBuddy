@@ -5,26 +5,30 @@ export const sampleWithRequiredData: ICourses = {
 };
 
 export const sampleWithPartialData: ICourses = {
-  id: 55175,
-  name: 'overriding Guarani Creativo',
-  description: 'port',
-  previewImg: 'hacking transmitter Genérico',
-  status: 'Lado',
-  score: 34956,
-  excerpt: 'Hormigon matrix Colegio',
-  userId: 90608,
-  userVotes: 45789,
+  id: 85151,
+  name: 'Pollo',
+  description: 'Creativo en Hormigon',
+  previewImg: 'Desarrollador',
+  status: 'Genérico Algodón',
+  score: 39441,
+  excerpt: 'Marca PCI',
+  userId: 70850,
+  ownerName: 'Práctico Hormigon Moldavia',
+  userName: 'HTTP',
+  userVotes: 5845,
 };
 
 export const sampleWithFullData: ICourses = {
-  id: 53290,
-  name: 'Coche Genérico',
-  description: 'Morado Moda back',
-  previewImg: 'Cataluña intangible',
-  status: 'Ejecutivo',
-  score: 31176,
-  excerpt: 'partnerships León',
-  userId: 64154,
+  id: 58517,
+  name: 'withdrawal',
+  description: 'copying',
+  previewImg: 'Auto',
+  status: 'Loan',
+  score: 36036,
+  excerpt: 'Berkshire',
+  userId: 99487,
+  ownerName: 'withdrawal',
+  userName: 'a Rincón',
   userVotes: 19926,
 };
 
