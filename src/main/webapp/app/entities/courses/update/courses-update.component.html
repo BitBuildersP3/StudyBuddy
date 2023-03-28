@@ -32,14 +32,7 @@
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="studyBuddyApp.courses.previewImg" for="field_previewImg">Preview Img</label>
-          <input
-            type="text"
-            class="form-control"
-            name="previewImg"
-            id="field_previewImg"
-            data-cy="previewImg"
-            formControlName="previewImg"
-          />
+          <jhi-cloudinary-button (urlChanged)="saveUrl($event)" [text]="$any('Subir Foto')"></jhi-cloudinary-button>
         </div>
 
         <div class="row mb-3">
@@ -57,25 +50,15 @@
           <input type="text" class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" />
         </div>
 
-        <div class="row mb-3">
+        <!-- <div class="row mb-3">
           <label class="form-label" jhiTranslate="studyBuddyApp.courses.userId" for="field_userId">User Id</label>
           <input type="number" class="form-control" name="userId" id="field_userId" data-cy="userId" formControlName="userId" />
-        </div>
+        </div> -->
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.courses.ownerName" for="field_ownerName">Owner Name</label>
-          <input type="text" class="form-control" name="ownerName" id="field_ownerName" data-cy="ownerName" formControlName="ownerName" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.courses.userName" for="field_userName">User Name</label>
-          <input type="text" class="form-control" name="userName" id="field_userName" data-cy="userName" formControlName="userName" />
-        </div>
-
-        <div class="row mb-3">
+        <!-- <div class="row mb-3">
           <label class="form-label" jhiTranslate="studyBuddyApp.courses.userVotes" for="field_userVotes">User Votes</label>
           <input type="number" class="form-control" name="userVotes" id="field_userVotes" data-cy="userVotes" formControlName="userVotes" />
-        </div>
+        </div> -->
 
         <div class="row mb-3">
           <label jhiTranslate="studyBuddyApp.courses.user" for="field_users">User</label>
@@ -103,14 +86,14 @@
             [compareWith]="compareCategory"
           >
             <option [ngValue]="null"></option>
-            <option [ngValue]="categoryOption" *ngFor="let categoryOption of categoriesSharedCollection">{{ categoryOption.id }}</option>
+            <option [ngValue]="categoryOption" *ngFor="let categoryOption of categoriesSharedCollection">{{ categoryOption.name }}</option>
           </select>
         </div>
       </div>
 
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+          <span>Volver</span>
         </button>
 
         <button

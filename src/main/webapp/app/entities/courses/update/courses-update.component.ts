@@ -11,6 +11,7 @@ import { IUser } from 'app/entities/user/user.model';
 import { UserService } from 'app/entities/user/user.service';
 import { ICategory } from 'app/entities/category/category.model';
 import { CategoryService } from 'app/entities/category/service/category.service';
+import { EntityResponseType, ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
 
 @Component({
   selector: 'jhi-courses-update',
@@ -19,10 +20,11 @@ import { CategoryService } from 'app/entities/category/service/category.service'
 export class CoursesUpdateComponent implements OnInit {
   isSaving = false;
   courses: ICourses | null = null;
-
+  idUser: number = 0;
+  ownerName: any;
   usersSharedCollection: IUser[] = [];
   categoriesSharedCollection: ICategory[] = [];
-
+  previewURL: string = '';
   editForm: CoursesFormGroup = this.coursesFormService.createCoursesFormGroup();
 
   constructor(
@@ -30,7 +32,8 @@ export class CoursesUpdateComponent implements OnInit {
     protected coursesFormService: CoursesFormService,
     protected userService: UserService,
     protected categoryService: CategoryService,
-    protected activatedRoute: ActivatedRoute
+    protected activatedRoute: ActivatedRoute,
+    protected extraUser: ExtraUserInfoService
   ) {}
 
   compareUser = (o1: IUser | null, o2: IUser | null): boolean => this.userService.compareUser(o1, o2);
@@ -46,8 +49,19 @@ export class CoursesUpdateComponent implements OnInit {
 
       this.loadRelationshipsOptions();
     });
-  }
 
+    this.extraUser.getInfoByCurrentUser().subscribe({
+      next: (res: EntityResponseType) => {
+        // @ts-ignore
+        this.idUser = res.body?.user.id;
+        this.ownerName = res.body?.user?.login;
+        console.log(res.body);
+      },
+    });
+  }
+  saveUrl(URL: string): void {
+    this.previewURL = URL;
+  }
   previousState(): void {
     window.history.back();
   }
@@ -55,9 +69,14 @@ export class CoursesUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const courses = this.coursesFormService.getCourses(this.editForm);
+
     if (courses.id !== null) {
       this.subscribeToSaveResponse(this.coursesService.update(courses));
     } else {
+      courses.previewImg = this.previewURL;
+      courses.ownerName = this.ownerName;
+
+      courses.userId = this.idUser;
       this.subscribeToSaveResponse(this.coursesService.create(courses));
     }
   }

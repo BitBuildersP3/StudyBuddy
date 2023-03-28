@@ -12,6 +12,7 @@ import { SortService } from 'app/shared/sort/sort.service';
 @Component({
   selector: 'jhi-courses',
   templateUrl: './courses.component.html',
+  styleUrls: ['./courses.css'],
 })
 export class CoursesComponent implements OnInit {
   courses?: ICourses[];
