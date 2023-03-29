@@ -1,6 +1,8 @@
 package com.cenfotec.web.rest;
 
 import com.cenfotec.domain.Courses;
+import com.cenfotec.domain.Files;
+import com.cenfotec.domain.Section;
 import com.cenfotec.repository.CoursesRepository;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -205,5 +207,11 @@ public class CoursesResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/courses/getAllData/{id}")
+    public List<Section> getAllCourseData(@PathVariable long id) {
+        List<Section> res = coursesRepository.findAllDataByCourseId(id);
+        return res;
     }
 }
