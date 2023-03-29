@@ -21,12 +21,12 @@ export class CoursesUpdateComponent implements OnInit {
   isSaving = false;
   courses: ICourses | null = null;
   idUser: number = 0;
-  ownerName: any;
+  ownerName: string;
   usersSharedCollection: IUser[] = [];
   categoriesSharedCollection: ICategory[] = [];
   previewURL: string = '';
   editForm: CoursesFormGroup = this.coursesFormService.createCoursesFormGroup();
-
+  users?: Pick<IUser, 'id' | 'login'>[] | null;
   constructor(
     protected coursesService: CoursesService,
     protected coursesFormService: CoursesFormService,
@@ -34,7 +34,9 @@ export class CoursesUpdateComponent implements OnInit {
     protected categoryService: CategoryService,
     protected activatedRoute: ActivatedRoute,
     protected extraUser: ExtraUserInfoService
-  ) {}
+  ) {
+    this.ownerName = '';
+  }
 
   compareUser = (o1: IUser | null, o2: IUser | null): boolean => this.userService.compareUser(o1, o2);
 
@@ -54,11 +56,16 @@ export class CoursesUpdateComponent implements OnInit {
       next: (res: EntityResponseType) => {
         // @ts-ignore
         this.idUser = res.body?.user.id;
-        this.ownerName = res.body?.user?.login;
+        const login = res.body?.user?.login;
+        if (login != null) {
+          this.ownerName = login;
+        }
+
         console.log(res.body);
       },
     });
   }
+
   saveUrl(URL: string): void {
     this.previewURL = URL;
   }
@@ -71,11 +78,12 @@ export class CoursesUpdateComponent implements OnInit {
     const courses = this.coursesFormService.getCourses(this.editForm);
 
     if (courses.id !== null) {
+      courses.previewImg = this.previewURL;
+      courses.users?.push({ id: this.idUser, login: this.ownerName });
       this.subscribeToSaveResponse(this.coursesService.update(courses));
     } else {
       courses.previewImg = this.previewURL;
       courses.ownerName = this.ownerName;
-
       courses.userId = this.idUser;
       this.subscribeToSaveResponse(this.coursesService.create(courses));
     }
@@ -103,7 +111,6 @@ export class CoursesUpdateComponent implements OnInit {
   protected updateForm(courses: ICourses): void {
     this.courses = courses;
     this.coursesFormService.resetForm(this.editForm, courses);
-
     this.usersSharedCollection = this.userService.addUserToCollectionIfMissing<IUser>(this.usersSharedCollection, ...(courses.users ?? []));
     this.categoriesSharedCollection = this.categoryService.addCategoryToCollectionIfMissing<ICategory>(
       this.categoriesSharedCollection,

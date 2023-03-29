@@ -191,6 +191,13 @@ public class CoursesResource {
         return ResponseUtil.wrapOrNotFound(courses);
     }
 
+    @GetMapping("/courses/{ownerName}")
+    public ResponseEntity<Courses> getCourses(@PathVariable String ownerName) {
+        log.debug("REST request to get Courses : {}", ownerName);
+        Optional<Courses> courses = coursesRepository.findOneWithEagerRelationships(ownerName);
+        return ResponseUtil.wrapOrNotFound(courses);
+    }
+
     /**
      * {@code DELETE  /courses/:id} : delete the "id" courses.
      *

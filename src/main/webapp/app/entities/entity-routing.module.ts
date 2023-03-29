@@ -49,6 +49,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'studyBuddyApp.category.home.title' },
         loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),
       },
+      {
+        path: 'myCourses',
+        data: { pageTitle: 'studyBuddyApp.category.home.title' },
+        loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

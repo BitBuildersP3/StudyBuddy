@@ -36,28 +36,32 @@
                 <p>Estado: {{ courses.status }}</p>
               </span>
               <span class="sub"> Dueño: {{ courses.ownerName }} </span>
-              <!-- <span class="sub" *ngFor="let user of courses.users; let last = last"> Dueño: {{ user.login }}{{ last ? '' : ', ' }} </span> -->
+              <span class="sub" *ngFor="let user of courses.users; let last = last">
+                matriculado: {{ user.login }}{{ last ? '' : ', ' }}
+              </span>
             </h5>
           </div>
         </div>
+
         <!-- Botones -->
         <div class="botones">
           <button type="submit" [routerLink]="['/courses', courses.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
             <fa-icon icon="eye"></fa-icon>
             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
           </button>
-          <!-- <button type="submit" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+          <button type="submit" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
             <fa-icon icon="pencil-alt"></fa-icon>
             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Matricular</span>
-          </button> -->
+          </button>
+
           <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="enrolled(courses)">
             <span>MATRICULAR</span>
           </button>
 
-          <!-- <button type="submit" (click)="delete(courses)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+          <button type="submit" (click)="delete(courses)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
             <fa-icon icon="times"></fa-icon>
             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
-          </button> -->
+          </button>
         </div>
       </div>
     </div>

@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
-import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { combineLatest, filter, finalize, Observable, switchMap, tap } from 'rxjs';
 
-import { ICourses } from '../courses.model';
-import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/config/navigation.constants';
-import { EntityArrayResponseType, CoursesService } from '../service/courses.service';
-import { CoursesDeleteDialogComponent } from '../delete/courses-delete-dialog.component';
+import { ASC, DEFAULT_SORT_DATA, DESC, ITEM_DELETED_EVENT, SORT } from 'app/config/navigation.constants';
+import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
+import { EntityResponseType } from 'app/entities/news/service/news.service';
 import { SortService } from 'app/shared/sort/sort.service';
-import { EntityResponseType, ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
+import { ICourses } from '../courses.model';
+import { CoursesDeleteDialogComponent } from '../delete/courses-delete-dialog.component';
+import { CoursesService, EntityArrayResponseType } from '../service/courses.service';
+import { CoursesFormGroup, CoursesFormService } from '../update/courses-form.service';
+import { HttpResponse } from '@angular/common/http';
+
 @Component({
   selector: 'jhi-courses',
   templateUrl: './courses.component.html',
@@ -16,16 +20,21 @@ import { EntityResponseType, ExtraUserInfoService } from 'app/entities/extra-use
 })
 export class CoursesComponent implements OnInit {
   courses?: ICourses[];
+  isSaving = false;
+
   isLoading = false;
-  idUser: number = 0;
-  ownerName: any;
+  ownerName: string = '';
   predicate = 'id';
   ascending = true;
-
+  editForm: CoursesFormGroup = this.coursesFormService.createCoursesFormGroup();
+  previewURL: string = '';
+  idUser: number = 0;
   constructor(
     protected coursesService: CoursesService,
     protected activatedRoute: ActivatedRoute,
     public router: Router,
+    protected coursesFormService: CoursesFormService,
+
     protected sortService: SortService,
     protected modalService: NgbModal,
     protected extraUser: ExtraUserInfoService
@@ -35,19 +44,61 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
+
     this.extraUser.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {
         // @ts-ignore
         this.idUser = res.body?.user.id;
-        this.ownerName = res.body?.user?.login;
+        const login = res.body?.user?.login;
+        if (login != null) {
+          this.ownerName = login;
+        }
+
         console.log(res.body);
       },
     });
   }
+  saveUrl(URL: string): void {
+    this.previewURL = URL;
+  }
+  previousState(): void {
+    window.history.back();
+  }
+  enrolled(idCourse: ICourses): void {
+    this.isSaving = true;
+    const courses = this.coursesFormService.getCourses(this.editForm);
 
-  enrolled(idCourse: any): void {
+    if (courses.id !== null) {
+      courses.previewImg = this.previewURL;
+      courses.users?.push({ id: this.idUser, login: this.ownerName });
+      this.subscribeToSaveResponse(this.coursesService.update(courses));
+    } else {
+      courses.previewImg = this.previewURL;
+      courses.ownerName = this.ownerName;
+      courses.userId = this.idUser;
+      this.subscribeToSaveResponse(this.coursesService.create(courses));
+    }
+    console.log(idCourse.users);
     console.log(idCourse);
   }
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<ICourses>>): void {
+    result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
+      next: () => this.onSaveSuccess(),
+      error: () => this.onSaveError(),
+    });
+  }
+  protected onSaveSuccess(): void {
+    this.previousState();
+  }
+
+  protected onSaveError(): void {
+    // Api for inheritance.
+  }
+
+  protected onSaveFinalize(): void {
+    this.isSaving = false;
+  }
+  findOwnerName(courses: ICourses) {}
 
   delete(courses: ICourses): void {
     const modalRef = this.modalService.open(CoursesDeleteDialogComponent, { size: 'lg', backdrop: 'static' });

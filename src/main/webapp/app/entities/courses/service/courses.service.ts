@@ -34,6 +34,10 @@ export class CoursesService {
     return this.http.get<ICourses>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  findOwner(ownerName: String): Observable<EntityResponseType> {
+    return this.http.get<ICourses>(`${this.resourceUrl}/${ownerName}`, { observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<ICourses[]>(this.resourceUrl, { params: options, observe: 'response' });
