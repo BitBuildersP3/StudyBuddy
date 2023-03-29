@@ -210,9 +210,8 @@ public class CoursesResource {
     }
 
     @GetMapping("/courses/getAllData/{id}")
-    public ResponseEntity<Courses> getAllCourseData(@PathVariable long id) {
+    public Optional<Courses> getAllCourseData(@PathVariable long id) {
         Optional<Courses> res = coursesRepository.findAllDataByCourseId(id);
-        if (res.isPresent()) return ResponseEntity.notFound().build();
         res
             .get()
             .getSections()
@@ -220,6 +219,6 @@ public class CoursesResource {
                 section.setFiles(section.getFiles());
             });
         res.get().setSections(res.get().getSections());
-        return ResponseUtil.wrapOrNotFound(res);
+        return res;
     }
 }
