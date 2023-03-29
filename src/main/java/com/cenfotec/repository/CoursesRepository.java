@@ -1,6 +1,7 @@
 package com.cenfotec.repository;
 
 import com.cenfotec.domain.Courses;
+import com.cenfotec.domain.ExtraUserInfo;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -28,4 +29,7 @@ public interface CoursesRepository extends CoursesRepositoryWithBagRelationships
     default Page<Courses> findAllWithEagerRelationships(Pageable pageable) {
         return this.fetchBagRelationships(this.findAll(pageable));
     }
+
+    @Query("SELECT courses FROM Courses courses  WHERE courses.ownerName = :ownerName")
+    List<Courses> findByUserName(@Param("ownerName") String ownerName);
 }

@@ -15,10 +15,10 @@ import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-courses',
-  templateUrl: './courses.component.html',
+  templateUrl: './courses.component.MyCourses.html',
   styleUrls: ['./courses.css'],
 })
-export class CoursesComponent implements OnInit {
+export class CoursesComponentMyCourses implements OnInit {
   courses?: ICourses[];
   isSaving = false;
 
@@ -93,7 +93,12 @@ export class CoursesComponent implements OnInit {
   protected onSaveFinalize(): void {
     this.isSaving = false;
   }
-  findOwnerName(courses: ICourses) {}
+
+  findOwnerName(ownerName: string) {
+    if (ownerName != null) {
+      this.coursesService.findOwner(ownerName);
+    }
+  }
 
   delete(courses: ICourses): void {
     const modalRef = this.modalService.open(CoursesDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
@@ -155,7 +160,7 @@ export class CoursesComponent implements OnInit {
       eagerload: true,
       sort: this.getSortQueryParam(predicate, ascending),
     };
-    return this.coursesService.query(queryObject).pipe(tap(() => (this.isLoading = false)));
+    return this.coursesService.findOwner(this.ownerName).pipe(tap(() => (this.isLoading = false)));
   }
 
   protected handleNavigation(predicate?: string, ascending?: boolean): void {

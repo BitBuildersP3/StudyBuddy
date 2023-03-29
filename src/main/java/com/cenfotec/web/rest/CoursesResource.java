@@ -1,7 +1,9 @@
 package com.cenfotec.web.rest;
 
 import com.cenfotec.domain.Courses;
+import com.cenfotec.domain.ExtraUserInfo;
 import com.cenfotec.repository.CoursesRepository;
+import com.cenfotec.security.SecurityUtils;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -191,11 +193,12 @@ public class CoursesResource {
         return ResponseUtil.wrapOrNotFound(courses);
     }
 
-    @GetMapping("/courses/{ownerName}")
-    public ResponseEntity<Courses> getCourses(@PathVariable String ownerName) {
-        log.debug("REST request to get Courses : {}", ownerName);
-        Optional<Courses> courses = coursesRepository.findOneWithEagerRelationships(ownerName);
-        return ResponseUtil.wrapOrNotFound(courses);
+    @GetMapping("/courses/ownerName")
+    public List<Courses> getCoursesOwner(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+        log.debug("REST request to get course by the owner");
+        String name = SecurityUtils.getCurrentUserLogin().orElse(null);
+        List<Courses> retVal = coursesRepository.findByUserName(name);
+        return retVal;
     }
 
     /**
