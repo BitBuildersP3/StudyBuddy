@@ -1,0 +1,53 @@
+.cont-cols {
+  display: flex;
+}
+
+.col-class,
+.col-content {
+  width: 100%;
+  min-height: 30rem;
+}
+
+.col-class {
+  max-width: 33.3%;
+}
+
+.col-content {
+  max-width: 66.6%;
+}
+
+.wapper {
+  padding: 5rem 0;
+}
+
+.titles {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.sections-cont li:hover {
+  background-color: rgba(62, 138, 204, 0.3);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.section {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    font-size: 12px;
+    font-weight: 700;
+    background: #b5bccf;
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
