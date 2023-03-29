@@ -68,7 +68,7 @@ public class Courses implements Serializable {
     private Category category;
 
     @OneToMany(mappedBy = "courses")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @Cache(usage = CacheConcurrencyStrategy.NONE)
     @JsonIgnoreProperties(value = { "", "courses" }, allowSetters = true)
     private Set<Section> sections = new HashSet<>();
 

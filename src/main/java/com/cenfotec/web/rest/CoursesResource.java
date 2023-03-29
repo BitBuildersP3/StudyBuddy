@@ -10,6 +10,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -218,7 +220,6 @@ public class CoursesResource {
             .forEach(section -> {
                 section.setFiles(section.getFiles());
             });
-        res.get().setSections(res.get().getSections());
         return res;
     }
 }
