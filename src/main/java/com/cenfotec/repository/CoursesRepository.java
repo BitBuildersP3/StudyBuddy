@@ -32,8 +32,8 @@ public interface CoursesRepository extends CoursesRepositoryWithBagRelationships
         return this.fetchBagRelationships(this.findAll(pageable));
     }
 
-    @Query("select section, section.courses from Section section")
-    List<Section> findAllDataByCourseId(@Param("id") long id);
+    @Query("select courses from Courses courses where courses.id = :id")
+    Optional<Courses> findAllDataByCourseId(@Param("id") long id);
     /*
     *
     *

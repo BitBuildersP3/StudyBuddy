@@ -210,8 +210,16 @@ public class CoursesResource {
     }
 
     @GetMapping("/courses/getAllData/{id}")
-    public List<Section> getAllCourseData(@PathVariable long id) {
-        List<Section> res = coursesRepository.findAllDataByCourseId(id);
-        return res;
+    public ResponseEntity<Courses> getAllCourseData(@PathVariable long id) {
+        Optional<Courses> res = coursesRepository.findAllDataByCourseId(id);
+        if (res.isPresent()) return ResponseEntity.notFound().build();
+        res
+            .get()
+            .getSections()
+            .forEach(section -> {
+                section.setFiles(section.getFiles());
+            });
+        res.get().setSections(res.get().getSections());
+        return ResponseUtil.wrapOrNotFound(res);
     }
 }
