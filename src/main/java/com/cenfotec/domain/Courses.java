@@ -60,6 +60,9 @@ public class Courses implements Serializable {
         joinColumns = @JoinColumn(name = "courses_id"),
         inverseJoinColumns = @JoinColumn(name = "user_id")
     )
+    /*@JsonIgnoreProperties("courses")
+    private Set<User> user = new HashSet<>();*/
+
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<User> users = new HashSet<>();
 

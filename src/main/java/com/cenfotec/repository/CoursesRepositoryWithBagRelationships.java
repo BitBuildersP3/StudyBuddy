@@ -11,5 +11,7 @@ public interface CoursesRepositoryWithBagRelationships {
     List<Courses> fetchBagRelationships(List<Courses> courses);
 
     Page<Courses> fetchBagRelationships(Page<Courses> courses);
+
+    List<Long> findByIdCursoAndUserId(Long userId);
     /*List<Long> findByIdCursoAndUserId(Long userId);*/
 }

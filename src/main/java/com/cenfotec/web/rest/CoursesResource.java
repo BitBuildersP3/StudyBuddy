@@ -204,13 +204,13 @@ public class CoursesResource {
         return retVal;
     }
 
-    /* @GetMapping("/courses/users/{login}")
+    @GetMapping("/courses/users/{login}")
     public List<Long> getCoursesIdEnrolled(@PathVariable Long login) {
         log.debug("REST request to get course by the owner");
-         Optional<User> user=userRepository.findById(login);
+        //  Optional<User> user=userRepository.findById(login);
         List<Long> retVal = coursesRepository.findByIdCursoAndUserId(login);
         return retVal;
-    }*/
+    }
 
     /**
      * {@code DELETE  /courses/:id} : delete the "id" courses.
