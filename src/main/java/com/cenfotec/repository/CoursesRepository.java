@@ -1,6 +1,9 @@
 package com.cenfotec.repository;
 
 import com.cenfotec.domain.Courses;
+import com.cenfotec.domain.ExtraUserInfo;
+import com.cenfotec.domain.Files;
+import com.cenfotec.domain.Section;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -28,4 +31,13 @@ public interface CoursesRepository extends CoursesRepositoryWithBagRelationships
     default Page<Courses> findAllWithEagerRelationships(Pageable pageable) {
         return this.fetchBagRelationships(this.findAll(pageable));
     }
+
+    @Query("select courses from Courses courses where courses.id = :id")
+    Optional<Courses> findAllDataByCourseId(@Param("id") long id);
+    /*    *
+    *
+    * @Query("select files, files.section, files.section.courses.name  from Files files")
+    List<Files> findAllDataByCourseId(@Param("id") long id);
+    *
+    * */
 }
