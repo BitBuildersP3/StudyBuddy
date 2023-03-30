@@ -1,6 +1,8 @@
 package com.cenfotec.web.rest;
 
 import com.cenfotec.domain.Courses;
+import com.cenfotec.domain.Files;
+import com.cenfotec.domain.Section;
 import com.cenfotec.repository.CoursesRepository;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -8,6 +10,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -142,6 +146,12 @@ public class CoursesResource {
                 if (courses.getUserId() != null) {
                     existingCourses.setUserId(courses.getUserId());
                 }
+                if (courses.getOwnerName() != null) {
+                    existingCourses.setOwnerName(courses.getOwnerName());
+                }
+                if (courses.getUserName() != null) {
+                    existingCourses.setUserName(courses.getUserName());
+                }
                 if (courses.getUserVotes() != null) {
                     existingCourses.setUserVotes(courses.getUserVotes());
                 }
@@ -199,5 +209,17 @@ public class CoursesResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/courses/getAllData/{id}")
+    public Optional<Courses> getAllCourseData(@PathVariable long id) {
+        Optional<Courses> res = coursesRepository.findAllDataByCourseId(id);
+        res
+            .get()
+            .getSections()
+            .forEach(section -> {
+                section.setFiles(section.getFiles());
+            });
+        return res;
     }
 }

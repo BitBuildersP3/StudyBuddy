@@ -25,6 +25,8 @@
       "score": "Score",
       "excerpt": "Excerpt",
       "userId": "User Id",
+      "ownerName": "Owner Name",
+      "userName": "User Name",
       "userVotes": "User Votes",
       "user": "User",
       "category": "Category",
