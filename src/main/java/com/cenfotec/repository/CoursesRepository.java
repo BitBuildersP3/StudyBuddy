@@ -34,8 +34,7 @@ public interface CoursesRepository extends CoursesRepositoryWithBagRelationships
 
     @Query("select courses from Courses courses where courses.id = :id")
     Optional<Courses> findAllDataByCourseId(@Param("id") long id);
-    /*
-    *
+    /*    *
     *
     * @Query("select files, files.section, files.section.courses.name  from Files files")
     List<Files> findAllDataByCourseId(@Param("id") long id);
