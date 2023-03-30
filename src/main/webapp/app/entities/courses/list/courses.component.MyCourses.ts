@@ -43,8 +43,6 @@ export class CoursesComponentMyCourses implements OnInit {
   trackId = (_index: number, item: ICourses): number => this.coursesService.getCoursesIdentifier(item);
 
   ngOnInit(): void {
-    this.load();
-
     this.extraUser.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {
         // @ts-ignore
@@ -52,9 +50,9 @@ export class CoursesComponentMyCourses implements OnInit {
         const login = res.body?.user?.login;
         if (login != null) {
           this.ownerName = login;
+          console.log(this.ownerName);
         }
-
-        console.log(res.body);
+        this.load();
       },
     });
   }
@@ -71,8 +69,6 @@ export class CoursesComponentMyCourses implements OnInit {
       idCourse.users?.push({ id: this.idUser, login: this.ownerName });
       this.subscribeToSaveResponse(this.coursesService.update(idCourse));
     }
-    console.log(idCourse.users);
-    console.log(idCourse);
   }
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICourses>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
@@ -94,7 +90,7 @@ export class CoursesComponentMyCourses implements OnInit {
     this.isSaving = false;
   }
 
-  findOwnerName(ownerName: string) {
+  protected findOwnerName(ownerName: string) {
     if (ownerName != null) {
       this.coursesService.findOwner(ownerName);
     }
@@ -160,7 +156,7 @@ export class CoursesComponentMyCourses implements OnInit {
       eagerload: true,
       sort: this.getSortQueryParam(predicate, ascending),
     };
-    return this.coursesService.findOwner(this.ownerName).pipe(tap(() => (this.isLoading = false)));
+    return this.coursesService.getByOwner(this.ownerName).pipe(tap(() => (this.isLoading = false)));
   }
 
   protected handleNavigation(predicate?: string, ascending?: boolean): void {
@@ -170,6 +166,7 @@ export class CoursesComponentMyCourses implements OnInit {
 
     this.router.navigate(['./'], {
       relativeTo: this.activatedRoute,
+
       queryParams: queryParamsObj,
     });
   }

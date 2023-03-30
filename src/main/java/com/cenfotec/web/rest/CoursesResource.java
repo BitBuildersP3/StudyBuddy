@@ -193,11 +193,17 @@ public class CoursesResource {
         return ResponseUtil.wrapOrNotFound(courses);
     }
 
-    @GetMapping("/courses/ownerName")
-    public List<Courses> getCoursesOwner(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    @GetMapping("/courses/owner/{ownerName}")
+    public List<Courses> getCoursesOwner(@PathVariable String ownerName) {
         log.debug("REST request to get course by the owner");
-        String name = SecurityUtils.getCurrentUserLogin().orElse(null);
-        List<Courses> retVal = coursesRepository.findByUserName(name);
+        List<Courses> retVal = coursesRepository.findByUserName(ownerName);
+        return retVal;
+    }
+
+    @GetMapping("/courses/users/{login}")
+    public List<Long> getCoursesIdEnrolled(@PathVariable Long login) {
+        log.debug("REST request to get course by the owner");
+        List<Long> retVal = coursesRepository.findByIdCursoAndUserId(login);
         return retVal;
     }
 

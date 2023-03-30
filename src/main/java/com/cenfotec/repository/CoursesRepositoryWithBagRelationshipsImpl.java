@@ -35,6 +35,14 @@ public class CoursesRepositoryWithBagRelationshipsImpl implements CoursesReposit
         return Optional.of(courses).map(this::fetchUsers).orElse(Collections.emptyList());
     }
 
+    @Override
+    public List<Long> findByIdCursoAndUserId(Long userId) {
+        return entityManager
+            .createQuery("SELECT r.idCurso FROM RelCoursesUser r WHERE r.userId = :userId", Long.class)
+            .setParameter("userId", userId)
+            .getResultList();
+    }
+
     Courses fetchUsers(Courses result) {
         return entityManager
             .createQuery("select courses from Courses courses left join fetch courses.users where courses is :courses", Courses.class)
