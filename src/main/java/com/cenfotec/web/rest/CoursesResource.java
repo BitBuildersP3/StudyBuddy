@@ -2,7 +2,9 @@ package com.cenfotec.web.rest;
 
 import com.cenfotec.domain.Courses;
 import com.cenfotec.domain.ExtraUserInfo;
+import com.cenfotec.domain.User;
 import com.cenfotec.repository.CoursesRepository;
+import com.cenfotec.repository.UserRepository;
 import com.cenfotec.security.SecurityUtils;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -33,6 +35,8 @@ public class CoursesResource {
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
+
+    private UserRepository userRepository;
 
     private final CoursesRepository coursesRepository;
 
@@ -200,12 +204,13 @@ public class CoursesResource {
         return retVal;
     }
 
-    @GetMapping("/courses/users/{login}")
+    /* @GetMapping("/courses/users/{login}")
     public List<Long> getCoursesIdEnrolled(@PathVariable Long login) {
         log.debug("REST request to get course by the owner");
+         Optional<User> user=userRepository.findById(login);
         List<Long> retVal = coursesRepository.findByIdCursoAndUserId(login);
         return retVal;
-    }
+    }*/
 
     /**
      * {@code DELETE  /courses/:id} : delete the "id" courses.

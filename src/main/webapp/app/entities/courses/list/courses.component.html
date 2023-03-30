@@ -37,7 +37,7 @@
               </span>
               <span class="sub"> Dueño: {{ courses.ownerName }} </span>
               <span class="sub" *ngFor="let user of courses.users; let last = last">
-                matriculado: {{ user.login }}{{ last ? '' : ', ' }}
+                <!-- matriculado: {{ user.login }}{{ last ? '' : ', ' }} -->
               </span>
             </h5>
           </div>
@@ -49,23 +49,15 @@
             <fa-icon icon="eye"></fa-icon>
             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
           </button>
-          <!-- <button type="submit" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+          <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="d-none d-md-inline" (click)="enrolled(courses)">
             <fa-icon icon="pencil-alt"></fa-icon>
-            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Matricular</span>
-          </button> -->
-
-          <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="enrolled(courses)">
-            <span>MATRICULAR</span>
+            <span>Matricular</span>
           </button>
-          <!-- 
-          <button type="submit" (click)="delete(courses)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-            <fa-icon icon="times"></fa-icon>
-            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
-          </button> -->
         </div>
       </div>
     </div>
   </div>
+
   <!-- fin lista  -->
 
   <jhi-alert-error></jhi-alert-error>
