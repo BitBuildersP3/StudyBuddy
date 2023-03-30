@@ -31,18 +31,43 @@
         </div>
       </div>
       <div class="col-content" *ngIf="currentSection">
-        <ng-container *ngIf="currentSection.files[0].type === 'video'">
-          <iframe
-            width="100%"
-            height="100%"
-            src="https://www.youtube.com/embed/3dHNOWTI7H8"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay;  picture-in-picture;"
-            allowfullscreen
-          ></iframe>
+        <h1 data-cy="coursesDetailsHeading" class="titles">
+          {{ currentSection.name }}
+        </h1>
+        <ng-container *ngFor="let file of currentSection.files; let j = index">
+          <ng-container *ngIf="file.type === 'video'">
+            <div class="cont-video">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/3dHNOWTI7H8"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay;  picture-in-picture;"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <ng-container *ngIf="j < 1">
+              <span><b>Description:</b> {{ currentSection.description }}</span>
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="file.type === 'index'">
+            <div>
+              <span><b>Notes:</b> {{ file.excerpt }}</span>
+              <div class="cont-links">
+                <span *ngIf="file.url1">Link: {{ file.url1 }}</span>
+                <span *ngIf="file.url2">Link: {{ file.url2 }}</span>
+                <span *ngIf="file.url3">Link: {{ file.url3 }}</span>
+              </div>
+              <!-- <a href="https://www.example.com/my-document.pdf">Link to My Document</a> -->
+            </div>
+          </ng-container>
         </ng-container>
-        <div>{{ currentSection.description }}</div>
+        <ng-container *ngIf="currentSection.files.length < 1">
+          <span><b>Description:</b> {{ currentSection.description }}</span>
+        </ng-container>
+        <span *ngIf="currentSection.creationDate"><b>Published date:</b> {{ currentSection.creationDate }}</span>
       </div>
     </div>
   </div>

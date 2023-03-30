@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICourses } from '../courses.model';
 
@@ -9,6 +9,12 @@ import { ICourses } from '../courses.model';
 })
 export class CoursesDetailComponent implements OnInit {
   courses: ICourses | null = null;
+
+  @ViewChild('thenBlock')
+  thenBlock: any = '';
+
+  @ViewChild('elseBlock')
+  elseBlock: any = '';
 
   currentSection: any = {};
   staticVideo = 'https://youtu.be/3dHNOWTI7H8';
@@ -41,7 +47,7 @@ export class CoursesDetailComponent implements OnInit {
           {
             id: 1,
             type: 'video',
-            url1: 'Bricolaje Account',
+            url1: 'https://www.youtube.com/embed/3dHNOWTI7H8',
             url2: 'Account Parque Informática',
             url3: 'TCP',
             status: 'infrastructures redundant',
@@ -51,7 +57,18 @@ export class CoursesDetailComponent implements OnInit {
           },
           {
             id: 2,
-            type: 'docs',
+            type: 'index',
+            url1: 'Optimización Plástico',
+            url2: 'streamline driver',
+            url3: 'maximize',
+            status: 'Checking Seguro',
+            name: 'Aplicaciones Verde',
+            excerpt: 'Automatizado',
+            publishDate: '2023-03-18',
+          },
+          {
+            id: 3,
+            type: 'propio',
             url1: 'Optimización Plástico',
             url2: 'streamline driver',
             url3: 'maximize',
@@ -72,8 +89,8 @@ export class CoursesDetailComponent implements OnInit {
         status: 'value-added embrace interface',
         files: [
           {
-            id: 3,
-            type: 'Checking',
+            id: 4,
+            type: 'index',
             url1: 'online niches override',
             url2: 'Granito Obligatorio Guinea',
             url3: 'seize',
@@ -83,8 +100,8 @@ export class CoursesDetailComponent implements OnInit {
             publishDate: '2023-03-18',
           },
           {
-            id: 4,
-            type: 'panel',
+            id: 5,
+            type: 'index',
             url1: 'best-of-breed viral deposit',
             url2: 'Ordenador intranet',
             url3: 'optimizada Madera',
@@ -116,6 +133,8 @@ export class CoursesDetailComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ courses }) => {
       this.courses = courses;
     });
+
+    this.setCurrentSection(this.sections[0]);
   }
 
   setCurrentSection(section: any): void {
