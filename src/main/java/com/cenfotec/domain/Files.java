@@ -48,7 +48,7 @@ public class Files implements Serializable {
     private LocalDate publishDate;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "files", "courses" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "", "courses" }, allowSetters = true)
     private Section section;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
