@@ -11,9 +11,7 @@ import com.cenfotec.security.SecurityUtils;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.slf4j.Logger;
@@ -233,6 +231,14 @@ public class CoursesResource {
             .forEach(section -> {
                 section.setFiles(section.getFiles());
             });
+        return res;
+    }
+
+    /*Este metodo devuelve todos los cursos que el usuario "id" este matriculado*/
+    @GetMapping("/courses/registered/{id}")
+    public List<Courses> GetRegisteredCoursesByUserId(@PathVariable Long id) {
+        User user = new User(id);
+        List<Courses> res = coursesRepository.findCoursesByUsersLike(user);
         return res;
     }
 }
