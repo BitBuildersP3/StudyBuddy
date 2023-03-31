@@ -29,11 +29,11 @@
             <h5>
               <p>{{ courses.name }}</p>
 
-              <span class="sub">
-                <p>Descripción: {{ courses.description }}</p>
+              <span>
+                <p class="sub">Descripción: {{ courses.description }}</p>
               </span>
-              <span class="sub">
-                <p>Estado: {{ courses.status }}</p>
+              <span>
+                <p class="sub">Estado: {{ courses.status }}</p>
               </span>
               <span class="sub"> Dueño: {{ courses.ownerName }} </span>
               <span class="sub" *ngFor="let user of courses.users; let last = last">

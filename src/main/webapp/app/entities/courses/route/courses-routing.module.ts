@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ASC } from 'app/config/navigation.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
 import { CoursesDetailComponent } from '../detail/courses-detail.component';
-import { CoursesComponent, CoursesComponentMyCourses } from '../list';
+import { CoursesComponent, CoursesComponentMyCourses, CoursesComponentEnrolled } from '../list';
 import { CoursesUpdateComponent } from '../update/courses-update.component';
 import { CoursesRoutingResolveService } from './courses-routing-resolve.service';
 
@@ -19,6 +19,14 @@ const coursesRoute: Routes = [
   {
     path: 'myCourses',
     component: CoursesComponentMyCourses,
+    data: {
+      defaultSort: 'id,' + ASC,
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'enrolled',
+    component: CoursesComponentEnrolled,
     data: {
       defaultSort: 'id,' + ASC,
     },

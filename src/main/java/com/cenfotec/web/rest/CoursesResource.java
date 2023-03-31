@@ -235,7 +235,7 @@ public class CoursesResource {
     }
 
     /*Este metodo devuelve todos los cursos que el usuario "id" este matriculado*/
-    @GetMapping("/courses/registered/{id}")
+    @GetMapping("/courses/enrolled/{id}")
     public List<Courses> GetRegisteredCoursesByUserId(@PathVariable Long id) {
         User user = new User(id);
         List<Courses> res = coursesRepository.findCoursesByUsersLike(user);

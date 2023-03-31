@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { ICourses, NewCourses } from '../courses.model';
-type RestOf<T extends ICourses | NewCourses> = {};
 export type PartialUpdateCourses = Partial<ICourses> & Pick<ICourses, 'id'>;
-export type RestCourses = RestOf<ICourses>;
 export type EntityResponseType = HttpResponse<ICourses>;
 export type EntityArrayResponseType = HttpResponse<ICourses[]>;
 
@@ -43,9 +40,9 @@ export class CoursesService {
     return this.http.get<ICourses[]>(`${this.resourceUrl}/owner/${ownerName}`, { observe: 'response' });
   }
 
-  /*getByusers(user: number): Observable<EntityArrayResponseType> {
-    return this.http.get<ICourses[]>(`${this.resourceUrl}/users/${user}`, { observe: 'response' });
-  }*/
+  getRegisteredCoursesByUserId(user: number): Observable<EntityArrayResponseType> {
+    return this.http.get<ICourses[]>(`${this.resourceUrl}/enrolled/${user}`, { observe: 'response' });
+  }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);

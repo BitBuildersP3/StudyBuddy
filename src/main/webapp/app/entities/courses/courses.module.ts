@@ -7,9 +7,17 @@ import { CoursesDetailComponent } from './detail/courses-detail.component';
 import { CoursesUpdateComponent } from './update/courses-update.component';
 import { CoursesDeleteDialogComponent } from './delete/courses-delete-dialog.component';
 import { CoursesRoutingModule } from './route/courses-routing.module';
+import { CoursesComponentEnrolled } from './list';
 
 @NgModule({
   imports: [SharedModule, CoursesRoutingModule],
-  declarations: [CoursesComponent, CoursesComponentMyCourses, CoursesDetailComponent, CoursesUpdateComponent, CoursesDeleteDialogComponent],
+  declarations: [
+    CoursesComponent,
+    CoursesComponentMyCourses,
+    CoursesComponentEnrolled,
+    CoursesDetailComponent,
+    CoursesUpdateComponent,
+    CoursesDeleteDialogComponent,
+  ],
 })
 export class CoursesModule {}

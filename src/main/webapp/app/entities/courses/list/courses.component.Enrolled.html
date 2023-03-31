@@ -1,20 +1,10 @@
 <div>
   <h2 id="page-heading" data-cy="CoursesHeading">
     <div class="d-flex justify-content-center font-weight: bold;">
-      <span>Cursos que he creado </span>
+      <span>Cursos Matriculados </span>
     </div>
 
-    <div class="d-flex justify-content-end">
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-courses"
-        [routerLink]="['/courses/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span> Crear nuevo Curso </span>
-      </button>
-    </div>
+    <div class="d-flex justify-content-end"></div>
   </h2>
   <!-- lista -->
 
@@ -36,6 +26,9 @@
                 <p class="sub">Estado: {{ courses.status }}</p>
               </span>
               <span class="sub"> Dueño: {{ courses.ownerName }} </span>
+              <span class="sub" *ngFor="let user of courses.users; let last = last">
+                matriculado: {{ user.login }}{{ last ? '' : ', ' }}
+              </span>
             </h5>
           </div>
         </div>
@@ -45,15 +38,6 @@
           <button type="submit" [routerLink]="['/courses', courses.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
             <fa-icon icon="eye"></fa-icon>
             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
-          </button>
-          <button type="submit" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
-            <fa-icon icon="pencil-alt"></fa-icon>
-            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Matricular</span>
-          </button>
-
-          <button type="submit" (click)="delete(courses)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-            <fa-icon icon="times"></fa-icon>
-            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
           </button>
         </div>
       </div>
