@@ -1,0 +1,43 @@
+.files-manager-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  margin-top: 0;
+  color: #6dabd5;
+  font-weight: bold;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #fff;
+  color: #6dabd5;
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid #de9a38;
+  border-radius: 25px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #6dabd5;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.file-component-container {
+  margin-top: 20px;
+}
