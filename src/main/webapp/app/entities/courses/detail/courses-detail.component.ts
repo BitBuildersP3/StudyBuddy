@@ -10,6 +10,8 @@ import { ICourses } from '../courses.model';
 export class CoursesDetailComponent implements OnInit {
   courses: ICourses | null = null;
 
+  linkTitle = 'Abrir';
+
   @ViewChild('thenBlock')
   thenBlock: any = '';
 

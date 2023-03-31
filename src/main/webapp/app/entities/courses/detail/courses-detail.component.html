@@ -34,7 +34,9 @@
         <h1 data-cy="coursesDetailsHeading" class="titles">
           {{ currentSection.name }}
         </h1>
+        <!-- start for -->
         <ng-container *ngFor="let file of currentSection.files; let j = index">
+          <!-- validation of type video -->
           <ng-container *ngIf="file.type === 'video'">
             <div class="cont-video">
               <iframe
@@ -47,27 +49,39 @@
                 allowfullscreen
               ></iframe>
             </div>
-            <ng-container *ngIf="j < 1">
-              <span><b>Description:</b> {{ currentSection.description }}</span>
-            </ng-container>
           </ng-container>
+          <!-- end validation of type video -->
 
+          <!-- constant content -->
+          <span *ngIf="currentSection.creationDate && j < 1"><b>Fecha de publicación:</b> {{ currentSection.creationDate }}</span>
+          <ng-container *ngIf="currentSection.description && j < 1">
+            <span><b>Descripción:</b> {{ currentSection.description }}</span>
+          </ng-container>
+          <!-- end constant content -->
+
+          <!-- start validation of type index -->
           <ng-container *ngIf="file.type === 'index'">
-            <div>
-              <span><b>Notes:</b> {{ file.excerpt }}</span>
-              <div class="cont-links">
-                <span *ngIf="file.url1">Link: {{ file.url1 }}</span>
-                <span *ngIf="file.url2">Link: {{ file.url2 }}</span>
-                <span *ngIf="file.url3">Link: {{ file.url3 }}</span>
-              </div>
+            <span><b>Nota:</b> {{ file.excerpt }}</span>
+            <div class="cont-links">
+              <span><b>Links:</b></span>
+              <span class="btn btn-info text-white" *ngIf="file.url1"> {{ linkTitle }}</span>
+              <span class="btn btn-info text-white" *ngIf="file.url2"> {{ linkTitle }}</span>
+              <span class="btn btn-info text-white" *ngIf="file.url3"> {{ linkTitle }}</span>
+
               <!-- <a href="https://www.example.com/my-document.pdf">Link to My Document</a> -->
             </div>
           </ng-container>
+          <!-- end validation of type index -->
         </ng-container>
+        <!-- end for -->
+        <!-- constant content -->
+
         <ng-container *ngIf="currentSection.files.length < 1">
-          <span><b>Description:</b> {{ currentSection.description }}</span>
+          <span>Esta sección no tiene archivos disponibles</span>
+          <span *ngIf="currentSection.creationDate"><b>Fecha de publicación:</b> {{ currentSection.creationDate }}</span>
+          <span><b>Descripción:</b> {{ currentSection.description }}</span>
         </ng-container>
-        <span *ngIf="currentSection.creationDate"><b>Published date:</b> {{ currentSection.creationDate }}</span>
+        <!-- end constant content -->
       </div>
     </div>
   </div>
