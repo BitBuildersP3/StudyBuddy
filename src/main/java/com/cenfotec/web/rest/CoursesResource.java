@@ -1,10 +1,12 @@
 package com.cenfotec.web.rest;
 
 import com.cenfotec.domain.Courses;
+import com.cenfotec.domain.ExtraUserInfo;
 import com.cenfotec.domain.Files;
 import com.cenfotec.domain.Section;
 import com.cenfotec.domain.User;
 import com.cenfotec.repository.CoursesRepository;
+import com.cenfotec.repository.UserRepository;
 import com.cenfotec.security.SecurityUtils;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -35,6 +37,8 @@ public class CoursesResource {
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
+
+    private UserRepository userRepository;
 
     private final CoursesRepository coursesRepository;
 
@@ -195,6 +199,13 @@ public class CoursesResource {
         return ResponseUtil.wrapOrNotFound(courses);
     }
 
+    @GetMapping("/courses/owner/{ownerName}")
+    public List<Courses> getCoursesOwner(@PathVariable String ownerName) {
+        log.debug("REST request to get course by the owner");
+        List<Courses> retVal = coursesRepository.findByUserName(ownerName);
+        return retVal;
+    }
+
     /**
      * {@code DELETE  /courses/:id} : delete the "id" courses.
      *
@@ -224,7 +235,7 @@ public class CoursesResource {
     }
 
     /*Este metodo devuelve todos los cursos que el usuario "id" este matriculado*/
-    @GetMapping("/courses/registered/{id}")
+    @GetMapping("/courses/enrolled/{id}")
     public List<Courses> GetRegisteredCoursesByUserId(@PathVariable Long id) {
         User user = new User(id);
         List<Courses> res = coursesRepository.findCoursesByUsersLike(user);
