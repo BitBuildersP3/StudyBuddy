@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FilesManagerComponent } from './files-manager.component';
 import { PanelTypeFileComponent } from 'app/file-manager/panel-type-file/panel-type-file.component';
 import { IndexRegisterFileComponent } from 'app/file-manager/index-register-file/index-register-file.component';
+import {OwnRegisterFileComponent} from "../file-manager/own-register-file/own-register-file.component";
+import {VideoRegisterFileComponent} from "../file-manager/video-register-file/video-register-file.component";
 
 @NgModule({
-  declarations: [FilesManagerComponent, PanelTypeFileComponent, IndexRegisterFileComponent],
+  declarations: [FilesManagerComponent, PanelTypeFileComponent, IndexRegisterFileComponent, VideoRegisterFileComponent, OwnRegisterFileComponent],
   imports: [CommonModule],
   exports: [FilesManagerComponent],
 })
