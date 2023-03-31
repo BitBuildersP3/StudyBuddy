@@ -97,6 +97,12 @@ public class User extends AbstractAuditingEntity<Long> implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<PersistentToken> persistentTokens = new HashSet<>();
 
+    public User(Long id) {
+        this.setId(id);
+    }
+
+    public User() {}
+
     public Long getId() {
         return id;
     }
