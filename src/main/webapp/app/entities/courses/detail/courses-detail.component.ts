@@ -60,7 +60,7 @@ export class CoursesDetailComponent implements OnInit {
           {
             id: 2,
             type: 'index',
-            url1: 'Optimización Plástico',
+            url1: 'https://docs.google.com/document/d/1E4gK5zXJYTbxXcxmh7ajIGw-OBpbhkihvs8LRSKXyCU/edit',
             url2: 'streamline driver',
             url3: 'maximize',
             status: 'Checking Seguro',
