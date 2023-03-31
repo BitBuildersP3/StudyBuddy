@@ -35,15 +35,6 @@ public interface CoursesRepository extends CoursesRepositoryWithBagRelationships
     @Query("SELECT courses FROM Courses courses  WHERE courses.ownerName = :ownerName")
     List<Courses> findByUserName(@Param("ownerName") String ownerName);
 
-    /*@Query("SELECT id_curso FROM rel_courses__user WHERE user_id = :user")
-    List<Integer> findByUsers(@Param("user") Integer user);*/
-
     @Query("select courses from Courses courses where courses.id = :id")
     Optional<Courses> findAllDataByCourseId(@Param("id") long id);
-    /*    *
-    *
-    * @Query("select files, files.section, files.section.courses.name  from Files files")
-    List<Files> findAllDataByCourseId(@Param("id") long id);
-    *
-    * */
 }
