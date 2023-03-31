@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanelTypeFileComponent implements OnInit {
 
+  selected: string = 'video';
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  setSelected(type: string) {
+    this.selected = type;
+  }
+
 
 }

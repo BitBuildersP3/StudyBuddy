@@ -1,3 +1,24 @@
 <p>panel-type-file works!</p>
 
+<div class="panel-type-file">
+  <h2>Seleccione tipo de archivo a subir</h2>
+  <div class="panel-type-file-buttons">
+    <button (click)="setSelected('video')" [class.selected]="selected === 'video'">Video</button>
+    <button (click)="setSelected('indexed')" [class.selected]="selected === 'indexed'">Archivo Indexado</button>
+    <button (click)="setSelected('own')" [class.selected]="selected === 'own'">Archivo Propio</button>
+  </div>
+  <div class="panel-type-file-content">
+    <ng-container *ngIf="selected === 'video'">
+      <video-register-file></video-register-file>
+    </ng-container>
+    <ng-container *ngIf="selected === 'indexed'">
+      <index-register-file></index-register-file>
+    </ng-container>
+    <ng-container *ngIf="selected === 'own'">
+      <own-register-file></own-register-file>
+    </ng-container>
+  </div>
+</div>
+
+
 <jhi-index-register-file></jhi-index-register-file>

@@ -10,6 +10,7 @@ export class VideoRegisterFileComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
