@@ -32,10 +32,11 @@ h6 {
   margin-top: 80px;
 }
 .btn {
-  background-color: #6dabd5;
   border-radius: 30px;
 }
-.btn:hover {
+.btnColor {
+  background-color: var(--primary);
+  border-radius: 5px;
 }
 /*--------------------------------------------------------------
       # Main
