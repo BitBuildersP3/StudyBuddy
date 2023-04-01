@@ -249,10 +249,6 @@
   background: var(--primary);
 }
 
-.service-item * {
-  transition: 0.5s;
-}
-
 .service-item:hover * {
   color: var(--light) !important;
 }
@@ -460,4 +456,17 @@
   padding: 1rem !important;
   border-radius: 10px;
   width: 100%;
+}
+
+p {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+* {
+  font-family: 'Nunito', sans-serif;
+}
+
+.container-main .card {
+  min-height: 45rem;
 }

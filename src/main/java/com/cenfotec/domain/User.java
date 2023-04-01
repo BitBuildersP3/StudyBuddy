@@ -2,6 +2,7 @@ package com.cenfotec.domain;
 
 import com.cenfotec.config.Constants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
@@ -81,6 +82,10 @@ public class User extends AbstractAuditingEntity<Long> implements Serializable {
     @Column(name = "reset_date")
     private Instant resetDate = null;
 
+    /*
+    @ManyToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    private Set<Courses> cursos = new HashSet<>();*/
     @JsonIgnore
     @ManyToMany
     @JoinTable(
