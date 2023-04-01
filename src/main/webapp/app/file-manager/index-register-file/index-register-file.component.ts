@@ -8,7 +8,14 @@ import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {finalize, map} from "rxjs/operators";
+import { AccountService } from 'app/core/auth/account.service';
 
+
+import {
+  EntityResponseType,
+  ExtraUserInfoService,
+  RestExtraUserInfo
+} from "../../entities/extra-user-info/service/extra-user-info.service";
 
 
 @Component({
@@ -21,15 +28,21 @@ export class IndexRegisterFileComponent implements OnInit {
   isSaving = false;
   files: IFiles | null = null;
 
+  userId: any;
   sectionsSharedCollection: ISection[] = [];
 
   editForm: FilesFormGroup = this.filesFormService.createFilesFormGroup();
+
+
 
   constructor(
     protected filesService: FilesService,
     protected filesFormService: FilesFormService,
     protected sectionService: SectionService,
-    protected activatedRoute: ActivatedRoute
+    protected activatedRoute: ActivatedRoute,
+
+    protected extraUserInfoService: ExtraUserInfoService,
+
   ) { }
 
   compareSection = (o1: ISection | null, o2: ISection | null): boolean => this.sectionService.compareSection(o1, o2);
@@ -41,7 +54,24 @@ export class IndexRegisterFileComponent implements OnInit {
       }
 
       this.loadRelationshipsOptions();
+
+      this.extraUserInfoService.getInfoByCurrentUser().subscribe({
+
+
+
+        next: (res: EntityResponseType) => {
+
+          this.userId = res.body?.id;
+          console.log("ID DE USUARIO",this.userId);
+
+          
+        },
+      });
+
+
     });
+
+
   }
 
 
@@ -104,4 +134,7 @@ export class IndexRegisterFileComponent implements OnInit {
 
 
   }
+
+
+
 }
