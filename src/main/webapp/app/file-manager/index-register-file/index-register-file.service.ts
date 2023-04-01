@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { IFiles, NewFiles } from '../files.model';
+// Ojo con este import, path.
+import { IFiles, NewFiles } from 'app/entities/files/files.model';
 
 /**
  * A partial Type with required key is used as form input.
