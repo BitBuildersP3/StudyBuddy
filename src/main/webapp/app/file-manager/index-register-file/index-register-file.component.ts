@@ -28,7 +28,7 @@ export class IndexRegisterFileComponent implements OnInit {
   isSaving = false;
   files: IFiles | null = null;
 
-  userId: any;
+  userId: number | undefined;
   sectionsSharedCollection: ISection[] = [];
 
   editForm: FilesFormGroup = this.filesFormService.createFilesFormGroup();
@@ -61,10 +61,18 @@ export class IndexRegisterFileComponent implements OnInit {
 
         next: (res: EntityResponseType) => {
 
-          this.userId = res.body?.id;
+
+          // Adquiere Usuario
+          if (res.body?.user?.id != null) {
+            this.userId = res.body?.user.id;
+          } else {
+
+          };
+
           console.log("ID DE USUARIO",this.userId);
 
-          
+
+
         },
       });
 
