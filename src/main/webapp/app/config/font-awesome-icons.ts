@@ -42,11 +42,13 @@ import {
   faGlobe,
   faBookOpen,
   faArrowsToCircle,
+  faCircleExclamation,
   // jhipster-needle-add-icon-import
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeIcons = [
   faArrowRight,
+  faCircleExclamation,
   faArrowLeft,
   faArrowsToCircle,
   faAsterisk,
@@ -89,5 +91,6 @@ export const fontAwesomeIcons = [
   faGraduationCap,
   faGlobe,
   faBookOpen,
+
   // jhipster-needle-add-icon-import
 ];

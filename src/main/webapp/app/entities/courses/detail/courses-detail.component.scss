@@ -98,3 +98,27 @@ b {
   background-color: $wine !important;
   color: #fff !important;
 }
+
+.wapper-no-cont {
+  min-height: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cont-title {
+  width: 50%;
+  height: 50%;
+  border: solid 0.5rem $dark;
+  padding: 5rem;
+  text-align: center;
+  border-radius: 1rem;
+  h1 {
+    color: $dark;
+  }
+}
+
+.icon {
+  font-size: 3rem;
+  color: $orange;
+}
