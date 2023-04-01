@@ -1,29 +1,29 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {IFiles} from "../../entities/files/files.model";
-import {ISection} from "../../entities/section/section.model";
-import {FilesFormGroup, FilesFormService} from "../../entities/files/update/files-form.service";
-import {FilesService} from "../../entities/files/service/files.service";
-import {SectionService} from "../../entities/section/service/section.service";
-import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs";
-import {HttpResponse} from "@angular/common/http";
-import {finalize, map} from "rxjs/operators";
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { IFiles } from '../../entities/files/files.model';
+import { ISection } from '../../entities/section/section.model';
+import { FilesFormGroup, FilesFormService } from '../../entities/files/update/files-form.service';
+import { FilesService } from '../../entities/files/service/files.service';
+import { SectionService } from '../../entities/section/service/section.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { HttpResponse } from '@angular/common/http';
+import { finalize, map } from 'rxjs/operators';
 import { AccountService } from 'app/core/auth/account.service';
-
 
 import {
   EntityResponseType,
   ExtraUserInfoService,
-  RestExtraUserInfo
-} from "../../entities/extra-user-info/service/extra-user-info.service";
-
+  RestExtraUserInfo,
+} from '../../entities/extra-user-info/service/extra-user-info.service';
 
 @Component({
   selector: 'jhi-index-register-file',
   templateUrl: './index-register-file.component.html',
-  styleUrls: ['./index-register-file.component.scss']
+  styleUrls: ['./index-register-file.component.scss'],
 })
 export class IndexRegisterFileComponent implements OnInit {
+  @Input() idSection: any;
+  @Input() idCourse: any;
 
   isSaving = false;
   files: IFiles | null = null;
@@ -33,17 +33,14 @@ export class IndexRegisterFileComponent implements OnInit {
 
   editForm: FilesFormGroup = this.filesFormService.createFilesFormGroup();
 
-
-
   constructor(
     protected filesService: FilesService,
     protected filesFormService: FilesFormService,
     protected sectionService: SectionService,
     protected activatedRoute: ActivatedRoute,
 
-    protected extraUserInfoService: ExtraUserInfoService,
-
-  ) { }
+    protected extraUserInfoService: ExtraUserInfoService
+  ) {}
 
   compareSection = (o1: ISection | null, o2: ISection | null): boolean => this.sectionService.compareSection(o1, o2);
   ngOnInit(): void {
@@ -56,32 +53,18 @@ export class IndexRegisterFileComponent implements OnInit {
       this.loadRelationshipsOptions();
 
       this.extraUserInfoService.getInfoByCurrentUser().subscribe({
-
-
-
         next: (res: EntityResponseType) => {
-
-
           // Adquiere Usuario
           if (res.body?.user?.id != null) {
             this.userId = res.body?.user.id;
           } else {
+          }
 
-          };
-
-          console.log("ID DE USUARIO",this.userId);
-
-
-
+          console.log('ID DE USUARIO', this.userId);
         },
       });
-
-
     });
-
-
   }
-
 
   previousState(): void {
     window.history.back();
@@ -126,23 +109,16 @@ export class IndexRegisterFileComponent implements OnInit {
       files.section
     );
 
-    console.log("Aca el dato del sectionSSharedCollection",this.sectionsSharedCollection);
+    console.log('Aca el dato del sectionSSharedCollection', this.sectionsSharedCollection);
   }
 
   protected loadRelationshipsOptions(): void {
-
     // Servicio del SectionService
     this.sectionService
-
 
       .query()
       .pipe(map((res: HttpResponse<ISection[]>) => res.body ?? []))
       .pipe(map((sections: ISection[]) => this.sectionService.addSectionToCollectionIfMissing<ISection>(sections, this.files?.section)))
       .subscribe((sections: ISection[]) => (this.sectionsSharedCollection = sections));
-
-
   }
-
-
-
 }

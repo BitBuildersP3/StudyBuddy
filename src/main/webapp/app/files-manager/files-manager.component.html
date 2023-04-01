@@ -2,6 +2,8 @@
 
 <p>Parte de la prueba</p>
 
+<p>{{ idCourse }}</p>
+
 <div class="files-manager-container">
   <h2 class="tituloPrincipal">Seleccione Tipo de Archivo a subir</h2>
   <div class="button-container">
@@ -14,7 +16,7 @@
       <jhi-video-register-file></jhi-video-register-file>
     </ng-container>
     <ng-container *ngIf="selectedFileComponent === 'indexed'">
-      <jhi-index-register-file></jhi-index-register-file>
+      <jhi-index-register-file [idCourse]="idCourse" [idSection]="idSection"></jhi-index-register-file>
     </ng-container>
     <ng-container *ngIf="selectedFileComponent === 'own'">
       <jhi-own-register-file></jhi-own-register-file>
