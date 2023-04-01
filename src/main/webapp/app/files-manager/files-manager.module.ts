@@ -5,10 +5,11 @@ import { PanelTypeFileComponent } from 'app/file-manager/panel-type-file/panel-t
 import { IndexRegisterFileComponent } from 'app/file-manager/index-register-file/index-register-file.component';
 import {OwnRegisterFileComponent} from "../file-manager/own-register-file/own-register-file.component";
 import {VideoRegisterFileComponent} from "../file-manager/video-register-file/video-register-file.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [FilesManagerComponent, PanelTypeFileComponent, IndexRegisterFileComponent, VideoRegisterFileComponent, OwnRegisterFileComponent],
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   exports: [FilesManagerComponent],
 })
 export class FilesManagerModule {}

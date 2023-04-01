@@ -11,48 +11,68 @@
       <a href="http://www.youtube.com" target="_blank">Mira este video tutorial</a> para más información.
     </div>
   </div>
+
+
   <div class="index-register-file__buttons">
     <a href="https://www.google.com/drive/"  target="_blank" class="index-register-file__button">Drive</a>
     <a href="https://www.mediafire.com/"  target="_blank" class="index-register-file__button">MediaFire</a>
     <a href="https://mega.io/"  target="_blank" class="index-register-file__button">Mega</a>
   </div>
-  <form class="index-register-file__form">
+
+
+  <form class="index-register-file__form" >
+
     <div class="index-register-file__label">
       <label for="file-name">Nombre del archivo:</label>
-      <input  class="index-register-file__form-input" type="text" id="file-name" name="file-name" required>
+      <input  class="index-register-file__form-input" type="text" id="file-name" name="file-name"  required>
     </div>
+
     <div class="index-register-file__label">
       <label for="file-description">Descripción:</label>
       <input class="index-register-file__form-input" type="text" id="file-description" name="file-description" required>
     </div>
+
     <div class="index-register-file__label">
       <label for="url1">URL 1:</label>
       <input class="index-register-file__form-input" type="url" id="url1" name="url1" required>
     </div>
+
     <div class="index-register-file__label">
       <label for="url2">URL 2:</label>
       <input class="index-register-file__form-input" type="url" id="url2" name="url2">
     </div>
+
     <div class="index-register-file__label">
       <label for="url3">URL 3:</label>
       <input class="index-register-file__form-input" type="url" id="url3" name="url3">
     </div>
+
     <div class="index-register-file__label">
       <label for="course">Curso:</label>
       <select id="course" name="course" required class="index-register-file__select">
         <option value="">Selecciona un curso</option>
       </select>
     </div>
+
     <div class="index-register-file__label">
       <label for="class">Clase:</label>
       <select id="class" name="class" required class="index-register-file__select">
         <option value="">Selecciona una clase</option>
       </select>
     </div>
+
     <div class="index-register-file__form-checkbox">
       <input type="checkbox" id="terms" name="terms" required>
       <label for="terms">He leído y acepto los términos y condiciones</label>
     </div>
-    <button type="submit" id="submit-button" class="index-register-file__submit-button">Registrar</button>
+
+    <button type="submit"
+            id="submit-button"
+            class="index-register-file__submit-button"
+            [disabled]="!isFormValid"
+            (click)="onSubmit()">Registrar</button>
+
   </form>
+
+
 </div>
