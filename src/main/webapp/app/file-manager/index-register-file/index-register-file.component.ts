@@ -82,17 +82,26 @@ export class IndexRegisterFileComponent implements OnInit {
     this.files = files;
     this.filesFormService.resetForm(this.editForm, files);
 
+    // Se llena el dropdown de "Seccion" (Clase).
     this.sectionsSharedCollection = this.sectionService.addSectionToCollectionIfMissing<ISection>(
       this.sectionsSharedCollection,
       files.section
     );
+
+    console.log("Aca el dato del sectionSSharedCollection",this.sectionsSharedCollection);
   }
 
   protected loadRelationshipsOptions(): void {
+
+    // Servicio del SectionService
     this.sectionService
+
+
       .query()
       .pipe(map((res: HttpResponse<ISection[]>) => res.body ?? []))
       .pipe(map((sections: ISection[]) => this.sectionService.addSectionToCollectionIfMissing<ISection>(sections, this.files?.section)))
       .subscribe((sections: ISection[]) => (this.sectionsSharedCollection = sections));
+
+
   }
 }

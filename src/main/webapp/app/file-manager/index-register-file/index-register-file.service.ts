@@ -27,6 +27,7 @@ type FilesFormGroupContent = {
   name: FormControl<IFiles['name']>;
   excerpt: FormControl<IFiles['excerpt']>;
   publishDate: FormControl<IFiles['publishDate']>;
+  // Cambiamos name por secion despues para poder ver el nombre.
   section: FormControl<IFiles['section']>;
 };
 
@@ -55,6 +56,7 @@ export class IndexRegisterFileService {
       name: new FormControl(filesRawValue.name),
       excerpt: new FormControl(filesRawValue.excerpt),
       publishDate: new FormControl(filesRawValue.publishDate),
+    // Aca hay que cambiar a section despues.
       section: new FormControl(filesRawValue.section),
     });
   }

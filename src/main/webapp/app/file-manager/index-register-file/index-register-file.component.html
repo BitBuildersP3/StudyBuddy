@@ -78,7 +78,8 @@
             [compareWith]="compareSection"
           >
             <option [ngValue]="null"></option>
-            <option [ngValue]="sectionOption" *ngFor="let sectionOption of sectionsSharedCollection">{{ sectionOption.id }}</option>
+            <option [ngValue]="sectionOption" *ngFor="let sectionOption of sectionsSharedCollection">{{ sectionOption.name }}</option>
+
           </select>
         </div>
       </div>

@@ -78,7 +78,7 @@
             [compareWith]="compareSection"
           >
             <option [ngValue]="null"></option>
-            <option [ngValue]="sectionOption" *ngFor="let sectionOption of sectionsSharedCollection">{{ sectionOption.id }}</option>
+            <option [ngValue]="sectionOption" *ngFor="let sectionOption of sectionsSharedCollection">{{ sectionOption.name }}</option>
           </select>
         </div>
       </div>
@@ -95,7 +95,7 @@
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">GERMAN</span>
         </button>
       </div>
     </form>
