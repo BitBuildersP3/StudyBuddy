@@ -230,4 +230,22 @@ public class CoursesResource {
         List<Courses> res = coursesRepository.findCoursesByUsersLike(user);
         return res;
     }
+
+    @GetMapping("/courses/isRegistered/{id}")
+    public boolean isUserRegister(@PathVariable String id) {
+        String[] split = id.split("-");
+        Long idCourse = Long.parseLong(split[0]);
+        Long idUser = Long.parseLong(split[1]);
+        User user = new User(idUser);
+        List<Courses> res = coursesRepository.findCoursesByUsersLike(user);
+        return res.contains(new Courses(idCourse));
+    }
+
+    @GetMapping("/courses/isOwner/{id}")
+    public boolean isUserOwner(@PathVariable Long id) {
+        String name = SecurityUtils.getCurrentUserLogin().orElse(null);
+        Optional<Courses> courses = coursesRepository.findAllDataByCourseId(id);
+        if (courses.isEmpty()) return false;
+        return courses.get().getOwnerName().equals(name);
+    }
 }
