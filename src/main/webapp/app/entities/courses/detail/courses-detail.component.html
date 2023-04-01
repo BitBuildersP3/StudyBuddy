@@ -14,9 +14,12 @@
 
           <ul class="sections-cont">
             <ng-container *ngFor="let section of sections; let i = index">
-              <li class="section" (click)="setCurrentSection(section)">
+              <li [ngClass]="isActive === i ? 'active-section' : ''" class="section" (click)="setCurrentSection(section); setActive(i)">
                 {{ section.name }}
-                <span>{{ i + 1 }}</span>
+                <span [ngClass]="isActive === i ? 'd-none' : ''">{{ i + 1 }}</span>
+                <ng-container *ngIf="isActive === i">
+                  <span><fa-icon [ngClass]="isActive === i ? 'play' : 'd-none'" icon="play"></fa-icon></span>
+                </ng-container>
               </li>
             </ng-container>
           </ul>

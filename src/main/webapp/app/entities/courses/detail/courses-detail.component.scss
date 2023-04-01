@@ -2,6 +2,9 @@ $dark: #15537d;
 $light: #6dabd5;
 $wine: #983f56;
 $orange: #de9a38;
+$rgbDark: rgba(21, 83, 125, 0.3);
+$rgbDark: rgba(21, 83, 125, 0.3);
+$rgbLight: rgba(109, 171, 213, 0.3);
 
 .wapper {
   padding: 5rem 0;
@@ -26,7 +29,7 @@ $orange: #de9a38;
   }
 
   .sections-cont li:hover {
-    background-color: rgba(62, 138, 204, 0.3);
+    background-color: $rgbLight;
   }
 
   ul {
@@ -121,4 +124,16 @@ b {
 .icon {
   font-size: 3rem;
   color: $orange;
+}
+.play {
+  display: flex;
+}
+
+.active-section span {
+  background-color: #de9a38;
+  color: #fff !important;
+}
+
+.active-section {
+  background-color: $rgbDark !important;
 }

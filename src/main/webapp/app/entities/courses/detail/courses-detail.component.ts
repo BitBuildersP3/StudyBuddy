@@ -23,6 +23,7 @@ export class CoursesDetailComponent implements OnInit {
   courseResponse: any = {};
   sections: any = ['init'];
 
+  isActive: any = 0;
   constructor(protected activatedRoute: ActivatedRoute, private courseService: CoursesService) {}
 
   ngOnInit(): void {
@@ -34,6 +35,10 @@ export class CoursesDetailComponent implements OnInit {
       this.sections = this.courseResponse.sections;
       this.setCurrentSection(this.sections[0]);
     });
+  }
+
+  setActive(index: any): void {
+    this.isActive = index;
   }
 
   setCurrentSection(section: any): void {
