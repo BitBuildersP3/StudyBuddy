@@ -1,13 +1,10 @@
 <div>
   <h2 id="page-heading" data-cy="CoursesHeading">
-    <span jhiTranslate="studyBuddyApp.courses.home.title">Courses</span>
+    <div class="d-flex justify-content-center font-weight: bold;">
+      <span>Cursos existentes</span>
+    </div>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="studyBuddyApp.courses.home.refreshListLabel">Refrescar lista</span>
-      </button>
-
       <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
@@ -15,16 +12,59 @@
         [routerLink]="['/courses/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="studyBuddyApp.courses.home.createLabel"> Crear nuevo Courses </span>
+        <span> Crear nuevo Curso </span>
       </button>
     </div>
   </h2>
+  <!-- lista -->
+
+  <div class="principalConteiner">
+    <div class="item-cont" *ngFor="let courses of courses">
+      <div class="secondConteiner">
+        <div class="card-image">
+          <img class="imgg" [src]="courses.previewImg" alt="Nombre del curso {{ courses.description }}" />
+        </div>
+        <div class="txt-cont">
+          <div class="info">
+            <h5>
+              <p>{{ courses.name }}</p>
+
+              <span>
+                <p class="sub">Descripción: {{ courses.description }}</p>
+              </span>
+              <span>
+                <p class="sub">Estado: {{ courses.status }}</p>
+              </span>
+              <span class="sub"> Dueño: {{ courses.ownerName }} </span>
+              <span class="sub" *ngFor="let user of courses.users; let last = last">
+                <!-- matriculado: {{ user.login }}{{ last ? '' : ', ' }} -->
+              </span>
+            </h5>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="botones">
+          <button type="submit" [routerLink]="['/courses', courses.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+            <fa-icon icon="eye"></fa-icon>
+            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+          </button>
+          <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="d-none d-md-inline" (click)="enrolled(courses)">
+            <fa-icon icon="pencil-alt"></fa-icon>
+            <span>Matricular</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- fin lista  -->
 
   <jhi-alert-error></jhi-alert-error>
 
   <jhi-alert></jhi-alert>
-
-  <div class="alert alert-warning" id="no-result" *ngIf="courses?.length === 0">
+  <!-- 
+ <div class="alert alert-warning" id="no-result" *ngIf="courses?.length === 0">
     <span jhiTranslate="studyBuddyApp.courses.home.notFound">Ningún Courses encontrado</span>
   </div>
 
@@ -79,19 +119,7 @@
               <span jhiTranslate="studyBuddyApp.courses.userId">User Id</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
-          </th>
-          <th scope="col" jhiSortBy="ownerName">
-            <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.courses.ownerName">Owner Name</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="userName">
-            <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.courses.userName">User Name</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
+          </th> 
           <th scope="col" jhiSortBy="userVotes">
             <div class="d-flex">
               <span jhiTranslate="studyBuddyApp.courses.userVotes">User Votes</span>
@@ -104,7 +132,7 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="category.id">
+          <th scope="col" jhiSortBy="category.name">
             <div class="d-flex">
               <span jhiTranslate="studyBuddyApp.courses.category">Category</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
@@ -113,6 +141,7 @@
           <th scope="col"></th>
         </tr>
       </thead>
+
       <tbody>
         <tr *ngFor="let courses of courses; trackBy: trackId" data-cy="entityTable">
           <td>
@@ -124,9 +153,6 @@
           <td>{{ courses.status }}</td>
           <td>{{ courses.score }}</td>
           <td>{{ courses.excerpt }}</td>
-          <td>{{ courses.userId }}</td>
-          <td>{{ courses.ownerName }}</td>
-          <td>{{ courses.userName }}</td>
           <td>{{ courses.userVotes }}</td>
           <td>
             <span *ngFor="let user of courses.users; let last = last"> {{ user.login }}{{ last ? '' : ', ' }} </span>
@@ -138,27 +164,20 @@
           </td>
           <td class="text-end">
             <div class="btn-group">
-              <button
-                type="submit"
-                [routerLink]="['/courses', courses.id, 'view']"
-                class="btn btn-info btn-sm"
-                data-cy="entityDetailsButton"
-              >
+              <button type="submit" [routerLink]="['/courses', courses.id, 'view']" class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
               </button>
 
-              <button
-                type="submit"
-                [routerLink]="['/courses', courses.id, 'edit']"
-                class="btn btn-primary btn-sm"
-                data-cy="entityEditButton"
-              >
+              <button type="submit" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary btn-sm"
+                data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
               </button>
 
-              <button type="submit" (click)="delete(courses)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button type="submit" (click)="delete(courses)" class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
               </button>
@@ -168,4 +187,5 @@
       </tbody>
     </table>
   </div>
+</div>  -->
 </div>

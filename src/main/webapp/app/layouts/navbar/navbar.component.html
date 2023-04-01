@@ -56,13 +56,25 @@
             <li>
               <a
                 class="dropdown-item"
-                routerLink="#"
+                routerLink="courses/myCourses"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
                 (click)="collapseNavbar()"
               >
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span>Mis cursos</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="courses/enrolled"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span>Cursos Matriculados</span>
               </a>
             </li>
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'">

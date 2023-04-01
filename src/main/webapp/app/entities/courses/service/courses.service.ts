@@ -6,9 +6,7 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { ICourses, NewCourses } from '../courses.model';
-
 export type PartialUpdateCourses = Partial<ICourses> & Pick<ICourses, 'id'>;
-
 export type EntityResponseType = HttpResponse<ICourses>;
 export type EntityArrayResponseType = HttpResponse<ICourses[]>;
 
@@ -32,6 +30,18 @@ export class CoursesService {
 
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<ICourses>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  findOwner(ownerName: String): Observable<EntityArrayResponseType> {
+    return this.http.get<ICourses[]>(`${this.resourceUrl}/${ownerName}`, { observe: 'response' });
+  }
+
+  getByOwner(ownerName: String): Observable<EntityArrayResponseType> {
+    return this.http.get<ICourses[]>(`${this.resourceUrl}/owner/${ownerName}`, { observe: 'response' });
+  }
+
+  getRegisteredCoursesByUserId(user: number): Observable<EntityArrayResponseType> {
+    return this.http.get<ICourses[]>(`${this.resourceUrl}/enrolled/${user}`, { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {

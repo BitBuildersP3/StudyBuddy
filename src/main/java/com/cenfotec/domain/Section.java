@@ -44,7 +44,7 @@ public class Section implements Serializable {
     private String status;
 
     @OneToMany(mappedBy = "section")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @Cache(usage = CacheConcurrencyStrategy.NONE)
     @JsonIgnoreProperties(value = { "section" }, allowSetters = true)
     private Set<Files> files = new HashSet<>();
 

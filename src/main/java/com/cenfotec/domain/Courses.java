@@ -60,6 +60,9 @@ public class Courses implements Serializable {
         joinColumns = @JoinColumn(name = "courses_id"),
         inverseJoinColumns = @JoinColumn(name = "user_id")
     )
+    /*@JsonIgnoreProperties("courses")
+    private Set<User> user = new HashSet<>();*/
+
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<User> users = new HashSet<>();
 
@@ -68,8 +71,8 @@ public class Courses implements Serializable {
     private Category category;
 
     @OneToMany(mappedBy = "courses")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "files", "courses" }, allowSetters = true)
+    @Cache(usage = CacheConcurrencyStrategy.NONE)
+    @JsonIgnoreProperties(value = { "", "courses" }, allowSetters = true)
     private Set<Section> sections = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

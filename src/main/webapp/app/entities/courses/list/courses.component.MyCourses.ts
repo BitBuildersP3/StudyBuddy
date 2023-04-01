@@ -15,10 +15,10 @@ import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-courses',
-  templateUrl: './courses.component.html',
+  templateUrl: './courses.component.MyCourses.html',
   styleUrls: ['./courses.css'],
 })
-export class CoursesComponent implements OnInit {
+export class CoursesComponentMyCourses implements OnInit {
   courses?: ICourses[];
   isSaving = false;
 
@@ -43,8 +43,6 @@ export class CoursesComponent implements OnInit {
   trackId = (_index: number, item: ICourses): number => this.coursesService.getCoursesIdentifier(item);
 
   ngOnInit(): void {
-    this.load();
-
     this.extraUser.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {
         // @ts-ignore
@@ -52,9 +50,9 @@ export class CoursesComponent implements OnInit {
         const login = res.body?.user?.login;
         if (login != null) {
           this.ownerName = login;
+          console.log(this.ownerName);
         }
-
-        console.log(res.body);
+        this.load();
       },
     });
   }
@@ -71,8 +69,6 @@ export class CoursesComponent implements OnInit {
       idCourse.users?.push({ id: this.idUser, login: this.ownerName });
       this.subscribeToSaveResponse(this.coursesService.update(idCourse));
     }
-    console.log(idCourse.users);
-    console.log(idCourse);
   }
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICourses>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
@@ -93,7 +89,12 @@ export class CoursesComponent implements OnInit {
   protected onSaveFinalize(): void {
     this.isSaving = false;
   }
-  findOwnerName(courses: ICourses) {}
+
+  protected findOwnerName(ownerName: string) {
+    if (ownerName != null) {
+      this.coursesService.findOwner(ownerName);
+    }
+  }
 
   delete(courses: ICourses): void {
     const modalRef = this.modalService.open(CoursesDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
@@ -155,7 +156,7 @@ export class CoursesComponent implements OnInit {
       eagerload: true,
       sort: this.getSortQueryParam(predicate, ascending),
     };
-    return this.coursesService.query(queryObject).pipe(tap(() => (this.isLoading = false)));
+    return this.coursesService.getByOwner(this.ownerName).pipe(tap(() => (this.isLoading = false)));
   }
 
   protected handleNavigation(predicate?: string, ascending?: boolean): void {
@@ -165,6 +166,7 @@ export class CoursesComponent implements OnInit {
 
     this.router.navigate(['./'], {
       relativeTo: this.activatedRoute,
+
       queryParams: queryParamsObj,
     });
   }
