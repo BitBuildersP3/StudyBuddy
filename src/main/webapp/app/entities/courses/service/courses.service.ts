@@ -32,11 +32,15 @@ export class CoursesService {
     return this.http.get<ICourses>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  findOwner(ownerName: String): Observable<EntityArrayResponseType> {
+  findOwner(ownerName: string): Observable<EntityArrayResponseType> {
     return this.http.get<ICourses[]>(`${this.resourceUrl}/${ownerName}`, { observe: 'response' });
   }
 
-  getByOwner(ownerName: String): Observable<EntityArrayResponseType> {
+  getCouseDataById(id: number): Observable<EntityResponseType> {
+    return this.http.get<ICourses>(`${this.resourceUrl}/getAllData/${id}`, { observe: 'response' });
+  }
+
+  getByOwner(ownerName: string): Observable<EntityArrayResponseType> {
     return this.http.get<ICourses[]>(`${this.resourceUrl}/owner/${ownerName}`, { observe: 'response' });
   }
 
