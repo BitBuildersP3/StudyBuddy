@@ -1,14 +1,14 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IFiles } from '../../entities/files/files.model';
 import { ISection } from '../../entities/section/section.model';
-import { FilesFormGroup, FilesFormService } from '../../entities/files/update/files-form.service';
+
 import { FilesService } from '../../entities/files/service/files.service';
 import { SectionService } from '../../entities/section/service/section.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { finalize, map } from 'rxjs/operators';
-import { AccountService } from 'app/core/auth/account.service';
+import {FilesFormGroup, IndexRegisterFileService} from "./index-register-file.service";
 
 import {
   EntityResponseType,
@@ -31,11 +31,12 @@ export class IndexRegisterFileComponent implements OnInit {
   userId: number | undefined;
   sectionsSharedCollection: ISection[] = [];
 
-  editForm: FilesFormGroup = this.filesFormService.createFilesFormGroup();
+  // Ajustar Servicio
+  editForm: FilesFormGroup = this.IndexRegisterFormService.createFilesFormGroup();
 
   constructor(
     protected filesService: FilesService,
-    protected filesFormService: FilesFormService,
+    protected IndexRegisterFormService: IndexRegisterFileService,
     protected sectionService: SectionService,
     protected activatedRoute: ActivatedRoute,
 
@@ -72,7 +73,7 @@ export class IndexRegisterFileComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
-    const files = this.filesFormService.getFiles(this.editForm);
+    const files = this.IndexRegisterFormService.getFiles(this.editForm);
     if (files.id !== null) {
       this.subscribeToSaveResponse(this.filesService.update(files));
     } else {
@@ -101,7 +102,7 @@ export class IndexRegisterFileComponent implements OnInit {
 
   protected updateForm(files: IFiles): void {
     this.files = files;
-    this.filesFormService.resetForm(this.editForm, files);
+    this.IndexRegisterFormService.resetForm(this.editForm, files);
 
     // Se llena el dropdown de "Seccion" (Clase).
     this.sectionsSharedCollection = this.sectionService.addSectionToCollectionIfMissing<ISection>(

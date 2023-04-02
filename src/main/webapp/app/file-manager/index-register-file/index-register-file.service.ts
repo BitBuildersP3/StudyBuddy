@@ -26,7 +26,7 @@ type FilesFormGroupContent = {
   url1: FormControl<IFiles['url1']>;
   url2: FormControl<IFiles['url2']>;
   url3: FormControl<IFiles['url3']>;
-  status: FormControl<IFiles['status']>;
+  status: FormControl<String | null>;
   name: FormControl<IFiles['name']>;
   excerpt: FormControl<IFiles['excerpt']>;
   publishDate: FormControl<IFiles['publishDate']>;
@@ -55,7 +55,8 @@ export class IndexRegisterFileService {
       url1: new FormControl(filesRawValue.url1),
       url2: new FormControl(filesRawValue.url2),
       url3: new FormControl(filesRawValue.url3),
-      status: new FormControl(filesRawValue.status),
+      // Se quema el status
+      status: new FormControl(filesRawValue.status ?? 'ACTIVO'),
       name: new FormControl(filesRawValue.name),
       excerpt: new FormControl(filesRawValue.excerpt),
       publishDate: new FormControl(filesRawValue.publishDate),
