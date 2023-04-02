@@ -9,5 +9,8 @@ import { SectionRoutingModule } from './route/section-routing.module';
 @NgModule({
   imports: [SharedModule, SectionRoutingModule],
   declarations: [SectionComponent, SectionDetailComponent, SectionUpdateComponent, SectionDeleteDialogComponent],
+  exports: [
+    SectionUpdateComponent, // Make sure the component is exported here
+  ],
 })
 export class SectionModule {}

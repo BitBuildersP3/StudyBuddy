@@ -11,6 +11,10 @@
               {{ courses.name }}
             </h1>
           </div>
+          <jhi-modal [btnLabel]="'Agregar Sección'">
+            <div>hello</div>
+            <!-- <jhi-section-update></jhi-section-update> -->
+          </jhi-modal>
 
           <ul class="sections-cont">
             <ng-container *ngFor="let section of sections; let i = index">
@@ -80,7 +84,7 @@
           <!-- end for -->
           <!-- constant content -->
 
-          <ng-container *ngIf="currentSection.files.length < 1">
+          <ng-container *ngIf="filesLength < 1">
             <span>Esta sección no tiene archivos disponibles o válidos</span>
             <span *ngIf="currentSection.creationDate"><b>Fecha de publicación:</b> {{ currentSection.creationDate }}</span>
             <span><b>Descripción:</b> {{ currentSection.description }}</span>

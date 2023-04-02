@@ -1,0 +1,7 @@
+<!-- <div class="modal" [ngStyle]="{ display: showModal ? 'block' : 'none' }"> -->
+<span class="btn btn-primary add-btn" (click)="setIsOpen()"> {{ btnLabel }} </span>
+<div *ngIf="isOpen" class="">
+  <div class="">
+    <ng-content></ng-content>
+  </div>
+</div>

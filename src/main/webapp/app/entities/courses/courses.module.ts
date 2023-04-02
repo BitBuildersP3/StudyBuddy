@@ -8,9 +8,10 @@ import { CoursesUpdateComponent } from './update/courses-update.component';
 import { CoursesDeleteDialogComponent } from './delete/courses-delete-dialog.component';
 import { CoursesRoutingModule } from './route/courses-routing.module';
 import { CoursesComponentEnrolled } from './list';
+import { SectionModule } from 'app/entities/section/section.module';
 
 @NgModule({
-  imports: [SharedModule, CoursesRoutingModule],
+  imports: [SharedModule, CoursesRoutingModule, SectionModule],
   declarations: [
     CoursesComponent,
     CoursesComponentMyCourses,
