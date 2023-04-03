@@ -89,7 +89,7 @@ export class IndexRegisterFileComponent implements OnInit {
 
       // Parametros QUEMADOS
       files.status = "ACTIVE";
-      files.type = "Index";
+      files.type = "index";
 
       files.section = { id: this.idSection };
 

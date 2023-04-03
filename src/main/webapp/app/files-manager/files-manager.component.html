@@ -13,7 +13,7 @@
   </div>
   <div class="file-component-container">
     <ng-container *ngIf="selectedFileComponent === 'video'">
-      <jhi-video-register-file></jhi-video-register-file>
+      <jhi-video-register-file [idCourse]="idCourse" [idSection]="idSection" ></jhi-video-register-file>
     </ng-container>
     <ng-container *ngIf="selectedFileComponent === 'indexed'">
       <jhi-index-register-file [idCourse]="idCourse" [idSection]="idSection"></jhi-index-register-file>
