@@ -12,7 +12,7 @@
             </h1>
           </div>
           <jhi-modal class="modal-cust" [btnLabel]="'Agregar Sección'">
-            <jhi-section-update class="content-modal" [title]="'Agregar Sección'"></jhi-section-update>
+            <jhi-section-update [course]="courses" class="content-modal" [title]="'Agregar Sección'"></jhi-section-update>
           </jhi-modal>
 
           <ul class="sections-cont">
@@ -100,6 +100,9 @@
     <div class="cont-title">
       <h1>Debe de agregar secciónes al curso</h1>
 
+      <jhi-modal class="modal-cust" [btnLabel]="'Agregar Sección'">
+        <jhi-section-update [course]="courses" class="content-modal" [title]="'Agregar Sección'"></jhi-section-update>
+      </jhi-modal>
       <fa-icon class="icon shake" icon="circle-exclamation"></fa-icon>&nbsp;
     </div>
   </div>

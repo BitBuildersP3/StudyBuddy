@@ -12,12 +12,12 @@
     </div>
 
     <div class="row mb-3">
-      <label class="form-label" jhiTranslate="studyBuddyApp.section.name" for="field_name">Name</label>
+      <label class="form-label" for="field_name">Nombre</label>
       <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
     </div>
 
     <div class="row mb-3">
-      <label class="form-label" jhiTranslate="studyBuddyApp.section.description" for="field_description">Description</label>
+      <label class="form-label" for="field_description">Descripción</label>
       <input
         type="text"
         class="form-control"
@@ -29,12 +29,12 @@
     </div>
 
     <div class="row mb-3">
-      <label class="form-label" jhiTranslate="studyBuddyApp.section.excerpt" for="field_excerpt">Excerpt</label>
+      <label class="form-label" for="field_excerpt">Fragmento</label>
       <input type="text" class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" />
     </div>
 
-    <div class="row mb-3">
-      <label class="form-label" jhiTranslate="studyBuddyApp.section.creationDate" for="field_creationDate">Creation Date</label>
+    <!-- <div class="row mb-3">
+      <label class="form-label" for="field_creationDate">Fecha de creación</label>
       <div class="input-group">
         <input
           id="field_creationDate"
@@ -50,19 +50,19 @@
           <fa-icon icon="calendar-alt"></fa-icon>
         </button>
       </div>
-    </div>
+    </div> -->
 
-    <div class="row mb-3">
+    <!-- <div class="row mb-3">
       <label class="form-label" jhiTranslate="studyBuddyApp.section.time" for="field_time">Time</label>
       <input type="number" class="form-control" name="time" id="field_time" data-cy="time" formControlName="time" />
-    </div>
+    </div> -->
 
-    <div class="row mb-3">
+    <!-- <div class="row mb-3">
       <label class="form-label" jhiTranslate="studyBuddyApp.section.status" for="field_status">Status</label>
       <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
-    </div>
+    </div> -->
 
-    <div class="row mb-3">
+    <!-- <div class="row mb-3">
       <label class="form-label" jhiTranslate="studyBuddyApp.section.courses" for="field_courses">Courses</label>
       <select
         class="form-control"
@@ -75,7 +75,7 @@
         <option [ngValue]="null"></option>
         <option [ngValue]="coursesOption" *ngFor="let coursesOption of coursesSharedCollection">{{ coursesOption.id }}</option>
       </select>
-    </div>
+    </div> -->
   </div>
 
   <div>
