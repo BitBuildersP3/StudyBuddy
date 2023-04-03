@@ -15,6 +15,7 @@ import {
   ExtraUserInfoService,
   RestExtraUserInfo,
 } from '../../entities/extra-user-info/service/extra-user-info.service';
+import dayjs, {Dayjs} from "dayjs";
 
 @Component({
   selector: 'jhi-index-register-file',
@@ -74,9 +75,25 @@ export class IndexRegisterFileComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const files = this.IndexRegisterFormService.getFiles(this.editForm);
+
+
+
+
+// Se modifico para quemar dos valores.
     if (files.id !== null) {
+
+
       this.subscribeToSaveResponse(this.filesService.update(files));
     } else {
+
+
+      // Parametros QUEMADOS
+      files.status = "ACTIVE";
+      files.type = "Index";
+
+      files.section = { id: this.idSection };
+      
+
       this.subscribeToSaveResponse(this.filesService.create(files));
     }
   }

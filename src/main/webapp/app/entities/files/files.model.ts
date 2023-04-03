@@ -11,7 +11,7 @@ export interface IFiles {
   name?: string | null;
   excerpt?: string | null;
   publishDate?: dayjs.Dayjs | null;
-  section?: Pick<ISection, 'id'> | null;
+  section?: Pick<ISection, 'id'> | null ;
 }
 
 export type NewFiles = Omit<IFiles, 'id'> & { id: null };
