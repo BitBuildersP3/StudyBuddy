@@ -1,0 +1,75 @@
+body {
+
+  background-color: #181d38;
+}
+
+
+:root {
+  --primary-color: #15537D;
+  --secondary-color: #6DABD5;
+  --tertiary-color: #983F56;
+  --detail-color: #DFE2EA;
+}
+/* Botones */
+.btn {
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 50px;
+  color: var(--detail-color);
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  background-color: var(--detail-color);
+  border-color: var(--detail-color);
+  color: var(--primary-color);
+}
+
+/* Botones Externos */
+.btn-extern {
+  background-color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+  border-radius: 50px;
+  color: var(--detail-color);
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+  padding: 10px 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-extern:hover {
+  background-color: var(--detail-color);
+  border-color: var(--detail-color);
+  color: var(--secondary-color);
+}
+
+/* Formulario */
+.form-label {
+  color: var(--primary-color);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: none;
+}
+
+.form-control::placeholder {
+  color: var(--detail-color);
+}
+
+textarea.form-control {
+  resize: none;
+}
+
+/* Alerta de error */
+.alert-danger {
+  background-color: var(--tertiary-color);
+  border-color: var(--tertiary-color);
+  color: var(--detail-color);
+}

@@ -1,1 +1,22 @@
-<p>files-manager works!</p>
+
+<p>{{ idCourse }}</p>
+
+<div class="files-manager-container">
+  <h2 class="tituloPrincipal">Seleccione Tipo de Archivo a subir</h2>
+  <div class="button-container">
+    <button (click)="showVideoFile()">Video</button>
+    <button (click)="showIndexedFile()">Archivo Indexado</button>
+    <button (click)="showOwnFile()">Archivo Propio</button>
+  </div>
+  <div class="file-component-container">
+    <ng-container *ngIf="selectedFileComponent === 'video'">
+      <jhi-video-register-file [idCourse]="idCourse" [idSection]="idSection" ></jhi-video-register-file>
+    </ng-container>
+    <ng-container *ngIf="selectedFileComponent === 'indexed'">
+      <jhi-index-register-file [idCourse]="idCourse" [idSection]="idSection"></jhi-index-register-file>
+    </ng-container>
+    <ng-container *ngIf="selectedFileComponent === 'own'">
+      <jhi-own-register-file></jhi-own-register-file>
+    </ng-container>
+  </div>
+</div>

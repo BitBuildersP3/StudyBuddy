@@ -49,7 +49,7 @@ import { VideoRegisterFileComponent } from './file-manager/video-register-file/v
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, FilesManagerComponent, IndexRegisterFileComponent, OwnRegisterFileComponent, VideoRegisterFileComponent],
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   bootstrap: [MainComponent],
 })
 export class AppModule {
