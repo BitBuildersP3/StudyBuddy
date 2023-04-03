@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IFiles} from "../../entities/files/files.model";
 import {ISection} from "../../entities/section/section.model";
-import {FilesFormGroup, IndexRegisterFileService} from "../index-register-file/index-register-file.service";
+// Recordar modificar el form group aca
+import {FilesFormGroup} from "../video-register-file/video-register-file.service";
 import {FilesService} from "../../entities/files/service/files.service";
 import {SectionService} from "../../entities/section/service/section.service";
 import {ActivatedRoute} from "@angular/router";
@@ -85,7 +86,8 @@ export class VideoRegisterFileComponent implements OnInit {
       // Parametros QUEMADOS
       files.status = "ACTIVE";
       files.type = "video";
-
+      files.url2 = "NO URL 2";
+      files.url3 = "NO URL 3";
       files.section = { id: this.idSection };
 
 

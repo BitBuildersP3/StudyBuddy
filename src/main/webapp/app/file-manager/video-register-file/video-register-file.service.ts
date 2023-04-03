@@ -24,8 +24,7 @@ type FilesFormGroupContent = {
   id: FormControl<IFiles['id'] | NewFiles['id']>;
 
   url1: FormControl<IFiles['url1']>;
-  url2: FormControl<IFiles['url2']>;
-  url3: FormControl<IFiles['url3']>;
+
 
   name: FormControl<IFiles['name']>;
   excerpt: FormControl<IFiles['excerpt']>;
@@ -51,8 +50,7 @@ export class VideoRegisterFileService {
       ),
 
       url1: new FormControl(filesRawValue.url1),
-      url2: new FormControl(filesRawValue.url2),
-      url3: new FormControl(filesRawValue.url3),
+
       // Se quema el status
 
       name: new FormControl(filesRawValue.name),
