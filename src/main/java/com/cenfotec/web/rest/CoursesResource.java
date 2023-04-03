@@ -241,4 +241,28 @@ public class CoursesResource {
         List<Courses> res = coursesRepository.findCoursesByUsersLike(user);
         return res;
     }
+
+    //Para usar este metodo se debe de enviar los datos de la variable String id de la siguiente manera:
+    //<idCurso>-<idUsuarioEnSesion>
+    //este metodo retorna un dato tipo boolean
+    //este metodo revisa que el usuario en sesion este registrado a un curso (true) o no (false)
+
+    @GetMapping("/courses/isRegistered/{id}")
+    public boolean isUserRegister(@PathVariable String id) {
+        String[] split = id.split("-");
+        Long idCourse = Long.parseLong(split[0]);
+        Long idUser = Long.parseLong(split[1]);
+        User user = new User(idUser);
+        List<Courses> res = coursesRepository.findCoursesByUsersLike(user);
+        return res.contains(new Courses(idCourse));
+    }
+
+    //devuelve verdadero si el usuario en sesion es dueño del curso, falso de lo contrario.
+    @GetMapping("/courses/isOwner/{id}")
+    public boolean isUserOwner(@PathVariable Long id) {
+        String name = SecurityUtils.getCurrentUserLogin().orElse(null);
+        Optional<Courses> courses = coursesRepository.findAllDataByCourseId(id);
+        if (courses.isEmpty()) return false;
+        return courses.get().getOwnerName().equals(name);
+    }
 }
