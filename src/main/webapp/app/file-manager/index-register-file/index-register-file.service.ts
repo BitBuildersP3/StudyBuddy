@@ -22,16 +22,15 @@ type FilesFormDefaults = Pick<NewFiles, 'id'>;
 
 type FilesFormGroupContent = {
   id: FormControl<IFiles['id'] | NewFiles['id']>;
-  type: FormControl<IFiles['type']>;
+
   url1: FormControl<IFiles['url1']>;
   url2: FormControl<IFiles['url2']>;
   url3: FormControl<IFiles['url3']>;
-  status: FormControl<String | null>;
+
   name: FormControl<IFiles['name']>;
   excerpt: FormControl<IFiles['excerpt']>;
-  publishDate: FormControl<IFiles['publishDate']>;
-  // Cambiamos name por secion despues para poder ver el nombre.
-  section: FormControl<IFiles['section']>;
+
+
 };
 
 export type FilesFormGroup = FormGroup<FilesFormGroupContent>;
@@ -51,17 +50,16 @@ export class IndexRegisterFileService {
           validators: [Validators.required],
         }
       ),
-      type: new FormControl(filesRawValue.type),
+
       url1: new FormControl(filesRawValue.url1),
       url2: new FormControl(filesRawValue.url2),
       url3: new FormControl(filesRawValue.url3),
       // Se quema el status
-      status: new FormControl(filesRawValue.status ?? 'ACTIVO'),
+
       name: new FormControl(filesRawValue.name),
       excerpt: new FormControl(filesRawValue.excerpt),
-      publishDate: new FormControl(filesRawValue.publishDate),
-    // Aca hay que cambiar a section despues.
-      section: new FormControl(filesRawValue.section),
+
+
     });
   }
 

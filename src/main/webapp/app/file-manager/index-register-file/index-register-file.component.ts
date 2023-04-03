@@ -92,7 +92,7 @@ export class IndexRegisterFileComponent implements OnInit {
       files.type = "Index";
 
       files.section = { id: this.idSection };
-      
+
 
       this.subscribeToSaveResponse(this.filesService.create(files));
     }
