@@ -1,56 +1,48 @@
-<div class="d-flex justify-content-center">
-  <div class="col-8">
-    <div *ngIf="extraUserInfo">
-      <h2 data-cy="extraUserInfoDetailsHeading"><span jhiTranslate="studyBuddyApp.extraUserInfo.detail.title">Extra User Info</span></h2>
+<div>
+  <h2 id="page-heading" data-cy="CoursesHeading">
+    <div class="htx container-text d-flex justify-content-center font-weight: bold ;">
+      <h1>Perfil Público</h1>
+    </div>
 
-      <hr />
+    <div class="d-flex justify-content-end"></div>
+  </h2>
 
-      <jhi-alert-error></jhi-alert-error>
+  <jhi-alert-error></jhi-alert-error>
 
-      <jhi-alert></jhi-alert>
+  <jhi-alert></jhi-alert>
+</div>
 
-      <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="global.field.id">ID</span></dt>
-        <dd>
-          <span>{{ extraUserInfo.id }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.extraUserInfo.phone">Phone</span></dt>
-        <dd>
-          <span>{{ extraUserInfo.phone }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.extraUserInfo.degree">Degree</span></dt>
-        <dd>
-          <span>{{ extraUserInfo.degree }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.extraUserInfo.profilePicture">Profile Picture</span></dt>
-        <dd>
-          <span>{{ extraUserInfo.profilePicture }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.extraUserInfo.birthDay">Birth Day</span></dt>
-        <dd>
-          <span>{{ extraUserInfo.birthDay | formatMediumDate }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.extraUserInfo.score">Score</span></dt>
-        <dd>
-          <span>{{ extraUserInfo.score }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.extraUserInfo.userVotes">User Votes</span></dt>
-        <dd>
-          <span>{{ extraUserInfo.userVotes }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.extraUserInfo.user">User</span></dt>
-        <dd>
-          <span>{{ extraUserInfo.user?.login }}</span>
-        </dd>
-      </dl>
+<aside class="profile-card">
+  <header></header>
 
-      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
-      </button>
+  <div class="profile-bio" *ngIf="extraUserInfo">
+    <div class="card-image">
+      <img class="imgg" [src]="extraUserInfo.profilePicture" alt="Usuario {{ extraUserInfo.user?.login }}" />
+    </div>
 
-      <button type="button" [routerLink]="['/extra-user-info', extraUserInfo.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+    <h1>
+      <p>
+        <span class="sub black">User: {{ extraUserInfo.user?.login }}</span>
+      </p>
+    </h1>
+    <p>
+      <span class="sub">Id: {{ extraUserInfo.id }}</span>
+    </p>
+    <p>
+      <span class="sub">Grado: {{ extraUserInfo.degree }}</span>
+    </p>
+    <p>
+      <span class="sub">Puntaje: {{ extraUserInfo.score }} </span>
+    </p>
+    <p>
+      <span class="sub">Votos de usuario: {{ extraUserInfo.userVotes }} </span>
+    </p>
+
+    <div class="botones">
+      <button type="submit" title="Atrás" (click)="previousState()" class="btn btnColor" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;
       </button>
     </div>
   </div>
-</div>
+</aside>
+<!-- that’s all folks! -->

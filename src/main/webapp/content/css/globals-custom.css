@@ -1,6 +1,6 @@
 /********** Template CSS **********/
 :root {
-  --primary: #06bbcc;
+  --primary: #6dabd5;
   --light: #f0fbfc;
   --dark: #181d38;
 }
@@ -60,6 +60,15 @@
 .btn-lg-square {
   width: 48px;
   height: 48px;
+}
+
+.btnEdit {
+  background-color: var(--primary);
+  border-radius: 5px;
+}
+.btnDelete {
+  background-color: var(--primary);
+  border-radius: 5px;
 }
 
 .btn-square,

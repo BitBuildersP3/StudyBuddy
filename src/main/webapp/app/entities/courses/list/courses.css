@@ -24,6 +24,23 @@ h6 {
   font-size: 16px;
   color: #666666;
 }
+.negrita {
+  font-weight: bold;
+}
+/* .active{
+  background-color: #983F56;
+  border-radius: 5px;
+  padding: 2px 5px;
+  color: white;
+}
+
+.locked{
+  background-color: #983F56;
+  border-radius: 5px;
+  padding: 2px 5px;
+  color: white;
+} */
+
 /*--------------------------------------------------------------
     # Main
     --------------------------------------------------------------*/
@@ -81,4 +98,20 @@ h6 {
 
 .txt-cont {
   width: 40%;
+}
+.btn {
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.btnView {
+  background-color: var(--primary);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.btnEnrolled {
+  background-color: #dfe2e4;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
