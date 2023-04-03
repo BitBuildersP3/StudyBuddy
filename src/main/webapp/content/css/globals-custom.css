@@ -475,3 +475,7 @@ p {
 * {
   font-family: 'Nunito', sans-serif;
 }
+
+.content-modal form {
+  padding-bottom: 5rem;
+}

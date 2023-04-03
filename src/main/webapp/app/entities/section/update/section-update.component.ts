@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -9,12 +9,16 @@ import { ISection } from '../section.model';
 import { SectionService } from '../service/section.service';
 import { ICourses } from 'app/entities/courses/courses.model';
 import { CoursesService } from 'app/entities/courses/service/courses.service';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'jhi-section-update',
   templateUrl: './section-update.component.html',
 })
 export class SectionUpdateComponent implements OnInit {
+  @Input() title = '';
+  @Input() course = '';
+
   isSaving = false;
   section: ISection | null = null;
 
@@ -49,10 +53,20 @@ export class SectionUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const section = this.sectionFormService.getSection(this.editForm);
+    const newObjSection = {
+      creationDate: dayjs(),
+      description: section.description,
+      excerpt: section.excerpt,
+      name: section.name,
+      id: section.id,
+      status: '',
+      time: 0,
+      courses: this.course,
+    };
     if (section.id !== null) {
-      this.subscribeToSaveResponse(this.sectionService.update(section));
+      this.subscribeToSaveResponse(this.sectionService.update(newObjSection));
     } else {
-      this.subscribeToSaveResponse(this.sectionService.create(section));
+      this.subscribeToSaveResponse(this.sectionService.create(newObjSection));
     }
   }
 

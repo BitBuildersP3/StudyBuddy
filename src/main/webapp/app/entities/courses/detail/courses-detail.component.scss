@@ -13,6 +13,10 @@ $rgbLight: rgba(109, 171, 213, 0.3);
 .cont-cols {
   display: flex;
   gap: 1rem;
+  .add-btn {
+    background-color: $orange;
+    border: none;
+  }
 }
 
 .col-class,
@@ -23,6 +27,9 @@ $rgbLight: rgba(109, 171, 213, 0.3);
 
 .col-class {
   max-width: 33.3%;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
 
   h1 {
     color: $dark;
@@ -137,3 +144,11 @@ b {
 .active-section {
   background-color: $rgbDark !important;
 }
+
+.content-modal {
+  height: 20rem;
+}
+
+// .modal-cust {
+//   max-width: 5rem;
+// }

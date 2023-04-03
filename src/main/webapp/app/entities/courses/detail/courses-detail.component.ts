@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICourses } from '../courses.model';
 import { CoursesService } from '../service/courses.service';
+
 @Component({
   selector: 'jhi-courses-detail',
   templateUrl: './courses-detail.component.html',
@@ -9,20 +10,19 @@ import { CoursesService } from '../service/courses.service';
 })
 export class CoursesDetailComponent implements OnInit {
   courses: any;
-
-  linkTitle = 'Abrir';
-
   @ViewChild('thenBlock')
   thenBlock: any = '';
 
   @ViewChild('elseBlock')
   elseBlock: any = '';
 
+  linkTitle = 'Abrir';
+
   currentSection: any = {};
 
   courseResponse: any = {};
   sections: any = ['init'];
-
+  filesLength = 0;
   isActive: any = 0;
   constructor(protected activatedRoute: ActivatedRoute, private courseService: CoursesService) {}
 
@@ -43,6 +43,7 @@ export class CoursesDetailComponent implements OnInit {
 
   setCurrentSection(section: any): void {
     this.currentSection = section;
+    this.filesLength = this.currentSection.files.length;
 
     //
   }
