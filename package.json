@@ -7,7 +7,7 @@
   "scripts": {
     "app:start": "./mvnw",
     "backend:build-cache": "./mvnw dependency:go-offline",
-    "backend:debug": "mvnw -Dspring-boot.run.jvmArguments=\"-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000\"",
+    "backend:debug": "./mvnw -Dspring-boot.run.jvmArguments=\"-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000\"",
     "backend:doc:test": "./mvnw -ntp javadoc:javadoc --batch-mode",
     "backend:info": "./mvnw -ntp enforcer:display-info --batch-mode",
     "backend:nohttp:test": "./mvnw -ntp checkstyle:check --batch-mode",
