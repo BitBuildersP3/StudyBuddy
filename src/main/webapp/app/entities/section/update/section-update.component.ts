@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -15,6 +15,9 @@ import { CoursesService } from 'app/entities/courses/service/courses.service';
   templateUrl: './section-update.component.html',
 })
 export class SectionUpdateComponent implements OnInit {
+  @Input() title = '';
+  @Input() course = '';
+
   isSaving = false;
   section: ISection | null = null;
 

@@ -1,7 +1,8 @@
 <!-- <div class="modal" [ngStyle]="{ display: showModal ? 'block' : 'none' }"> -->
 <span class="btn btn-primary add-btn" (click)="setIsOpen()"> {{ btnLabel }} </span>
-<div *ngIf="isOpen" class="">
-  <div class="">
-    <ng-content></ng-content>
-  </div>
+<div *ngIf="isOpen" (click)="setIsOpen()" class="bg-modal"></div>
+
+<div *ngIf="isOpen" (click)="setIsOpen()" class="wrapper bg-white">
+  <span class="btn btn-primary cust-close">close</span>
+  <ng-content class=""></ng-content>
 </div>

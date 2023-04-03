@@ -11,9 +11,8 @@
               {{ courses.name }}
             </h1>
           </div>
-          <jhi-modal [btnLabel]="'Agregar Sección'">
-            <div>hello</div>
-            <!-- <jhi-section-update></jhi-section-update> -->
+          <jhi-modal class="modal-cust" [btnLabel]="'Agregar Sección'">
+            <jhi-section-update class="content-modal" [title]="'Agregar Sección'"></jhi-section-update>
           </jhi-modal>
 
           <ul class="sections-cont">
