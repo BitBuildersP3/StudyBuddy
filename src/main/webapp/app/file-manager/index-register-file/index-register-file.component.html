@@ -1,9 +1,14 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
+
+    <div class="separador"></div>
+
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading" >
+      <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading"   >
         Crear Archivo Indexado
       </h2>
+
+      <div class="separador"></div>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
@@ -23,35 +28,52 @@
           <textarea class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" placeholder="Escribe una descripción del archivo que deseas subir aquí." maxlength="250"></textarea>
         </div>
 
-        <div class="row mb-3 set-btns">
-          <h3>Selecciona el servicio de almacenamiento</h3>
-          <a href="https://drive.google.com/" target="_blank" class="btn-extern">Drive</a>
-          <a href="https://www.mediafire.com/" target="_blank" class="btn-extern">Media Fire</a>
-          <a href="https://mega.nz/" target="_blank" class="btn-extern">Mega</a>
-        </div>
+        <div class="separador"></div>
+
+          <h3 >Selecciona el servicio de almacenamiento</h3>
+
+        <div class="separador"></div>
+
+        <div class="separador-inputs row mb-3">
+
         <div class="row mb-3">
           <label class="form-label"  for="field_url1">Url 1: </label>
           <input type="text" class="form-control" name="url1" id="field_url1" data-cy="url1" formControlName="url1"  placeholder="Enlace de Google Drive aquí." />
         </div>
+
+        <a href="https://drive.google.com/" target="_blank" class="btn-extern">Drive</a>
+
+        </div>
+
+        <div class="separador-inputs row mb-3">
 
         <div class="row mb-3">
           <label class="form-label"  for="field_url2">Url 2: </label>
           <input type="text" class="form-control" name="url2" id="field_url2" data-cy="url2" formControlName="url2" placeholder="Enlace de Media Fire aquí." />
         </div>
 
+        <a href="https://www.mediafire.com/" target="_blank" class="btn-extern">Media Fire</a>
+
+        </div>
+
+        <div class="separador-inputs row mb-3">
         <div class="row mb-3">
           <label class="form-label"  for="field_url3">Url 3: </label>
           <input type="text" class="form-control" name="url3" id="field_url3" data-cy="url3" formControlName="url3" placeholder="Enlace de Mega aquí." />
         </div>
 
+        <a href="https://mega.nz/" target="_blank" class="btn-extern">Mega</a>
+      </div>
       </div>
 
+      <div class="separador"></div>
 
-      <div>
+      <div class="info-box row mb-3">
+        <p>Recuerda leer nuestros términos y condiciones antes de utilizar nuestros servicios.</p>
         <p>¿Necesitas ayuda? Puedes ver este tutorial en nuestro canal de YouTube:</p>
         <!-- Cambiar este link cuando este el tutorial -->
-        <a href="https://www.youtube.com/watch?v=eBGIQ7ZuuiU&ab_channel=YouGotRickRolled">Tutorial en YouTube</a>
-        <p>Recuerda leer nuestros términos y condiciones antes de utilizar nuestros servicios.</p>
+        <a class="linkvideo" href="https://www.youtube.com/watch?v=eBGIQ7ZuuiU&ab_channel=YouGotRickRolled">Tutorial en YouTube</a>
+
       </div>
 
 
