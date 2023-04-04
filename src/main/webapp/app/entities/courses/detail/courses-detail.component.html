@@ -84,6 +84,11 @@
           <!-- constant content -->
 
           <ng-container *ngIf="filesLength < 1">
+            <p>Course {{ courses.id }} Sesction {{ currentSection.id }}</p>
+            <jhi-modal class="modal-cust" [btnLabel]="'Agregar files'">
+              <jhi-files-manager class="comp-filemanager" [idCourse]="courses.id" [idSection]="currentSection.id"></jhi-files-manager>
+            </jhi-modal>
+
             <span>Esta sección no tiene archivos disponibles o válidos</span>
             <span *ngIf="currentSection.creationDate"><b>Fecha de publicación:</b> {{ currentSection.creationDate }}</span>
             <span><b>Descripción:</b> {{ currentSection.description }}</span>

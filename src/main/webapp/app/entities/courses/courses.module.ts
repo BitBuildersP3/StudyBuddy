@@ -9,9 +9,9 @@ import { CoursesDeleteDialogComponent } from './delete/courses-delete-dialog.com
 import { CoursesRoutingModule } from './route/courses-routing.module';
 import { CoursesComponentEnrolled } from './list';
 import { SectionModule } from 'app/entities/section/section.module';
+import { FilesManagerModule } from '../../files-manager/files-manager.module';
 
 @NgModule({
-  imports: [SharedModule, CoursesRoutingModule, SectionModule],
   declarations: [
     CoursesComponent,
     CoursesComponentMyCourses,
@@ -20,5 +20,6 @@ import { SectionModule } from 'app/entities/section/section.module';
     CoursesUpdateComponent,
     CoursesDeleteDialogComponent,
   ],
+  imports: [SharedModule, CoursesRoutingModule, SectionModule, FilesManagerModule],
 })
 export class CoursesModule {}
