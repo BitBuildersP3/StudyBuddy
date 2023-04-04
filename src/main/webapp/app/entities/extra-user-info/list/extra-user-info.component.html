@@ -103,7 +103,7 @@
                 type="submit"
                 title="Ver"
                 [routerLink]="['/extra-user-info', extraUserInfo.id, 'view']"
-                class="btnView"
+                class="btn btnView"
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
@@ -113,13 +113,13 @@
                 type="submit"
                 title="Editar"
                 [routerLink]="['/extra-user-info', extraUserInfo.id, 'edit']"
-                class="btnEdit"
+                class="btn btnEdit"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
               </button>
 
-              <button type="submit" title="Eliminar" (click)="delete(extraUserInfo)" class="btnDelete" data-cy="entityDeleteButton">
+              <button type="submit" title="Eliminar" (click)="delete(extraUserInfo)" class="btn btnDelete" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
               </button>
             </div>
