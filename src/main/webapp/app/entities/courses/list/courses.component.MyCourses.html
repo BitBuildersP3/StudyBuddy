@@ -46,7 +46,7 @@
             type="submit"
             title="Ver"
             [routerLink]="['/courses', courses.id, 'view']"
-            class="btn btn-info btn-sm"
+            class="btn btnView"
             data-cy="entityDetailsButton"
           >
             <fa-icon icon="eye"></fa-icon>
@@ -55,13 +55,13 @@
             type="submit"
             title="Editar"
             [routerLink]="['/courses', courses.id, 'edit']"
-            class="btn btn-primary btn-sm"
+            class="btn btnEdit"
             data-cy="entityEditButton"
           >
             <fa-icon icon="pencil-alt"></fa-icon>
           </button>
 
-          <button type="submit" title="Borrar" (click)="delete(courses)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+          <button type="submit" title="Borrar" (click)="delete(courses)" class="btn btnDelete" data-cy="entityDeleteButton">
             <fa-icon icon="trash-can"></fa-icon>
           </button>
         </div>

@@ -101,27 +101,26 @@
             <div class="btn-group">
               <button
                 type="submit"
+                title="Ver"
                 [routerLink]="['/extra-user-info', extraUserInfo.id, 'view']"
-                class="btn btn-info btn-sm"
+                class="btnView"
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
               </button>
 
               <button
                 type="submit"
+                title="Editar"
                 [routerLink]="['/extra-user-info', extraUserInfo.id, 'edit']"
-                class="btn btn-primary btn-sm"
+                class="btnEdit"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
               </button>
 
-              <button type="submit" (click)="delete(extraUserInfo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button type="submit" title="Eliminar" (click)="delete(extraUserInfo)" class="btnDelete" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
               </button>
             </div>
           </td>
