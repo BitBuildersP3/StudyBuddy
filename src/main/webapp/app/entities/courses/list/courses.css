@@ -103,29 +103,3 @@ h6 {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-
-.btnView {
-  background-color: var(--skyBlue);
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  font-weight: 600;
-}
-
-.btnEnrolled {
-  background-color: #dfe2e4;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  font-weight: 600;
-}
-.btnEdit {
-  background-color: var(--blue);
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  font-weight: 600;
-}
-.btnDelete {
-  background-color: var(--red);
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  font-weight: 600;
-}
