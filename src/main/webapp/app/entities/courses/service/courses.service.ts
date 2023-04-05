@@ -40,6 +40,10 @@ export class CoursesService {
     return this.http.get<ICourses[]>(`${this.resourceUrl}/topTen`, { observe: 'response' });
   }
 
+  getFiveCourseById(id: number | undefined): Observable<EntityArrayResponseType> {
+    return this.http.get<ICourses[]>(`${this.resourceUrl}/fiveEnrolled/${id}`, { observe: 'response' });
+  }
+
   getCouseDataById(id: number): Observable<EntityResponseType> {
     return this.http.get<ICourses>(`${this.resourceUrl}/getAllData/${id}`, { observe: 'response' });
   }
