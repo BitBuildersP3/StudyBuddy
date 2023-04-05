@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { IconName, IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'jhi-modal',
@@ -8,6 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ModalComponent implements OnInit {
   isOpen = false;
   @Input() btnLabel = 'Agregar';
+  @Input() icon: any = '';
+  @Input() typeBtn = '';
 
   setIsOpen(): void {
     this.isOpen = !this.isOpen;

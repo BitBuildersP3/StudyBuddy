@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICourses } from '../courses.model';
 import { CoursesService } from '../service/courses.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'jhi-courses-detail',
@@ -24,7 +25,9 @@ export class CoursesDetailComponent implements OnInit {
   sections: any = ['init'];
   filesLength = 0;
   isActive: any = 0;
-  constructor(protected activatedRoute: ActivatedRoute, private courseService: CoursesService) {}
+  safeUrl: any = '';
+  url: any;
+  constructor(protected activatedRoute: ActivatedRoute, private courseService: CoursesService, private _sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ courses }) => {
@@ -37,6 +40,10 @@ export class CoursesDetailComponent implements OnInit {
     });
   }
 
+  sanitizeUrl(url: string): void {
+    this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
   setActive(index: any): void {
     this.isActive = index;
   }
@@ -44,7 +51,7 @@ export class CoursesDetailComponent implements OnInit {
   setCurrentSection(section: any): void {
     this.currentSection = section;
     this.filesLength = this.currentSection.files.length;
-
+    console.log(this.currentSection);
     //
   }
 

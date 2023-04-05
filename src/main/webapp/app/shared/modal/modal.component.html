@@ -1,8 +1,10 @@
 <!-- <div class="modal" [ngStyle]="{ display: showModal ? 'block' : 'none' }"> -->
-<span class="btn btn-primary add-btn" (click)="setIsOpen()"> {{ btnLabel }} </span>
+<span *ngIf="typeBtn === 'solo-txt'" class="btn btn-primary add-btn" (click)="setIsOpen()"> {{ btnLabel }} </span>
+<span *ngIf="typeBtn === 'solo-icon'"><fa-icon [icon]="icon" (click)="setIsOpen()"></fa-icon></span>
+
 <div *ngIf="isOpen" (click)="setIsOpen()" class="bg-modal"></div>
 
 <div *ngIf="isOpen" class="wrapper bg-white">
-  <span class="btn btn-primary cust-close">close</span>
+  <span (click)="setIsOpen()" class="btn btn-primary cust-close">close</span>
   <ng-content class=""></ng-content>
 </div>

@@ -20,7 +20,7 @@ export class SectionUpdateComponent implements OnInit {
   @Input() course = '';
 
   isSaving = false;
-  section: ISection | null = null;
+  section: any | null = null;
 
   coursesSharedCollection: ICourses[] = [];
 
