@@ -37,6 +37,10 @@ public interface CoursesRepository extends CoursesRepositoryWithBagRelationships
     Optional<Courses> findAllDataByCourseId(@Param("id") long id);
 
     List<Courses> findCoursesByUsersLike(User user);
+
+    List<Courses> findTop10ByOrderByScoreDesc();
+
+    List<Courses> findTop5ByUsersLike(User user);
     /*    *
     *
     * @Query("select files, files.section, files.section.courses.name  from Files files")

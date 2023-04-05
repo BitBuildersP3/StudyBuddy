@@ -1,5 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
+import { CoursesService } from '../entities/courses/service/courses.service';
+
+interface Slides {
+  image: string | null | undefined;
+  slideTitle: string | null | undefined;
+  slideExerpt: string | null | undefined;
+  redirect: number | null | undefined;
+}
+
+interface UserCurses {
+  image: string | null | undefined;
+  slideTitle: string | null | undefined;
+  slideExerpt: string | null | undefined;
+  redirect: number | null | undefined;
+}
 
 @Component({
   selector: 'jhi-landing',
@@ -7,41 +22,9 @@ import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent implements OnInit {
-  slides = [
-    {
-      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1680045268/home_ajor4j.jpg',
-      slideTitle: 'First slide label',
-      slideExerpt: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
-      redirect: '1',
-    },
-    {
-      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1680045450/peter-gombos-8y3e2M6APy4-unsplash_dgh1ui.jpg',
-      slideTitle: 'Second slide label',
-      slideExerpt: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
-      redirect: '2',
-    },
-  ];
+  slides: Slides[] = [];
 
-  news = [
-    {
-      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364349/samples/animals/kitten-playing.gif',
-      title: 'First slide label',
-      exerpt: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
-      redirect: '1',
-    },
-    {
-      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364349/samples/animals/kitten-playing.gif',
-      title: 'Second slide label',
-      exerpt: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
-      redirect: '2',
-    },
-    {
-      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364349/samples/animals/kitten-playing.gif',
-      title: 'Third slide label',
-      exerpt: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
-      redirect: '3',
-    },
-  ];
+  userCuourses: UserCurses[] = [];
 
   instructors = [
     {
@@ -70,7 +53,20 @@ export class LandingComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private courseService: CoursesService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.courseService.getTopTenCourses().subscribe({
+      next: value => {
+        value.body?.map((data, index) => {
+          this.slides.push({
+            redirect: data.id,
+            image: data.previewImg,
+            slideExerpt: data.excerpt,
+            slideTitle: data.name,
+          });
+        });
+      },
+    });
+  }
 }
