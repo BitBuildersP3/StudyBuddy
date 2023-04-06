@@ -51,8 +51,6 @@ export class CoursesDetailComponent implements OnInit {
   setCurrentSection(section: any): void {
     this.currentSection = section;
     this.filesLength = this.currentSection.files.length;
-    console.log(this.currentSection);
-    //
   }
 
   previousState(): void {

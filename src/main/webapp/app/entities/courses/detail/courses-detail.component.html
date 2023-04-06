@@ -1,9 +1,9 @@
 <ng-container *ngIf="sections.length > 0; else noSections">
   <div class="d-flex justify-content-center align-items-center wapper">
     <div class="col-8">
-      <jhi-alert-error></jhi-alert-error>
+      <!-- <jhi-alert-error></jhi-alert-error>
 
-      <jhi-alert></jhi-alert>
+      <jhi-alert></jhi-alert> -->
       <div class="cont-cols" *ngIf="courses">
         <div class="col-class">
           <div>
@@ -23,7 +23,12 @@
                 <ng-container *ngIf="isActive === i">
                   <div class="d-flex flex-row gap-2">
                     <jhi-modal class="modal-cust" [typeBtn]="'solo-icon'" [icon]="'pencil-alt'">
-                      <jhi-section-update [course]="courses" class="content-modal" [title]="'Modificar sección'"></jhi-section-update>
+                      <jhi-section-update
+                        [idSection]="currentSection.id"
+                        [course]="courses"
+                        class="content-modal"
+                        [title]="'Modificar sección'"
+                      ></jhi-section-update>
                     </jhi-modal>
 
                     <span><fa-icon [ngClass]="isActive === i ? 'play' : 'd-none'" icon="play"></fa-icon></span>

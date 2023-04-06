@@ -18,6 +18,7 @@ import dayjs from 'dayjs';
 export class SectionUpdateComponent implements OnInit {
   @Input() title = '';
   @Input() course = '';
+  @Input() idSection = 0;
 
   isSaving = false;
   section: any | null = null;
@@ -36,14 +37,27 @@ export class SectionUpdateComponent implements OnInit {
   compareCourses = (o1: ICourses | null, o2: ICourses | null): boolean => this.coursesService.compareCourses(o1, o2);
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ section }) => {
-      this.section = section;
-      if (section) {
-        this.updateForm(section);
-      }
+    if (this.idSection !== undefined && this.idSection !== 0) {
+      this.sectionService.find(this.idSection).subscribe((data: any) => {
+        this.section = data.body;
 
-      this.loadRelationshipsOptions();
-    });
+        if (data) {
+          this.updateForm(data.body);
+        }
+
+        this.loadRelationshipsOptions();
+      });
+    }
+
+    // this.activatedRoute.data.subscribe(({ section }) => {
+    //   this.section = section;
+
+    //   if (section) {
+    //     this.updateForm(section);
+    //   }
+
+    //   this.loadRelationshipsOptions();
+    // });
   }
 
   previousState(): void {
@@ -78,7 +92,7 @@ export class SectionUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    this.previousState();
+    // this.previousState();
   }
 
   protected onSaveError(): void {
