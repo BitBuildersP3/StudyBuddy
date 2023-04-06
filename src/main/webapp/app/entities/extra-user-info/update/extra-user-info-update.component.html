@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center">
-  <div class="col-8">
-    <form name="editForm" role="form" class="custom-form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+  <div class="col-md-8">
+    <form name="editForm" role="form" class="custom-form align-items-center" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2
         id="jhi-extra-user-info-heading"
         data-cy="ExtraUserInfoCreateUpdateHeading"
@@ -8,13 +8,21 @@
       >
         Crear o editar Información extra del usuario.
       </h2>
-
+      <!-- align-items-center -->
       <div>
         <jhi-alert-error></jhi-alert-error>
 
         <div class="mb-3" *ngIf="editForm.controls.id.value !== null">
           <label class="label" jhiTranslate="global.field.id" for="field_id">ID</label>
-          <input type="number" class="input" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <input
+            type="number"
+            class="input ng-untouched ng-pristine ng-valid"
+            name="id"
+            id="field_id"
+            data-cy="id"
+            formControlName="id"
+            [readonly]="true"
+          />
         </div>
 
         <div class="mb-3">
@@ -67,7 +75,7 @@
 
         <div class="mb-3">
           <label class="label" jhiTranslate="studyBuddyApp.extraUserInfo.user" for="field_user">User</label>
-          <select class="input" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
+          <select class="b input" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
             <option [ngValue]="null"></option>
             <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.login }}</option>
           </select>

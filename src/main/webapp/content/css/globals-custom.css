@@ -86,7 +86,7 @@
   margin-left: 1rem;
 }
 .btnBack {
-  background-color: var(--red) !important;
+  background-color: var(--grey) !important;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   font-weight: 600;
@@ -516,6 +516,9 @@ select {
 p {
   font-size: 24px;
   font-weight: 400;
+}
+.b {
+  font-size: 1.3rem;
 }
 
 * {
