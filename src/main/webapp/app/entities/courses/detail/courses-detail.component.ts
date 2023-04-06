@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICourses } from '../courses.model';
 import { CoursesService } from '../service/courses.service';
+import {FilesService} from "../../files/service/files.service";
 
 @Component({
   selector: 'jhi-courses-detail',
@@ -24,7 +25,9 @@ export class CoursesDetailComponent implements OnInit {
   sections: any = ['init'];
   filesLength = 0;
   isActive: any = 0;
-  constructor(protected activatedRoute: ActivatedRoute, private courseService: CoursesService) {}
+
+
+  constructor(protected activatedRoute: ActivatedRoute, private courseService: CoursesService, protected filesService: FilesService) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ courses }) => {
@@ -51,4 +54,6 @@ export class CoursesDetailComponent implements OnInit {
   previousState(): void {
     window.history.back();
   }
+
+
 }

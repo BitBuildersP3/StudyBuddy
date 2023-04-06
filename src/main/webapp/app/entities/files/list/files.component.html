@@ -120,6 +120,11 @@
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
               </button>
 
+              <button type="submit" [routerLink]="['/files', 1, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
               <button type="submit" [routerLink]="['/files', files.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
