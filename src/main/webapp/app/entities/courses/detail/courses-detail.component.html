@@ -27,6 +27,7 @@
                         [idSection]="currentSection.id"
                         [course]="courses"
                         class="content-modal"
+                        (customEvent)="onSaveSection(courses.id)"
                         [title]="'Modificar sección'"
                       ></jhi-section-update>
                     </jhi-modal>

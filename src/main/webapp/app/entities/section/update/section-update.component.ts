@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -17,8 +17,9 @@ import dayjs from 'dayjs';
 })
 export class SectionUpdateComponent implements OnInit {
   @Input() title = '';
-  @Input() course = '';
+  @Input() course: any = '';
   @Input() idSection = 0;
+  @Output() customEvent = new EventEmitter();
 
   isSaving = false;
   section: any | null = null;
@@ -35,6 +36,10 @@ export class SectionUpdateComponent implements OnInit {
   ) {}
 
   compareCourses = (o1: ICourses | null, o2: ICourses | null): boolean => this.coursesService.compareCourses(o1, o2);
+
+  triggerCustomEvent(): void {
+    this.customEvent.emit();
+  }
 
   ngOnInit(): void {
     if (this.idSection !== undefined && this.idSection !== 0) {

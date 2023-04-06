@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICourses } from '../courses.model';
 import { CoursesService } from '../service/courses.service';
@@ -27,17 +27,37 @@ export class CoursesDetailComponent implements OnInit {
   isActive: any = 0;
   safeUrl: any = '';
   url: any;
-  constructor(protected activatedRoute: ActivatedRoute, private courseService: CoursesService, private _sanitizer: DomSanitizer) {}
+  constructor(
+    protected activatedRoute: ActivatedRoute,
+    private courseService: CoursesService,
+    private _sanitizer: DomSanitizer,
+    private cdRef: ChangeDetectorRef
+  ) {}
 
-  ngOnInit(): void {
+  fetchData(): void {
     this.activatedRoute.data.subscribe(({ courses }) => {
       this.courses = courses;
+      this.fetchCourseData(this.courses?.id);
     });
-    this.courseService.getCouseDataById(this.courses?.id).subscribe(data => {
+  }
+
+  fetchCourseData(courseId: any): void {
+    this.courseService.getCouseDataById(courseId).subscribe(data => {
+      console.log(data);
       this.courseResponse = data.body;
       this.sections = this.courseResponse.sections;
+      this.sections.sort((a: any, b: any) => a.id - b.id);
       this.setCurrentSection(this.sections[0]);
     });
+  }
+
+  onSaveSection(data: any): void {
+    this.fetchCourseData(data);
+    // this.fetchData();
+    this.cdRef.markForCheck();
+  }
+  ngOnInit(): void {
+    this.fetchData();
   }
 
   sanitizeUrl(url: string): void {
