@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IFiles} from "../../entities/files/files.model";
 import {ISection} from "../../entities/section/section.model";
-import {FilesFormGroup, VideoRegisterFileService} from "../video-register-file/video-register-file.service";
+import {FilesFormGroup} from "./own-register-file.service";
 import {FilesService} from "../../entities/files/service/files.service";
 import {SectionService} from "../../entities/section/service/section.service";
 import {ActivatedRoute} from "@angular/router";
@@ -25,6 +25,8 @@ export class OwnRegisterFileComponent implements OnInit {
 
   userId: number | undefined;
   sectionsSharedCollection: ISection[] = [];
+
+  cloudURL: string = "No se ha subido un archivo";
 
 
   // Ajustar Servicio
@@ -78,16 +80,25 @@ export class OwnRegisterFileComponent implements OnInit {
       this.subscribeToSaveResponse(this.filesService.update(files));
     } else {
 
+    // Si no se a subido archivo.
+      if (this.cloudURL != "No se ha subido un archivo") {
+        // Parametros QUEMADOS
+        files.status = "ACTIVE";
+        files.type = "own";
+        files.url1 = this.cloudURL;
+        files.url2 = "NO URL 2";
+        files.url3 = "NO URL 3";
+        files.section = { id: this.idSection };
 
-      // Parametros QUEMADOS
-      files.status = "ACTIVE";
-      files.type = "own";
-      files.url2 = "NO URL 2";
-      files.url3 = "NO URL 3";
-      files.section = { id: this.idSection };
 
+        this.subscribeToSaveResponse(this.filesService.create(files));
 
-      this.subscribeToSaveResponse(this.filesService.create(files));
+      } else {
+
+        // Poner una Alerta AQUI
+
+      }
+
     }
   }
 
@@ -134,8 +145,9 @@ export class OwnRegisterFileComponent implements OnInit {
   }
 
   // Funcion de prueba para el boton de cloudinary
-  comidaChina( url : string) {
-    console.log("comida china: " + url);
+  myURLFromCloudinary( url : string) {
+    console.log("URL a Guardar: " + url);
+    return this.cloudURL = url;
   }
 }
 

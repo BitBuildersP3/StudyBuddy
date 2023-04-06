@@ -19,7 +19,7 @@ type FilesFormDefaults = Pick<NewFiles, 'id'>;
 type FilesFormGroupContent = {
   id: FormControl<IFiles['id'] | NewFiles['id']>;
 
-  url1: FormControl<IFiles['url1']>;
+
 
   name: FormControl<IFiles['name']>;
   excerpt: FormControl<IFiles['excerpt']>;
@@ -43,8 +43,6 @@ export class OwnRegisterFileService {
           validators: [Validators.required],
         }
       ),
-
-      url1: new FormControl(filesRawValue.url1),
 
       // Se quema el status
 

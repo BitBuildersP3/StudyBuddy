@@ -1,17 +1,12 @@
 
 
-<!-- Boton de Cloudinay -->
-<jhi-cloudinary-button (urlChanged)="comidaChina($event)"  [text]="$any('Subir Archivo')"> </jhi-cloudinary-button>
-
-<p>own-register-file works!</p>
-
 
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div class="separador"></div>
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading" >
-        Subir Video
+        Subir Archivo Propio
       </h2>
       <div class="separador"></div>
       <div>
@@ -33,22 +28,8 @@
         </div>
 
 
-        <div class="row mb-3 set-btns">
-          <div class="separador"></div>
-          <h3>Selecciona el servicio de almacenamiento de video</h3>
-          <div class="separador"></div>
-
-        </div>
-        <div class="separador-inputs row mb-3">
-          <div class="row mb-3">
-            <label class="form-label"  for="field_url1">Video: </label>
-            <input type="text" class="form-control" name="url1" id="field_url1" data-cy="url1" formControlName="url1"  placeholder="Enlace del video aquí." />
-            <div class="espacio"></div>
-            <a href="https://www.youtube.com/upload" target="_blank" class="btn-extern">Subir a Youtube</a>
-          </div>
-        </div>
-
-
+        <!-- Boton de Cloudinay -->
+        <jhi-cloudinary-button (urlChanged)="myURLFromCloudinary($event)"  [text]="$any('Subir Archivo')"> </jhi-cloudinary-button>
 
 
       </div>
