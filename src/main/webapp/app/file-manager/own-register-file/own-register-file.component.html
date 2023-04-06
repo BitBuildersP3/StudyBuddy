@@ -1,13 +1,8 @@
-
-
-
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div class="separador"></div>
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading" >
-        Subir Archivo Propio
-      </h2>
+      <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading">Subir Archivo Propio</h2>
       <div class="separador"></div>
       <div>
         <jhi-alert-error></jhi-alert-error>
@@ -18,20 +13,33 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label"  for="field_name">Nombre del archivo: </label>
-          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name"  placeholder="Escribe el nombre del video aquí." />
+          <label class="form-label" for="field_name">Nombre del archivo: </label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="field_name"
+            data-cy="name"
+            formControlName="name"
+            placeholder="Escribe el nombre del video aquí."
+          />
         </div>
 
         <div class="row mb-3">
-          <label class="form-label"  for="field_excerpt">Descripción: </label>
-          <textarea class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" placeholder="Escribe una descripción del video que deseas subir aquí." maxlength="250"></textarea>
+          <label class="form-label" for="field_excerpt">Descripción: </label>
+          <textarea
+            class="form-control"
+            name="excerpt"
+            id="field_excerpt"
+            data-cy="excerpt"
+            formControlName="excerpt"
+            placeholder="Escribe una descripción del video que deseas subir aquí."
+            maxlength="250"
+          ></textarea>
         </div>
 
-
         <!-- Boton de Cloudinay -->
-        <jhi-cloudinary-button (urlChanged)="myURLFromCloudinary($event)"  [text]="$any('Subir Archivo')"> </jhi-cloudinary-button>
-
-
+        <jhi-cloudinary-button (urlChanged)="myURLFromCloudinary($event)" [text]="$any('Subir Archivo')"> </jhi-cloudinary-button>
       </div>
 
       <div class="info-box row mb-3">
@@ -39,9 +47,7 @@
         <p>¿Necesitas ayuda? Puedes ver este tutorial en nuestro canal de YouTube:</p>
         <!-- Cambiar este link cuando este el tutorial -->
         <a class="linkvideo" href="https://www.youtube.com/watch?v=eBGIQ7ZuuiU&ab_channel=YouGotRickRolled">Tutorial en YouTube</a>
-
       </div>
-
 
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">

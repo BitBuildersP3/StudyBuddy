@@ -5,6 +5,7 @@
   --red: #983f56;
   --grey: #dfe2e4;
   --orange: #de9a38;
+  --green: #67b83d;
 }
 
 .fw-medium {
@@ -48,19 +49,49 @@
   background-color: var(--skyBlue) !important;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-left: 1rem;
 }
 .btnEdit {
   background-color: var(--blue) !important;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-left: 1rem;
 }
 .btnDelete {
   background-color: var(--red) !important;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   font-weight: 600;
+  margin-left: 1rem;
+}
+.btnEnrolled {
+  background-color: var(--grey) !important;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
 }
 
+.btnActive {
+  background-color: var(--green) !important;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+  margin-left: 1rem;
+}
+.btnBlock {
+  background-color: var(--red) !important;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+  margin-left: 1rem;
+}
+.btnBack {
+  background-color: var(--grey) !important;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+  margin-left: 1rem;
+}
 .btn.btn-primary,
 .btn.btn-secondary {
   color: #ffffff;
@@ -446,6 +477,8 @@
 }
 
 /* Custom Form Styles */
+
+/* Poner propeidad a tag form el resto funciona a base de esta propiedad */
 .custom-form {
   display: flex;
   flex-direction: column;
@@ -454,13 +487,16 @@
 .mb-3 {
   max-width: 35rem;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .custom-form label {
   font-size: 1.3rem;
   font-weight: 400;
 }
-.custom-form input {
+.custom-form input,
+select {
   border-radius: 10px;
   font-size: 1.3rem;
   padding: 1rem;
@@ -481,6 +517,9 @@ p {
   font-size: 24px;
   font-weight: 400;
 }
+.b {
+  font-size: 1.3rem;
+}
 
 * {
   font-family: 'Nunito', sans-serif;
@@ -488,4 +527,11 @@ p {
 
 .content-modal form {
   padding-bottom: 5rem;
+}
+
+.card {
+  min-height: 45rem;
+}
+.alin {
+  margin-top: 3rem;
 }

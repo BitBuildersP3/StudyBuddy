@@ -75,19 +75,16 @@
                 <a class="btn btn-info text-white" *ngIf="file.url2" href="{{ file.url2 }}" target="_blank"> {{ linkTitle }}</a>
                 <a class="btn btn-info text-white" *ngIf="file.url3" href="{{ file.url3 }}" target="_blank"> {{ linkTitle }}</a>
 
-
                 <!-- <a href="https://www.example.com/my-document.pdf">Link to My Document</a> -->
-
-
               </div>
 
               <!-- Botones de Servicios Varios -->
 
-              <a type="submit" href="/files/{{file.id}}/view" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+              <a type="submit" href="/files/{{ file.id }}/view" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
               </a>
-              <a type="submit" href="/files/{{file.id}}/edit" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+              <a type="submit" href="/files/{{ file.id }}/edit" class="btn btn-primary btn-sm" data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
               </a>
@@ -96,25 +93,22 @@
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
               </button>
-
             </ng-container>
-
 
             <ng-container *ngIf="file.type === 'own'">
               <span><b>Nombre del Archivo:</b> {{ file.excerpt }}</span>
               <div class="cont-links">
                 <span><b>Ver Archivo Propio:</b></span>
                 <a class="btn btn-info text-white" *ngIf="file.url1" href="{{ file.url1 }}" target="_blank"> {{ linkTitle }}</a>
-
               </div>
 
               <!-- Botones de Servicios Varios -->
 
-              <a type="submit" href="/files/{{file.id}}/view" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+              <a type="submit" href="/files/{{ file.id }}/view" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
               </a>
-              <a type="submit" href="/files/{{file.id}}/edit" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+              <a type="submit" href="/files/{{ file.id }}/edit" class="btn btn-primary btn-sm" data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
               </a>
@@ -123,20 +117,12 @@
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
               </button>
-
             </ng-container>
-
 
             <!-- end validation of type index -->
           </ng-container>
           <!-- end for -->
           <!-- constant content -->
-
-
-
-
-
-
 
           <ng-container *ngIf="filesLength < 1">
             <p>Course {{ courses.id }} Sesction {{ currentSection.id }}</p>
@@ -149,12 +135,6 @@
             <span><b>Descripción:</b> {{ currentSection.description }}</span>
           </ng-container>
           <!-- end constant content -->
-
-
-
-
-
-
         </div>
       </div>
     </div>

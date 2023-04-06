@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import {IFiles, NewFiles} from "../../entities/files/files.model";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-
+import { IFiles, NewFiles } from '../../entities/files/files.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 /**
  * A partial Type with required key is used as form input.
@@ -19,12 +18,8 @@ type FilesFormDefaults = Pick<NewFiles, 'id'>;
 type FilesFormGroupContent = {
   id: FormControl<IFiles['id'] | NewFiles['id']>;
 
-
-
   name: FormControl<IFiles['name']>;
   excerpt: FormControl<IFiles['excerpt']>;
-
-
 };
 export type FilesFormGroup = FormGroup<FilesFormGroupContent>;
 
@@ -48,8 +43,6 @@ export class OwnRegisterFileService {
 
       name: new FormControl(filesRawValue.name),
       excerpt: new FormControl(filesRawValue.excerpt),
-
-
     });
   }
 
@@ -72,6 +65,4 @@ export class OwnRegisterFileService {
       id: null,
     };
   }
-
-
 }
