@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="CoursesHeading">
-    <div class="d-flex justify-content-center font-weight: bold;">
+    <div class="alin d-flex justify-content-center font-weight: bold;">
       <span>Cursos que he creado </span>
     </div>
 
@@ -20,6 +20,9 @@
 
   <div class="principalConteiner">
     <div class="item-cont" *ngFor="let courses of courses">
+      <!-- <div class="alert alert-warning" id="no-result" *ngIf="courses?.length==0">
+        <span>No hay cursos</span>
+      </div> -->
       <div class="secondConteiner">
         <div class="card-image">
           <img class="imgg" [src]="courses.previewImg" alt="Nombre del curso {{ courses.description }}" />

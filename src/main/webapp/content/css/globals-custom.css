@@ -85,6 +85,13 @@
   font-weight: 600;
   margin-left: 1rem;
 }
+.btnBack {
+  background-color: var(--red) !important;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+  margin-left: 1rem;
+}
 .btn.btn-primary,
 .btn.btn-secondary {
   color: #ffffff;
@@ -516,4 +523,7 @@ p {
 
 .card {
   min-height: 45rem;
+}
+.alin {
+  margin-top: 3rem;
 }
