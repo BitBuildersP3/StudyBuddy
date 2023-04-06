@@ -15,7 +15,7 @@
       <jhi-index-register-file [idCourse]="idCourse" [idSection]="idSection"></jhi-index-register-file>
     </ng-container>
     <ng-container *ngIf="selectedFileComponent === 'own'">
-      <jhi-own-register-file></jhi-own-register-file>
+      <jhi-own-register-file [idCourse]="idCourse" [idSection]="idSection"></jhi-own-register-file>
     </ng-container>
   </div>
 </div>
