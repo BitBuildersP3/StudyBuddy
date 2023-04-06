@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ICourses } from '../courses.model';
 import { CoursesService } from '../service/courses.service';
 import {FilesService} from "../../files/service/files.service";
+import {ITEM_DELETED_EVENT} from "../../../config/navigation.constants";
 
 @Component({
   selector: 'jhi-courses-detail',
@@ -55,5 +56,11 @@ export class CoursesDetailComponent implements OnInit {
     window.history.back();
   }
 
+  delete(id: number): void {
+    this.filesService.delete(id).subscribe(() => {
+      console.log('delete' + id.toString());
+      window.location.href = "/courses/myCourses";
+    })
 
+  }
 }
