@@ -12,6 +12,7 @@ import { SortService } from 'app/shared/sort/sort.service';
 @Component({
   selector: 'jhi-extra-user-info',
   templateUrl: './extra-user-info.component.html',
+  styleUrls: ['./extra-user.css'],
 })
 export class ExtraUserInfoComponent implements OnInit {
   extraUserInfos?: IExtraUserInfo[];

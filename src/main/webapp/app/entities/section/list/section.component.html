@@ -1,21 +1,14 @@
 <div>
   <h2 id="page-heading" data-cy="SectionHeading">
-    <span jhiTranslate="studyBuddyApp.section.home.title">Sections</span>
+    <span class="alin d-flex justify-content-center">Clases Existentes</span>
 
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+    <div class="d-flex justify-content-start">
+      <button class="btn btnEdit" title="Refrescar" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="studyBuddyApp.section.home.refreshListLabel">Refrescar lista</span>
       </button>
 
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-section"
-        [routerLink]="['/section/new']"
-      >
+      <button id="jh-create-entity" title="Crear Clase" data-cy="entityCreateButton" class="btn btnView" [routerLink]="['/section/new']">
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="studyBuddyApp.section.home.createLabel"> Crear nuevo Section </span>
       </button>
     </div>
   </h2>
@@ -40,43 +33,43 @@
           </th>
           <th scope="col" jhiSortBy="name">
             <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.section.name">Name</span>
+              <span>Nombre</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="description">
             <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.section.description">Description</span>
+              <span>Descripción</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="excerpt">
             <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.section.excerpt">Excerpt</span>
+              <span>Extracto</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="creationDate">
             <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.section.creationDate">Creation Date</span>
+              <span>Fecha de Creación</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="time">
             <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.section.time">Time</span>
+              <span>Tiempo</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="status">
             <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.section.status">Status</span>
+              <span>Estado</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="courses.id">
             <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.section.courses">Courses</span>
+              <span>Curso</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -103,27 +96,26 @@
             <div class="btn-group">
               <button
                 type="submit"
+                title="Ver"
                 [routerLink]="['/section', section.id, 'view']"
-                class="btn btn-info btn-sm"
+                class="btn btnView"
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
               </button>
 
               <button
                 type="submit"
+                title="Editar"
                 [routerLink]="['/section', section.id, 'edit']"
-                class="btn btn-primary btn-sm"
+                class="btn btnEdit"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
               </button>
 
-              <button type="submit" (click)="delete(section)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button type="submit" title="Eliminar" (click)="delete(section)" class="btn btnDelete" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
               </button>
             </div>
           </td>

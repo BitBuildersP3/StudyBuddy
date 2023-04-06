@@ -1,21 +1,20 @@
 <div>
   <h2 id="page-heading" data-cy="ExtraUserInfoHeading">
-    <span jhiTranslate="studyBuddyApp.extraUserInfo.home.title">Extra User Infos</span>
+    <span class="alin d-flex justify-content-center margin-top: 3rem;">Información extra de los Usuarios</span>
 
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+    <div class="d-flex justify-content-start">
+      <button class="btn btnEdit" title="Refrescar tabla " (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="studyBuddyApp.extraUserInfo.home.refreshListLabel">Refrescar lista</span>
       </button>
 
       <button
         id="jh-create-entity"
+        title="Crear nueva información extra"
         data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-extra-user-info"
+        class="btn btnView"
         [routerLink]="['/extra-user-info/new']"
       >
-        <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="studyBuddyApp.extraUserInfo.home.createLabel"> Crear nuevo Extra User Info </span>
+        <fa-icon icon="user-plus"></fa-icon>
       </button>
     </div>
   </h2>
@@ -23,109 +22,104 @@
   <jhi-alert-error></jhi-alert-error>
 
   <jhi-alert></jhi-alert>
+  <div class="conteiner">
+    <div class="alert alert-warning" id="no-result" *ngIf="extraUserInfos?.length === 0">
+      <span>No hay información extra del usuario</span>
+    </div>
+    <div class="table-responsive table-entities" id="entities" *ngIf="extraUserInfos && extraUserInfos.length > 0">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" jhiSortBy="profilePicture">
+              <div class="d-flex">
+                <span>Foto</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="user.login">
+              <div class="d-flex">
+                <span>Usuario</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="phone">
+              <div class="d-flex">
+                <span>Teléfono</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="degree">
+              <div class="d-flex">
+                <span>Grado</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="birthDay">
+              <div class="d-flex">
+                <span>Fecha de nacimiento</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="score">
+              <div class="d-flex">
+                <span>Puntuación</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="userVotes">
+              <div class="d-flex">
+                <span>Votos</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let extraUserInfo of extraUserInfos; trackBy: trackId" data-cy="entityTable">
+            <td>
+              <div class="card-image">
+                <img class="imgg" [src]="extraUserInfo.profilePicture" alt="Imagen" />
+              </div>
+            </td>
+            <td>
+              {{ extraUserInfo.user?.login }}
+            </td>
+            <td>{{ extraUserInfo.phone }}</td>
+            <td>{{ extraUserInfo.degree }}</td>
+            <td>{{ extraUserInfo.birthDay | formatMediumDate }}</td>
+            <td>{{ extraUserInfo.score }}</td>
+            <td>{{ extraUserInfo.userVotes }}</td>
+            <td class="text-end">
+              <div class="btn-group">
+                <button
+                  type="submit"
+                  title="Ver"
+                  [routerLink]="['/extra-user-info', extraUserInfo.id, 'view']"
+                  class="btn btnView"
+                  data-cy="entityDetailsButton"
+                >
+                  <fa-icon icon="eye"></fa-icon>
+                </button>
 
-  <div class="alert alert-warning" id="no-result" *ngIf="extraUserInfos?.length === 0">
-    <span jhiTranslate="studyBuddyApp.extraUserInfo.home.notFound">Ningún Extra User Infos encontrado</span>
-  </div>
+                <button
+                  type="submit"
+                  title="Editar"
+                  [routerLink]="['/extra-user-info', extraUserInfo.id, 'edit']"
+                  class="btn btnEdit"
+                  data-cy="entityEditButton"
+                >
+                  <fa-icon icon="pencil-alt"></fa-icon>
+                </button>
 
-  <div class="table-responsive table-entities" id="entities" *ngIf="extraUserInfos && extraUserInfos.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
-            <div class="d-flex">
-              <span jhiTranslate="global.field.id">ID</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="phone">
-            <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.extraUserInfo.phone">Phone</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="degree">
-            <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.extraUserInfo.degree">Degree</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="profilePicture">
-            <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.extraUserInfo.profilePicture">Profile Picture</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="birthDay">
-            <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.extraUserInfo.birthDay">Birth Day</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="score">
-            <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.extraUserInfo.score">Score</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="userVotes">
-            <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.extraUserInfo.userVotes">User Votes</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="user.login">
-            <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.extraUserInfo.user">User</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let extraUserInfo of extraUserInfos; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/extra-user-info', extraUserInfo.id, 'view']">{{ extraUserInfo.id }}</a>
-          </td>
-          <td>{{ extraUserInfo.phone }}</td>
-          <td>{{ extraUserInfo.degree }}</td>
-          <td>{{ extraUserInfo.profilePicture }}</td>
-          <td>{{ extraUserInfo.birthDay | formatMediumDate }}</td>
-          <td>{{ extraUserInfo.score }}</td>
-          <td>{{ extraUserInfo.userVotes }}</td>
-          <td>
-            {{ extraUserInfo.user?.login }}
-          </td>
-          <td class="text-end">
-            <div class="btn-group">
-              <button
-                type="submit"
-                title="Ver"
-                [routerLink]="['/extra-user-info', extraUserInfo.id, 'view']"
-                class="btn btnView"
-                data-cy="entityDetailsButton"
-              >
-                <fa-icon icon="eye"></fa-icon>
-              </button>
-
-              <button
-                type="submit"
-                title="Editar"
-                [routerLink]="['/extra-user-info', extraUserInfo.id, 'edit']"
-                class="btn btnEdit"
-                data-cy="entityEditButton"
-              >
-                <fa-icon icon="pencil-alt"></fa-icon>
-              </button>
-
-              <button type="submit" title="Eliminar" (click)="delete(extraUserInfo)" class="btn btnDelete" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+                <button type="submit" title="Eliminar" (click)="delete(extraUserInfo)" class="btn btnDelete" data-cy="entityDeleteButton">
+                  <fa-icon icon="times"></fa-icon>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
