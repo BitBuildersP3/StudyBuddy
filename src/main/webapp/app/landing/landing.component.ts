@@ -19,6 +19,7 @@ interface CoursesData {
 export class LandingComponent implements OnInit {
   slides: CoursesData[] = [];
   userCuourses: CoursesData[] = [];
+  ownerCourses: CoursesData[] = [];
   private currentUserId: number | undefined = 0;
 
   instructors = [
@@ -74,6 +75,19 @@ export class LandingComponent implements OnInit {
           },
         });
       });
+
+    this.courseService.getFiveOwner().subscribe({
+      next: value => {
+        value.body?.map((data, index) => {
+          this.ownerCourses.push({
+            redirect: data.id,
+            image: data.previewImg,
+            slideExerpt: data.excerpt,
+            slideTitle: data.name,
+          });
+        });
+      },
+    });
 
     this.courseService.getTopTenCourses().subscribe({
       next: value => {

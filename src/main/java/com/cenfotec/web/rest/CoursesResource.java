@@ -206,6 +206,14 @@ public class CoursesResource {
         return retVal;
     }
 
+    @GetMapping("/courses/getFiveByOwner")
+    public List<Courses> getFiveCoursesOwner() {
+        log.debug("REST request to get course by the owner");
+        String ownerName = SecurityUtils.getCurrentUserLogin().orElse(null);
+        List<Courses> retVal = coursesRepository.findTop5ByOwnerNameLike(ownerName);
+        return retVal;
+    }
+
     /**
      * {@code DELETE  /courses/:id} : delete the "id" courses.
      *

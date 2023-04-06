@@ -28,6 +28,10 @@ export class CoursesService {
     return this.http.patch<ICourses>(`${this.resourceUrl}/${this.getCoursesIdentifier(courses)}`, courses, { observe: 'response' });
   }
 
+  getFiveOwner(): Observable<EntityArrayResponseType> {
+    return this.http.get<ICourses[]>(`${this.resourceUrl}/getFiveByOwner`, { observe: 'response' });
+  }
+
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<ICourses>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

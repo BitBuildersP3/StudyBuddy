@@ -1,7 +1,16 @@
 <div>
   <jhi-course-carousel [slides]="slides"></jhi-course-carousel>
-  <jhi-news [news]="userCuourses"></jhi-news>
+  <h1 class="text-center">Cursos</h1>
+  <jhi-news [news]="userCuourses">
+    <ng-container title> Mis cursos matriculados</ng-container>
+    <ng-container warning> No haz matriculado cursos, ve y matricula ahora! </ng-container>
+    <ng-container link><a class="btn btn-primary mx-1" href="/courses/myCourses">Matricular curso</a></ng-container>
+  </jhi-news>
+  <jhi-news [news]="ownerCourses">
+    <ng-container title> Mis cursos creados</ng-container>
+    <ng-container warning> No haz creado ningun curso, crealo ahora! </ng-container>
+    <ng-container link><a class="btn btn-primary mx-1" href="/courses/myCourses">Crear curso</a></ng-container>
+  </jhi-news>
   <jhi-features></jhi-features>
   <jhi-about-us></jhi-about-us>
-  <jhi-instructors [instructors]="instructors"></jhi-instructors>
 </div>
