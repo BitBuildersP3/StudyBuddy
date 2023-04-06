@@ -55,8 +55,8 @@
           <!-- start for -->
           <ng-container *ngFor="let file of currentSection.files; let j = index">
             <!-- validation of type video -->
-            <ng-container *ngIf="file.type === 'video'">
-              <p *ngIf="sanitizeUrl(file.url1)"></p>
+            <ng-container *ngIf="file.type === 'video'" jhiUrlChange [url]="file.url1" (onUrlReady)="sanitizeUrl($event)">
+              <!--<p *ngIf="sanitizeUrl(file.url1)"></p>
               <div class="cont-video">
                 <iframe
                   width="100%"
@@ -67,7 +67,15 @@
                   allow="accelerometer; autoplay;  picture-in-picture;"
                   allowfullscreen
                 ></iframe>
-              </div>
+              </div>-->
+              <iframe
+                id="existing-iframe-example"
+                width="640"
+                height="360"
+                [src]="safeUrl"
+                frameborder="0"
+                style="border: solid 4px #37474f"
+              ></iframe>
             </ng-container>
             <!-- end validation of type video -->
 
