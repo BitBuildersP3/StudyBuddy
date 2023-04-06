@@ -12,4 +12,9 @@ export class OwnRegisterFileComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  comidaChina( url : string) {
+    console.log("comida china: " + url);
+
+  }
+
 }
