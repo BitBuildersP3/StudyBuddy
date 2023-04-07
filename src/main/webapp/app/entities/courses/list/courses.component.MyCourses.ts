@@ -12,7 +12,7 @@ import { CoursesDeleteDialogComponent } from '../delete/courses-delete-dialog.co
 import { CoursesService, EntityArrayResponseType } from '../service/courses.service';
 import { CoursesFormGroup, CoursesFormService } from '../update/courses-form.service';
 import { HttpResponse } from '@angular/common/http';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'jhi-courses',
   templateUrl: './courses.component.MyCourses.html',
@@ -21,6 +21,9 @@ import { HttpResponse } from '@angular/common/http';
 export class CoursesComponentMyCourses implements OnInit {
   courses?: ICourses[];
   isSaving = false;
+  currentCourse: any = {};
+  sections: any = ['init'];
+  courses2: any;
 
   isLoading = false;
   ownerName: string = '';
@@ -29,6 +32,8 @@ export class CoursesComponentMyCourses implements OnInit {
   editForm: CoursesFormGroup = this.coursesFormService.createCoursesFormGroup();
   previewURL: string = '';
   idUser: number = 0;
+  coursesLength = 0;
+  courseResponse: any = {};
   constructor(
     protected coursesService: CoursesService,
     protected activatedRoute: ActivatedRoute,
@@ -50,18 +55,30 @@ export class CoursesComponentMyCourses implements OnInit {
         const login = res.body?.user?.login;
         if (login != null) {
           this.ownerName = login;
-          console.log(this.ownerName);
         }
         this.load();
       },
     });
+    // this.coursesService.getByOwner(this.courses2?.id).subscribe(data => {
+    //   this.courseResponse = data.body;
+    //   this.sections = this.courseResponse.sections;
+    //   this.setCurrentSection(this.sections[0]);
+    // });
   }
+
   saveUrl(URL: string): void {
     this.previewURL = URL;
   }
   previousState(): void {
     window.history.back();
   }
+
+  // setCurrentSection(section: any): void {
+  //   this.currentCourse = section;
+  //   this.coursesLength = this.currentCourse.courses.length;
+
+  // }
+
   enrolled(idCourse: ICourses): void {
     this.isSaving = true;
 
@@ -78,11 +95,10 @@ export class CoursesComponentMyCourses implements OnInit {
   }
   protected onSaveSuccess(): void {
     // TODO: Agregar sweetAlert
+    Swal.fire('HOLA');
   }
 
   protected onSaveError(e: any): void {
-    console.log(e);
-
     // Api for inheritance.
   }
 

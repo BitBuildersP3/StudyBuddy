@@ -6,10 +6,6 @@
       <button class="btn btnEdit" title="Refrescar" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
       </button>
-
-      <button id="jh-create-entity" title="Crear Clase" data-cy="entityCreateButton" class="btn btnView" [routerLink]="['/section/new']">
-        <fa-icon icon="plus"></fa-icon>
-      </button>
     </div>
   </h2>
 
@@ -103,17 +99,6 @@
               >
                 <fa-icon icon="eye"></fa-icon>
               </button>
-
-              <button
-                type="submit"
-                title="Editar"
-                [routerLink]="['/section', section.id, 'edit']"
-                class="btn btnEdit"
-                data-cy="entityEditButton"
-              >
-                <fa-icon icon="pencil-alt"></fa-icon>
-              </button>
-
               <button type="submit" title="Eliminar" (click)="delete(section)" class="btn btnDelete" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
               </button>
