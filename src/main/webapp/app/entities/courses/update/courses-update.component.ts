@@ -68,6 +68,9 @@ export class CoursesUpdateComponent implements OnInit {
 
   saveUrl(URL: string): void {
     this.previewURL = URL;
+    var imgComponent = document.getElementById('cloudinaryImg');
+    // @ts-ignore
+    imgComponent.setAttribute('src', this.previewURL);
   }
   previousState(): void {
     window.history.back();
