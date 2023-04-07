@@ -1,10 +1,9 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
+    <div class="separador"></div>
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading" >
-        Subir Video
-      </h2>
-
+      <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading">Subir Video</h2>
+      <div class="separador"></div>
       <div>
         <jhi-alert-error></jhi-alert-error>
 
@@ -14,35 +13,60 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label"  for="field_name">Nombre del archivo: </label>
-          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name"  placeholder="Escribe el nombre del video aquí." />
+          <label class="form-label" for="field_name">Nombre del archivo: </label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="field_name"
+            data-cy="name"
+            formControlName="name"
+            placeholder="Escribe el nombre del video aquí."
+          />
         </div>
 
         <div class="row mb-3">
-          <label class="form-label"  for="field_excerpt">Descripción: </label>
-          <textarea class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" placeholder="Escribe una descripción del video que deseas subir aquí." maxlength="250"></textarea>
+          <label class="form-label" for="field_excerpt">Descripción: </label>
+          <textarea
+            class="form-control"
+            name="excerpt"
+            id="field_excerpt"
+            data-cy="excerpt"
+            formControlName="excerpt"
+            placeholder="Escribe una descripción del video que deseas subir aquí."
+            maxlength="250"
+          ></textarea>
         </div>
 
         <div class="row mb-3 set-btns">
+          <div class="separador"></div>
           <h3>Selecciona el servicio de almacenamiento de video</h3>
-          <a href="https://www.youtube.com/" target="_blank" class="btn-extern">Youtube</a>
+          <div class="separador"></div>
         </div>
-        <div class="row mb-3">
-          <label class="form-label"  for="field_url1">Video: </label>
-          <input type="text" class="form-control" name="url1" id="field_url1" data-cy="url1" formControlName="url1"  placeholder="Enlace del video aquí." />
+        <div class="separador-inputs row mb-3">
+          <div class="row mb-3">
+            <label class="form-label" for="field_url1">Video: </label>
+            <input
+              type="text"
+              class="form-control"
+              name="url1"
+              id="field_url1"
+              data-cy="url1"
+              formControlName="url1"
+              placeholder="Enlace del video aquí."
+            />
+            <div class="espacio"></div>
+            <a href="https://www.youtube.com/upload" target="_blank" class="btn-extern">Subir a Youtube</a>
+          </div>
         </div>
-
-
       </div>
 
-
-      <div>
+      <div class="info-box row mb-3">
+        <p>Recuerda leer nuestros términos y condiciones antes de utilizar nuestros servicios.</p>
         <p>¿Necesitas ayuda? Puedes ver este tutorial en nuestro canal de YouTube:</p>
         <!-- Cambiar este link cuando este el tutorial -->
-        <a href="https://www.youtube.com/watch?v=eBGIQ7ZuuiU&ab_channel=YouGotRickRolled">Tutorial en YouTube</a>
-        <p>Recuerda leer nuestros términos y condiciones antes de utilizar nuestros servicios.</p>
+        <a class="linkvideo" href="https://www.youtube.com/watch?v=eBGIQ7ZuuiU&ab_channel=YouGotRickRolled">Tutorial en YouTube</a>
       </div>
-
 
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">

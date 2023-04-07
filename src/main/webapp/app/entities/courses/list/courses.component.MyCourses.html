@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="CoursesHeading">
-    <div class="d-flex justify-content-center font-weight: bold;">
+    <div class="alin d-flex justify-content-center font-weight: bold;">
       <span>Cursos que he creado </span>
     </div>
 
@@ -20,6 +20,9 @@
 
   <div class="principalConteiner">
     <div class="item-cont" *ngFor="let courses of courses">
+      <!-- <div class="alert alert-warning" id="no-result" *ngIf="courses?.length==0">
+        <span>No hay cursos</span>
+      </div> -->
       <div class="secondConteiner">
         <div class="card-image">
           <img class="imgg" [src]="courses.previewImg" alt="Nombre del curso {{ courses.description }}" />
@@ -46,7 +49,7 @@
             type="submit"
             title="Ver"
             [routerLink]="['/courses', courses.id, 'view']"
-            class="btn btn-info btn-sm"
+            class="btn btnView"
             data-cy="entityDetailsButton"
           >
             <fa-icon icon="eye"></fa-icon>
@@ -55,13 +58,13 @@
             type="submit"
             title="Editar"
             [routerLink]="['/courses', courses.id, 'edit']"
-            class="btn btn-primary btn-sm"
+            class="btn btnEdit"
             data-cy="entityEditButton"
           >
             <fa-icon icon="pencil-alt"></fa-icon>
           </button>
 
-          <button type="submit" title="Borrar" (click)="delete(courses)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+          <button type="submit" title="Borrar" (click)="delete(courses)" class="btn btnDelete" data-cy="entityDeleteButton">
             <fa-icon icon="trash-can"></fa-icon>
           </button>
         </div>

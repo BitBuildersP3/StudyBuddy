@@ -3,6 +3,6 @@
 <div *ngIf="isOpen" (click)="setIsOpen()" class="bg-modal"></div>
 
 <div *ngIf="isOpen" class="wrapper bg-white">
-  <span class="btn btn-primary cust-close">close</span>
+  <span (click)="setIsOpen()" class="btn btn-primary cust-close">close</span>
   <ng-content class=""></ng-content>
 </div>
