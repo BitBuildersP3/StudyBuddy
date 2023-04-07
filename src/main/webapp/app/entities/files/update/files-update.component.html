@@ -1,18 +1,19 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading" jhiTranslate="studyBuddyApp.files.home.createOrEditLabel">
-        Crear o editar Files
+      <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading" >
+        Editar Archivos
       </h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
 
         <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
-          <label class="form-label"  for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <label class="form-label"  for="field_id">ID: </label>
+          <input type="number" class="form-control myIdInput" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>
 
+        <div class="separador"></div>
 
         <div class="row mb-3">
           <label class="form-label"  for="field_name">Nombre del archivo:</label>
@@ -23,6 +24,8 @@
           <label class="form-label"  for="field_excerpt">Descripción:</label>
           <textarea type="text" class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" maxlength="250"></textarea>
         </div>
+
+
 
         <div class="row mb-3">
           <label class="form-label" for="field_type" >Tipo:</label>
@@ -64,21 +67,8 @@
 
         <div class="row mb-3">
           <label class="form-label"  for="field_publishDate">Fecha de publicación:</label>
-          <div class="input-group">
-            <input
-              id="field_publishDate"
-              data-cy="publishDate"
-              type="text"
-              class="form-control"
-              name="publishDate"
-              ngbDatepicker
-              #publishDateDp="ngbDatepicker"
-              formControlName="publishDate"
-            />
-            <button type="button" class="btn btn-secondary" (click)="publishDateDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
-            </button>
-          </div>
+          <input type="text" class="form-control" name="publishDate" id="field_publishDate" data-cy="publishDate" formControlName="publishDate" [readonly]="true"/>
+
         </div>
 
         <div class="row mb-3">
