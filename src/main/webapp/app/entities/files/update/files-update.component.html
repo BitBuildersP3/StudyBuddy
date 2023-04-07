@@ -1,74 +1,78 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading" jhiTranslate="studyBuddyApp.files.home.createOrEditLabel">
-        Crear o editar Files
+      <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading" >
+        Editar Archivos
       </h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
 
         <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
-          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <label class="form-label"  for="field_id">ID: </label>
+          <input type="number" class="form-control myIdInput" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.files.type" for="field_type">Type</label>
-          <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" />
-        </div>
+        <div class="separador"></div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.files.url1" for="field_url1">Url 1</label>
-          <input type="text" class="form-control" name="url1" id="field_url1" data-cy="url1" formControlName="url1" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.files.url2" for="field_url2">Url 2</label>
-          <input type="text" class="form-control" name="url2" id="field_url2" data-cy="url2" formControlName="url2" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.files.url3" for="field_url3">Url 3</label>
-          <input type="text" class="form-control" name="url3" id="field_url3" data-cy="url3" formControlName="url3" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.files.status" for="field_status">Status</label>
-          <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.files.name" for="field_name">Name</label>
+          <label class="form-label"  for="field_name">Nombre del archivo:</label>
           <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.files.excerpt" for="field_excerpt">Excerpt</label>
-          <input type="text" class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" />
+          <label class="form-label"  for="field_excerpt">Descripción:</label>
+          <textarea type="text" class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" maxlength="250"></textarea>
+        </div>
+
+
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_type" >Tipo:</label>
+          <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" [readonly]="true"/>
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.files.publishDate" for="field_publishDate">Publish Date</label>
-          <div class="input-group">
-            <input
-              id="field_publishDate"
-              data-cy="publishDate"
-              type="text"
-              class="form-control"
-              name="publishDate"
-              ngbDatepicker
-              #publishDateDp="ngbDatepicker"
-              formControlName="publishDate"
-            />
-            <button type="button" class="btn btn-secondary" (click)="publishDateDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
-            </button>
-          </div>
+          <label class="form-label"  for="field_url1">Url 1:</label>
+          <input type="text" class="form-control" name="url1" id="field_url1" data-cy="url1" formControlName="url1" />
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.files.section" for="field_section">Section</label>
+          <label class="form-label"  for="field_url2">Url 2:</label>
+          <input type="text" class="form-control" name="url2" id="field_url2" data-cy="url2" formControlName="url2" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"  for="field_url3">Url 3:</label>
+          <input type="text" class="form-control" name="url3" id="field_url3" data-cy="url3" formControlName="url3" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"  for="field_status">Estado:</label>
+
+          <select type="text" class="form-control" id="field_status" name="status" formControlName="status" data-cy="status">
+            <!--<option [defaultSelected]="true">-</option>-->
+
+            <option [defaultSelected]="true" >ACTIVE</option>
+            <option>INACTIVE</option>
+
+          </select>
+
+          <!-- Anterio  /> -->
+          <!-- <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" /> -->
+
+        </div>
+
+
+
+        <div class="row mb-3">
+          <label class="form-label"  for="field_publishDate">Fecha de publicación:</label>
+          <input type="text" class="form-control" name="publishDate" id="field_publishDate" data-cy="publishDate" formControlName="publishDate" [readonly]="true"/>
+
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label"  for="field_section">ID clase asociada: </label>
           <select
             class="form-control"
             id="field_section"
