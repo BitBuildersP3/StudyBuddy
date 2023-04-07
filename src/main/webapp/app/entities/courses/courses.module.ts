@@ -9,6 +9,7 @@ import { CoursesDeleteDialogComponent } from './delete/courses-delete-dialog.com
 import { CoursesRoutingModule } from './route/courses-routing.module';
 import { CoursesComponentEnrolled } from './list';
 import { SectionModule } from 'app/entities/section/section.module';
+import { UrlChangeDirective } from './detail/url-change.directive';
 
 @NgModule({
   imports: [SharedModule, CoursesRoutingModule, SectionModule],
@@ -19,6 +20,7 @@ import { SectionModule } from 'app/entities/section/section.module';
     CoursesDetailComponent,
     CoursesUpdateComponent,
     CoursesDeleteDialogComponent,
+    UrlChangeDirective,
   ],
 })
 export class CoursesModule {}

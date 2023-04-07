@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, AfterContentChecked, Component, Directive, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICourses } from '../courses.model';
 import { CoursesService } from '../service/courses.service';
@@ -84,7 +84,8 @@ export class CoursesDetailComponent implements OnInit {
   }
 
   sanitizeUrl(url: string): void {
-    this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(url);
+    var dirtyUrl = 'https://www.youtube.com/embed/' + url;
+    this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(dirtyUrl);
   }
 
   setActive(index: any): void {
