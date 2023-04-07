@@ -17,6 +17,7 @@ import { UserService } from 'app/entities/user/user.service';
 export class NewsUpdateComponent implements OnInit {
   isSaving = false;
   news: INews | null = null;
+  previewURL: string = '';
 
   usersSharedCollection: IUser[] = [];
 

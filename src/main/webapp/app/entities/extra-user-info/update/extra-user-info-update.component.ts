@@ -19,6 +19,7 @@ export class ExtraUserInfoUpdateComponent implements OnInit {
   extraUserInfo: IExtraUserInfo | null = null;
 
   usersSharedCollection: IUser[] = [];
+  previewURL: string = '';
 
   editForm: ExtraUserInfoFormGroup = this.extraUserInfoFormService.createExtraUserInfoFormGroup();
 
@@ -50,10 +51,14 @@ export class ExtraUserInfoUpdateComponent implements OnInit {
     this.isSaving = true;
     const extraUserInfo = this.extraUserInfoFormService.getExtraUserInfo(this.editForm);
     if (extraUserInfo.id !== null) {
+      extraUserInfo.profilePicture = this.previewURL;
       this.subscribeToSaveResponse(this.extraUserInfoService.update(extraUserInfo));
     } else {
       this.subscribeToSaveResponse(this.extraUserInfoService.create(extraUserInfo));
     }
+  }
+  saveUrl(URL: string): void {
+    this.previewURL = URL;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IExtraUserInfo>>): void {
