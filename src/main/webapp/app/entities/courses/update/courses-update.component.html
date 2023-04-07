@@ -1,25 +1,33 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
-    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-courses-heading" data-cy="CoursesCreateUpdateHeading" jhiTranslate="studyBuddyApp.courses.home.createOrEditLabel">
-        Crear o editar Courses
-      </h2>
+    <form name="editForm" role="form" class="custom-form align-items-center" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-courses-heading" data-cy="CoursesCreateUpdateHeading">Crear o editar curso</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+        <!--<div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
           <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
+        </div>-->
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.courses.name" for="field_name">Name</label>
+          <label class="form-label" for="field_previewImg">Imagen del curso</label>
+          <img id="cloudinaryImg" src="{{ editForm.controls.previewImg.value }}" />
+          <jhi-cloudinary-button (urlChanged)="saveUrl($event)" [text]="$any('Subir Foto')"></jhi-cloudinary-button>
+        </div>
+        <div class="row mb-3">
+          <label class="form-label" for="field_name">Nombre</label>
           <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.courses.description" for="field_description">Description</label>
+          <label class="form-label" for="field_excerpt">Sub titulo</label>
+          <input type="text" class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_description">Descripcion</label>
           <input
             type="text"
             class="form-control"
@@ -30,25 +38,15 @@
           />
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.courses.previewImg" for="field_previewImg">Preview Img</label>
-          <jhi-cloudinary-button (urlChanged)="saveUrl($event)" [text]="$any('Subir Foto')"></jhi-cloudinary-button>
-        </div>
-
-        <div class="row mb-3">
+        <!--<div class="row mb-3">
           <label class="form-label" jhiTranslate="studyBuddyApp.courses.status" for="field_status">Status</label>
           <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
-        </div>
+        </div>-->
 
-        <div class="row mb-3">
+        <!--<div class="row mb-3">
           <label class="form-label" jhiTranslate="studyBuddyApp.courses.score" for="field_score">Score</label>
           <input type="number" class="form-control" name="score" id="field_score" data-cy="score" formControlName="score" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.courses.excerpt" for="field_excerpt">Excerpt</label>
-          <input type="text" class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" />
-        </div>
+        </div>-->
 
         <!-- <div class="row mb-3">
           <label class="form-label" jhiTranslate="studyBuddyApp.courses.userId" for="field_userId">User Id</label>
@@ -78,7 +76,7 @@
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="studyBuddyApp.courses.category" for="field_category">Category</label>
           <select
-            class="form-control"
+            class="b input"
             id="field_category"
             data-cy="category"
             name="category"

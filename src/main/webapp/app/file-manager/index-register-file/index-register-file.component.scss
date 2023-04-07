@@ -1,16 +1,16 @@
-$color-principal: #15537D;
-$color-secundario: #6DABD5;
-$color-alertas: #983F56;
-$color-bordes: #De9A38;
-$color-fondoBlanc: #DFE2EA;
-
+$color-principal: #15537d;
+$color-secundario: #6dabd5;
+$color-alertas: #983f56;
+$color-bordes: #de9a38;
+$color-fondoBlanc: #dfe2ea;
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
-h2, h3 {
+h2,
+h3 {
   color: $color-principal;
   margin-top: 20px;
   margin-bottom: 25px;
@@ -38,7 +38,7 @@ a {
 
   &:hover {
     background-color: $color-principal;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 }
 
@@ -59,13 +59,11 @@ label {
 }
 label span {
   display: inline-block;
-
 }
 
 textarea {
   resize: vertical;
   min-height: 8rem;
-
 }
 
 // Clase para recuadro de información
@@ -76,7 +74,7 @@ textarea {
   border-radius: 10px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  margin-top: 25px ;
+  margin-top: 25px;
   text-align: left;
 }
 
@@ -100,7 +98,7 @@ textarea {
 .separador {
   border-bottom: solid $color-principal 2px;
   margin-bottom: 10px;
-  margin-top: 14px ;
+  margin-top: 14px;
 }
 
 .separador-inputs {
@@ -108,7 +106,5 @@ textarea {
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 35px;
-  margin-top: 35px ;
+  margin-top: 35px;
 }
-
-

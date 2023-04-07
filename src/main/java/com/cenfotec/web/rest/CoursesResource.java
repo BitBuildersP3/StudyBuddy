@@ -206,6 +206,14 @@ public class CoursesResource {
         return retVal;
     }
 
+    @GetMapping("/courses/getFiveByOwner")
+    public List<Courses> getFiveCoursesOwner() {
+        log.debug("REST request to get course by the owner");
+        String ownerName = SecurityUtils.getCurrentUserLogin().orElse(null);
+        List<Courses> retVal = coursesRepository.findTop5ByOwnerNameLike(ownerName);
+        return retVal;
+    }
+
     /**
      * {@code DELETE  /courses/:id} : delete the "id" courses.
      *
@@ -242,6 +250,13 @@ public class CoursesResource {
         return res;
     }
 
+    @GetMapping("/courses/fiveEnrolled/{id}")
+    public List<Courses> GetFiveRegisteredCoursesByUserId(@PathVariable Long id) {
+        User user = new User(id);
+        List<Courses> res = coursesRepository.findTop5ByUsersLike(user);
+        return res;
+    }
+
     //Para usar este metodo se debe de enviar los datos de la variable String id de la siguiente manera:
     //<idCurso>-<idUsuarioEnSesion>
     //este metodo retorna un dato tipo boolean
@@ -264,5 +279,10 @@ public class CoursesResource {
         Optional<Courses> courses = coursesRepository.findAllDataByCourseId(id);
         if (courses.isEmpty()) return false;
         return courses.get().getOwnerName().equals(name);
+    }
+
+    @GetMapping("/courses/topTen")
+    public List<Courses> getTopTenCourses() {
+        return coursesRepository.findTop10ByOrderByScoreDesc();
     }
 }

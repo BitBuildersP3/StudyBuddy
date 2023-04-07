@@ -68,6 +68,9 @@ export class CoursesUpdateComponent implements OnInit {
 
   saveUrl(URL: string): void {
     this.previewURL = URL;
+    var imgComponent = document.getElementById('cloudinaryImg');
+    // @ts-ignore
+    imgComponent.setAttribute('src', this.previewURL);
   }
   previousState(): void {
     window.history.back();
@@ -77,12 +80,12 @@ export class CoursesUpdateComponent implements OnInit {
     this.isSaving = true;
     const courses = this.coursesFormService.getCourses(this.editForm);
 
+    if (this.previewURL !== '') courses.previewImg = this.previewURL;
+
     if (courses.id !== null) {
-      courses.previewImg = this.previewURL;
       courses.users?.push({ id: this.idUser, login: this.ownerName });
-      this.subscribeToSaveResponse(this.coursesService.update(courses));
+      this.subscribeToSaveResponse(this.coursesService.partialUpdate(courses));
     } else {
-      courses.previewImg = this.previewURL;
       courses.ownerName = this.ownerName;
       courses.userId = this.idUser;
       this.subscribeToSaveResponse(this.coursesService.create(courses));
