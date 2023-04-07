@@ -70,11 +70,14 @@
   </div>
 
   <!-- fin lista  -->
-  <jhi-alert-error></jhi-alert-error>
+  <!-- <jhi-alert-error></jhi-alert-error>
 
-  <jhi-alert></jhi-alert>
+  <jhi-alert></jhi-alert> -->
 
-  <div class="alert alert-warning" id="no-result" *ngIf="courses?.length === 0">
-    <span>El usuario aún no ha creado cursos</span>
+  <div class="wapper-no-cont" id="no-result" *ngIf="courses?.length === 0">
+    <div class="cont-title">
+      <h1>El usuario no ha creado cursos aún</h1>
+      <fa-icon class="icon shake" icon="circle-exclamation"></fa-icon>&nbsp;
+    </div>
   </div>
 </div>

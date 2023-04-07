@@ -3,7 +3,7 @@
     <form name="editForm" role="form" class="custom-form align-items-center" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-courses-heading" data-cy="CoursesCreateUpdateHeading">Crear o editar curso</h2>
 
-      <div>
+      <div class="cardForm">
         <jhi-alert-error></jhi-alert-error>
 
         <!--<div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
@@ -11,23 +11,23 @@
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>-->
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_previewImg">Imagen del curso</label>
+        <div class="mb-3">
+          <label class="label" for="field_previewImg">Imagen del curso</label>
           <img id="cloudinaryImg" src="{{ editForm.controls.previewImg.value }}" />
           <jhi-cloudinary-button (urlChanged)="saveUrl($event)" [text]="$any('Subir Foto')"></jhi-cloudinary-button>
         </div>
-        <div class="row mb-3">
-          <label class="form-label" for="field_name">Nombre</label>
-          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        <div class="mb-3">
+          <label class="label" for="field_name">Nombre</label>
+          <input type="text" class="finput" name="name" id="field_name" data-cy="name" formControlName="name" />
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_excerpt">Sub titulo</label>
-          <input type="text" class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" />
+        <div class="mb-3">
+          <label class="label" for="field_excerpt">Sub título</label>
+          <input type="text" class="input" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" />
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_description">Descripcion</label>
+        <div class="mb-3">
+          <label class="label" for="field_description">Descripción</label>
           <input
             type="text"
             class="form-control"
@@ -73,8 +73,8 @@
           </select>
         </div> -->
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.courses.category" for="field_category">Category</label>
+        <div class="mb-3">
+          <label class="label" for="field_category">Category</label>
           <select
             class="b input"
             id="field_category"
