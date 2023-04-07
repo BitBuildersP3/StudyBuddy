@@ -20,6 +20,7 @@ export class SectionUpdateComponent implements OnInit {
   @Input() course: any = '';
   @Input() idSection = 0;
   @Output() customEvent = new EventEmitter();
+  @Output() closeEvent = new EventEmitter();
 
   isSaving = false;
   section: any | null = null;
@@ -69,6 +70,10 @@ export class SectionUpdateComponent implements OnInit {
     window.history.back();
   }
 
+  onClose(): void {
+    this.customEvent.emit();
+  }
+
   save(): void {
     this.isSaving = true;
     const section = this.sectionFormService.getSection(this.editForm);
@@ -78,7 +83,7 @@ export class SectionUpdateComponent implements OnInit {
       excerpt: section.excerpt,
       name: section.name,
       id: section.id,
-      status: '',
+      status: 'active',
       time: 0,
       courses: this.course,
     };
@@ -97,6 +102,9 @@ export class SectionUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
+    this.editForm.reset();
+    this.customEvent.emit();
+
     // this.previousState();
   }
 

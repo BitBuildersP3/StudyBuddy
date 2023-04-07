@@ -12,18 +12,28 @@
             </h1>
           </div>
           <jhi-modal class="modal-cust" [typeBtn]="'solo-txt'" [btnLabel]="'Agregar Sección'">
-            <jhi-section-update [course]="courses" class="content-modal" [title]="'Agregar Sección'"></jhi-section-update>
+            <jhi-section-update
+              [course]="courses"
+              class="content-modal"
+              (customEvent)="onSaveSection(courses.id)"
+              [title]="'Agregar Sección'"
+              (closeEvent)="setIsOpen()"
+            ></jhi-section-update>
           </jhi-modal>
 
           <ul class="sections-cont">
             <ng-container *ngFor="let section of sections; let i = index">
+              <!-- {{ increaseCounter }} -->
+
               <li [ngClass]="isActive === i ? 'active-section' : ''" class="section" (click)="setCurrentSection(section); setActive(i)">
                 {{ section.name }}
                 <span [ngClass]="isActive === i ? 'd-none' : ''">{{ i + 1 }}</span>
                 <ng-container *ngIf="isActive === i">
-                  <div class="d-flex flex-row gap-2">
+                  <div class="d-flex icons-cont flex-row gap-2">
+                    <!-- <jhi-modal [outterAction]="isOpen && 'hide'" class="modal-cust" [typeBtn]="'solo-icon'" [icon]="'pencil-alt'"> -->
                     <jhi-modal class="modal-cust" [typeBtn]="'solo-icon'" [icon]="'pencil-alt'">
                       <jhi-section-update
+                        (closeEvent)="setIsOpen()"
                         [idSection]="currentSection.id"
                         [course]="courses"
                         class="content-modal"
@@ -31,6 +41,10 @@
                         [title]="'Modificar sección'"
                       ></jhi-section-update>
                     </jhi-modal>
+
+                    <a (click)="remove(section)">
+                      <fa-icon icon="trash"></fa-icon>
+                    </a>
 
                     <span><fa-icon [ngClass]="isActive === i ? 'play' : 'd-none'" icon="play"></fa-icon></span>
                   </div>
@@ -97,7 +111,7 @@
           <!-- constant content -->
 
           <ng-container *ngIf="filesLength < 1">
-            <p>Course {{ courses.id }} Sesction {{ currentSection.id }}</p>
+            <p>Esta sección no contiene archivos disponibles.</p>
             <span *ngIf="currentSection.creationDate"><b>Fecha de publicación:</b> {{ currentSection.creationDate }}</span>
             <span><b>Descripción:</b> {{ currentSection.description }}</span>
           </ng-container>

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ICourses } from '../courses.model';
 import { CoursesService } from '../service/courses.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SectionService } from 'app/entities/section/service/section.service';
 
 @Component({
   selector: 'jhi-courses-detail',
@@ -27,13 +28,19 @@ export class CoursesDetailComponent implements OnInit {
   isActive: any = 0;
   safeUrl: any = '';
   url: any;
+  isOpen = false;
+  counter = 0;
   constructor(
     protected activatedRoute: ActivatedRoute,
     private courseService: CoursesService,
     private _sanitizer: DomSanitizer,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private sectionService: SectionService
   ) {}
 
+  setIsOpen(): void {
+    this.isOpen = !this.isOpen;
+  }
   fetchData(): void {
     this.activatedRoute.data.subscribe(({ courses }) => {
       this.courses = courses;
@@ -41,20 +48,36 @@ export class CoursesDetailComponent implements OnInit {
     });
   }
 
+  remove(section: any): void {
+    const delSecton = {
+      id: section.id,
+      status: 'deleted',
+    };
+    this.sectionService.partialUpdate(delSecton).subscribe(() => {
+      this.fetchCourseData(this.courses?.id);
+    });
+  }
+
+  increaseCounter(): void {
+    this.counter = this.counter + 1;
+  }
+
   fetchCourseData(courseId: any): void {
     this.courseService.getCouseDataById(courseId).subscribe(data => {
-      console.log(data);
       this.courseResponse = data.body;
       this.sections = this.courseResponse.sections;
+      this.sections = this.sections.filter((obj: any) => obj.status === 'active');
       this.sections.sort((a: any, b: any) => a.id - b.id);
+
       this.setCurrentSection(this.sections[0]);
     });
   }
 
   onSaveSection(data: any): void {
     this.fetchCourseData(data);
+    // todo: refactor the code, this function is not suposed to be executed
     // this.fetchData();
-    this.cdRef.markForCheck();
+    // this.cdRef.markForCheck();
   }
   ngOnInit(): void {
     this.fetchData();
