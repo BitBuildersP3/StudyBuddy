@@ -12,7 +12,7 @@ import { UserService } from 'app/entities/user/user.service';
 import { ICategory } from 'app/entities/category/category.model';
 import { CategoryService } from 'app/entities/category/service/category.service';
 import { EntityResponseType, ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'jhi-courses-update',
   templateUrl: './courses-update.component.html',

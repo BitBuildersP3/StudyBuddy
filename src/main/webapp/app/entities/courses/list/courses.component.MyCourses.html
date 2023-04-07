@@ -20,9 +20,6 @@
 
   <div class="principalConteiner">
     <div class="item-cont" *ngFor="let courses of courses">
-      <!-- <div class="alert alert-warning" id="no-result" *ngIf="courses?.length==0">
-        <span>No hay cursos</span>
-      </div> -->
       <div class="secondConteiner">
         <div class="card-image">
           <img class="imgg" [src]="courses.previewImg" alt="Nombre del curso {{ courses.description }}" />
@@ -71,9 +68,13 @@
       </div>
     </div>
   </div>
-  <!-- fin lista  -->
 
+  <!-- fin lista  -->
   <jhi-alert-error></jhi-alert-error>
 
   <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="courses?.length === 0">
+    <span>El usuario aún no ha creado cursos</span>
+  </div>
 </div>

@@ -48,9 +48,8 @@
       </div>
     </div>
   </div>
-  <!-- fin lista  -->
-
-  <jhi-alert-error></jhi-alert-error>
-
-  <jhi-alert></jhi-alert>
+  <div class="alert alert-warning" id="no-result" *ngIf="courses?.length === 0">
+    <span>El usuario no ha matriculado ningún curso</span>
+  </div>
 </div>
+<!-- fin lista  -->

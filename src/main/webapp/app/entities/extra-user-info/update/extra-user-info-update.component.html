@@ -9,7 +9,7 @@
         Crear o editar Información extra del usuario.
       </h2>
       <!-- align-items-center -->
-      <div>
+      <div class="cardForm">
         <jhi-alert-error></jhi-alert-error>
 
         <div class="mb-3" *ngIf="editForm.controls.id.value !== null">
@@ -45,6 +45,7 @@
             data-cy="profilePicture"
             formControlName="profilePicture"
           />
+          <jhi-cloudinary-button (urlChanged)="saveUrl($event)" [text]="$any('Subir Foto')"></jhi-cloudinary-button>
         </div>
 
         <div class="mb-3">
@@ -80,30 +81,29 @@
             <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.login }}</option>
           </select>
         </div>
-      </div>
+        <div>
+          <button
+            type="button"
+            id="cancel-save"
+            title="Cancelar"
+            data-cy="entityCreateCancelButton"
+            class="btn btnEnrolled"
+            (click)="previousState()"
+          >
+            <fa-icon icon="ban"></fa-icon>&nbsp;
+          </button>
 
-      <div>
-        <button
-          type="button"
-          id="cancel-save"
-          title="Cancelar"
-          data-cy="entityCreateCancelButton"
-          class="btn btnEnrolled"
-          (click)="previousState()"
-        >
-          <fa-icon icon="ban"></fa-icon>&nbsp;
-        </button>
-
-        <button
-          type="submit"
-          title="Guardar"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn btnView"
-        >
-          <fa-icon icon="save"></fa-icon>&nbsp;
-        </button>
+          <button
+            type="submit"
+            title="Guardar"
+            id="save-entity"
+            data-cy="entityCreateSaveButton"
+            [disabled]="editForm.invalid || isSaving"
+            class="btn btnView"
+          >
+            <fa-icon icon="save"></fa-icon>&nbsp;
+          </button>
+        </div>
       </div>
     </form>
   </div>
