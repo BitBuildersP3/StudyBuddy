@@ -8,9 +8,8 @@ describe('VideoRegisterFileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VideoRegisterFileComponent ]
-    })
-    .compileComponents();
+      declarations: [VideoRegisterFileComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(VideoRegisterFileComponent);
     component = fixture.componentInstance;

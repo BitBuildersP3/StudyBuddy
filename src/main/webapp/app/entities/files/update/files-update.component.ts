@@ -21,8 +21,6 @@ export class FilesUpdateComponent implements OnInit {
 
   sectionsSharedCollection: ISection[] = [];
 
-
-
   editForm: FilesFormGroup = this.filesFormService.createFilesFormGroup();
 
   constructor(

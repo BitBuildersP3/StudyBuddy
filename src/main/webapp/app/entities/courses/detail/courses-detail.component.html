@@ -1,9 +1,9 @@
 <ng-container *ngIf="sections.length > 0; else noSections">
   <div class="d-flex justify-content-center align-items-center wapper">
     <div class="col-8">
-      <jhi-alert-error></jhi-alert-error>
+      <!-- <jhi-alert-error></jhi-alert-error>
 
-      <jhi-alert></jhi-alert>
+      <jhi-alert></jhi-alert> -->
       <div class="cont-cols" *ngIf="courses">
         <div class="col-class">
           <div>
@@ -11,17 +11,43 @@
               {{ courses.name }}
             </h1>
           </div>
-          <jhi-modal class="modal-cust" [btnLabel]="'Agregar Sección'">
-            <jhi-section-update [course]="courses" class="content-modal" [title]="'Agregar Sección'"></jhi-section-update>
+          <jhi-modal class="modal-cust" [typeBtn]="'solo-txt'" [btnLabel]="'Agregar Sección'">
+            <jhi-section-update
+              [course]="courses"
+              class="content-modal"
+              (customEvent)="onSaveSection(courses.id)"
+              [title]="'Agregar Sección'"
+              (closeEvent)="setIsOpen()"
+            ></jhi-section-update>
           </jhi-modal>
 
           <ul class="sections-cont">
             <ng-container *ngFor="let section of sections; let i = index">
+              <!-- {{ increaseCounter }} -->
+
               <li [ngClass]="isActive === i ? 'active-section' : ''" class="section" (click)="setCurrentSection(section); setActive(i)">
                 {{ section.name }}
                 <span [ngClass]="isActive === i ? 'd-none' : ''">{{ i + 1 }}</span>
                 <ng-container *ngIf="isActive === i">
-                  <span><fa-icon [ngClass]="isActive === i ? 'play' : 'd-none'" icon="play"></fa-icon></span>
+                  <div class="d-flex icons-cont flex-row gap-2">
+                    <!-- <jhi-modal [outterAction]="isOpen && 'hide'" class="modal-cust" [typeBtn]="'solo-icon'" [icon]="'pencil-alt'"> -->
+                    <jhi-modal class="modal-cust" [typeBtn]="'solo-icon'" [icon]="'pencil-alt'">
+                      <jhi-section-update
+                        (closeEvent)="setIsOpen()"
+                        [idSection]="currentSection.id"
+                        [course]="courses"
+                        class="content-modal"
+                        (customEvent)="onSaveSection(courses.id)"
+                        [title]="'Modificar sección'"
+                      ></jhi-section-update>
+                    </jhi-modal>
+
+                    <a (click)="remove(section)">
+                      <fa-icon icon="trash"></fa-icon>
+                    </a>
+
+                    <span><fa-icon [ngClass]="isActive === i ? 'play' : 'd-none'" icon="play"></fa-icon></span>
+                  </div>
                 </ng-container>
               </li>
             </ng-container>
@@ -44,18 +70,41 @@
           <!-- start for -->
           <ng-container *ngFor="let file of currentSection.files; let j = index">
             <!-- validation of type video -->
-            <ng-container *ngIf="file.type === 'video'">
+            <ng-container *ngIf="file.type === 'video'" jhiUrlChange [url]="file.url1" (onUrlReady)="sanitizeUrl($event)">
+              <!--<p *ngIf="sanitizeUrl(file.url1)"></p>
               <div class="cont-video">
                 <iframe
                   width="100%"
                   height="100%"
-                  src="https://www.youtube.com/embed/3dHNOWTI7H8"
+                  [src]=""
                   title="YouTube video player"
                   frameborder="0"
                   allow="accelerometer; autoplay;  picture-in-picture;"
                   allowfullscreen
                 ></iframe>
-              </div>
+              </div>-->
+              <iframe
+                id="existing-iframe-example"
+                width="640"
+                height="360"
+                [src]="safeUrl"
+                frameborder="0"
+                style="border: solid 4px #37474f"
+              ></iframe>
+
+              <a type="submit" href="/files/{{ file.id }}/view" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </a>
+              <a type="submit" href="/files/{{ file.id }}/edit" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </a>
+
+              <button type="submit" (click)="delete(file.id)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
             </ng-container>
             <!-- end validation of type video -->
 
@@ -125,8 +174,9 @@
           <!-- constant content -->
 
           <ng-container *ngIf="filesLength < 1">
+            <p>Esta sección no contiene archivos validos o disponibles.</p>
             <p>Course {{ courses.id }} Sesction {{ currentSection.id }}</p>
-            <jhi-modal class="modal-cust" [btnLabel]="'Agregar files'">
+            <jhi-modal class="modal-cust" [btnLabel]="'Agregar files'" [typeBtn]="'solo-txt'">
               <jhi-files-manager class="comp-filemanager" [idCourse]="courses.id" [idSection]="currentSection.id"></jhi-files-manager>
             </jhi-modal>
 
@@ -146,7 +196,7 @@
     <div class="cont-title">
       <h1>Debe de agregar secciónes al curso</h1>
 
-      <jhi-modal class="modal-cust" [btnLabel]="'Agregar Sección'">
+      <jhi-modal class="modal-cust" [typeBtn]="'solo-txt'" [btnLabel]="'Agregar Sección'">
         <jhi-section-update [course]="courses" class="content-modal" [title]="'Agregar Sección'"></jhi-section-update>
       </jhi-modal>
       <fa-icon class="icon shake" icon="circle-exclamation"></fa-icon>&nbsp;

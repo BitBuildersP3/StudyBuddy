@@ -8,9 +8,8 @@ describe('OwnRegisterFileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OwnRegisterFileComponent ]
-    })
-    .compileComponents();
+      declarations: [OwnRegisterFileComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(OwnRegisterFileComponent);
     component = fixture.componentInstance;

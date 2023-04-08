@@ -8,9 +8,8 @@ describe('IndexRegisterFileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IndexRegisterFileComponent ]
-    })
-    .compileComponents();
+      declarations: [IndexRegisterFileComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(IndexRegisterFileComponent);
     component = fixture.componentInstance;
