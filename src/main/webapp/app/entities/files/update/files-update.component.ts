@@ -25,6 +25,7 @@ export class FilesUpdateComponent implements OnInit {
 
   typeFile: any | null = null;
 
+  cloudURL: string = 'No se ha subido un archivo';
   constructor(
     protected filesService: FilesService,
     protected filesFormService: FilesFormService,
@@ -55,6 +56,9 @@ export class FilesUpdateComponent implements OnInit {
     this.isSaving = true;
     const files = this.filesFormService.getFiles(this.editForm);
     if (files.id !== null) {
+
+      // Cambio de URL
+      files.url1 = this.cloudURL;
       this.subscribeToSaveResponse(this.filesService.update(files));
     } else {
       this.subscribeToSaveResponse(this.filesService.create(files));
@@ -97,4 +101,10 @@ export class FilesUpdateComponent implements OnInit {
       .pipe(map((sections: ISection[]) => this.sectionService.addSectionToCollectionIfMissing<ISection>(sections, this.files?.section)))
       .subscribe((sections: ISection[]) => (this.sectionsSharedCollection = sections));
   }
+
+  myURLFromCloudinary(url: string) {
+    console.log('URL a Guardar: ' + url);
+    return (this.cloudURL = url);
+  }
+
 }

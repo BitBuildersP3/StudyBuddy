@@ -36,18 +36,22 @@
           <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" [readonly]="true" />
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_url1">Url 1:</label>
-          <input type="text" class="form-control" name="url1" id="field_url1" data-cy="url1" formControlName="url1" />
-        </div>
+
+        <!-- URL 1 condicional-->
+        <ng-container *ngIf=" typeFile === 'indexed' || typeFile === 'video' ">
+
+          <div class="row mb-3">
+            <label class="form-label" for="field_url1">Url 1:</label>
+            <input type="text" class="form-control" name="url1" id="field_url1" data-cy="url1" formControlName="url1" />
+          </div>
+
+        </ng-container>
 
 
+        <ng-container *ngIf=" typeFile === 'own'">
 
-        <p let queso = typeFile>Queso Crema</p>
-
-        <ng-container *ngIf=" typeFile === 'video'">
-
-          <p>hola</p>
+          <!-- Boton de Cloudinay -->
+          <jhi-cloudinary-button (urlChanged)="myURLFromCloudinary($event)" [text]="$any('Subir Archivo')"> </jhi-cloudinary-button>
 
         </ng-container>
 
