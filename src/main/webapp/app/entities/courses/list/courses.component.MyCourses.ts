@@ -59,11 +59,6 @@ export class CoursesComponentMyCourses implements OnInit {
         this.load();
       },
     });
-    // this.coursesService.getByOwner(this.courses2?.id).subscribe(data => {
-    //   this.courseResponse = data.body;
-    //   this.sections = this.courseResponse.sections;
-    //   this.setCurrentSection(this.sections[0]);
-    // });
   }
 
   saveUrl(URL: string): void {
@@ -72,12 +67,6 @@ export class CoursesComponentMyCourses implements OnInit {
   previousState(): void {
     window.history.back();
   }
-
-  // setCurrentSection(section: any): void {
-  //   this.currentCourse = section;
-  //   this.coursesLength = this.currentCourse.courses.length;
-
-  // }
 
   enrolled(idCourse: ICourses): void {
     this.isSaving = true;

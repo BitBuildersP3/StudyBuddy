@@ -10,7 +10,7 @@ import { EntityResponseType, ExtraUserInfoService } from '../../entities/extra-u
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { finalize, map } from 'rxjs/operators';
-
+import Swal from 'sweetalert2';
 import { VideoRegisterFileService } from './video-register-file.service';
 
 @Component({
@@ -95,6 +95,13 @@ export class VideoRegisterFileComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
+    Swal.fire({
+      icon: 'success',
+      title: 'Guardado correctamente',
+      showConfirmButton: false,
+      timer: 3000,
+    });
+
     this.previousState();
   }
 
