@@ -82,44 +82,67 @@
         </div>
 
 
+        <!--
+            <div class="mb-3">
+              <label class="form-label"  for="field_publishDate">Fecha de subida: </label>
+              <input type="text" class="form-control" name="publishDate" id="field_publishDate" data-cy="publishDate" formControlName="publishDate" />
+            </div>
 
-        <div class="mb-3">
-          <label class="form-label"  for="field_publishDate">Fecha de subida: </label>
-          <input type="text" class="form-control" name="publishDate" id="field_publishDate" data-cy="publishDate" formControlName="publishDate" />
-        </div>
+    -->
+
+            <div class="mb-3">
+              <label class="form-label" for="field_publishDate">Fecha de creación</label>
+              <div class="input-group">
+                <input
+                  id="field_publishDate"
+                  data-cy="publishDate"
+                  type="text"
+                  class="form-control"
+                  name="publishDate"
+                  ngbDatepicker
+                  #creationDateDp="ngbDatepicker"
+                  formControlName="publishDate"
+                  [readonly]="true"
+                />
+                <button style="display: none;" type="button" class="btn btn-secondary form-label" (click)="creationDateDp.toggle()">
+                  <fa-icon icon="calendar-alt"></fa-icon>
+                </button>
+              </div>
+            </div>
 
 
-        <div class="mb-3" style="display: none;">
-          <label class="label" for="field_section">ID clase asociada: </label>
-          <select class="b input"
-            class="form-control"
-            id="field_section"
-            data-cy="section"
-            name="section"
-            formControlName="section"
-            [compareWith]="compareSection"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="sectionOption" *ngFor="let sectionOption of sectionsSharedCollection">{{ sectionOption.id }}</option>
-          </select>
-        </div>
+
+            <div class="mb-3" style="display: none;">
+              <label class="form-label" for="field_section">ID clase asociada: </label>
+              <select class="b input"
+                class="form-control"
+                id="field_section"
+                data-cy="section"
+                name="section"
+                formControlName="section"
+                [compareWith]="compareSection"
+              >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="sectionOption" *ngFor="let sectionOption of sectionsSharedCollection">{{ sectionOption.id }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+              <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+            </button>
+
+            <button
+              type="submit"
+              id="save-entity"
+              data-cy="entityCreateSaveButton"
+              [disabled]="editForm.invalid || isSaving"
+              class="btn btn-primary"
+            >
+              <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+            </button>
+          </div>
+        </form>
       </div>
-
-      <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
-        </button>
-
-        <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn btn-primary"
-        >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
+    </div>
