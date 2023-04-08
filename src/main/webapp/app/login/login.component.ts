@@ -4,9 +4,11 @@ import { Router } from '@angular/router';
 
 import { LoginService } from 'app/login/login.service';
 import { AccountService } from 'app/core/auth/account.service';
+import { NavbarComponent } from '../layouts/navbar/navbar.component';
 import Swal from 'sweetalert2';
 import { Title } from '@angular/platform-browser';
 
+import { RefreshService } from '../shared/refresh-service.service';
 @Component({
   selector: 'jhi-login',
   templateUrl: './login.component.html',
@@ -28,7 +30,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private accountService: AccountService,
     private loginService: LoginService,
     private router: Router,
-    private titleService: Title
+    private titleService: Title,
+    private refreshService: RefreshService
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +59,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
             showConfirmButton: false,
             timer: 2000,
           });
+
+          this.refreshService.refresh();
           // There were no routing during login (eg from navigationToStoredUrl)
           this.router.navigate(['landing']);
         }
