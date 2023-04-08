@@ -55,7 +55,6 @@ export class VideoRegisterFileComponent implements OnInit {
           // Adquiere Usuario
           if (res.body?.user?.id != null) {
             this.userId = res.body?.user.id;
-          } else {
           }
 
           console.log('ID DE USUARIO', this.userId);
@@ -100,7 +99,7 @@ export class VideoRegisterFileComponent implements OnInit {
       title: 'Se registró correctamente su video.',
       showConfirmButton: true,
       timer: 4000,
-    }).then(result => {
+    }).then((result: any) => {
       if (result.isConfirmed) {
         this.previousState();
         location.reload();

@@ -1,7 +1,7 @@
-<form name="editForm" class="custom-form align-items-center" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-  <h2 id="jhi-section-heading" data-cy="SectionCreateUpdateHeading">Crear o editar Clases</h2>
+<form name="editForm" class="custom-form align-items-center edit-w" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+  <h2 id="jhi-section-heading" data-cy="SectionCreateUpdateHeading">{{ title }}</h2>
 
-  <div>
+  <div class="cardForm">
     <jhi-alert-error></jhi-alert-error>
 
     <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
@@ -27,7 +27,7 @@
     </div>
 
     <div class="row mb-3">
-      <label class="form-label" for="field_excerpt">Fragmento</label>
+      <label class="form-label" for="field_excerpt">Detalle</label>
       <input type="text" class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" />
     </div>
   </div>
@@ -39,10 +39,10 @@
       id="save-entity"
       data-cy="entityCreateSaveButton"
       [disabled]="editForm.invalid || isSaving"
-      class="btn btn-primary"
+      class="btn btn-primary d-flex"
       (click)="triggerCustomEvent()"
     >
-      <fa-icon icon="save"></fa-icon>&nbsp;
+      <fa-icon icon="save"></fa-icon>
     </button>
   </div>
 </form>
