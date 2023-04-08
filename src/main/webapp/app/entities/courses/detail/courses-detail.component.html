@@ -54,12 +54,12 @@
           </ul>
 
           <div class="cont-btns">
-            <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-              <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+            <button type="submit" title="Volver" (click)="previousState()" class="btn btnEnrolled" data-cy="entityDetailsBackButton">
+              <fa-icon icon="arrow-left"></fa-icon>
             </button>
 
-            <button type="button" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary">
-              <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+            <button type="button" title="Editar" [routerLink]="['/courses', courses.id, 'edit']" class="btn btnEdit">
+              <fa-icon icon="pencil-alt"></fa-icon>
             </button>
           </div>
         </div>
@@ -84,31 +84,46 @@
                 ></iframe>
               </div>-->
               <iframe
-                      id="existing-iframe-example"
+                id="existing-iframe-example"
                 width="640"
                 height="360"
                 [src]="safeUrl"
                 frameborder="0"
                 style="border: solid 4px #37474f"
               ></iframe>
-              <div class = "btn-crudContainer">
+              <div class="btn-crudContainer">
+                <a
+                  title="Ver este archivo."
+                  type="submit"
+                  href="/files/{{ file.id }}/view"
+                  class="btn btnView"
+                  data-cy="entityDetailsButton"
+                >
+                  <fa-icon icon="eye"></fa-icon>
+                  <span class="d-none d-md-inline"></span>
+                </a>
+                <a
+                  title="Modificar este archivo."
+                  type="submit"
+                  href="/files/{{ file.id }}/edit"
+                  class="btn btnEdit"
+                  data-cy="entityEditButton"
+                >
+                  <fa-icon icon="pencil-alt"></fa-icon>
+                  <span class="d-none d-md-inline"></span>
+                </a>
 
-
-              <a title="Ver este archivo." type="submit" href="/files/{{ file.id }}/view" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
-                <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" ></span>
-              </a>
-              <a title="Modificar este archivo."type="submit" href="/files/{{ file.id }}/edit" class="btn btn-primary btn-sm" data-cy="entityEditButton">
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" ></span>
-              </a>
-
-              <button title="Eliminar este archivo." type="submit" (click)="delete(file.id)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" ></span>
-              </button>
+                <button
+                  title="Eliminar este archivo."
+                  type="submit"
+                  (click)="delete(file.id)"
+                  class="btn btnDelete"
+                  data-cy="entityDeleteButton"
+                >
+                  <fa-icon icon="times"></fa-icon>
+                  <span class="d-none d-md-inline"></span>
+                </button>
               </div>
-
             </ng-container>
             <!-- end validation of type video -->
 
@@ -124,27 +139,51 @@
               <span><b>Nombre del Archivo:</b> {{ file.excerpt }}</span>
               <div class="cont-links">
                 <span><b>Enlaces:</b></span>
-                <a title="Abre este enlace." class="btn btn-info text-white" *ngIf="file.url1" href="{{ file.url1 }}" target="_blank"> {{ linkTitle }}</a>
-                <a title="Abre este enlace."  class="btn btn-info text-white" *ngIf="file.url2" href="{{ file.url2 }}" target="_blank"> {{ linkTitle }}</a>
-                <a title="Abre este enlace."  class="btn btn-info text-white" *ngIf="file.url3" href="{{ file.url3 }}" target="_blank"> {{ linkTitle }}</a>
+                <a title="Abre este enlace." class="btn btn-info text-white" *ngIf="file.url1" href="{{ file.url1 }}" target="_blank">
+                  {{ linkTitle }}</a
+                >
+                <a title="Abre este enlace." class="btn btn-info text-white" *ngIf="file.url2" href="{{ file.url2 }}" target="_blank">
+                  {{ linkTitle }}</a
+                >
+                <a title="Abre este enlace." class="btn btn-info text-white" *ngIf="file.url3" href="{{ file.url3 }}" target="_blank">
+                  {{ linkTitle }}</a
+                >
 
                 <!-- <a href="https://www.example.com/my-document.pdf">Link to My Document</a> -->
               </div>
 
               <!-- Botones de Servicios Varios -->
-              <div class = "btn-crudContainer">
-                <a title="Ver este archivo." type="submit" href="/files/{{ file.id }}/view" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+              <div class="btn-crudContainer">
+                <a
+                  title="Ver este archivo."
+                  type="submit"
+                  href="/files/{{ file.id }}/view"
+                  class="btn btnView"
+                  data-cy="entityDetailsButton"
+                >
                   <fa-icon icon="eye"></fa-icon>
-                  <span class="d-none d-md-inline" ></span>
+                  <span class="d-none d-md-inline"></span>
                 </a>
-                <a title="Modificar este archivo."type="submit" href="/files/{{ file.id }}/edit" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <a
+                  title="Modificar este archivo."
+                  type="submit"
+                  href="/files/{{ file.id }}/edit"
+                  class="btn btnEdit"
+                  data-cy="entityEditButton"
+                >
                   <fa-icon icon="pencil-alt"></fa-icon>
-                  <span class="d-none d-md-inline" ></span>
+                  <span class="d-none d-md-inline"></span>
                 </a>
 
-                <button title="Eliminar este archivo." type="submit" (click)="delete(file.id)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <button
+                  title="Eliminar este archivo."
+                  type="submit"
+                  (click)="delete(file.id)"
+                  class="btn btnDelete"
+                  data-cy="entityDeleteButton"
+                >
                   <fa-icon icon="times"></fa-icon>
-                  <span class="d-none d-md-inline" ></span>
+                  <span class="d-none d-md-inline"></span>
                 </button>
               </div>
             </ng-container>
@@ -153,25 +192,44 @@
               <span><b>Nombre del Archivo:</b> {{ file.excerpt }}</span>
               <div class="cont-links">
                 <span><b>Ver Archivo Propio:</b></span>
-                <a title="Abre este archivo." class="btn btn-info text-white" *ngIf="file.url1" href="{{ file.url1 }}" target="_blank"> {{ linkTitle }}</a>
+                <a title="Abre este archivo." class="btn btn-info text-white" *ngIf="file.url1" href="{{ file.url1 }}" target="_blank">
+                  {{ linkTitle }}</a
+                >
               </div>
 
               <!-- Botones de Servicios Varios -->
-              <div class = "btn-crudContainer">
-                <a title="Ver este archivo." type="submit" href="/files/{{ file.id }}/view" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+              <div class="btn-crudContainer">
+                <a
+                  title="Ver este archivo."
+                  type="submit"
+                  href="/files/{{ file.id }}/view"
+                  class="btn btnView"
+                  data-cy="entityDetailsButton"
+                >
                   <fa-icon icon="eye"></fa-icon>
-                  <span class="d-none d-md-inline" ></span>
+                  <span class="d-none d-md-inline"></span>
                 </a>
-                <a title="Modificar este archivo."type="submit" href="/files/{{ file.id }}/edit" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <a
+                  title="Modificar este archivo."
+                  type="submit"
+                  href="/files/{{ file.id }}/edit"
+                  class="btn btnEdit"
+                  data-cy="entityEditButton"
+                >
                   <fa-icon icon="pencil-alt"></fa-icon>
-                  <span class="d-none d-md-inline" ></span>
+                  <span class="d-none d-md-inline"></span>
                 </a>
 
-                <button title="Eliminar este archivo." type="submit" (click)="delete(file.id)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <button
+                  title="Eliminar este archivo."
+                  type="submit"
+                  (click)="delete(file.id)"
+                  class="btn btnDelete"
+                  data-cy="entityDeleteButton"
+                >
                   <fa-icon icon="times"></fa-icon>
-                  <span class="d-none d-md-inline" ></span>
+                  <span class="d-none d-md-inline"></span>
                 </button>
-
               </div>
             </ng-container>
 
