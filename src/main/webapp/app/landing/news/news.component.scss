@@ -22,3 +22,26 @@ h6 {
 .myCard {
   max-height: 400px;
 }
+
+.alert {
+  width: 100%;
+  margin: 20px auto;
+  padding: 30px;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 5px #ccc;
+  border-left: 5px solid #ebebeb;
+  text-align: center;
+}
+
+@mixin alert($name, $bgColor) {
+  $accentColor: darken($bgColor, 50);
+  .#{$name} {
+    background-color: #{$bgColor};
+    border-left: 5px solid $accentColor;
+    .close {
+      border-color: $accentColor;
+      color: $accentColor;
+    }
+  }
+}

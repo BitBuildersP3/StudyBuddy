@@ -3,6 +3,8 @@ import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { CoursesService } from '../entities/courses/service/courses.service';
 import { ExtraUserInfoService } from '../entities/extra-user-info/service/extra-user-info.service';
 import { switchMap } from 'rxjs';
+import { RefreshService } from '../shared/refresh-service.service';
+import { refresh } from '@cloudinary/url-gen/qualifiers/artisticFilter';
 
 interface CoursesData {
   image: string | null | undefined;
@@ -49,7 +51,7 @@ export class LandingComponent implements OnInit {
     },
   ];
 
-  constructor(private courseService: CoursesService, private extraUserInfo: ExtraUserInfoService) {}
+  constructor(private courseService: CoursesService, private extraUserInfo: ExtraUserInfoService, private refresh: RefreshService) {}
 
   ngOnInit(): void {
     //trae el id del usuario

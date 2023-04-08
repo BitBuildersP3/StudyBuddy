@@ -1,7 +1,7 @@
 <ngb-carousel *ngIf="slides">
   <ng-template ngbSlide *ngFor="let slide of slides">
     <div class="picsum-img-wrapper">
-      <img class="w-100" src="{{ slide.image }}" alt="{{ slide.slideTitle }}" />
+      <img class="carouselImg" src="{{ slide.image }}" alt="{{ slide.slideTitle }}" />
     </div>
     <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, 0.7)">
       <div class="carousel-caption">
