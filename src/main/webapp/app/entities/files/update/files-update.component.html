@@ -75,20 +75,33 @@
           <!-- <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" /> -->
         </div>
 
+        <!--
+            <div class="mb-3">
+              <label class="form-label"  for="field_publishDate">Fecha de subida: </label>
+              <input type="text" class="form-control" name="publishDate" id="field_publishDate" data-cy="publishDate" formControlName="publishDate" />
+            </div>
+
+    -->
+
         <div class="mb-3">
-          <label class="form-label" for="field_publishDate">Fecha de subida: </label>
-          <input
-            type="text"
-            class="form-control"
-            name="publishDate"
-            id="field_publishDate"
-            data-cy="publishDate"
-            formControlName="publishDate"
-          />
+          <label class="form-label" for="field_publishDate">Fecha de creación</label>
+          <div class="input-group">
+            <input
+              id="field_publishDate"
+              data-cy="publishDate"
+              type="text"
+              class="form-control"
+              name="publishDate"
+              ngbDatepicker
+              #creationDateDp="ngbDatepicker"
+              formControlName="publishDate"
+              [readonly]="true"
+            />
+          </div>
         </div>
 
         <div class="mb-3" style="display: none">
-          <label class="label" for="field_section">ID clase asociada: </label>
+          <label class="form-label" for="field_section">ID clase asociada: </label>
           <select
             class="b input"
             class="form-control"
