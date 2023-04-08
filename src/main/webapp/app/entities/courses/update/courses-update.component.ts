@@ -26,7 +26,7 @@ export class CoursesUpdateComponent implements OnInit {
   ownerName: string;
   usersSharedCollection: IUser[] = [];
   categoriesSharedCollection: ICategory[] = [];
-  previewURL: string = '';
+  previewURL: string = 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1680045450/peter-gombos-8y3e2M6APy4-unsplash_dgh1ui.jpg';
   editForm: CoursesFormGroup = this.coursesFormService.createCoursesFormGroup();
   users?: Pick<IUser, 'id' | 'login'>[] | null;
   constructor(

@@ -24,3 +24,19 @@ p {
   font-weight: 600;
   transition: 0.5s;
 }
+
+.carouselImg {
+  width: 100% !important;
+  min-height: 55rem !important;
+  max-height: 55rem !important;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carouselContainer {
+  max-width: 100%;
+  max-height: 50%;
+}
+
+.carouselItem {
+}
