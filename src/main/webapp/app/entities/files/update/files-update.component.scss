@@ -70,8 +70,5 @@ label span {
 
   color: white;
   border-color: $color-secundario;
-  &:hover {
-    background-color: darken($color-secundario, 10%);
-    border-color: darken($color-secundario, 10%);
-  }
+
 }
