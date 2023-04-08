@@ -626,3 +626,11 @@ p {
   font-size: 3rem;
   color: #de9a38;
 }
+
+.edit-w {
+  width: 30rem;
+}
+
+.w-100 {
+  width: 100%;
+}
