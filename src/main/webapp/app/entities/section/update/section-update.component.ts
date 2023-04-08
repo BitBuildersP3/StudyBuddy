@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -17,10 +17,13 @@ import dayjs from 'dayjs';
 })
 export class SectionUpdateComponent implements OnInit {
   @Input() title = '';
-  @Input() course = '';
+  @Input() course: any = '';
+  @Input() idSection = 0;
+  @Output() customEvent = new EventEmitter();
+  @Output() closeEvent = new EventEmitter();
 
   isSaving = false;
-  section: ISection | null = null;
+  section: any | null = null;
 
   coursesSharedCollection: ICourses[] = [];
 
@@ -35,19 +38,40 @@ export class SectionUpdateComponent implements OnInit {
 
   compareCourses = (o1: ICourses | null, o2: ICourses | null): boolean => this.coursesService.compareCourses(o1, o2);
 
-  ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ section }) => {
-      this.section = section;
-      if (section) {
-        this.updateForm(section);
-      }
+  triggerCustomEvent(): void {
+    this.customEvent.emit();
+  }
 
-      this.loadRelationshipsOptions();
-    });
+  ngOnInit(): void {
+    if (this.idSection !== undefined && this.idSection !== 0) {
+      this.sectionService.find(this.idSection).subscribe((data: any) => {
+        this.section = data.body;
+
+        if (data) {
+          this.updateForm(data.body);
+        }
+
+        this.loadRelationshipsOptions();
+      });
+    }
+
+    // this.activatedRoute.data.subscribe(({ section }) => {
+    //   this.section = section;
+
+    //   if (section) {
+    //     this.updateForm(section);
+    //   }
+
+    //   this.loadRelationshipsOptions();
+    // });
   }
 
   previousState(): void {
     window.history.back();
+  }
+
+  onClose(): void {
+    this.customEvent.emit();
   }
 
   save(): void {
@@ -59,7 +83,7 @@ export class SectionUpdateComponent implements OnInit {
       excerpt: section.excerpt,
       name: section.name,
       id: section.id,
-      status: '',
+      status: 'active',
       time: 0,
       courses: this.course,
     };
@@ -78,7 +102,10 @@ export class SectionUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    this.previousState();
+    this.editForm.reset();
+    this.customEvent.emit();
+
+    // this.previousState();
   }
 
   protected onSaveError(): void {

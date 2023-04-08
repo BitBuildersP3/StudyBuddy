@@ -46,7 +46,6 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
-
     this.extraUser.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {
         // @ts-ignore
@@ -84,10 +83,17 @@ export class CoursesComponent implements OnInit {
     Swal.fire({
       icon: 'success',
       title: 'Matriculado correctamente',
-      showConfirmButton: false,
-      timer: 1800,
+      showDenyButton: true,
+      denyButtonColor: '#6dabd5',
+      confirmButtonText: 'Seguir Matriculando',
+      denyButtonText: `Ir a mis cursos`,
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.router.navigate(['courses']);
+      } else if (result.isDenied) {
+        this.router.navigate(['courses/enrolled']);
+      }
     });
-    this.mostrarBoton = false;
   }
 
   protected onSaveError(e: any): void {

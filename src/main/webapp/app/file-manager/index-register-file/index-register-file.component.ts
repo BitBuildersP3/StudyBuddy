@@ -8,14 +8,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { finalize, map } from 'rxjs/operators';
-import {FilesFormGroup, IndexRegisterFileService} from "./index-register-file.service";
+import { FilesFormGroup, IndexRegisterFileService } from './index-register-file.service';
 
 import {
   EntityResponseType,
   ExtraUserInfoService,
   RestExtraUserInfo,
 } from '../../entities/extra-user-info/service/extra-user-info.service';
-import dayjs, {Dayjs} from "dayjs";
+import dayjs, { Dayjs } from 'dayjs';
 
 @Component({
   selector: 'jhi-index-register-file',
@@ -76,23 +76,15 @@ export class IndexRegisterFileComponent implements OnInit {
     this.isSaving = true;
     const files = this.IndexRegisterFormService.getFiles(this.editForm);
 
-
-
-
-// Se modifico para quemar dos valores.
+    // Se modifico para quemar dos valores.
     if (files.id !== null) {
-
-
       this.subscribeToSaveResponse(this.filesService.update(files));
     } else {
-
-
       // Parametros QUEMADOS
-      files.status = "ACTIVE";
-      files.type = "index";
+      files.status = 'ACTIVE';
+      files.type = 'index';
 
       files.section = { id: this.idSection };
-
 
       this.subscribeToSaveResponse(this.filesService.create(files));
     }

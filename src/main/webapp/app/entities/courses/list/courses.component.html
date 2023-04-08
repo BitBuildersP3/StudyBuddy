@@ -38,24 +38,16 @@
                 </p>
               </span>
               <span class="sub"> Dueño: {{ courses.ownerName }} </span>
-              <!-- <span class="sub" *ngFor="let user of courses.users; let last = last">
-                 matriculado: {{ user.login }}{{ last ? '' : ', ' }}  
-              </span> -->
             </h5>
           </div>
         </div>
 
         <!-- Botones -->
         <div class="botones">
-          <button
-            type="submit"
-            title="Ver"
-            [routerLink]="['/courses', courses.id, 'view']"
-            class="btn btnView"
-            data-cy="entityDetailsButton"
-          >
-            <fa-icon icon="eye"></fa-icon>
-          </button>
+          <div *ngFor="let user of courses.users; let last = last">
+            <div *ngIf="user.login === (last ? '' : ', ') + user.login"></div>
+          </div>
+
           <button
             type="button"
             id="cancel-save"
@@ -67,6 +59,15 @@
           >
             <fa-icon icon="graduation-cap"></fa-icon>
           </button>
+          <button
+            type="submit"
+            title="Ver"
+            [routerLink]="['/courses', courses.id, 'view']"
+            class="btn btnView"
+            data-cy="entityDetailsButton"
+          >
+            <fa-icon icon="eye"></fa-icon>
+          </button>
         </div>
       </div>
     </div>
@@ -75,10 +76,12 @@
   <!-- fin lista  -->
 
   <jhi-alert-error></jhi-alert-error>
-
   <!-- <jhi-alert></jhi-alert> -->
 
-  <div class="alert alert-warning" id="no-result" *ngIf="courses?.length === 0">
-    <span>Ningún Curso encontrado</span>
+  <div class="wapper-no-cont" id="no-result" *ngIf="courses?.length === 0">
+    <div class="cont-title">
+      <h1>Aún no se han creado cursos</h1>
+      <fa-icon class="icon shake" icon="circle-exclamation"></fa-icon>&nbsp;
+    </div>
   </div>
 </div>

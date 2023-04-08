@@ -48,8 +48,12 @@
       </div>
     </div>
   </div>
-  <div class="alert alert-warning" id="no-result" *ngIf="courses?.length === 0">
-    <span>El usuario no ha matriculado ningún curso</span>
+
+  <div class="wapper-no-cont" id="no-result" *ngIf="courses?.length === 0">
+    <div class="cont-title">
+      <h1>El usuario aún no está matriculado en ningún curso</h1>
+      <fa-icon class="icon shake" icon="circle-exclamation"></fa-icon>&nbsp;
+    </div>
   </div>
 </div>
 <!-- fin lista  -->

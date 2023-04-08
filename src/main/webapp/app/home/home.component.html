@@ -1,7 +1,4 @@
 <div class="row">
-  <!-- <h1 class="display-4"><span jhiTranslate="home.title">¡Bienvenido!</span> </h1> -->
-  <!-- <jhi-cloudinary-button></jhi-cloudinary-button> -->
-  <!-- <p class="lead" jhiTranslate="home.subtitle">Esta es su página de inicio</p> -->
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
@@ -25,24 +22,9 @@
 
             <a class="glightbox btn-watch-video">
               <i class="bi bi-play-circle"></i>
-              <a class="a-link" routerLink="account/register" jhiTranslate="global.messages.info.register.link">Crea una cuenta</a
-              ><span></span
+              <a class="a-link" routerLink="account/register">Crear una cuenta</a><span></span
             ></a>
           </div>
-          <!-- <div [ngSwitch]="account !== null">
-            <div class="alert alert-success" *ngSwitchCase="true">
-              <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
-                [translateValues]="{ username: account.login }">Está conectado como "{{ account.login }}".
-              </span>
-            </div>
-
-            <div class="alert" *ngSwitchCase="false">
-            </div>
-
-            <div class="alert " *ngSwitchCase="false">
-              <span jhiTranslate="global.messages.info.register.noaccount">¿Aún no tienes una cuenta?</span>&nbsp;
-            </div>
-          </div> -->
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
           <img src="../../content/images/hero-img.png" class="img-fluid animated" alt="" />

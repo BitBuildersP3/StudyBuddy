@@ -3,9 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 // Ojo con este import, path.
 import { IFiles, NewFiles } from 'app/entities/files/files.model';
-import {Observable} from "rxjs";
-import {EntityResponseType, RestExtraUserInfo} from "../../entities/extra-user-info/service/extra-user-info.service";
-import {map} from "rxjs/operators";
+import { Observable } from 'rxjs';
+import { EntityResponseType, RestExtraUserInfo } from '../../entities/extra-user-info/service/extra-user-info.service';
+import { map } from 'rxjs/operators';
 
 /**
  * A partial Type with required key is used as form input.
@@ -29,8 +29,6 @@ type FilesFormGroupContent = {
 
   name: FormControl<IFiles['name']>;
   excerpt: FormControl<IFiles['excerpt']>;
-
-
 };
 
 export type FilesFormGroup = FormGroup<FilesFormGroupContent>;
@@ -58,8 +56,6 @@ export class IndexRegisterFileService {
 
       name: new FormControl(filesRawValue.name),
       excerpt: new FormControl(filesRawValue.excerpt),
-
-
     });
   }
 
@@ -82,6 +78,4 @@ export class IndexRegisterFileService {
       id: null,
     };
   }
-
-
 }

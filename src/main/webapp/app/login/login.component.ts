@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { LoginService } from 'app/login/login.service';
 import { AccountService } from 'app/core/auth/account.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'jhi-login',
   templateUrl: './login.component.html',
@@ -42,6 +42,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
       next: () => {
         this.authenticationError = false;
         if (!this.router.getCurrentNavigation()) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Inicio de sesión exitoso',
+            showConfirmButton: false,
+            timer: 2000,
+          });
           // There were no routing during login (eg from navigationToStoredUrl)
           this.router.navigate(['landing']);
         }

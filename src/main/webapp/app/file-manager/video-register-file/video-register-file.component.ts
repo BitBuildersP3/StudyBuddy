@@ -1,22 +1,22 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IFiles} from "../../entities/files/files.model";
-import {ISection} from "../../entities/section/section.model";
+import { Component, Input, OnInit } from '@angular/core';
+import { IFiles } from '../../entities/files/files.model';
+import { ISection } from '../../entities/section/section.model';
 // Recordar modificar el form group aca
-import {FilesFormGroup} from "../video-register-file/video-register-file.service";
-import {FilesService} from "../../entities/files/service/files.service";
-import {SectionService} from "../../entities/section/service/section.service";
-import {ActivatedRoute} from "@angular/router";
-import {EntityResponseType, ExtraUserInfoService} from "../../entities/extra-user-info/service/extra-user-info.service";
-import {Observable} from "rxjs";
-import {HttpResponse} from "@angular/common/http";
-import {finalize, map} from "rxjs/operators";
+import { FilesFormGroup } from '../video-register-file/video-register-file.service';
+import { FilesService } from '../../entities/files/service/files.service';
+import { SectionService } from '../../entities/section/service/section.service';
+import { ActivatedRoute } from '@angular/router';
+import { EntityResponseType, ExtraUserInfoService } from '../../entities/extra-user-info/service/extra-user-info.service';
+import { Observable } from 'rxjs';
+import { HttpResponse } from '@angular/common/http';
+import { finalize, map } from 'rxjs/operators';
 
-import {VideoRegisterFileService} from "./video-register-file.service";
+import { VideoRegisterFileService } from './video-register-file.service';
 
 @Component({
   selector: 'jhi-video-register-file',
   templateUrl: './video-register-file.component.html',
-  styleUrls: ['./video-register-file.component.scss']
+  styleUrls: ['./video-register-file.component.scss'],
 })
 export class VideoRegisterFileComponent implements OnInit {
   @Input() idSection: any;
@@ -72,24 +72,16 @@ export class VideoRegisterFileComponent implements OnInit {
     this.isSaving = true;
     const files = this.VideoFormService.getFiles(this.editForm);
 
-
-
-
-// Se modifico para quemar dos valores.
+    // Se modifico para quemar dos valores.
     if (files.id !== null) {
-
-
       this.subscribeToSaveResponse(this.filesService.update(files));
     } else {
-
-
       // Parametros QUEMADOS
-      files.status = "ACTIVE";
-      files.type = "video";
-      files.url2 = "NO URL 2";
-      files.url3 = "NO URL 3";
+      files.status = 'ACTIVE';
+      files.type = 'video';
+      files.url2 = 'NO URL 2';
+      files.url3 = 'NO URL 3';
       files.section = { id: this.idSection };
-
 
       this.subscribeToSaveResponse(this.filesService.create(files));
     }
@@ -137,5 +129,3 @@ export class VideoRegisterFileComponent implements OnInit {
       .subscribe((sections: ISection[]) => (this.sectionsSharedCollection = sections));
   }
 }
-
-
