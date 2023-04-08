@@ -33,6 +33,7 @@ export class CoursesDetailComponent implements OnInit {
   url: any;
   isOpen = false;
   counter = 0;
+  isOwner = false;
   constructor(
     protected activatedRoute: ActivatedRoute,
     private courseService: CoursesService,
@@ -85,6 +86,9 @@ export class CoursesDetailComponent implements OnInit {
   }
   ngOnInit(): void {
     this.fetchData();
+    this.courseService.getIsOwner(this.courses?.id).subscribe(response => {
+      this.isOwner = response.body;
+    });
   }
 
   sanitizeUrl(url: string): void {

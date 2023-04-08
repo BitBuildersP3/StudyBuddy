@@ -80,6 +80,10 @@ $rgbLight: rgba(109, 171, 213, 0.3);
 .titles {
   font-size: 1.3rem;
   font-weight: 700;
+
+  span {
+    font-weight: 700;
+  }
 }
 
 .section {
@@ -114,6 +118,12 @@ b {
   display: flex;
   align-items: center;
   justify-content: center;
+  fa-icon {
+    justify-content: center;
+  }
+  .cust-btn {
+    margin: 1rem 0;
+  }
 }
 
 .cont-title {
@@ -167,3 +177,6 @@ fa-icon {
 // .modal-cust {
 //   max-width: 5rem;
 // }
+.btnEdit {
+  color: #fff;
+}

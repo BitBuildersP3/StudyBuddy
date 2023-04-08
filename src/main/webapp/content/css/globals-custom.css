@@ -509,7 +509,7 @@ select {
   border: 2px solid #bdbdbd;
 }
 
-.textInput{
+.textInput {
   border-radius: 10px;
   font-size: 1.3rem;
   padding: 1rem;
@@ -638,4 +638,12 @@ p {
 .icon {
   font-size: 3rem;
   color: #de9a38;
+}
+
+.edit-w {
+  width: 30rem;
+}
+
+.w-100 {
+  width: 100%;
 }

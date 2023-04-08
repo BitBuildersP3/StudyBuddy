@@ -60,7 +60,6 @@ export class IndexRegisterFileComponent implements OnInit {
           // Adquiere Usuario
           if (res.body?.user?.id != null) {
             this.userId = res.body?.user.id;
-          } else {
           }
 
           console.log('ID DE USUARIO', this.userId);

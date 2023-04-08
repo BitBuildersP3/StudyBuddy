@@ -7,16 +7,14 @@
       <div class="cont-cols" *ngIf="courses">
         <div class="col-class">
           <div>
-            <h1 data-cy="coursesDetailsHeading" class="titles">
-              {{ courses.name }}
-            </h1>
+            <h1 data-cy="coursesDetailsHeading" class="titles"><span>Curso:</span> {{ courses.name }}</h1>
           </div>
-          <jhi-modal class="modal-cust" [typeBtn]="'solo-txt'" [btnLabel]="'Agregar Sección'">
+          <jhi-modal *ngIf="isOwner" class="modal-cust" [typeBtn]="'solo-txt'" [btnLabel]="'Agregar clase'">
             <jhi-section-update
               [course]="courses"
               class="content-modal"
               (customEvent)="onSaveSection(courses.id)"
-              [title]="'Agregar Sección'"
+              [title]="'Agregar clase'"
               (closeEvent)="setIsOpen()"
             ></jhi-section-update>
           </jhi-modal>
@@ -31,20 +29,22 @@
                 <ng-container *ngIf="isActive === i">
                   <div class="d-flex icons-cont flex-row gap-2">
                     <!-- <jhi-modal [outterAction]="isOpen && 'hide'" class="modal-cust" [typeBtn]="'solo-icon'" [icon]="'pencil-alt'"> -->
-                    <jhi-modal class="modal-cust" [typeBtn]="'solo-icon'" [icon]="'pencil-alt'">
-                      <jhi-section-update
-                        (closeEvent)="setIsOpen()"
-                        [idSection]="currentSection.id"
-                        [course]="courses"
-                        class="content-modal"
-                        (customEvent)="onSaveSection(courses.id)"
-                        [title]="'Modificar sección'"
-                      ></jhi-section-update>
-                    </jhi-modal>
+                    <div *ngIf="isOwner" class="d-flex align-items-center gap-2 justify-content-center">
+                      <jhi-modal class="modal-cust" [typeBtn]="'solo-icon'" [icon]="'pencil-alt'">
+                        <jhi-section-update
+                          (closeEvent)="setIsOpen()"
+                          [idSection]="currentSection.id"
+                          [course]="courses"
+                          class="content-modal"
+                          (customEvent)="onSaveSection(courses.id)"
+                          [title]="'Modificar clase'"
+                        ></jhi-section-update>
+                      </jhi-modal>
 
-                    <a (click)="remove(section)">
-                      <fa-icon icon="trash"></fa-icon>
-                    </a>
+                      <a (click)="remove(section)">
+                        <fa-icon icon="trash"></fa-icon>
+                      </a>
+                    </div>
 
                     <span><fa-icon [ngClass]="isActive === i ? 'play' : 'd-none'" icon="play"></fa-icon></span>
                   </div>
@@ -54,28 +54,25 @@
           </ul>
 
           <div class="cont-btns">
-            <button type="submit" title="Volver" (click)="previousState()" class="btn btnEnrolled" data-cy="entityDetailsBackButton">
+            <button title="Volver" type="submit" (click)="previousState()" class="btn btnEdit" data-cy="entityDetailsBackButton">
               <fa-icon icon="arrow-left"></fa-icon>
-            </button>
-
-            <button type="button" title="Editar" [routerLink]="['/courses', courses.id, 'edit']" class="btn btnEdit">
-              <fa-icon icon="pencil-alt"></fa-icon>
             </button>
           </div>
         </div>
         <div class="col-content" *ngIf="currentSection">
-          <h1 data-cy="coursesDetailsHeading" class="titles">
-            {{ currentSection.name }}
-          </h1>
+          <h1 data-cy="coursesDetailsHeading" class="titles"><span>Clase:</span> {{ currentSection.name }}</h1>
           <!-- start for -->
           <ng-container *ngFor="let file of currentSection.files; let j = index">
             <!-- validation of type video -->
+            <ng-container *ngIf="file.type === 'video'" jhiUrlChange [url]="file.url1" (onUrlReady)="sanitizeUrl($event)">
+              <!--<p *ngIf="sanitizeUrl(file.url1)"></p>
             <ng-container *ngIf="file.type === 'video'" jhiUrlChange [url]="file.url1" (onUrlReady)="sanitizeUrl($event)">
               <!--<p *ngIf="sanitizeUrl(file.url1)"></p>
               <div class="cont-video">
                 <iframe
                   width="100%"
                   height="100%"
+                  [src]=""
                   [src]=""
                   title="YouTube video player"
                   frameborder="0"
@@ -239,13 +236,11 @@
           <!-- constant content -->
 
           <ng-container *ngIf="filesLength < 1">
-            <p>Esta sección no contiene archivos validos o disponibles.</p>
-            <p>Curso {{ courses.id }} Clase {{ currentSection.id }}</p>
-            <jhi-modal title="Salir." class="modal-cust" [btnLabel]="'Agregar files'" [typeBtn]="'solo-txt'">
+            <p>Esta clase no contiene archivos validos o disponibles.</p>
+
+            <jhi-modal *ngIf="isOwner" class="modal-cust" [btnLabel]="'Agregar Archivos'" [typeBtn]="'solo-txt'">
               <jhi-files-manager class="comp-filemanager" [idCourse]="courses.id" [idSection]="currentSection.id"></jhi-files-manager>
             </jhi-modal>
-
-            <span>Esta sección no tiene archivos disponibles o válidos</span>
             <span *ngIf="currentSection.creationDate"><b>Fecha de publicación:</b> {{ currentSection.creationDate }}</span>
             <span><b>Descripción:</b> {{ currentSection.description }}</span>
           </ng-container>
@@ -259,11 +254,13 @@
 <ng-template #noSections>
   <div class="wapper-no-cont">
     <div class="cont-title">
-      <h1>Debe de agregar secciónes al curso</h1>
+      <h1>Este curso no cuenta con clases disponibles</h1>
 
-      <jhi-modal class="modal-cust" [typeBtn]="'solo-txt'" [btnLabel]="'Agregar Sección'">
-        <jhi-section-update [course]="courses" class="content-modal" [title]="'Agregar Sección'"></jhi-section-update>
-      </jhi-modal>
+      <div *ngIf="isOwner" class="cust-btn w-100 d-flex align-items-center justify-content-center">
+        <jhi-modal class="modal-cust" [typeBtn]="'solo-txt'" [btnLabel]="'Agregar clase'">
+          <jhi-section-update [course]="courses" class="content-modal" [title]="'Agregar clase'"></jhi-section-update>
+        </jhi-modal>
+      </div>
       <fa-icon class="icon shake" icon="circle-exclamation"></fa-icon>&nbsp;
     </div>
   </div>
