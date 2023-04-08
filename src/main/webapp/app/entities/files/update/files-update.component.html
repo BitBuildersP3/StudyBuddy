@@ -31,7 +31,7 @@
           ></textarea>
         </div>
 
-        <div class="row mb-3">
+        <div class="row mb-3" style="display: none;">
           <label class="form-label" for="field_type">Tipo:</label>
           <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" [readonly]="true" />
         </div>
@@ -50,8 +50,10 @@
 
         <ng-container *ngIf=" typeFile === 'own'">
 
+          <div class="row mb-3 cloudBotton">
           <!-- Boton de Cloudinay -->
-          <jhi-cloudinary-button (urlChanged)="myURLFromCloudinary($event)" [text]="$any('Subir Archivo')"> </jhi-cloudinary-button>
+          <jhi-cloudinary-button  (urlChanged)="myURLFromCloudinary($event)" [text]="$any('Resubir Archivo')"> </jhi-cloudinary-button>
+          </div>
 
         </ng-container>
 
@@ -79,20 +81,15 @@
           <!-- <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" /> -->
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_publishDate">Fecha de publicación:</label>
-          <input
-            type="text"
-            class="form-control"
-            name="publishDate"
-            id="field_publishDate"
-            data-cy="publishDate"
-            formControlName="publishDate"
-            [readonly]="true"
-          />
-        </div>
+
 
         <div class="row mb-3">
+          <label class="form-label"  for="field_publishDate">Fecha de subida: </label>
+          <input type="text" class="form-control" name="publishDate" id="field_publishDate" data-cy="publishDate" formControlName="publishDate" />
+        </div>
+
+
+        <div class="row mb-3" style="display: none;">
           <label class="form-label" for="field_section">ID clase asociada: </label>
           <select
             class="form-control"
