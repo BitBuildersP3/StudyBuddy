@@ -8,6 +8,7 @@ import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/conf
 import { EntityArrayResponseType, ExtraUserInfoService } from '../service/extra-user-info.service';
 import { ExtraUserInfoDeleteDialogComponent } from '../delete/extra-user-info-delete-dialog.component';
 import { SortService } from 'app/shared/sort/sort.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'jhi-extra-user-info',
@@ -26,12 +27,15 @@ export class ExtraUserInfoComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected sortService: SortService,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private titleService: Title
   ) {}
 
   trackId = (_index: number, item: IExtraUserInfo): number => this.extraUserInfoService.getExtraUserInfoIdentifier(item);
 
   ngOnInit(): void {
+    this.titleService.setTitle('Información del Usuario');
+
     this.load();
   }
 

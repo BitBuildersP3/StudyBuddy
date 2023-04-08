@@ -13,6 +13,7 @@ import { CoursesService, EntityArrayResponseType } from '../service/courses.serv
 import { CoursesFormGroup, CoursesFormService } from '../update/courses-form.service';
 import { HttpResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'jhi-courses',
@@ -39,12 +40,14 @@ export class CoursesComponent implements OnInit {
 
     protected sortService: SortService,
     protected modalService: NgbModal,
-    protected extraUser: ExtraUserInfoService
+    protected extraUser: ExtraUserInfoService,
+    private titleService: Title
   ) {}
 
   trackId = (_index: number, item: ICourses): number => this.coursesService.getCoursesIdentifier(item);
 
   ngOnInit(): void {
+    this.titleService.setTitle('Cursos Existentes');
     this.load();
     this.extraUser.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {

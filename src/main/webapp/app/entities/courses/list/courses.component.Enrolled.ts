@@ -12,6 +12,7 @@ import { CoursesDeleteDialogComponent } from '../delete/courses-delete-dialog.co
 import { CoursesService, EntityArrayResponseType } from '../service/courses.service';
 import { CoursesFormGroup, CoursesFormService } from '../update/courses-form.service';
 import { HttpResponse } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'jhi-courses',
@@ -37,12 +38,15 @@ export class CoursesComponentEnrolled implements OnInit {
 
     protected sortService: SortService,
     protected modalService: NgbModal,
-    protected extraUser: ExtraUserInfoService
+    protected extraUser: ExtraUserInfoService,
+    private titleService: Title
   ) {}
 
   trackId = (_index: number, item: ICourses): number => this.coursesService.getCoursesIdentifier(item);
 
   ngOnInit(): void {
+    this.titleService.setTitle('Cursos Matriculados');
+
     this.extraUser.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {
         // @ts-ignore

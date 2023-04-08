@@ -54,16 +54,6 @@ export class SectionUpdateComponent implements OnInit {
         this.loadRelationshipsOptions();
       });
     }
-
-    // this.activatedRoute.data.subscribe(({ section }) => {
-    //   this.section = section;
-
-    //   if (section) {
-    //     this.updateForm(section);
-    //   }
-
-    //   this.loadRelationshipsOptions();
-    // });
   }
 
   previousState(): void {
@@ -104,13 +94,9 @@ export class SectionUpdateComponent implements OnInit {
   protected onSaveSuccess(): void {
     this.editForm.reset();
     this.customEvent.emit();
-
-    // this.previousState();
   }
 
-  protected onSaveError(): void {
-    // Api for inheritance.
-  }
+  protected onSaveError(): void {}
 
   protected onSaveFinalize(): void {
     this.isSaving = false;
@@ -119,7 +105,6 @@ export class SectionUpdateComponent implements OnInit {
   protected updateForm(section: ISection): void {
     this.section = section;
     this.sectionFormService.resetForm(this.editForm, section);
-
     this.coursesSharedCollection = this.coursesService.addCoursesToCollectionIfMissing<ICourses>(
       this.coursesSharedCollection,
       section.courses

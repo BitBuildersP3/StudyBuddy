@@ -14,6 +14,7 @@ import { CategoryService } from 'app/entities/category/service/category.service'
 import { EntityResponseType, ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'jhi-courses-update',
@@ -36,7 +37,8 @@ export class CoursesUpdateComponent implements OnInit {
     protected categoryService: CategoryService,
     protected activatedRoute: ActivatedRoute,
     protected extraUser: ExtraUserInfoService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) {
     this.ownerName = '';
   }
@@ -46,12 +48,12 @@ export class CoursesUpdateComponent implements OnInit {
   compareCategory = (o1: ICategory | null, o2: ICategory | null): boolean => this.categoryService.compareCategory(o1, o2);
 
   ngOnInit(): void {
+    this.titleService.setTitle('Actualizar curso');
     this.activatedRoute.data.subscribe(({ courses }) => {
       this.courses = courses;
       if (courses) {
         this.updateForm(courses);
       }
-
       this.loadRelationshipsOptions();
     });
 

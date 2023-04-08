@@ -8,6 +8,7 @@ import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/conf
 import { EntityArrayResponseType, EventsService } from '../service/events.service';
 import { EventsDeleteDialogComponent } from '../delete/events-delete-dialog.component';
 import { SortService } from 'app/shared/sort/sort.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'jhi-events',
@@ -25,12 +26,14 @@ export class EventsComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected sortService: SortService,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private titleService: Title
   ) {}
 
   trackId = (_index: number, item: IEvents): number => this.eventsService.getEventsIdentifier(item);
 
   ngOnInit(): void {
+    this.titleService.setTitle('Eventos');
     this.load();
   }
 

@@ -9,6 +9,8 @@ import { EntityArrayResponseType, FilesService } from '../service/files.service'
 import { FilesDeleteDialogComponent } from '../delete/files-delete-dialog.component';
 import { SortService } from 'app/shared/sort/sort.service';
 import Swal from 'sweetalert2';
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'jhi-files',
   templateUrl: './files.component.html',
@@ -25,12 +27,15 @@ export class FilesComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected sortService: SortService,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private titleService: Title
   ) {}
 
   trackId = (_index: number, item: IFiles): number => this.filesService.getFilesIdentifier(item);
 
   ngOnInit(): void {
+    this.titleService.setTitle('Listado de archivos');
+
     this.load();
   }
 

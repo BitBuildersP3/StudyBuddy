@@ -11,6 +11,7 @@ import { ISection } from 'app/entities/section/section.model';
 import { SectionService } from 'app/entities/section/service/section.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'jhi-files-update',
@@ -33,12 +34,15 @@ export class FilesUpdateComponent implements OnInit {
     protected filesFormService: FilesFormService,
     protected sectionService: SectionService,
     protected activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) {}
 
   compareSection = (o1: ISection | null, o2: ISection | null): boolean => this.sectionService.compareSection(o1, o2);
 
   ngOnInit(): void {
+    this.titleService.setTitle('Editar archivo');
+
     this.activatedRoute.data.subscribe(({ files }) => {
       this.files = files;
       if (files) {

@@ -3,6 +3,7 @@ import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { CoursesService } from '../entities/courses/service/courses.service';
 import { ExtraUserInfoService } from '../entities/extra-user-info/service/extra-user-info.service';
 import { switchMap } from 'rxjs';
+import { Title } from '@angular/platform-browser';
 
 interface CoursesData {
   image: string | null | undefined;
@@ -49,9 +50,11 @@ export class LandingComponent implements OnInit {
     },
   ];
 
-  constructor(private courseService: CoursesService, private extraUserInfo: ExtraUserInfoService) {}
+  constructor(private courseService: CoursesService, private extraUserInfo: ExtraUserInfoService, private titleService: Title) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('Página de Inicio');
+
     //trae el id del usuario
     this.extraUserInfo
       .getInfoByCurrentUser()
