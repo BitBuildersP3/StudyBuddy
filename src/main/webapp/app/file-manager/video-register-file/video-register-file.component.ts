@@ -96,6 +96,8 @@ export class VideoRegisterFileComponent implements OnInit {
 
   protected onSaveSuccess(): void {
     this.previousState();
+    // Para volver a curso
+    location.reload();
   }
 
   protected onSaveError(): void {

@@ -107,7 +107,8 @@ export class CoursesDetailComponent implements OnInit {
   delete(id: number): void {
     this.filesService.delete(id).subscribe(() => {
       console.log('delete' + id.toString());
-      window.location.href = '/courses/myCourses';
+      location.reload();
+      //window.location.href = '/courses/myCourses';
     });
   }
 }
