@@ -9,7 +9,7 @@
           <div>
             <h1 data-cy="coursesDetailsHeading" class="titles"><span>Curso:</span> {{ courses.name }}</h1>
           </div>
-          <jhi-modal class="modal-cust" [typeBtn]="'solo-txt'" [btnLabel]="'Agregar clase'">
+          <jhi-modal *ngIf="isOwner" class="modal-cust" [typeBtn]="'solo-txt'" [btnLabel]="'Agregar clase'">
             <jhi-section-update
               [course]="courses"
               class="content-modal"
@@ -29,20 +29,22 @@
                 <ng-container *ngIf="isActive === i">
                   <div class="d-flex icons-cont flex-row gap-2">
                     <!-- <jhi-modal [outterAction]="isOpen && 'hide'" class="modal-cust" [typeBtn]="'solo-icon'" [icon]="'pencil-alt'"> -->
-                    <jhi-modal class="modal-cust" [typeBtn]="'solo-icon'" [icon]="'pencil-alt'">
-                      <jhi-section-update
-                        (closeEvent)="setIsOpen()"
-                        [idSection]="currentSection.id"
-                        [course]="courses"
-                        class="content-modal"
-                        (customEvent)="onSaveSection(courses.id)"
-                        [title]="'Modificar clase'"
-                      ></jhi-section-update>
-                    </jhi-modal>
+                    <div *ngIf="isOwner" class="d-flex align-items-center gap-2 justify-content-center">
+                      <jhi-modal class="modal-cust" [typeBtn]="'solo-icon'" [icon]="'pencil-alt'">
+                        <jhi-section-update
+                          (closeEvent)="setIsOpen()"
+                          [idSection]="currentSection.id"
+                          [course]="courses"
+                          class="content-modal"
+                          (customEvent)="onSaveSection(courses.id)"
+                          [title]="'Modificar clase'"
+                        ></jhi-section-update>
+                      </jhi-modal>
 
-                    <a (click)="remove(section)">
-                      <fa-icon icon="trash"></fa-icon>
-                    </a>
+                      <a (click)="remove(section)">
+                        <fa-icon icon="trash"></fa-icon>
+                      </a>
+                    </div>
 
                     <span><fa-icon [ngClass]="isActive === i ? 'play' : 'd-none'" icon="play"></fa-icon></span>
                   </div>
@@ -168,11 +170,9 @@
           <ng-container *ngIf="filesLength < 1">
             <p>Esta clase no contiene archivos validos o disponibles.</p>
 
-            <jhi-modal class="modal-cust" [btnLabel]="'Agregar Archivos'" [typeBtn]="'solo-txt'">
+            <jhi-modal *ngIf="isOwner" class="modal-cust" [btnLabel]="'Agregar Archivos'" [typeBtn]="'solo-txt'">
               <jhi-files-manager class="comp-filemanager" [idCourse]="courses.id" [idSection]="currentSection.id"></jhi-files-manager>
             </jhi-modal>
-
-            <span>Esta clase no tiene archivos disponibles o válidos</span>
             <span *ngIf="currentSection.creationDate"><b>Fecha de publicación:</b> {{ currentSection.creationDate }}</span>
             <span><b>Descripción:</b> {{ currentSection.description }}</span>
           </ng-container>
