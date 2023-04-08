@@ -1,54 +1,97 @@
-<!-- lista -->
-<h2 class="d-flex justify-content-center" data-cy="filesDetailsHeading"><span>Archivo</span></h2>
-<jhi-alert-error></jhi-alert-error>
-<jhi-alert></jhi-alert>
-
-<div class="principalConteiner">
-  <div class="item-cont" *ngIf="files">
-    <div class="secondConteiner">
-      <div class="card-image">
-        <img class="imgg" [src]="" alt="" />
-      </div>
-      <div class="txt-cont">
-        <div class="info">
-          <h5>
-            <p>Nombre : {{ files.name }}</p>
-
-            <span>
-              <p class="sub">Tipo:{{ files.type }}</p>
-            </span>
-            <span>
-              <p class="sub">Url 1: {{ files.url1 }}</p>
-            </span>
-            <span class="sub"> Url 2: {{ files.url2 }} </span>
-            <span class="sub">Url 3: {{ files.url3 }} </span>
-
-            <span class="sub">Estado: {{ files.status }} </span>
-            <span class="sub">Extracto: {{ files.excerpt }} </span>
-            <span class="sub">Fecha de publicación: {{ files.publishDate | formatMediumDate }} </span>
-            <span>Clase</span>
-            <div *ngIf="files.section">
-              <a [routerLink]="['/section', files.section.id, 'view']">{{ files.section.id }}</a>
-            </div>
-          </h5>
-        </div>
-      </div>
-
-      <!-- Botones -->
-      <div class="botones"></div>
-    </div>
-  </div>
-</div>
-<!-- fin lista  -->
-
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="files">
-      <button type="submit" title="Volver" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;
+      <h2 data-cy="filesDetailsHeading"><span >Archivo</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span >ID:</span></dt>
+
+        <dd>
+          <span>{{ files.id }}</span>
+        </dd>
+
+
+        <dt><span >Nombre:</span></dt>
+        <dd>
+          <span>{{ files.name }}</span>
+        </dd>
+
+        <dt><span >Descripción:</span></dt>
+        <dd>
+          <span>{{ files.excerpt }}</span>
+        </dd>
+
+
+        <dt><span >Fecha de subida:</span></dt>
+        <dd>
+          <span>{{ files.publishDate | formatMediumDate }}</span>
+        </dd>
+
+
+
+        <ng-container *ngIf=" files.type === 'index' ">
+
+
+
+          <dt><span >Url 1:</span></dt>
+          <dd>
+            <span>{{ files.url1 }}</span>
+          </dd>
+
+          <dt><span >Url 2:</span></dt>
+          <dd>
+            <span>{{ files.url2 }}</span>
+          </dd>
+
+          <dt><span >Url 3:</span></dt>
+          <dd>
+            <span>{{ files.url3 }}</span>
+          </dd>
+
+        </ng-container>
+
+        <ng-container *ngIf=" files.type === 'own' || files.type === 'video' ">
+
+
+          <dt><span >Url 1:</span></dt>
+          <dd>
+            <span>{{ files.url1 }}</span>
+          </dd>
+
+        </ng-container>
+
+
+        <dt style="display: none;" ><span>Clase:</span></dt>
+        <dd  style="display: none;">
+          <div *ngIf="files.section">
+            <a [routerLink]="['/section', files.section.id, 'view']">{{ files.section.id }}</a>
+          </div>
+        </dd>
+
+        <dt  style="display: none;"><span >Estado:</span></dt>
+        <dd style="display: none;">
+          <span>{{ files.status }}</span>
+        </dd>
+
+        <dt  style="display: none;"><span >Tipo:</span></dt>
+        <dd  style="display: none;">
+          <span>{{ files.type }}</span>
+        </dd>
+
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span >Volver</span>
       </button>
-      <button type="button" title="Editar" [routerLink]="['/files', files.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;
+
+      <button type="button" [routerLink]="['/files', files.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span >Editar</span>
       </button>
     </div>
   </div>

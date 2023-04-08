@@ -509,6 +509,13 @@ select {
   border: 2px solid #bdbdbd;
 }
 
+.textInput{
+  border-radius: 10px;
+  font-size: 1.3rem;
+  padding: 1rem;
+  border: 2px solid #bdbdbd;
+}
+
 .light-blue-txt {
   color: #3e8acc;
 }

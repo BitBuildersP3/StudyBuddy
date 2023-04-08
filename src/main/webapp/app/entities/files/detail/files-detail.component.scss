@@ -1,0 +1,93 @@
+// Define las variables de color
+$color-principal: #15537d;
+$color-secundario: #6dabd5;
+$color-alertas: #983f56;
+$color-bordes: #de9a38;
+$color-fondoBlanc: #dfe2ea;
+
+
+// Estilos para el contenedor principal
+.d-flex {
+
+  margin-top: 30px;
+  text-align: center;
+
+  .col-8 {
+    background-color: $color-fondoBlanc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+
+    // Estilos para los títulos
+    h2 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: bold;
+
+      span {
+        color: $color-principal;
+      }
+    }
+
+    // Estilos para las alertas
+    .jhi-alert-error, .jhi-alert {
+      background-color: $color-alertas;
+      border-color: $color-alertas;
+      color: $color-principal;
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+
+    // Estilos para los detalles del archivo
+    .jh-entity-details {
+      dt {
+
+        font-weight: bold;
+        margin-top: 20px;
+        span {
+          color: $color-principal;
+
+        }
+      }
+      dd {
+        margin-top: 20px;
+        span {
+          color: black;
+        }
+      }
+    }
+
+    // Estilos para los botones
+    button {
+      margin-top: 20px;
+
+      &:first-of-type {
+        margin-right: 10px;
+      }
+
+      .fa-icon {
+        margin-right: 5px;
+      }
+
+      &.btn-info {
+        background-color: $color-principal;
+        border-color: $color-principal;
+
+        &:hover, &:focus {
+          background-color: darken($color-principal, 10%);
+          border-color: darken($color-principal, 10%);
+        }
+      }
+
+      &.btn-primary {
+        background-color: $color-secundario;
+        border-color: $color-secundario;
+
+        &:hover, &:focus {
+          background-color: darken($color-secundario, 10%);
+          border-color: darken($color-secundario, 10%);
+        }
+      }
+    }
+  }
+}

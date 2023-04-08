@@ -25,6 +25,9 @@ export class FilesUpdateComponent implements OnInit {
 
   editForm: FilesFormGroup = this.filesFormService.createFilesFormGroup();
 
+  typeFile: any | null = null;
+
+  cloudURL: string = 'Crema';
   constructor(
     protected filesService: FilesService,
     protected filesFormService: FilesFormService,
@@ -40,6 +43,8 @@ export class FilesUpdateComponent implements OnInit {
       this.files = files;
       if (files) {
         this.updateForm(files);
+        this.typeFile = this.files?.type;
+        console.log("EL TIPO ES:"+ this.typeFile)
       }
 
       this.loadRelationshipsOptions();
@@ -54,6 +59,12 @@ export class FilesUpdateComponent implements OnInit {
     this.isSaving = true;
     const files = this.filesFormService.getFiles(this.editForm);
     if (files.id !== null) {
+
+      if (this.typeFile == 'own') {
+      // Cambio de URL
+      files.url1 = this.cloudURL;
+      }
+
       this.subscribeToSaveResponse(this.filesService.update(files));
       Swal.fire({
         title: '¿Está seguro que desea modificar el archivo?',
@@ -119,4 +130,10 @@ export class FilesUpdateComponent implements OnInit {
       .pipe(map((sections: ISection[]) => this.sectionService.addSectionToCollectionIfMissing<ISection>(sections, this.files?.section)))
       .subscribe((sections: ISection[]) => (this.sectionsSharedCollection = sections));
   }
+
+  myURLFromCloudinary(url: string) {
+    console.log('URL a Guardar: ' + url);
+    return (this.cloudURL = url);
+  }
+
 }
