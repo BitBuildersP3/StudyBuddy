@@ -73,6 +73,10 @@ export class CoursesService {
     return courses.id;
   }
 
+  getIsOwner(id: number): Observable<any> {
+    return this.http.get<any>(`${this.resourceUrl}/isOwner/${id}`, { observe: 'response' });
+  }
+
   compareCourses(o1: Pick<ICourses, 'id'> | null, o2: Pick<ICourses, 'id'> | null): boolean {
     return o1 && o2 ? this.getCoursesIdentifier(o1) === this.getCoursesIdentifier(o2) : o1 === o2;
   }
