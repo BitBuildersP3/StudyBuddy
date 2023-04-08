@@ -23,6 +23,8 @@ export class FilesUpdateComponent implements OnInit {
 
   editForm: FilesFormGroup = this.filesFormService.createFilesFormGroup();
 
+  typeFile: any | null = null;
+
   constructor(
     protected filesService: FilesService,
     protected filesFormService: FilesFormService,
@@ -37,6 +39,8 @@ export class FilesUpdateComponent implements OnInit {
       this.files = files;
       if (files) {
         this.updateForm(files);
+        this.typeFile = this.files?.type;
+        console.log("EL TIPO ES:"+ this.typeFile)
       }
 
       this.loadRelationshipsOptions();

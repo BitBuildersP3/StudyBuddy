@@ -41,6 +41,16 @@
           <input type="text" class="form-control" name="url1" id="field_url1" data-cy="url1" formControlName="url1" />
         </div>
 
+
+
+        <p let queso = typeFile>Queso Crema</p>
+
+        <ng-container *ngIf=" typeFile === 'video'">
+
+          <p>hola</p>
+
+        </ng-container>
+
         <div class="row mb-3">
           <label class="form-label" for="field_url2">Url 2:</label>
           <input type="text" class="form-control" name="url2" id="field_url2" data-cy="url2" formControlName="url2" />
