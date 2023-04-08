@@ -25,7 +25,7 @@ export class FilesUpdateComponent implements OnInit {
 
   typeFile: any | null = null;
 
-  cloudURL: string = 'No se ha subido un archivo';
+  cloudURL: string = 'Crema';
   constructor(
     protected filesService: FilesService,
     protected filesFormService: FilesFormService,
@@ -57,8 +57,11 @@ export class FilesUpdateComponent implements OnInit {
     const files = this.filesFormService.getFiles(this.editForm);
     if (files.id !== null) {
 
+      if (this.typeFile == 'own') {
       // Cambio de URL
       files.url1 = this.cloudURL;
+      }
+
       this.subscribeToSaveResponse(this.filesService.update(files));
     } else {
       this.subscribeToSaveResponse(this.filesService.create(files));
