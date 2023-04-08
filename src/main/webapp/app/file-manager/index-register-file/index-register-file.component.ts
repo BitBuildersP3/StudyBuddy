@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { finalize, map } from 'rxjs/operators';
 import { FilesFormGroup, IndexRegisterFileService } from './index-register-file.service';
+import Swal from 'sweetalert2';
 
 import {
   EntityResponseType,
@@ -98,9 +99,17 @@ export class IndexRegisterFileComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    this.previousState();
-    // Para volver a curso
-    location.reload();
+    Swal.fire({
+      icon: 'success',
+      title: 'Se registraron correctamente los enlaces.',
+      showConfirmButton: true,
+      timer: 2000,
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.previousState();
+        location.reload();
+      }
+    });
   }
 
   protected onSaveError(): void {
