@@ -44,7 +44,7 @@ export class FilesUpdateComponent implements OnInit {
       if (files) {
         this.updateForm(files);
         this.typeFile = this.files?.type;
-        console.log("EL TIPO ES:"+ this.typeFile)
+        console.log('EL TIPO ES:' + this.typeFile);
       }
 
       this.loadRelationshipsOptions();
@@ -59,10 +59,9 @@ export class FilesUpdateComponent implements OnInit {
     this.isSaving = true;
     const files = this.filesFormService.getFiles(this.editForm);
     if (files.id !== null) {
-
       if (this.typeFile == 'own') {
-      // Cambio de URL
-      files.url1 = this.cloudURL;
+        // Cambio de URL
+        files.url1 = this.cloudURL;
       }
 
       this.subscribeToSaveResponse(this.filesService.update(files));
@@ -78,19 +77,17 @@ export class FilesUpdateComponent implements OnInit {
           Swal.fire({
             icon: 'success',
             title: 'Modificado correctamente',
-            showConfirmButton: false,
+            showConfirmButton: true,
             timer: 3000,
+          }).then(result => {
+            if (result.isConfirmed) {
+              this.previousState();
+            }
           });
         }
       });
     } else {
       this.subscribeToSaveResponse(this.filesService.create(files));
-      Swal.fire({
-        icon: 'success',
-        title: 'Curso creado correctamente',
-        showConfirmButton: false,
-        timer: 3000,
-      });
     }
   }
 
@@ -102,7 +99,7 @@ export class FilesUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    this.previousState();
+    //this.previousState();
   }
 
   protected onSaveError(): void {
@@ -135,5 +132,4 @@ export class FilesUpdateComponent implements OnInit {
     console.log('URL a Guardar: ' + url);
     return (this.cloudURL = url);
   }
-
 }

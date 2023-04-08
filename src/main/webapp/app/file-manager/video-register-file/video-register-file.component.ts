@@ -97,14 +97,15 @@ export class VideoRegisterFileComponent implements OnInit {
   protected onSaveSuccess(): void {
     Swal.fire({
       icon: 'success',
-      title: 'Guardado correctamente',
-      showConfirmButton: false,
-      timer: 3000,
+      title: 'Se registró correctamente su video.',
+      showConfirmButton: true,
+      timer: 4000,
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.previousState();
+        location.reload();
+      }
     });
-
-    this.previousState();
-    // Para volver a curso
-    location.reload();
   }
 
   protected onSaveError(): void {
