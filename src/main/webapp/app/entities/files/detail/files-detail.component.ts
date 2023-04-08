@@ -6,6 +6,7 @@ import { IFiles } from '../files.model';
 @Component({
   selector: 'jhi-files-detail',
   templateUrl: './files-detail.component.html',
+  styleUrls: ['./files-detail.component.scss'],
 })
 export class FilesDetailComponent implements OnInit {
   files: IFiles | null = null;
