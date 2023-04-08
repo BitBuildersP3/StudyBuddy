@@ -1,28 +1,28 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
-    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+    <form name="editForm" role="form" novalidate class="custom-form align-items-center" (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading">Editar Archivos</h2>
 
-      <div>
+      <div class="cardForm">
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+        <div class="mb-3" *ngIf="editForm.controls.id.value !== null">
           <label class="form-label" for="field_id">ID: </label>
           <input type="number" class="form-control myIdInput" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>
 
         <div class="separador"></div>
 
-        <div class="row mb-3">
+        <div class="mb-3">
           <label class="form-label" for="field_name">Nombre del archivo:</label>
           <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
         </div>
 
-        <div class="row mb-3">
+        <div class="mb-3">
           <label class="form-label" for="field_excerpt">Descripción:</label>
           <textarea
             type="text"
-            class="form-control"
+            class="textInput"
             name="excerpt"
             id="field_excerpt"
             data-cy="excerpt"
@@ -31,42 +31,52 @@
           ></textarea>
         </div>
 
-        <div class="row mb-3">
+        <div class="mb-3" style="display: none">
           <label class="form-label" for="field_type">Tipo:</label>
           <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" [readonly]="true" />
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_url1">Url 1:</label>
-          <input type="text" class="form-control" name="url1" id="field_url1" data-cy="url1" formControlName="url1" />
-        </div>
+        <!-- URL 1 condicional-->
+        <ng-container *ngIf="typeFile === 'index' || typeFile === 'video'">
+          <div class="mb-3">
+            <label class="form-label" for="field_url1">Url 1:</label>
+            <input type="text" class="form-control" name="url1" id="field_url1" data-cy="url1" formControlName="url1" />
+          </div>
+        </ng-container>
 
-        <div class="row mb-3">
+        <ng-container *ngIf="typeFile === 'own'">
+          <div class="mb-3 cloudBotton">
+            <!-- Boton de Cloudinay -->
+            <jhi-cloudinary-button (urlChanged)="myURLFromCloudinary($event)" [text]="$any('Resubir Archivo')"> </jhi-cloudinary-button>
+          </div>
+        </ng-container>
+
+        <div class="mb-3">
           <label class="form-label" for="field_url2">Url 2:</label>
           <input type="text" class="form-control" name="url2" id="field_url2" data-cy="url2" formControlName="url2" />
         </div>
 
-        <div class="row mb-3">
+        <div class="mb-3">
           <label class="form-label" for="field_url3">Url 3:</label>
           <input type="text" class="form-control" name="url3" id="field_url3" data-cy="url3" formControlName="url3" />
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_status">Estado:</label>
+        <div class="mb-3">
+          <label class="label" for="field_status">Estado:</label>
 
-          <select type="text" class="form-control" id="field_status" name="status" formControlName="status" data-cy="status">
+          <select type="text" class="b input" id="field_status" name="status" formControlName="status" data-cy="status">
             <!--<option [defaultSelected]="true">-</option>-->
 
-            <option [defaultSelected]="true">ACTIVE</option>
-            <option>INACTIVE</option>
+            <option [defaultSelected]="true">ACTIVO</option>
+            <option>INACTIVO</option>
           </select>
 
           <!-- Anterio  /> -->
           <!-- <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" /> -->
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_publishDate">Fecha de publicación:</label>
+        <div class="mb-3">
+          <label class="form-label" for="field_publishDate">Fecha de subida: </label>
           <input
             type="text"
             class="form-control"
@@ -74,13 +84,13 @@
             id="field_publishDate"
             data-cy="publishDate"
             formControlName="publishDate"
-            [readonly]="true"
           />
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_section">ID clase asociada: </label>
+        <div class="mb-3" style="display: none">
+          <label class="label" for="field_section">ID clase asociada: </label>
           <select
+            class="b input"
             class="form-control"
             id="field_section"
             data-cy="section"

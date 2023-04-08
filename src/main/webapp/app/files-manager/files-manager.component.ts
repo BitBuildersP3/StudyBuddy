@@ -8,6 +8,8 @@ export class FilesManagerComponent implements OnInit {
   @Input() idSection: any;
   @Input() idCourse: any;
 
+  activeButton: string = 'video';
+
   selectedFileComponent: string = 'video';
   constructor() {}
 
@@ -15,13 +17,16 @@ export class FilesManagerComponent implements OnInit {
 
   showVideoFile() {
     this.selectedFileComponent = 'video';
+    this.activeButton = 'video';
   }
 
   showIndexedFile() {
     this.selectedFileComponent = 'indexed';
+    this.activeButton = 'indexed';
   }
 
   showOwnFile() {
     this.selectedFileComponent = 'own';
+    this.activeButton = 'own';
   }
 }

@@ -9,6 +9,8 @@ import { IFiles } from '../files.model';
 import { FilesService } from '../service/files.service';
 import { ISection } from 'app/entities/section/section.model';
 import { SectionService } from 'app/entities/section/service/section.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'jhi-files-update',
@@ -23,11 +25,15 @@ export class FilesUpdateComponent implements OnInit {
 
   editForm: FilesFormGroup = this.filesFormService.createFilesFormGroup();
 
+  typeFile: any | null = null;
+
+  cloudURL: string = 'Crema';
   constructor(
     protected filesService: FilesService,
     protected filesFormService: FilesFormService,
     protected sectionService: SectionService,
-    protected activatedRoute: ActivatedRoute
+    protected activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   compareSection = (o1: ISection | null, o2: ISection | null): boolean => this.sectionService.compareSection(o1, o2);
@@ -37,6 +43,8 @@ export class FilesUpdateComponent implements OnInit {
       this.files = files;
       if (files) {
         this.updateForm(files);
+        this.typeFile = this.files?.type;
+        console.log('EL TIPO ES:' + this.typeFile);
       }
 
       this.loadRelationshipsOptions();
@@ -51,7 +59,33 @@ export class FilesUpdateComponent implements OnInit {
     this.isSaving = true;
     const files = this.filesFormService.getFiles(this.editForm);
     if (files.id !== null) {
+      if (this.typeFile == 'own') {
+        // Cambio de URL
+        files.url1 = this.cloudURL;
+      }
+
       this.subscribeToSaveResponse(this.filesService.update(files));
+      Swal.fire({
+        title: '¿Está seguro que desea modificar el archivo?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí!',
+      }).then(result => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Modificado correctamente',
+            showConfirmButton: true,
+            timer: 3000,
+          }).then(result => {
+            if (result.isConfirmed) {
+              this.previousState();
+            }
+          });
+        }
+      });
     } else {
       this.subscribeToSaveResponse(this.filesService.create(files));
     }
@@ -65,7 +99,7 @@ export class FilesUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    this.previousState();
+    //this.previousState();
   }
 
   protected onSaveError(): void {
@@ -92,5 +126,10 @@ export class FilesUpdateComponent implements OnInit {
       .pipe(map((res: HttpResponse<ISection[]>) => res.body ?? []))
       .pipe(map((sections: ISection[]) => this.sectionService.addSectionToCollectionIfMissing<ISection>(sections, this.files?.section)))
       .subscribe((sections: ISection[]) => (this.sectionsSharedCollection = sections));
+  }
+
+  myURLFromCloudinary(url: string) {
+    console.log('URL a Guardar: ' + url);
+    return (this.cloudURL = url);
   }
 }

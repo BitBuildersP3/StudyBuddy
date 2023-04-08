@@ -10,7 +10,7 @@ import { EntityResponseType, ExtraUserInfoService } from '../../entities/extra-u
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { finalize, map } from 'rxjs/operators';
-
+import Swal from 'sweetalert2';
 import { VideoRegisterFileService } from './video-register-file.service';
 
 @Component({
@@ -55,7 +55,6 @@ export class VideoRegisterFileComponent implements OnInit {
           // Adquiere Usuario
           if (res.body?.user?.id != null) {
             this.userId = res.body?.user.id;
-          } else {
           }
 
           console.log('ID DE USUARIO', this.userId);
@@ -77,7 +76,7 @@ export class VideoRegisterFileComponent implements OnInit {
       this.subscribeToSaveResponse(this.filesService.update(files));
     } else {
       // Parametros QUEMADOS
-      files.status = 'ACTIVE';
+      files.status = 'ACTIVO';
       files.type = 'video';
       files.url2 = 'NO URL 2';
       files.url3 = 'NO URL 3';
@@ -95,7 +94,17 @@ export class VideoRegisterFileComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    this.previousState();
+    Swal.fire({
+      icon: 'success',
+      title: 'Se registró correctamente su video.',
+      showConfirmButton: true,
+      timer: 4000,
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        this.previousState();
+        location.reload();
+      }
+    });
   }
 
   protected onSaveError(): void {

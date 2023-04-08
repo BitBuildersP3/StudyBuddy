@@ -1,3 +1,5 @@
+$color-secundario: #6dabd5;
+
 .files-manager-container {
   background-color: #fff;
   padding: 20px;
@@ -42,4 +44,9 @@ button:hover {
 
 .file-component-container {
   margin-top: 20px;
+}
+
+.active-button {
+  background-color: $color-secundario;
+  color: white;
 }

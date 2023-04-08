@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { SectionService } from 'app/entities/section/service/section.service';
 import { FilesService } from '../../files/service/files.service';
 import { ITEM_DELETED_EVENT } from '../../../config/navigation.constants';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'jhi-courses-detail',
@@ -107,11 +108,30 @@ export class CoursesDetailComponent implements OnInit {
   previousState(): void {
     window.history.back();
   }
-
+  // SweetAlert con reload
   delete(id: number): void {
-    this.filesService.delete(id).subscribe(() => {
-      console.log('delete' + id.toString());
-      window.location.href = '/courses/myCourses';
+    Swal.fire({
+      title: '¿Está seguro que desea eliminar el archivo?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí!',
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.filesService.delete(id).subscribe(() => {
+          console.log('delete' + id.toString());
+        });
+        Swal.fire({
+          icon: 'success',
+          title: 'Eliminado correctamente',
+          showConfirmButton: true,
+        }).then(result => {
+          if (result.isConfirmed) {
+            location.reload();
+          }
+        });
+      }
     });
   }
 }

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { finalize, map } from 'rxjs/operators';
 import { OwnRegisterFileService } from './own-register-file.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'jhi-own-register-file',
   templateUrl: './own-register-file.component.html',
@@ -78,7 +78,7 @@ export class OwnRegisterFileComponent implements OnInit {
       // Si no se a subido archivo.
       if (this.cloudURL != 'No se ha subido un archivo') {
         // Parametros QUEMADOS
-        files.status = 'ACTIVE';
+        files.status = 'ACTIVO';
         files.type = 'own';
         files.url1 = this.cloudURL;
         files.url2 = 'NO URL 2';
@@ -100,7 +100,17 @@ export class OwnRegisterFileComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    this.previousState();
+    Swal.fire({
+      icon: 'success',
+      title: 'Se registró correctamente su archivo.',
+      showConfirmButton: true,
+      timer: 4000,
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.previousState();
+        location.reload();
+      }
+    });
   }
 
   protected onSaveError(): void {

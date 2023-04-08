@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { finalize, map } from 'rxjs/operators';
 import { FilesFormGroup, IndexRegisterFileService } from './index-register-file.service';
+import Swal from 'sweetalert2';
 
 import {
   EntityResponseType,
@@ -59,7 +60,6 @@ export class IndexRegisterFileComponent implements OnInit {
           // Adquiere Usuario
           if (res.body?.user?.id != null) {
             this.userId = res.body?.user.id;
-          } else {
           }
 
           console.log('ID DE USUARIO', this.userId);
@@ -81,7 +81,7 @@ export class IndexRegisterFileComponent implements OnInit {
       this.subscribeToSaveResponse(this.filesService.update(files));
     } else {
       // Parametros QUEMADOS
-      files.status = 'ACTIVE';
+      files.status = 'ACTIVO';
       files.type = 'index';
 
       files.section = { id: this.idSection };
@@ -98,7 +98,17 @@ export class IndexRegisterFileComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    this.previousState();
+    Swal.fire({
+      icon: 'success',
+      title: 'Se registraron correctamente los enlaces.',
+      showConfirmButton: true,
+      timer: 2000,
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.previousState();
+        location.reload();
+      }
+    });
   }
 
   protected onSaveError(): void {

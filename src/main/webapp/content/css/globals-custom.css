@@ -51,10 +51,17 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin-left: 1rem;
 }
+.btnSave {
+  background-color: var(--skyBlue) !important;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-left: 1rem;
+}
 .btnEdit {
   background-color: var(--blue) !important;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-left: 1rem;
 }
 .btnDelete {
   background-color: var(--red) !important;
@@ -496,6 +503,13 @@
 }
 .custom-form input,
 select {
+  border-radius: 10px;
+  font-size: 1.3rem;
+  padding: 1rem;
+  border: 2px solid #bdbdbd;
+}
+
+.textInput {
   border-radius: 10px;
   font-size: 1.3rem;
   padding: 1rem;
