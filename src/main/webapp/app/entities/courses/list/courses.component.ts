@@ -119,6 +119,8 @@ export class CoursesComponent implements OnInit {
       .subscribe({
         next: (res: EntityArrayResponseType) => {
           this.onResponseSuccess(res);
+
+          this.router.navigate(['courses/myCourses']);
         },
       });
   }

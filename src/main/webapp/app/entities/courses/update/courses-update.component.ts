@@ -13,6 +13,8 @@ import { ICategory } from 'app/entities/category/category.model';
 import { CategoryService } from 'app/entities/category/service/category.service';
 import { EntityResponseType, ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'jhi-courses-update',
   templateUrl: './courses-update.component.html',
@@ -33,7 +35,8 @@ export class CoursesUpdateComponent implements OnInit {
     protected userService: UserService,
     protected categoryService: CategoryService,
     protected activatedRoute: ActivatedRoute,
-    protected extraUser: ExtraUserInfoService
+    protected extraUser: ExtraUserInfoService,
+    private router: Router
   ) {
     this.ownerName = '';
   }
@@ -60,7 +63,6 @@ export class CoursesUpdateComponent implements OnInit {
         if (login != null) {
           this.ownerName = login;
         }
-
         console.log(res.body);
       },
     });
@@ -85,10 +87,24 @@ export class CoursesUpdateComponent implements OnInit {
     if (courses.id !== null) {
       courses.users?.push({ id: this.idUser, login: this.ownerName });
       this.subscribeToSaveResponse(this.coursesService.partialUpdate(courses));
+      Swal.fire({
+        icon: 'success',
+        title: 'Curso modificado correctamente',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      this.router.navigate(['courses/myCourses']);
     } else {
       courses.ownerName = this.ownerName;
       courses.userId = this.idUser;
       this.subscribeToSaveResponse(this.coursesService.create(courses));
+      Swal.fire({
+        icon: 'success',
+        title: 'Curso creado correctamente',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      this.router.navigate(['courses/myCourses']);
     }
   }
 
@@ -99,9 +115,7 @@ export class CoursesUpdateComponent implements OnInit {
     });
   }
 
-  protected onSaveSuccess(): void {
-    this.previousState();
-  }
+  protected onSaveSuccess(): void {}
 
   protected onSaveError(): void {
     // Api for inheritance.

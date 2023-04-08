@@ -51,6 +51,12 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin-left: 1rem;
 }
+.btnSave {
+  background-color: var(--skyBlue) !important;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-left: 1rem;
+}
 .btnEdit {
   background-color: var(--blue) !important;
   border-radius: 5px;
