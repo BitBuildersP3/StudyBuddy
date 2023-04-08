@@ -81,7 +81,7 @@ export class IndexRegisterFileComponent implements OnInit {
       this.subscribeToSaveResponse(this.filesService.update(files));
     } else {
       // Parametros QUEMADOS
-      files.status = 'ACTIVE';
+      files.status = 'ACTIVO';
       files.type = 'index';
 
       files.section = { id: this.idSection };

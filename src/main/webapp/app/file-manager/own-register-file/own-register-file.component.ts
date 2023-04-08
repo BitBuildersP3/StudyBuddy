@@ -78,7 +78,7 @@ export class OwnRegisterFileComponent implements OnInit {
       // Si no se a subido archivo.
       if (this.cloudURL != 'No se ha subido un archivo') {
         // Parametros QUEMADOS
-        files.status = 'ACTIVE';
+        files.status = 'ACTIVO';
         files.type = 'own';
         files.url1 = this.cloudURL;
         files.url2 = 'NO URL 2';

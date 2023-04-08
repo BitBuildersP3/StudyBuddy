@@ -77,7 +77,7 @@ export class VideoRegisterFileComponent implements OnInit {
       this.subscribeToSaveResponse(this.filesService.update(files));
     } else {
       // Parametros QUEMADOS
-      files.status = 'ACTIVE';
+      files.status = 'ACTIVO';
       files.type = 'video';
       files.url2 = 'NO URL 2';
       files.url3 = 'NO URL 3';
