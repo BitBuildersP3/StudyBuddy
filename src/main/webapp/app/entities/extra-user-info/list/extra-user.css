@@ -1,0 +1,20 @@
+.card-image {
+  max-width: 11rem !important;
+  width: 25%;
+  flex-direction: row;
+  display: flex;
+  padding: 1rem;
+}
+.imgg {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.alin {
+  margin-top: 3rem;
+}
+.td {
+  background-color: blue;
+}

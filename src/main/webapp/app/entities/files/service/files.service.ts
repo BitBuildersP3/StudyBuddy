@@ -32,11 +32,15 @@ export class FilesService {
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
   create(files: NewFiles): Observable<EntityResponseType> {
+    // Siempre se pone la fecha en la que se modifico
+    files.publishDate = dayjs();
     const copy = this.convertDateFromClient(files);
     return this.http.post<RestFiles>(this.resourceUrl, copy, { observe: 'response' }).pipe(map(res => this.convertResponseFromServer(res)));
   }
 
   update(files: IFiles): Observable<EntityResponseType> {
+    // Siempre se pone la fecha en la que se modifico
+    files.publishDate = dayjs();
     const copy = this.convertDateFromClient(files);
     return this.http
       .put<RestFiles>(`${this.resourceUrl}/${this.getFilesIdentifier(files)}`, copy, { observe: 'response' })

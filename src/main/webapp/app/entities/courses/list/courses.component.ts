@@ -12,6 +12,7 @@ import { CoursesDeleteDialogComponent } from '../delete/courses-delete-dialog.co
 import { CoursesService, EntityArrayResponseType } from '../service/courses.service';
 import { CoursesFormGroup, CoursesFormService } from '../update/courses-form.service';
 import { HttpResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'jhi-courses',
@@ -29,6 +30,7 @@ export class CoursesComponent implements OnInit {
   editForm: CoursesFormGroup = this.coursesFormService.createCoursesFormGroup();
   previewURL: string = '';
   idUser: number = 0;
+  mostrarBoton = true;
   constructor(
     protected coursesService: CoursesService,
     protected activatedRoute: ActivatedRoute,
@@ -44,7 +46,6 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
-
     this.extraUser.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {
         // @ts-ignore
@@ -66,14 +67,12 @@ export class CoursesComponent implements OnInit {
   }
   enrolled(idCourse: ICourses): void {
     this.isSaving = true;
-
     if (idCourse.id !== null) {
       idCourse.users?.push({ id: this.idUser, login: this.ownerName });
       this.subscribeToSaveResponse(this.coursesService.update(idCourse));
     }
-    console.log(idCourse.users);
-    console.log(idCourse);
   }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICourses>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
@@ -81,7 +80,20 @@ export class CoursesComponent implements OnInit {
     });
   }
   protected onSaveSuccess(): void {
-    // TODO: Agregar sweetAlert
+    Swal.fire({
+      icon: 'success',
+      title: 'Matriculado correctamente',
+      showDenyButton: true,
+      denyButtonColor: '#6dabd5',
+      confirmButtonText: 'Seguir Matriculando',
+      denyButtonText: `Ir a mis cursos`,
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.router.navigate(['courses']);
+      } else if (result.isDenied) {
+        this.router.navigate(['courses/enrolled']);
+      }
+    });
   }
 
   protected onSaveError(e: any): void {

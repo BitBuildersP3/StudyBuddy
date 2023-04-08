@@ -4,6 +4,8 @@ import { ICourses } from '../courses.model';
 import { CoursesService } from '../service/courses.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SectionService } from 'app/entities/section/service/section.service';
+import { FilesService } from '../../files/service/files.service';
+import { ITEM_DELETED_EVENT } from '../../../config/navigation.constants';
 
 @Component({
   selector: 'jhi-courses-detail',
@@ -35,7 +37,8 @@ export class CoursesDetailComponent implements OnInit {
     private courseService: CoursesService,
     private _sanitizer: DomSanitizer,
     private cdRef: ChangeDetectorRef,
-    private sectionService: SectionService
+    private sectionService: SectionService,
+    protected filesService: FilesService
   ) {}
 
   setIsOpen(): void {
@@ -84,7 +87,7 @@ export class CoursesDetailComponent implements OnInit {
   }
 
   sanitizeUrl(url: string): void {
-    var dirtyUrl = 'https://www.youtube.com/embed/' + url;
+    const dirtyUrl = 'https://www.youtube.com/embed/' + url;
     this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(dirtyUrl);
   }
 
@@ -99,5 +102,12 @@ export class CoursesDetailComponent implements OnInit {
 
   previousState(): void {
     window.history.back();
+  }
+
+  delete(id: number): void {
+    this.filesService.delete(id).subscribe(() => {
+      console.log('delete' + id.toString());
+      window.location.href = '/courses/myCourses';
+    });
   }
 }

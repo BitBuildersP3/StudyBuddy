@@ -1,7 +1,5 @@
-<form name="editForm" class="custom-form" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-  <h2 id="jhi-section-heading" data-cy="SectionCreateUpdateHeading">
-    {{ title }}
-  </h2>
+<form name="editForm" class="custom-form align-items-center" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+  <h2 id="jhi-section-heading" data-cy="SectionCreateUpdateHeading">Crear o editar Clases</h2>
 
   <div>
     <jhi-alert-error></jhi-alert-error>
@@ -32,62 +30,19 @@
       <label class="form-label" for="field_excerpt">Fragmento</label>
       <input type="text" class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" />
     </div>
-
-    <!-- <div class="row mb-3">
-      <label class="form-label" for="field_creationDate">Fecha de creación</label>
-      <div class="input-group">
-        <input
-          id="field_creationDate"
-          data-cy="creationDate"
-          type="text"
-          class="form-control"
-          name="creationDate"
-          ngbDatepicker
-          #creationDateDp="ngbDatepicker"
-          formControlName="creationDate"
-        />
-        <button type="button" class="btn btn-secondary" (click)="creationDateDp.toggle()">
-          <fa-icon icon="calendar-alt"></fa-icon>
-        </button>
-      </div>
-    </div> -->
-
-    <!-- <div class="row mb-3">
-      <label class="form-label" jhiTranslate="studyBuddyApp.section.time" for="field_time">Time</label>
-      <input type="number" class="form-control" name="time" id="field_time" data-cy="time" formControlName="time" />
-    </div> -->
-
-    <!-- <div class="row mb-3">
-      <label class="form-label" jhiTranslate="studyBuddyApp.section.status" for="field_status">Status</label>
-      <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
-    </div> -->
-
-    <!-- <div class="row mb-3">
-      <label class="form-label" jhiTranslate="studyBuddyApp.section.courses" for="field_courses">Courses</label>
-      <select
-        class="form-control"
-        id="field_courses"
-        data-cy="courses"
-        name="courses"
-        formControlName="courses"
-        [compareWith]="compareCourses"
-      >
-        <option [ngValue]="null"></option>
-        <option [ngValue]="coursesOption" *ngFor="let coursesOption of coursesSharedCollection">{{ coursesOption.id }}</option>
-      </select>
-    </div> -->
   </div>
 
   <div>
     <button
       type="submit"
+      title="Guardar"
       id="save-entity"
       data-cy="entityCreateSaveButton"
       [disabled]="editForm.invalid || isSaving"
       class="btn btn-primary"
       (click)="triggerCustomEvent()"
     >
-      <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+      <fa-icon icon="save"></fa-icon>&nbsp;
     </button>
   </div>
 </form>

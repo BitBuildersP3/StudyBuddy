@@ -1,21 +1,20 @@
 <div>
   <h2 id="page-heading" data-cy="CategoryHeading">
-    <span jhiTranslate="studyBuddyApp.category.home.title">Categories</span>
+    <span class="alin d-flex justify-content-center">Categorías Existentes</span>
 
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+    <div class="d-flex justify-content-start">
+      <button class="btn btnEdit" title="Refrescar Tabla " (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="studyBuddyApp.category.home.refreshListLabel">Refrescar lista</span>
       </button>
 
       <button
         id="jh-create-entity"
+        title="Agregar nueva Categoría"
         data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-category"
+        class="btn btnView"
         [routerLink]="['/category/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="studyBuddyApp.category.home.createLabel"> Crear nuevo Category </span>
       </button>
     </div>
   </h2>
@@ -25,7 +24,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="categories?.length === 0">
-    <span jhiTranslate="studyBuddyApp.category.home.notFound">Ningún Categories encontrado</span>
+    <span>Ninguna Categoría encontrada</span>
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="categories && categories.length > 0">
@@ -40,7 +39,7 @@
           </th>
           <th scope="col" jhiSortBy="name">
             <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.category.name">Name</span>
+              <span>Name</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -57,27 +56,26 @@
             <div class="btn-group">
               <button
                 type="submit"
+                title="Ver"
                 [routerLink]="['/category', category.id, 'view']"
-                class="btn btn-info btn-sm"
+                class="btn btnView"
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
               </button>
 
               <button
                 type="submit"
+                title="Editar"
                 [routerLink]="['/category', category.id, 'edit']"
-                class="btn btn-primary btn-sm"
+                class="btn btnEdit"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
               </button>
 
-              <button type="submit" (click)="delete(category)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button type="submit" title="Eliminar" (click)="delete(category)" class="btn btnDelete" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
               </button>
             </div>
           </td>

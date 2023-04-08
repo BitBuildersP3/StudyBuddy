@@ -206,6 +206,14 @@ public class CoursesResource {
         return retVal;
     }
 
+    @GetMapping("/courses/getFiveByOwner")
+    public List<Courses> getFiveCoursesOwner() {
+        log.debug("REST request to get course by the owner");
+        String ownerName = SecurityUtils.getCurrentUserLogin().orElse(null);
+        List<Courses> retVal = coursesRepository.findTop5ByOwnerNameLike(ownerName);
+        return retVal;
+    }
+
     /**
      * {@code DELETE  /courses/:id} : delete the "id" courses.
      *
@@ -240,5 +248,41 @@ public class CoursesResource {
         User user = new User(id);
         List<Courses> res = coursesRepository.findCoursesByUsersLike(user);
         return res;
+    }
+
+    @GetMapping("/courses/fiveEnrolled/{id}")
+    public List<Courses> GetFiveRegisteredCoursesByUserId(@PathVariable Long id) {
+        User user = new User(id);
+        List<Courses> res = coursesRepository.findTop5ByUsersLike(user);
+        return res;
+    }
+
+    //Para usar este metodo se debe de enviar los datos de la variable String id de la siguiente manera:
+    //<idCurso>-<idUsuarioEnSesion>
+    //este metodo retorna un dato tipo boolean
+    //este metodo revisa que el usuario en sesion este registrado a un curso (true) o no (false)
+
+    @GetMapping("/courses/isRegistered/{id}")
+    public boolean isUserRegister(@PathVariable String id) {
+        String[] split = id.split("-");
+        Long idCourse = Long.parseLong(split[0]);
+        Long idUser = Long.parseLong(split[1]);
+        User user = new User(idUser);
+        List<Courses> res = coursesRepository.findCoursesByUsersLike(user);
+        return res.contains(new Courses(idCourse));
+    }
+
+    //devuelve verdadero si el usuario en sesion es dueño del curso, falso de lo contrario.
+    @GetMapping("/courses/isOwner/{id}")
+    public boolean isUserOwner(@PathVariable Long id) {
+        String name = SecurityUtils.getCurrentUserLogin().orElse(null);
+        Optional<Courses> courses = coursesRepository.findAllDataByCourseId(id);
+        if (courses.isEmpty()) return false;
+        return courses.get().getOwnerName().equals(name);
+    }
+
+    @GetMapping("/courses/topTen")
+    public List<Courses> getTopTenCourses() {
+        return coursesRepository.findTop10ByOrderByScoreDesc();
     }
 }

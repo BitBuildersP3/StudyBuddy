@@ -10,9 +10,9 @@ import { CoursesRoutingModule } from './route/courses-routing.module';
 import { CoursesComponentEnrolled } from './list';
 import { SectionModule } from 'app/entities/section/section.module';
 import { UrlChangeDirective } from './detail/url-change.directive';
+import { FilesManagerModule } from '../../files-manager/files-manager.module';
 
 @NgModule({
-  imports: [SharedModule, CoursesRoutingModule, SectionModule],
   declarations: [
     CoursesComponent,
     CoursesComponentMyCourses,
@@ -22,5 +22,6 @@ import { UrlChangeDirective } from './detail/url-change.directive';
     CoursesDeleteDialogComponent,
     UrlChangeDirective,
   ],
+  imports: [SharedModule, CoursesRoutingModule, SectionModule, FilesManagerModule],
 })
 export class CoursesModule {}

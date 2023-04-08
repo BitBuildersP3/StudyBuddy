@@ -1,0 +1,115 @@
+$color-principal: #15537d;
+$color-secundario: #6dabd5;
+$color-alertas: #983f56;
+$color-bordes: #de9a38;
+$color-fondoBlanc: #dfe2ea;
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+h2,
+h3 {
+  color: $color-principal;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  color: $color-principal;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.btn-extern {
+  display: inline-block;
+  margin-right: 1rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid $color-principal;
+  color: $color-principal;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $color-principal;
+    color: #ffffff;
+  }
+}
+
+.form-control {
+  border: 1px solid $color-bordes;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+
+  &:focus {
+    border-color: $color-principal;
+    box-shadow: 0 0 0 0.2rem rgba(21, 83, 125, 0.25);
+  }
+}
+
+label {
+  font-weight: bold;
+  text-align: left;
+}
+label span {
+  display: inline-block;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+// Clase para recuadro de información
+.info-box {
+  border: 1px solid $color-bordes;
+  background-color: $color-fondoBlanc;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  margin-top: 25px;
+  text-align: left;
+}
+
+.linkvideo {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  background-color: $color-principal;
+  border: 2px solid $color-bordes;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.linkvideo:hover {
+  background-color: $color-secundario;
+  border-color: $color-alertas;
+}
+
+.separador {
+  border-bottom: solid $color-principal 2px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.separador-inputs {
+  border: 2px solid $color-principal;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 35px;
+  margin-top: 35px;
+}
+
+.espacio {
+  margin-bottom: 2px;
+  margin-top: 8px;
+}

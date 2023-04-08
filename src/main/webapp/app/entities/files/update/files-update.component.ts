@@ -13,6 +13,7 @@ import { SectionService } from 'app/entities/section/service/section.service';
 @Component({
   selector: 'jhi-files-update',
   templateUrl: './files-update.component.html',
+  styleUrls: ['./files-update.component.scss'],
 })
 export class FilesUpdateComponent implements OnInit {
   isSaving = false;

@@ -29,11 +29,29 @@
           <jhi-cloudinary-button [text]="$any('conf. Foto')" (urlChanged)="updateProfileImg($event)"></jhi-cloudinary-button>
           <img (click)="openModal()" class="profile-image rounded-circle" src="{{ profileImg }}" />
         </li>
-        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <!--        Boton de inicio que aparece sin iniciar sesion-->
+        <li class="nav-item" *ngSwitchCase="false" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
             <span>
               <fa-icon icon="home"></fa-icon>
               <span jhiTranslate="global.menu.home">Inicio</span>
+            </span>
+          </a>
+        </li>
+
+        <li class="nav-item" *ngSwitchCase="true" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/landing" (click)="collapseNavbar()">
+            <span>
+              <fa-icon icon="home"></fa-icon>
+              <span jhiTranslate="global.menu.home">Inicio</span>
+            </span>
+          </a>
+        </li>
+        <li class="nav-item" *ngSwitchCase="true" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/courses" (click)="collapseNavbar()">
+            <span>
+              <fa-icon icon="book"></fa-icon>
+              <span>Cursos</span>
             </span>
           </a>
         </li>

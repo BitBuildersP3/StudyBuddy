@@ -19,11 +19,21 @@ h6 {
   font-family: 'Nunito', sans-serif;
   font-weight: bold;
 }
-.sub {
-  text-align: justify;
-  font-size: 16px;
-  color: #666666;
+
+/* .active{
+  background-color: #983F56;
+  border-radius: 5px;
+  padding: 2px 5px;
+  color: white;
 }
+
+.locked{
+  background-color: #983F56;
+  border-radius: 5px;
+  padding: 2px 5px;
+  color: white;
+} */
+
 /*--------------------------------------------------------------
     # Main
     --------------------------------------------------------------*/
@@ -31,6 +41,14 @@ h6 {
   margin-top: 60px;
   padding: 20px 30px;
   transition: all 0.3s;
+}
+.sub {
+  text-align: justify;
+  font-size: 16px;
+  color: #666666;
+}
+.negrita {
+  font-weight: bold;
 }
 
 .item-cont {
@@ -81,4 +99,8 @@ h6 {
 
 .txt-cont {
   width: 40%;
+}
+.btn {
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
