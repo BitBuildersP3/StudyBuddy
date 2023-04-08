@@ -51,7 +51,7 @@ export class CoursesComponentMyCourses implements OnInit {
   trackId = (_index: number, item: ICourses): number => this.coursesService.getCoursesIdentifier(item);
 
   ngOnInit(): void {
-    this.titleService.setTitle('Coursos Creados');
+    this.titleService.setTitle('Cursos Creados');
 
     this.extraUser.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {
