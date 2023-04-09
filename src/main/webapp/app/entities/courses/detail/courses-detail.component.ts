@@ -35,8 +35,8 @@ export class CoursesDetailComponent implements OnInit {
   url: any;
   isOpen = false;
   counter = 0;
-  isOwner = false;
-  isRegister = false;
+  isOwner = true;
+  isRegister = true;
   constructor(
     protected activatedRoute: ActivatedRoute,
     private courseService: CoursesService,
