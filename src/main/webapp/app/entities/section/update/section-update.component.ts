@@ -10,6 +10,7 @@ import { SectionService } from '../service/section.service';
 import { ICourses } from 'app/entities/courses/courses.model';
 import { CoursesService } from 'app/entities/courses/service/courses.service';
 import dayjs from 'dayjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'jhi-section-update',
@@ -63,6 +64,16 @@ export class SectionUpdateComponent implements OnInit {
   onClose(): void {
     this.customEvent.emit();
   }
+  showSwall(): void {
+    Swal.fire({
+      icon: 'success',
+      title: 'Datos guardados correctamente',
+      showConfirmButton: true,
+      timer: 2000,
+    }).then(result => {
+      location.reload();
+    });
+  }
 
   save(): void {
     this.isSaving = true;
@@ -94,6 +105,7 @@ export class SectionUpdateComponent implements OnInit {
   protected onSaveSuccess(): void {
     this.editForm.reset();
     this.customEvent.emit();
+    this.showSwall();
   }
 
   protected onSaveError(): void {}
