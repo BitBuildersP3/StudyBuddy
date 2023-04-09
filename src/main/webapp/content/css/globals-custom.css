@@ -609,6 +609,18 @@ p {
   justify-content: center;
   gap: 1rem;
 }
+.mar {
+  margin-top: 3rem;
+}
+.selctF {
+  padding-left: 10px;
+  border-radius: 20px;
+  height: 4rem !important;
+}
+.btnregister {
+  width: 3rem;
+  border-radius: 5px;
+}
 
 .cardForm {
   width: 100%;
