@@ -285,4 +285,9 @@ public class CoursesResource {
     public List<Courses> getTopTenCourses() {
         return coursesRepository.findTop10ByOrderByScoreDesc();
     }
+
+    @GetMapping("/courses/findByPrompt/{prompt}")
+    public List<Courses> getCoursesByPrompt(@PathVariable String prompt) {
+        return coursesRepository.findCoursesByPrompt(prompt);
+    }
 }
