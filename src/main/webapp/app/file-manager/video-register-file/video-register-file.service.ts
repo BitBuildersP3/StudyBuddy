@@ -46,12 +46,20 @@ export class VideoRegisterFileService {
         }
       ),
 
-      url1: new FormControl(filesRawValue.url1),
+      url1: new FormControl(filesRawValue.url1, {
+        nonNullable: true, // patron para youtube
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.pattern('^https://www.youtube.com/.*$')],
+      }),
 
       // Se quema el status
-
-      name: new FormControl(filesRawValue.name),
-      excerpt: new FormControl(filesRawValue.excerpt),
+      name:  new FormControl(filesRawValue.name, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), ],
+      }),
+      excerpt:  new FormControl(filesRawValue.excerpt, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), ],
+      }),
     });
   }
 
