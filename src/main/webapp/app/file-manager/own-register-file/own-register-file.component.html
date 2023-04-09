@@ -36,6 +36,23 @@
             placeholder="Escribe una descripción del video que deseas subir aquí."
             maxlength="250"
           ></textarea>
+          <!-- Validacion Descripcion - INICIO -->
+
+          <div *ngIf="editForm.get('excerpt')!.invalid && (editForm.get('excerpt')!.dirty || editForm.get('excerpt')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.required">
+              Se requiere una descripción para su archivo.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.minlength">
+              Se requiere que la descripción sea de por lo menos 5 caracteres.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.maxlength">
+              La descripción del archivo no puede tener más de 250 caracteres.
+            </small>
+
+          </div>
+          <!-- Validacion Descripcion- FIN-->
         </div>
 
         <!-- Boton de Cloudinay -->

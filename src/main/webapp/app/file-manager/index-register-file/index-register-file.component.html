@@ -30,15 +30,15 @@
 
           <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required">
-              Se requiere un nombre para su archivo
+              Se requiere un nombre para su archivo.
             </small>
 
             <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.minlength">
-              Se requiere que el nombre del archivo sea de por lo menos 5 caracteres
+              Se requiere que el nombre del archivo sea de por lo menos 5 caracteres.
             </small>
 
             <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.maxlength">
-              El nombre del archivo no puede tener más de 250 caracteres
+              El nombre del archivo no puede tener más de 250 caracteres.
             </small>
 
           </div>
@@ -60,15 +60,15 @@
 
           <div *ngIf="editForm.get('excerpt')!.invalid && (editForm.get('excerpt')!.dirty || editForm.get('excerpt')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.required">
-              Se requiere una descripción para su archivo
+              Se requiere una descripción para su archivo.
             </small>
 
             <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.minlength">
-              Se requiere que la descripción sea de por lo menos 5 caracteres
+              Se requiere que la descripción sea de por lo menos 5 caracteres.
             </small>
 
             <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.maxlength">
-              La descripción del archivo no puede tener más de 250 caracteres
+              La descripción del archivo no puede tener más de 250 caracteres.
             </small>
 
           </div>
@@ -101,15 +101,15 @@
               </small>
 
               <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.minlength">
-                Se requiere que la url de por lo menos 5 caracteres
+                Se requiere que la url de por lo menos 5 caracteres.
               </small>
 
               <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.maxlength">
-                Su url no puede tener más de 250 caracteres
+                Su url no puede tener más de 250 caracteres.
               </small>
 
               <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.pattern">
-                Se requiere una url valida
+                Se requiere una url valida.
               </small>
 
             </div>
@@ -139,15 +139,15 @@
               </small>
 
               <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.minlength">
-                Se requiere que la url de por lo menos 5 caracteres
+                Se requiere que la url de por lo menos 5 caracteres.
               </small>
 
               <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.maxlength">
-                Su url no puede tener más de 250 caracteres
+                Su url no puede tener más de 250 caracteres.
               </small>
 
               <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.pattern">
-                Se requiere una url valida
+                Se requiere una url valida.
               </small>
 
             </div>
@@ -176,15 +176,15 @@
               </small>
 
               <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.minlength">
-                Se requiere que la url de por lo menos 5 caracteres
+                Se requiere que la url de por lo menos 5 caracteres.
               </small>
 
               <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.maxlength">
-                Su url no puede tener más de 250 caracteres
+                Su url no puede tener más de 250 caracteres.
               </small>
 
               <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.pattern">
-                Se requiere una url valida
+                Se requiere una url valida.
               </small>
 
             </div>

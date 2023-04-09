@@ -23,6 +23,24 @@
             formControlName="name"
             placeholder="Escribe el nombre del video aquí."
           />
+
+          <!-- Validacion Nombre del archivo - INICIO -->
+
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required">
+              Se requiere un nombre para su archivo (Video).
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.minlength">
+              Se requiere que el nombre del archivo sea de por lo menos 5 caracteres.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.maxlength">
+              El nombre del archivo no puede tener más de 250 caracteres.
+            </small>
+
+          </div>
+          <!-- Validacion Nombre del archivo - FIN-->
         </div>
 
         <div class="row mb-3">
@@ -55,6 +73,28 @@
               formControlName="url1"
               placeholder="Enlace del video aquí."
             />
+
+            <!-- Validacion URL 1 - INICIO -->
+            <div *ngIf="editForm.get('url1')!.invalid && (editForm.get('url1')!.dirty || editForm.get('url1')!.touched)">
+              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.required">
+                Se requiere un enlace de youtube.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.minlength">
+                Se requiere que la url de por lo menos 5 caracteres.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.maxlength">
+                Su url no puede tener más de 250 caracteres.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.pattern">
+                Se requiere una url valida (Solo se puede subir videos de youtube).
+              </small>
+
+            </div>
+            <!-- Validacion URL 1 - FIN-->
+
             <div class="espacio"></div>
             <a href="https://www.youtube.com/upload" target="_blank" class="btn-extern">Subir a Youtube</a>
           </div>
@@ -78,7 +118,7 @@
           data-cy="entityCreateSaveButton"
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
-        >
+        > Guardar
           <fa-icon icon="save"></fa-icon>
         </button>
       </div>
