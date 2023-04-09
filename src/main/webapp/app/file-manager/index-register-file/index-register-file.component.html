@@ -59,6 +59,27 @@
               formControlName="url1"
               placeholder="Enlace de Google Drive aquí."
             />
+
+            <!-- Validacion URL 1 - INICIO -->
+            <div *ngIf="editForm.get('url1')!.invalid && (editForm.get('url1')!.dirty || editForm.get('url1')!.touched)">
+              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.required">
+                Se requiere una url.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.minlength">
+                Se requiere que la url de por lo menos 5 caracteres
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.maxlength">
+                Su url no puede tener más de 250 caracteres
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.pattern">
+                Se requiere una url valida
+              </small>
+
+            </div>
+            <!-- Validacion URL 1 - FIN-->
           </div>
 
           <a href="https://drive.google.com/" target="_blank" class="btn-extern">Drive</a>

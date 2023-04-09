@@ -49,7 +49,11 @@ export class IndexRegisterFileService {
         }
       ),
 
-      url1: new FormControl(filesRawValue.url1),
+      url1: new FormControl(filesRawValue.url1, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.pattern('^https://.*$')],
+      }),
+
       url2: new FormControl(filesRawValue.url2),
       url3: new FormControl(filesRawValue.url3),
       // Se quema el status
