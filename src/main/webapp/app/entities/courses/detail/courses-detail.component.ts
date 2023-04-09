@@ -7,6 +7,7 @@ import { SectionService } from 'app/entities/section/service/section.service';
 import { FilesService } from '../../files/service/files.service';
 import { ITEM_DELETED_EVENT } from '../../../config/navigation.constants';
 import Swal from 'sweetalert2';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'jhi-courses-detail',
@@ -41,7 +42,8 @@ export class CoursesDetailComponent implements OnInit {
     private _sanitizer: DomSanitizer,
     private cdRef: ChangeDetectorRef,
     private sectionService: SectionService,
-    protected filesService: FilesService
+    protected filesService: FilesService,
+    private titleService: Title
   ) {}
 
   setIsOpen(): void {
@@ -86,6 +88,8 @@ export class CoursesDetailComponent implements OnInit {
     // this.cdRef.markForCheck();
   }
   ngOnInit(): void {
+    this.titleService.setTitle('Detalle del Curso');
+
     this.fetchData();
     this.courseService.getIsOwner(this.courses?.id).subscribe(response => {
       this.isOwner = response.body;

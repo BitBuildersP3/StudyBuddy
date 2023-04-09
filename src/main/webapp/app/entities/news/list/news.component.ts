@@ -8,6 +8,7 @@ import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/conf
 import { EntityArrayResponseType, NewsService } from '../service/news.service';
 import { NewsDeleteDialogComponent } from '../delete/news-delete-dialog.component';
 import { SortService } from 'app/shared/sort/sort.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'jhi-news',
@@ -25,12 +26,15 @@ export class NewsComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected sortService: SortService,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private titleService: Title
   ) {}
 
   trackId = (_index: number, item: INews): number => this.newsService.getNewsIdentifier(item);
 
   ngOnInit(): void {
+    this.titleService.setTitle('Noticias');
+
     this.load();
   }
 

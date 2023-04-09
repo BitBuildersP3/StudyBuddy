@@ -13,6 +13,8 @@ import { CoursesService, EntityArrayResponseType } from '../service/courses.serv
 import { CoursesFormGroup, CoursesFormService } from '../update/courses-form.service';
 import { HttpResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'jhi-courses',
   templateUrl: './courses.component.MyCourses.html',
@@ -39,6 +41,7 @@ export class CoursesComponentMyCourses implements OnInit {
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected coursesFormService: CoursesFormService,
+    private titleService: Title,
 
     protected sortService: SortService,
     protected modalService: NgbModal,
@@ -48,6 +51,8 @@ export class CoursesComponentMyCourses implements OnInit {
   trackId = (_index: number, item: ICourses): number => this.coursesService.getCoursesIdentifier(item);
 
   ngOnInit(): void {
+    this.titleService.setTitle('Cursos Creados');
+
     this.extraUser.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {
         // @ts-ignore

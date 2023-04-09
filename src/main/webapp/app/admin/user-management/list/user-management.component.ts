@@ -11,6 +11,7 @@ import { Account } from 'app/core/auth/account.model';
 import { UserManagementService } from '../service/user-management.service';
 import { User } from '../user-management.model';
 import { UserManagementDeleteDialogComponent } from '../delete/user-management-delete-dialog.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'jhi-user-mgmt',
@@ -32,10 +33,13 @@ export class UserManagementComponent implements OnInit {
     private accountService: AccountService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('Panel de control');
+
     this.accountService.identity().subscribe(account => (this.currentAccount = account));
     this.handleNavigation();
   }

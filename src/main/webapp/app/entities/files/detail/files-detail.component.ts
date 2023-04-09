@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { IFiles } from '../files.model';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'jhi-files-detail',
@@ -11,9 +12,11 @@ import { IFiles } from '../files.model';
 export class FilesDetailComponent implements OnInit {
   files: IFiles | null = null;
 
-  constructor(protected activatedRoute: ActivatedRoute) {}
+  constructor(protected activatedRoute: ActivatedRoute, private titleService: Title) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('Detalle del Archivo');
+
     this.activatedRoute.data.subscribe(({ files }) => {
       this.files = files;
     });

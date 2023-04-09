@@ -73,7 +73,7 @@ export class CoursesService {
     return courses.id;
   }
 
-  getIsRegister(id: any): Observable<any> {
+  getIsRegister(id: string): Observable<any> {
     return this.http.get<any>(`${this.resourceUrl}/isRegistered/${id}`, { observe: 'response' });
   }
 

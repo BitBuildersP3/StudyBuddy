@@ -86,12 +86,12 @@
 
       </dl>
 
-      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span >Volver</span>
+      <button title="volver" type="submit" (click)="previousState()" class="btn btnEdit" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span ></span>
       </button>
 
-      <button type="button" [routerLink]="['/files', files.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span >Editar</span>
+      <button title="editar" type="button" [routerLink]="['/files', files.id, 'edit']" class="btn btnEdit">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span ></span>
       </button>
     </div>
   </div>
