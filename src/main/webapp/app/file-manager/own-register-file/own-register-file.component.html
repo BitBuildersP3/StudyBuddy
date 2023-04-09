@@ -23,6 +23,23 @@
             formControlName="name"
             placeholder="Escribe el nombre del video aquí."
           />
+          <!-- Validacion Nombre del archivo - INICIO -->
+
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required">
+              Se requiere un nombre para su archivo (Video).
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.minlength">
+              Se requiere que el nombre del archivo sea de por lo menos 5 caracteres.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.maxlength">
+              El nombre del archivo no puede tener más de 250 caracteres.
+            </small>
+
+          </div>
+          <!-- Validacion Nombre del archivo - FIN-->
         </div>
 
         <div class="row mb-3">
