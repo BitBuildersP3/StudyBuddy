@@ -1,6 +1,6 @@
 <nav data-cy="navbar" class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
   <div class="container-fluid">
-    <a class="navbar-brand d-flex align-items-center px-4 px-lg-5" routerLink="/" (click)="collapseNavbar()">
+    <a class="navbar-brand d-flex align-items-center px-4 px-lg-5" routerLink="/landing" (click)="collapseNavbar()">
       <span class="logo-img"></span>
       <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>Study<b>Buddy</b></h2>
     </a>
@@ -256,12 +256,12 @@
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu" data-cy="adminMenu">
+          <!-- <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu" data-cy="adminMenu">
             <span>
               <fa-icon icon="users-cog"></fa-icon>
               <span jhiTranslate="global.menu.admin.main">Administración</span>
             </span>
-          </a>
+          </a> -->
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
             <li>
               <a class="dropdown-item" routerLink="admin/user-management" routerLinkActive="active" (click)="collapseNavbar()">

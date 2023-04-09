@@ -8,6 +8,7 @@ import { FilesService } from '../../files/service/files.service';
 import { ITEM_DELETED_EVENT } from '../../../config/navigation.constants';
 import Swal from 'sweetalert2';
 import { Title } from '@angular/platform-browser';
+import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
 
 @Component({
   selector: 'jhi-courses-detail',
@@ -34,8 +35,8 @@ export class CoursesDetailComponent implements OnInit {
   url: any;
   isOpen = false;
   counter = 0;
-  isOwner = false;
-  isRegister = false;
+  isOwner = true;
+  isRegister = true;
   constructor(
     protected activatedRoute: ActivatedRoute,
     private courseService: CoursesService,
@@ -43,7 +44,8 @@ export class CoursesDetailComponent implements OnInit {
     private cdRef: ChangeDetectorRef,
     private sectionService: SectionService,
     protected filesService: FilesService,
-    private titleService: Title
+    private titleService: Title,
+    private extraInfoService: ExtraUserInfoService
   ) {}
 
   setIsOpen(): void {
@@ -89,13 +91,26 @@ export class CoursesDetailComponent implements OnInit {
   }
   ngOnInit(): void {
     this.titleService.setTitle('Detalle del Curso');
-
     this.fetchData();
+    this.courses?.id;
+    this.extraInfoService.getInfoByCurrentUser().subscribe(response => {
+      const currUsrData = response.body?.user?.id;
+      // console.log(currData);
+      this.getIsRegister(this.courses?.id, currUsrData);
+    });
+
     this.courseService.getIsOwner(this.courses?.id).subscribe(response => {
       this.isOwner = response.body;
     });
   }
 
+  // this method get the value of the current user and the id of the current course
+  getIsRegister(idCourse: any, idUser: any): void {
+    const customId = `${idCourse}-${idUser}`;
+    this.courseService.getIsRegister(customId).subscribe(response => {
+      this.isRegister = response.body;
+    });
+  }
   sanitizeUrl(url: string): void {
     const dirtyUrl = 'https://www.youtube.com/embed/' + url;
     this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(dirtyUrl);
@@ -125,7 +140,7 @@ export class CoursesDetailComponent implements OnInit {
     }).then(result => {
       if (result.isConfirmed) {
         this.filesService.delete(id).subscribe(() => {
-          console.log('delete' + id.toString());
+          // console.log('delete' + id.toString());
         });
         Swal.fire({
           icon: 'success',

@@ -70,7 +70,7 @@ export class NavbarComponent implements OnInit {
   updateUserData() {
     this.extraUserInfoService.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {
-        console.log(res);
+        // console.log(res);
         this.profileImg = res.body?.profilePicture;
         this.partialExtraUserInfo.id = <number>res.body?.id;
         this.partialExtraUserInfo.profilePicture = <string>res.body?.profilePicture;
