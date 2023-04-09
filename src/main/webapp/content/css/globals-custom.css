@@ -583,6 +583,12 @@ p {
   display: flex;
   padding: 1rem;
 }
+.card-imageP {
+  max-width: 11rem;
+  flex-direction: row;
+  display: flex;
+  padding: 1rem;
+}
 .info {
   width: 100%;
   height: auto;

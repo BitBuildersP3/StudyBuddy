@@ -41,8 +41,14 @@ export class OwnRegisterFileService {
 
       // Se quema el status
 
-      name: new FormControl(filesRawValue.name),
-      excerpt: new FormControl(filesRawValue.excerpt),
+      name:  new FormControl(filesRawValue.name, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), ],
+      }),
+      excerpt:  new FormControl(filesRawValue.excerpt, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), ],
+      }),
     });
   }
 
