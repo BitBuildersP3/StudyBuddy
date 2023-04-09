@@ -34,6 +34,7 @@ export class CoursesDetailComponent implements OnInit {
   isOpen = false;
   counter = 0;
   isOwner = false;
+  isRegister = false;
   constructor(
     protected activatedRoute: ActivatedRoute,
     private courseService: CoursesService,

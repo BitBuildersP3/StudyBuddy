@@ -73,6 +73,10 @@ export class CoursesService {
     return courses.id;
   }
 
+  getIsRegister(id: any): Observable<any> {
+    return this.http.get<any>(`${this.resourceUrl}/isRegistered/${id}`, { observe: 'response' });
+  }
+
   getIsOwner(id: number): Observable<any> {
     return this.http.get<any>(`${this.resourceUrl}/isOwner/${id}`, { observe: 'response' });
   }
