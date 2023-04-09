@@ -45,3 +45,17 @@ h6 {
     }
   }
 }
+
+.w-for-5 {
+  width: calc(100% / 5);
+}
+
+.cust-cont-imgs {
+  max-height: 15rem;
+
+  img {
+    min-height: 15rem;
+    width: 100%;
+    object-fit: cover;
+  }
+}

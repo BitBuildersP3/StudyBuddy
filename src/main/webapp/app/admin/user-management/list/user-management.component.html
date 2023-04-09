@@ -23,9 +23,9 @@
           <th scope="col" jhiSortBy="login"><span>Id</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="login"><span>Usuario</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="email"><span>Correo</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="email"><span>Estado</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col"><span>Rol</span></th>
           <th scope="col"><span>Modificado por</span></th>
+          <th scope="col" jhiSortBy="email"><span>Estado</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col"><span>Acciones</span></th>
         </tr>
       </thead>
@@ -34,6 +34,15 @@
           <td>{{ user.id }}</td>
           <td>{{ user.login }}</td>
           <td>{{ user.email }}</td>
+
+          <td>
+            <div *ngFor="let authority of user.authorities">
+              <span *ngIf="authority == 'ROLE_USER'">Usuario</span>
+              <span *ngIf="authority == 'ROLE_ADMIN'">Administrador</span>
+            </div>
+          </td>
+          <td>{{ user.lastModifiedBy }}</td>
+          <!-- rol -->
           <td>
             <button class="btn btnDelete" title="Bloqueado" (click)="setActive(user, true)" *ngIf="!user.activated">
               <fa-icon icon="ban"></fa-icon>
@@ -49,13 +58,7 @@
               <fa-icon icon="check"></fa-icon>
             </button>
           </td>
-          <td>
-            <div *ngFor="let authority of user.authorities">
-              <span *ngIf="authority == 'ROLE_USER'">Usuario</span>
-              <span *ngIf="authority == 'ROLE_ADMIN'">Administrador</span>
-            </div>
-          </td>
-          <td>{{ user.lastModifiedBy }}</td>
+          <!-- actions -->
           <td class="">
             <div class="btn-group">
               <button type="submit" title="Ver" [routerLink]="['./', user.login, 'view']" class="btn btnView">
