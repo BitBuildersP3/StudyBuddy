@@ -26,6 +26,23 @@
             formControlName="name"
             placeholder="Escribe el nombre del archivo aquí."
           />
+          <!-- Validacion Nombre del archivo - INICIO -->
+
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required">
+              Se requiere un nombre para su archivo
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.minlength">
+              Se requiere que el nombre del archivo sea de por lo menos 5 caracteres
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.maxlength">
+              El nombre del archivo no puede tener más de 250 caracteres
+            </small>
+
+          </div>
+          <!-- Validacion Nombre del archivo - FIN-->
         </div>
 
         <div class="row mb-3">
@@ -39,6 +56,23 @@
             placeholder="Escribe una descripción del archivo que deseas subir aquí."
             maxlength="250"
           ></textarea>
+          <!-- Validacion Descripcion - INICIO -->
+
+          <div *ngIf="editForm.get('excerpt')!.invalid && (editForm.get('excerpt')!.dirty || editForm.get('excerpt')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.required">
+              Se requiere una descripción para su archivo
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.minlength">
+              Se requiere que la descripción sea de por lo menos 5 caracteres
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.maxlength">
+              La descripción del archivo no puede tener más de 250 caracteres
+            </small>
+
+          </div>
+          <!-- Validacion Descripcion- FIN-->
         </div>
 
         <div class="separador"></div>
@@ -63,7 +97,7 @@
             <!-- Validacion URL 1 - INICIO -->
             <div *ngIf="editForm.get('url1')!.invalid && (editForm.get('url1')!.dirty || editForm.get('url1')!.touched)">
               <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.required">
-                Se requiere una url.
+                Se requiere una url
               </small>
 
               <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.minlength">
@@ -97,6 +131,27 @@
               formControlName="url2"
               placeholder="Enlace de Media Fire aquí."
             />
+
+            <!-- Validacion URL 2 - INICIO -->
+            <div *ngIf="editForm.get('url2')!.invalid && (editForm.get('url2')!.dirty || editForm.get('url2')!.touched)">
+              <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.required">
+                Se requiere una url
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.minlength">
+                Se requiere que la url de por lo menos 5 caracteres
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.maxlength">
+                Su url no puede tener más de 250 caracteres
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.pattern">
+                Se requiere una url valida
+              </small>
+
+            </div>
+            <!-- Validacion URL 2 - FIN-->
           </div>
 
           <a href="https://www.mediafire.com/" target="_blank" class="btn-extern">Media Fire</a>
@@ -114,6 +169,27 @@
               formControlName="url3"
               placeholder="Enlace de Mega aquí."
             />
+            <!-- Validacion URL 3 - INICIO -->
+            <div *ngIf="editForm.get('url1')!.invalid && (editForm.get('url3')!.dirty || editForm.get('url3')!.touched)">
+              <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.required">
+                Se requiere una url
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.minlength">
+                Se requiere que la url de por lo menos 5 caracteres
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.maxlength">
+                Su url no puede tener más de 250 caracteres
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.pattern">
+                Se requiere una url valida
+              </small>
+
+            </div>
+            <!-- Validacion URL 3 - FIN-->
+
           </div>
 
           <a href="https://mega.nz/" target="_blank" class="btn-extern">Mega</a>
@@ -137,7 +213,7 @@
           data-cy="entityCreateSaveButton"
           [disabled]="editForm.invalid || isSaving"
           class="btn btnView"
-        >
+        >Guardar
           <fa-icon icon="save"></fa-icon>&nbsp;
         </button>
       </div>

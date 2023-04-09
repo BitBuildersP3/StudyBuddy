@@ -54,12 +54,24 @@ export class IndexRegisterFileService {
         validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.pattern('^https://.*$')],
       }),
 
-      url2: new FormControl(filesRawValue.url2),
-      url3: new FormControl(filesRawValue.url3),
+      url2:  new FormControl(filesRawValue.url2, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.pattern('^https://.*$')],
+      }),
+      url3:  new FormControl(filesRawValue.url3, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.pattern('^https://.*$')],
+      }),
       // Se quema el status
+      name:  new FormControl(filesRawValue.name, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), ],
+      }),
+      excerpt:  new FormControl(filesRawValue.excerpt, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), ],
+      }),
 
-      name: new FormControl(filesRawValue.name),
-      excerpt: new FormControl(filesRawValue.excerpt),
     });
   }
 
