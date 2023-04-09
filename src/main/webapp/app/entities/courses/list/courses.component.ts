@@ -24,6 +24,7 @@ export class CoursesComponent implements OnInit {
   courses?: ICourses[];
   isSaving = false;
 
+  promptValue: string = '';
   isLoading = false;
   ownerName: string = '';
   predicate = 'id';
@@ -74,6 +75,16 @@ export class CoursesComponent implements OnInit {
       idCourse.users?.push({ id: this.idUser, login: this.ownerName });
       this.subscribeToSaveResponse(this.coursesService.update(idCourse));
     }
+  }
+
+  searchCourse() {
+    if (this.promptValue !== '') {
+      this.coursesService.getCoursesByPrompt(this.promptValue).subscribe({
+        next: result => {
+          this.onResponseSuccess(result);
+        },
+      });
+    } else this.load();
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICourses>>): void {

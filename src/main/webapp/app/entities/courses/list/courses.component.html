@@ -3,6 +3,19 @@
     <div class="alin d-flex justify-content-center font-weight: bold;">
       <span>Cursos existentes</span>
     </div>
+    <ng-form (change)="searchCourse()">
+      <div class="text-center">
+        <input
+          id="searchInputId"
+          [(ngModel)]="promptValue"
+          name="promptValue"
+          type="text"
+          class="textInput"
+          style="width: 50rem"
+          placeholder="Busca un curso por su nombre o creador"
+        />
+      </div>
+    </ng-form>
 
     <div class="d-flex justify-content-end">
       <button

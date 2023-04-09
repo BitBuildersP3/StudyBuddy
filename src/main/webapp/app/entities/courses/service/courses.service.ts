@@ -6,6 +6,8 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { ICourses, NewCourses } from '../courses.model';
+import { map } from 'rxjs/operators';
+import { RestExtraUserInfo } from '../../extra-user-info/service/extra-user-info.service';
 export type PartialUpdateCourses = Partial<ICourses> & Pick<ICourses, 'id'>;
 export type EntityResponseType = HttpResponse<ICourses>;
 export type EntityArrayResponseType = HttpResponse<ICourses[]>;
@@ -18,6 +20,10 @@ export class CoursesService {
 
   create(courses: NewCourses): Observable<EntityResponseType> {
     return this.http.post<ICourses>(this.resourceUrl, courses, { observe: 'response' });
+  }
+
+  getCoursesByPrompt(prompt: string): Observable<EntityArrayResponseType> {
+    return this.http.get<ICourses[]>(`${this.resourceUrl}/findByPrompt/${prompt}`, { observe: 'response' });
   }
 
   update(courses: ICourses): Observable<EntityResponseType> {
