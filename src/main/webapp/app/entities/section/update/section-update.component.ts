@@ -89,9 +89,13 @@ export class SectionUpdateComponent implements OnInit {
       courses: this.course,
     };
     if (section.id !== null) {
-      this.subscribeToSaveResponse(this.sectionService.update(newObjSection));
+      if ((newObjSection.name !== null, newObjSection.description !== null, newObjSection.excerpt !== null)) {
+        this.subscribeToSaveResponse(this.sectionService.update(newObjSection));
+      }
     } else {
-      this.subscribeToSaveResponse(this.sectionService.create(newObjSection));
+      if ((newObjSection.name !== null, newObjSection.description !== null, newObjSection.excerpt !== null)) {
+        this.subscribeToSaveResponse(this.sectionService.create(newObjSection));
+      }
     }
   }
 
