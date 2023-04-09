@@ -3,19 +3,6 @@
     <div class="alin d-flex justify-content-center font-weight: bold;">
       <span>Cursos existentes</span>
     </div>
-    <ng-form (change)="searchCourse()">
-      <div class="text-center">
-        <input
-          id="searchInputId"
-          [(ngModel)]="promptValue"
-          name="promptValue"
-          type="text"
-          class="textInput"
-          style="width: 50rem"
-          placeholder="Busca un curso por su nombre o creador"
-        />
-      </div>
-    </ng-form>
 
     <div class="d-flex justify-content-end">
       <button
@@ -30,8 +17,28 @@
     </div>
   </h2>
   <!-- lista -->
-
-  <div class="principalConteiner">
+  <form (ngSubmit)="searchCourse()">
+    <div class="row pt-4">
+      <div class="col-4"></div>
+      <div class="col-4 text-center">
+        <input
+          id="searchInputId"
+          [(ngModel)]="promptValue"
+          name="promptValue"
+          type="text"
+          class="textInput col-4"
+          style="width: 100%"
+          placeholder="Busca un curso por su nombre o creador"
+        />
+      </div>
+      <div class="col-4 align-bottom">
+        <button type="submit" title="Guardar" name="submit" id="save-entity" data-cy="entityCreateSaveButton" class="btn m-3">
+          <fa-icon icon="search"></fa-icon>&nbsp;
+        </button>
+      </div>
+    </div>
+  </form>
+  <div class="principalConteiner mt-5">
     <div class="item-cont" *ngFor="let courses of courses">
       <div class="secondConteiner">
         <div class="card-image">
