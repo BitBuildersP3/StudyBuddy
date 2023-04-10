@@ -83,7 +83,6 @@ export class CoursesUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const courses = this.coursesFormService.getCourses(this.editForm);
-
     if (this.previewURL !== '') courses.previewImg = this.previewURL;
 
     if (courses.id !== null) {
@@ -99,6 +98,7 @@ export class CoursesUpdateComponent implements OnInit {
     } else {
       courses.ownerName = this.ownerName;
       courses.userId = this.idUser;
+      courses.status = 'active';
       this.subscribeToSaveResponse(this.coursesService.create(courses));
       Swal.fire({
         icon: 'success',

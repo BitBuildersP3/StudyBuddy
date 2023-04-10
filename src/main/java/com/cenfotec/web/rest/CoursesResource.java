@@ -210,7 +210,7 @@ public class CoursesResource {
     public List<Courses> getFiveCoursesOwner() {
         log.debug("REST request to get course by the owner");
         String ownerName = SecurityUtils.getCurrentUserLogin().orElse(null);
-        List<Courses> retVal = coursesRepository.findTop5ByOwnerNameLike(ownerName);
+        List<Courses> retVal = coursesRepository.findTop5ByOwnerNameLikeAndStatusIs(ownerName, "active");
         return retVal;
     }
 
@@ -253,7 +253,7 @@ public class CoursesResource {
     @GetMapping("/courses/fiveEnrolled/{id}")
     public List<Courses> GetFiveRegisteredCoursesByUserId(@PathVariable Long id) {
         User user = new User(id);
-        List<Courses> res = coursesRepository.findTop5ByUsersLike(user);
+        List<Courses> res = coursesRepository.findTop5ByUsersLikeAndStatusIs(user, "active");
         return res;
     }
 
@@ -283,7 +283,7 @@ public class CoursesResource {
 
     @GetMapping("/courses/topTen")
     public List<Courses> getTopTenCourses() {
-        return coursesRepository.findTop10ByOrderByScoreDesc();
+        return coursesRepository.findTop10ByStatusIsOrderByScoreDesc("active");
     }
 
     @GetMapping("/courses/findByPrompt/{prompt}")

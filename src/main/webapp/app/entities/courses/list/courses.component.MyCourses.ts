@@ -107,7 +107,30 @@ export class CoursesComponentMyCourses implements OnInit {
   }
 
   delete(courses: ICourses): void {
-    const modalRef = this.modalService.open(CoursesDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    courses.status = 'innactive';
+    Swal.fire({
+      title: '¿Está seguro que desea borrar el curso?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí!',
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.coursesService.partialUpdate(courses).subscribe();
+        Swal.fire({
+          icon: 'success',
+          title: 'Eliminado correctamente',
+          showConfirmButton: true,
+          timer: 3000,
+        }).then(result => {
+          if (result.isConfirmed) {
+            this.load();
+          }
+        });
+      }
+    });
+    /*const modalRef = this.modalService.open(CoursesDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.courses = courses;
     // unsubscribe not needed because closed completes on modal close
     modalRef.closed
@@ -119,7 +142,7 @@ export class CoursesComponentMyCourses implements OnInit {
         next: (res: EntityArrayResponseType) => {
           this.onResponseSuccess(res);
         },
-      });
+      });*/
   }
 
   load(): void {
@@ -150,6 +173,7 @@ export class CoursesComponentMyCourses implements OnInit {
   protected onResponseSuccess(response: EntityArrayResponseType): void {
     const dataFromBody = this.fillComponentAttributesFromResponseBody(response.body);
     this.courses = this.refineData(dataFromBody);
+    this.courses = this.courses.filter(course => course.status === 'active');
   }
 
   protected refineData(data: ICourses[]): ICourses[] {

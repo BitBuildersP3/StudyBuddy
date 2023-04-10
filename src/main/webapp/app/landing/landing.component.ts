@@ -4,14 +4,13 @@ import { CoursesService } from '../entities/courses/service/courses.service';
 import { ExtraUserInfoService } from '../entities/extra-user-info/service/extra-user-info.service';
 import { switchMap } from 'rxjs';
 import { Title } from '@angular/platform-browser';
-import { RefreshService } from '../shared/refresh-service.service';
-import { refresh } from '@cloudinary/url-gen/qualifiers/artisticFilter';
 
 interface CoursesData {
   image: string | null | undefined;
   slideTitle: string | null | undefined;
   slideExerpt: string | null | undefined;
   redirect: number | null | undefined;
+  status: string | null | undefined;
 }
 
 @Component({
@@ -25,39 +24,7 @@ export class LandingComponent implements OnInit {
   ownerCourses: CoursesData[] = [];
   private currentUserId: number | undefined = 0;
 
-  instructors = [
-    {
-      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364359/cld-sample.jpg',
-      name: 'First slide label',
-      about: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
-      redirect: '1',
-    },
-    {
-      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364359/cld-sample.jpg',
-      name: 'First slide label',
-      about: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
-      redirect: '1',
-    },
-    {
-      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364359/cld-sample.jpg',
-      name: 'First slide label',
-      about: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
-      redirect: '1',
-    },
-    {
-      image: 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364359/cld-sample.jpg',
-      name: 'First slide label',
-      about: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
-      redirect: '1',
-    },
-  ];
-
-  constructor(
-    private courseService: CoursesService,
-    private extraUserInfo: ExtraUserInfoService,
-    private titleService: Title,
-    private refresh: RefreshService
-  ) {}
+  constructor(private courseService: CoursesService, private extraUserInfo: ExtraUserInfoService, private titleService: Title) {}
 
   ngOnInit(): void {
     this.titleService.setTitle('Página de Inicio');
@@ -80,8 +47,10 @@ export class LandingComponent implements OnInit {
                 image: data.previewImg,
                 slideExerpt: data.excerpt,
                 slideTitle: data.name,
+                status: data.status,
               });
             });
+            this.userCuourses = this.userCuourses.filter(course => course.status === 'active');
           },
         });
       });
@@ -94,8 +63,10 @@ export class LandingComponent implements OnInit {
             image: data.previewImg,
             slideExerpt: data.excerpt,
             slideTitle: data.name,
+            status: data.status,
           });
         });
+        this.ownerCourses = this.ownerCourses.filter(course => course.status === 'active');
       },
     });
 
@@ -107,8 +78,11 @@ export class LandingComponent implements OnInit {
             image: data.previewImg,
             slideExerpt: data.excerpt,
             slideTitle: data.name,
+            status: data.status,
           });
         });
+        console.log(this.slides);
+        this.slides = this.slides.filter(course => course.status === 'active');
       },
     });
   }

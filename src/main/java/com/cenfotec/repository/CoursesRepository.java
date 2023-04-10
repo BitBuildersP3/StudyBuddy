@@ -33,16 +33,16 @@ public interface CoursesRepository extends CoursesRepositoryWithBagRelationships
     @Query("SELECT courses FROM Courses courses  WHERE courses.ownerName = :ownerName")
     List<Courses> findByUserName(@Param("ownerName") String ownerName);
 
-    List<Courses> findTop5ByOwnerNameLike(String ownerName);
+    List<Courses> findTop5ByOwnerNameLikeAndStatusIs(String ownerName, String status);
 
     @Query("select courses from Courses courses where courses.id = :id")
     Optional<Courses> findAllDataByCourseId(@Param("id") long id);
 
     List<Courses> findCoursesByUsersLike(User user);
 
-    List<Courses> findTop10ByOrderByScoreDesc();
+    List<Courses> findTop10ByStatusIsOrderByScoreDesc(String status);
 
-    List<Courses> findTop5ByUsersLike(User user);
+    List<Courses> findTop5ByUsersLikeAndStatusIs(User user, String status);
 
     @Query("select courses from Courses courses where courses.ownerName like %:prompt% or courses.name like %:prompt%")
     List<Courses> findCoursesByPrompt(@Param("prompt") String prompt);

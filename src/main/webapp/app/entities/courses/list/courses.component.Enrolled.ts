@@ -144,6 +144,7 @@ export class CoursesComponentEnrolled implements OnInit {
   protected onResponseSuccess(response: EntityArrayResponseType): void {
     const dataFromBody = this.fillComponentAttributesFromResponseBody(response.body);
     this.courses = this.refineData(dataFromBody);
+    this.courses = this.courses.filter(course => course.status === 'active');
   }
 
   protected refineData(data: ICourses[]): ICourses[] {
