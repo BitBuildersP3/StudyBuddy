@@ -1,70 +1,290 @@
-<div class="d-flex justify-content-center">
-  <div class="col-8">
-    <div *ngIf="courses">
-      <h2 data-cy="coursesDetailsHeading"><span jhiTranslate="studyBuddyApp.courses.detail.title">Courses</span></h2>
+<title>Curso</title>
 
-      <hr />
-
-      <jhi-alert-error></jhi-alert-error>
-
-      <jhi-alert></jhi-alert>
-
-      <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="global.field.id">ID</span></dt>
-        <dd>
-          <span>{{ courses.id }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.courses.name">Name</span></dt>
-        <dd>
-          <span>{{ courses.name }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.courses.description">Description</span></dt>
-        <dd>
-          <span>{{ courses.description }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.courses.previewImg">Preview Img</span></dt>
-        <dd>
-          <span>{{ courses.previewImg }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.courses.status">Status</span></dt>
-        <dd>
-          <span>{{ courses.status }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.courses.score">Score</span></dt>
-        <dd>
-          <span>{{ courses.score }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.courses.excerpt">Excerpt</span></dt>
-        <dd>
-          <span>{{ courses.excerpt }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.courses.userId">User Id</span></dt>
-        <dd>
-          <span>{{ courses.userId }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.courses.userVotes">User Votes</span></dt>
-        <dd>
-          <span>{{ courses.userVotes }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.courses.user">User</span></dt>
-        <dd>
-          <span *ngFor="let user of courses.users; let last = last"> {{ user.login }}{{ last ? '' : ', ' }} </span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.courses.category">Category</span></dt>
-        <dd>
-          <div *ngIf="courses.category">
-            <a [routerLink]="['/category', courses.category.id, 'view']">{{ courses.category.id }}</a>
+<ng-container *ngIf="sections.length > 0; else noSections">
+  <div class="d-flex justify-content-center align-items-center wapper">
+    <div class="col-8">
+      <div class="cont-cols" *ngIf="courses">
+        <div class="col-class">
+          <div>
+            <h1 data-cy="coursesDetailsHeading" class="titles"><span>Curso:</span> {{ courses.name }}</h1>
           </div>
-        </dd>
-      </dl>
+          <jhi-modal *ngIf="isOwner" class="modal-cust" [typeBtn]="'solo-txt'" [btnLabel]="'Agregar clase'">
+            <jhi-section-update
+              [course]="courses"
+              class="content-modal"
+              (customEvent)="onSaveSection(courses.id)"
+              [title]="'Agregar clase'"
+              (closeEvent)="setIsOpen()"
+            ></jhi-section-update>
+          </jhi-modal>
 
-      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
-      </button>
+          <ul class="sections-cont">
+            <ng-container *ngFor="let section of sections; let i = index">
+              <!-- {{ increaseCounter }} -->
 
-      <button type="button" [routerLink]="['/courses', courses.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
-      </button>
+              <li [ngClass]="isActive === i ? 'active-section' : ''" class="section" (click)="setCurrentSection(section); setActive(i)">
+                {{ section.name }}
+                <span [ngClass]="isActive === i ? 'd-none' : ''">{{ i + 1 }}</span>
+                <ng-container *ngIf="isActive === i">
+                  <div class="d-flex icons-cont flex-row gap-2">
+                    <!-- <jhi-modal [outterAction]="isOpen && 'hide'" class="modal-cust" [typeBtn]="'solo-icon'" [icon]="'pencil-alt'"> -->
+                    <div *ngIf="isOwner" class="d-flex align-items-center gap-2 justify-content-center">
+                      <jhi-modal class="modal-cust" [typeBtn]="'solo-icon'" [icon]="'pencil-alt'">
+                        <jhi-section-update
+                          (closeEvent)="setIsOpen()"
+                          [idSection]="currentSection.id"
+                          [course]="courses"
+                          class="content-modal"
+                          (customEvent)="onSaveSection(courses.id)"
+                          [title]="'Modificar clase'"
+                        ></jhi-section-update>
+                      </jhi-modal>
+
+                      <a (click)="remove(section)">
+                        <fa-icon icon="trash"></fa-icon>
+                      </a>
+                    </div>
+
+                    <span><fa-icon [ngClass]="isActive === i ? 'play' : 'd-none'" icon="play"></fa-icon></span>
+                  </div>
+                </ng-container>
+              </li>
+            </ng-container>
+          </ul>
+
+          <div class="cont-btns">
+            <button
+              title="Volver"
+              type="submit"
+              (click)="previousState()"
+              class="btn btnEdit btnCustEdit"
+              data-cy="entityDetailsBackButton"
+            >
+              <fa-icon icon="arrow-left"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-content" *ngIf="currentSection">
+          <h1 data-cy="coursesDetailsHeading" class="titles"><span>Clase:</span> {{ currentSection.name }}</h1>
+          <div class="d-flex flex-column gap-4" *ngIf="isRegister || isOwner">
+            <!-- start for -->
+            <ng-container *ngFor="let file of currentSection.files; let j = index">
+              <!-- validation of type video -->
+              <ng-container *ngIf="file.type === 'video'" jhiUrlChange [url]="file.url1" (onUrlReady)="sanitizeUrl($event)">
+                <!--<p *ngIf="sanitizeUrl(file.url1)"></p>
+            <ng-container *ngIf="file.type === 'video'" jhiUrlChange [url]="file.url1" (onUrlReady)="sanitizeUrl($event)">
+              <!--<p *ngIf="sanitizeUrl(file.url1)"></p>
+              <div class="cont-video">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  [src]=""
+                  [src]=""
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay;  picture-in-picture;"
+                  allowfullscreen
+                ></iframe>
+              </div>-->
+                <iframe
+                  id="existing-iframe-example"
+                  width="640"
+                  height="360"
+                  [src]="safeUrl"
+                  frameborder="0"
+                  style="border: solid 4px #37474f"
+                ></iframe>
+                <div *ngIf="isOwner" class="btn-crudContainer">
+                  <a
+                    title="Ver este archivo."
+                    type="submit"
+                    href="/files/{{ file.id }}/view"
+                    class="btn btnView"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline"></span>
+                  </a>
+                  <a
+                    title="Modificar este archivo."
+                    type="submit"
+                    href="/files/{{ file.id }}/edit"
+                    class="btn btnEdit"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline"></span>
+                  </a>
+
+                  <button
+                    title="Eliminar este archivo."
+                    type="submit"
+                    (click)="delete(file.id)"
+                    class="btn btnDelete"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline"></span>
+                  </button>
+                </div>
+              </ng-container>
+              <!-- end validation of type video -->
+
+              <!-- constant content -->
+              <span *ngIf="currentSection.creationDate && j < 1"><b>Fecha de publicación:</b> {{ currentSection.creationDate }}</span>
+              <ng-container *ngIf="currentSection.description && j < 1">
+                <span><b>Descripción:</b> {{ currentSection.description }}</span>
+              </ng-container>
+              <!-- end constant content -->
+
+              <!-- start validation of type index -->
+              <ng-container *ngIf="file.type === 'index'">
+                <span><b>Nombre del Archivo:</b> {{ file.excerpt }}</span>
+                <div class="cont-links">
+                  <span><b>Enlaces:</b></span>
+                  <a title="Abre este enlace." class="btn btn-info text-white" *ngIf="file.url1" href="{{ file.url1 }}" target="_blank">
+                    {{ linkTitle }}</a
+                  >
+                  <a title="Abre este enlace." class="btn btn-info text-white" *ngIf="file.url2" href="{{ file.url2 }}" target="_blank">
+                    {{ linkTitle }}</a
+                  >
+                  <a title="Abre este enlace." class="btn btn-info text-white" *ngIf="file.url3" href="{{ file.url3 }}" target="_blank">
+                    {{ linkTitle }}</a
+                  >
+
+                  <!-- <a href="https://www.example.com/my-document.pdf">Link to My Document</a> -->
+                </div>
+
+                <!-- Botones de Servicios Varios -->
+                <div *ngIf="isOwner" class="btn-crudContainer">
+                  <a
+                    title="Ver este archivo."
+                    type="submit"
+                    href="/files/{{ file.id }}/view"
+                    class="btn btnView"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline"></span>
+                  </a>
+                  <a
+                    title="Modificar este archivo."
+                    type="submit"
+                    href="/files/{{ file.id }}/edit"
+                    class="btn btnEdit"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline"></span>
+                  </a>
+
+                  <button
+                    title="Eliminar este archivo."
+                    type="submit"
+                    (click)="delete(file.id)"
+                    class="btn btnDelete"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline"></span>
+                  </button>
+                </div>
+              </ng-container>
+
+              <ng-container *ngIf="file.type === 'own'">
+                <span><b>Nombre del Archivo:</b> {{ file.excerpt }}</span>
+                <div class="cont-links">
+                  <span><b>Ver Archivo Propio:</b></span>
+                  <a title="Abre este archivo." class="btn btn-info text-white" *ngIf="file.url1" href="{{ file.url1 }}" target="_blank">
+                    {{ linkTitle }}</a
+                  >
+                </div>
+
+                <!-- Botones de Servicios Varios -->
+                <div *ngIf="isOwner" class="btn-crudContainer">
+                  <a
+                    title="Ver este archivo."
+                    type="submit"
+                    href="/files/{{ file.id }}/view"
+                    class="btn btnView"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline"></span>
+                  </a>
+                  <a
+                    title="Modificar este archivo."
+                    type="submit"
+                    href="/files/{{ file.id }}/edit"
+                    class="btn btnEdit"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline"></span>
+                  </a>
+
+                  <button
+                    title="Eliminar este archivo."
+                    type="submit"
+                    (click)="delete(file.id)"
+                    class="btn btnDelete"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline"></span>
+                  </button>
+                </div>
+              </ng-container>
+
+              <!-- end validation of type index -->
+            </ng-container>
+            <!-- end for -->
+            <!-- constant content -->
+
+            <ng-container *ngIf="filesLength < 1">
+              <p>Esta clase no contiene archivos validos o disponibles.</p>
+
+              <jhi-modal *ngIf="isOwner" class="modal-cust" [btnLabel]="'Agregar Archivos'" [typeBtn]="'solo-txt'">
+                <jhi-files-manager class="comp-filemanager" [idCourse]="courses.id" [idSection]="currentSection.id"></jhi-files-manager>
+              </jhi-modal>
+              <span *ngIf="currentSection.creationDate"><b>Fecha de publicación:</b> {{ currentSection.creationDate }}</span>
+              <span><b>Descripción:</b> {{ currentSection.description }}</span>
+            </ng-container>
+            <!-- end constant content -->
+          </div>
+          <div *ngIf="!isRegister && !isOwner">
+            <!-- Content to display when isRegister and isOwner are both false -->
+            <div class="wapper-no-cont">
+              <div class="cont-title w-100">
+                <h3>Para ver el contenido debes de matricularte al curso</h3>
+
+                <div *ngIf="isOwner" class="cust-btn w-100 d-flex align-items-center justify-content-center">
+                  <jhi-modal class="modal-cust" [typeBtn]="'solo-txt'" [btnLabel]="'Agregar clase'">
+                    <jhi-section-update [course]="courses" class="content-modal" [title]="'Agregar clase'"></jhi-section-update>
+                  </jhi-modal>
+                </div>
+                <fa-icon class="icon shake" icon="circle-exclamation"></fa-icon>&nbsp;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</ng-container>
+
+<ng-template #noSections>
+  <div class="wapper-no-cont">
+    <div class="cont-title">
+      <h1>Este curso no cuenta con clases disponibles</h1>
+
+      <div *ngIf="isOwner" class="cust-btn w-100 d-flex align-items-center justify-content-center">
+        <jhi-modal class="modal-cust" [typeBtn]="'solo-txt'" [btnLabel]="'Agregar clase'">
+          <jhi-section-update [course]="courses" class="content-modal" [title]="'Agregar clase'"></jhi-section-update>
+        </jhi-modal>
+      </div>
+      <fa-icon class="icon shake" icon="circle-exclamation"></fa-icon>&nbsp;
+    </div>
+  </div>
+</ng-template>

@@ -25,11 +25,19 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
           loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
         },
         {
+          path: 'landing',
+          // canActivate: [UserRouteAccessService],
+          loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule),
+        },
+        {
           path: 'login',
           loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
         },
         {
           path: '',
+          data: {
+            authorities: [Authority.ADMIN, Authority.USER],
+          },
           loadChildren: () => import(`./entities/entity-routing.module`).then(m => m.EntityRoutingModule),
         },
         navbarRoute,

@@ -16,6 +16,7 @@ import {
   ExtraUserInfoService,
   PartialUpdateExtraUserInfo,
 } from '../../entities/extra-user-info/service/extra-user-info.service';
+import { RefreshService } from '../../shared/refresh-service.service';
 
 @Component({
   selector: 'jhi-navbar',
@@ -40,7 +41,8 @@ export class NavbarComponent implements OnInit {
     private accountService: AccountService,
     private profileService: ProfileService,
     private router: Router,
-    private extraUserInfoService: ExtraUserInfoService
+    private extraUserInfoService: ExtraUserInfoService,
+    private refreshService: RefreshService
   ) {
     if (VERSION) {
       this.version = VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`;
@@ -48,6 +50,10 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.refreshService.refresh$.subscribe(() => {
+      this.updateUserData();
+    });
+
     this.entitiesNavbarItems = EntityNavbarItems;
     this.profileService.getProfileInfo().subscribe(profileInfo => {
       this.inProduction = profileInfo.inProduction;
@@ -58,9 +64,13 @@ export class NavbarComponent implements OnInit {
       this.account = account;
     });
 
+    this.updateUserData();
+  }
+
+  updateUserData() {
     this.extraUserInfoService.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {
-        console.log(res);
+        // console.log(res);
         this.profileImg = res.body?.profilePicture;
         this.partialExtraUserInfo.id = <number>res.body?.id;
         this.partialExtraUserInfo.profilePicture = <string>res.body?.profilePicture;

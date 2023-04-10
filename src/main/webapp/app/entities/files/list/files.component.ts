@@ -8,6 +8,8 @@ import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/conf
 import { EntityArrayResponseType, FilesService } from '../service/files.service';
 import { FilesDeleteDialogComponent } from '../delete/files-delete-dialog.component';
 import { SortService } from 'app/shared/sort/sort.service';
+import Swal from 'sweetalert2';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'jhi-files',
@@ -25,29 +27,42 @@ export class FilesComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected sortService: SortService,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private titleService: Title
   ) {}
 
   trackId = (_index: number, item: IFiles): number => this.filesService.getFilesIdentifier(item);
 
   ngOnInit(): void {
+    this.titleService.setTitle('Listado de archivos');
+
     this.load();
   }
 
   delete(files: IFiles): void {
-    const modalRef = this.modalService.open(FilesDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.files = files;
-    // unsubscribe not needed because closed completes on modal close
-    modalRef.closed
-      .pipe(
-        filter(reason => reason === ITEM_DELETED_EVENT),
-        switchMap(() => this.loadFromBackendWithRouteInformations())
-      )
-      .subscribe({
-        next: (res: EntityArrayResponseType) => {
-          this.onResponseSuccess(res);
-        },
-      });
+    Swal.fire({
+      title: '¿Está seguro que desea eliminar el archivo?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí!',
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.filesService.delete(files.id).subscribe(() => {
+          console.log('delete' + files.id.toString());
+        });
+        Swal.fire({
+          icon: 'success',
+          title: 'Eliminado correctamente',
+          showConfirmButton: true,
+        }).then(result => {
+          if (result.isConfirmed) {
+            location.reload();
+          }
+        });
+      }
+    });
   }
 
   load(): void {

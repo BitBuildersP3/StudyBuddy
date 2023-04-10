@@ -8,6 +8,7 @@ import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/conf
 import { EntityArrayResponseType, SectionService } from '../service/section.service';
 import { SectionDeleteDialogComponent } from '../delete/section-delete-dialog.component';
 import { SortService } from 'app/shared/sort/sort.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'jhi-section',
@@ -25,12 +26,15 @@ export class SectionComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected sortService: SortService,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private titleService: Title
   ) {}
 
   trackId = (_index: number, item: ISection): number => this.sectionService.getSectionIdentifier(item);
 
   ngOnInit(): void {
+    this.titleService.setTitle('Lista de clases');
+
     this.load();
   }
 

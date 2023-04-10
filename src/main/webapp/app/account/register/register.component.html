@@ -2,7 +2,7 @@
   <!-- Alertas -->
   <div class="d-flex justify-content-center">
     <div class="col-md-8">
-      <h1 jhiTranslate="register.title" data-cy="registerTitle">Registro</h1>
+      <h1 class="mar" data-cy="registerTitle">Registro</h1>
 
       <div class="alert alert-success" *ngIf="success" jhiTranslate="register.messages.success">
         <strong>¡Registro guardado!</strong> Por favor, revise su correo electrónico para confirmar.
@@ -26,14 +26,19 @@
     </div>
   </div>
 
-
   <div class="d-flex justify-content-center">
     <div class="col-md-8">
       <!-- Inicia Form -->
-      <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
-
+      <form
+        name="form"
+        role="form"
+        class="custom-form align-items-center"
+        (ngSubmit)="register()"
+        [formGroup]="registerForm"
+        *ngIf="!success"
+      >
         <!-- Empieza Username  -->
-        <div class="mb-3">
+        <div class="cardForm">
           <label class="form-label" for="login" jhiTranslate="global.form.username.label">Usuario</label>
           <input
             type="text"
@@ -79,101 +84,102 @@
               Su nombre de usuario no es válido.
             </small>
           </div>
-        </div>
-        <!-- Termina Username  -->
-        <!-- Empieza Email  -->
-        <div class="mb-3">
-          <label class="form-label" for="email" jhiTranslate="global.form.email.label">Correo electrónico</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            name="email"
-            placeholder="{{ 'global.form.email.placeholder' | translate }}"
-            formControlName="email"
-            data-cy="email"
-          />
+          <!-- Termina Username  -->
+          <!-- Empieza Email  -->
+          <div class="mb-3">
+            <label class="form-label" for="email" jhiTranslate="global.form.email.label">Correo electrónico</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="{{ 'global.form.email.placeholder' | translate }}"
+              formControlName="email"
+              data-cy="email"
+            />
 
-          <div *ngIf="registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('email')?.errors?.required"
-              jhiTranslate="global.messages.validate.email.required"
-            >
-              Se requiere un correo electrónico.
-            </small>
+            <div *ngIf="registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)">
+              <small
+                class="form-text text-danger"
+                *ngIf="registerForm.get('email')?.errors?.required"
+                jhiTranslate="global.messages.validate.email.required"
+              >
+                Se requiere un correo electrónico.
+              </small>
 
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('email')?.errors?.invalid"
-              jhiTranslate="global.messages.validate.email.invalid"
-            >
-              Su correo electrónico no es válido.
-            </small>
+              <small
+                class="form-text text-danger"
+                *ngIf="registerForm.get('email')?.errors?.invalid"
+                jhiTranslate="global.messages.validate.email.invalid"
+              >
+                Su correo electrónico no es válido.
+              </small>
 
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('email')?.errors?.minlength"
-              jhiTranslate="global.messages.validate.email.minlength"
-            >
-              Se requiere que su correo electrónico tenga por lo menos 5 caracteres
-            </small>
+              <small
+                class="form-text text-danger"
+                *ngIf="registerForm.get('email')?.errors?.minlength"
+                jhiTranslate="global.messages.validate.email.minlength"
+              >
+                Se requiere que su correo electrónico tenga por lo menos 5 caracteres
+              </small>
 
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('email')?.errors?.maxlength"
-              jhiTranslate="global.messages.validate.email.maxlength"
-            >
-              Su correo electrónico no puede tener más de 50 caracteres
-            </small>
+              <small
+                class="form-text text-danger"
+                *ngIf="registerForm.get('email')?.errors?.maxlength"
+                jhiTranslate="global.messages.validate.email.maxlength"
+              >
+                Su correo electrónico no puede tener más de 50 caracteres
+              </small>
+            </div>
           </div>
-        </div>
-        <!-- Termina Email  -->
+          <!-- Termina Email  -->
 
-        <!-- Nuevos Inputs -->
-            <!-- Inicia Phone -->
-        <div class="mb-3">
-          <label class="form-label" for="phone" >Número Telefónico</label>
-          <input
-            type="phone"
-            class="form-control"
-            id="phone"
-            name="phone"
-            placeholder="Teléfono"
-            formControlName="phone"
-            data-cy="phone"
-          />
+          <!-- Nuevos Inputs -->
+          <!-- Inicia Phone -->
+          <div class="mb-3">
+            <label class="form-label" for="phone">Número Telefónico</label>
+            <input
+              type="phone"
+              class="form-control"
+              id="phone"
+              name="phone"
+              placeholder="Teléfono"
+              formControlName="phone"
+              data-cy="phone"
+            />
 
-          <div *ngIf="registerForm.get('phone')!.invalid && (registerForm.get('phone')!.dirty || registerForm.get('phone')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('phone')?.errors?.required"
-            >
-              Se requiere un número telefónico.
-            </small>
+            <div *ngIf="registerForm.get('phone')!.invalid && (registerForm.get('phone')!.dirty || registerForm.get('phone')!.touched)">
+              <small class="form-text text-danger" *ngIf="registerForm.get('phone')?.errors?.required">
+                Se requiere un número telefónico.
+              </small>
 
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('phone')?.errors?.minlength"
-            >
-              Se requiere que su número telefónico tenga por lo menos 5 caracteres
-            </small>
+              <small class="form-text text-danger" *ngIf="registerForm.get('phone')?.errors?.minlength">
+                Se requiere que su número telefónico tenga por lo menos 5 caracteres
+              </small>
 
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('phone')?.errors?.maxlength"
-            >
-              Su número telefónico no puede tener más de 50 caracteres
-            </small>
+              <small class="form-text text-danger" *ngIf="registerForm.get('phone')?.errors?.maxlength">
+                Su número telefónico no puede tener más de 50 caracteres
+              </small>
+            </div>
           </div>
-        </div>
 
-            <!-- Termina Phone -->
+          <!-- Termina Phone -->
 
-            <!-- Inicia degree -->
-        <div class="mb-3">
-          <label class="form-label" for="degree" >Nivel Académico</label>
-          <input
+          <!-- Inicia degree -->
+          <div class="mb-3">
+            <label class="label" for="degree">Nivel Académico</label>
+            <select type="degree" class="b selctF" id="degree" name="degree" formControlName="degree" data-cy="degree">
+              <option [defaultSelected]="true">-</option>
+              <option>Estudiante</option>
+              <option>Educación básica concluida</option>
+              <option>Secundaria concluida</option>
+              <option>Técnico Medio o Superior</option>
+              <option>Bachiller Universitario</option>
+              <option>Licenciatura</option>
+              <option>Maestría</option>
+              <option>Doctorado</option>
+            </select>
+            <!--<input
             type="degree"
             class="form-control"
             id="degree"
@@ -181,65 +187,57 @@
             placeholder="Nivel Académico"
             formControlName="degree"
             data-cy="degree"
-          />
+            />-->
 
-          <div *ngIf="registerForm.get('degree')!.invalid && (registerForm.get('degree')!.dirty || registerForm.get('degree')!.touched)">
+            <div *ngIf="registerForm.get('degree')!.invalid && (registerForm.get('degree')!.dirty || registerForm.get('degree')!.touched)">
+              <small class="form-text text-danger" *ngIf="registerForm.get('degree')?.errors?.minlength">
+                Se requiere de un titulo academico para poder continuar
+              </small>
 
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('degree')?.errors?.minlength"
-            >
-              Se requiere que su número telefónico tenga por lo menos 5 caracteres
-            </small>
-
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('degree')?.errors?.maxlength"
-            >
-              Su número telefónico no puede tener más de 50 caracteres
-            </small>
+              <small class="form-text text-danger" *ngIf="registerForm.get('degree')?.errors?.maxlength">
+                Su número telefónico no puede tener más de 50 caracteres
+              </small>
+            </div>
           </div>
         </div>
-            <!-- Termina degree -->
 
+        <!-- Termina degree -->
 
-          <!-- Inicia profilePicture -->
+        <!-- Inicia profilePicture -->
 
-          <!-- Termina profilePicture -->
+        <!-- Termina profilePicture -->
 
-          <!-- Inicia birthday -->
+        <!-- Inicia birthday -->
         <div class="mb-3">
-          <label class="form-label" for="birthDay" >Fecha de Nacimiento</label>
-          <input
-            type="birthDay"
-            class="form-control"
-            id="birthDay"
-            name="birthDay"
-            placeholder="AAAA/MM/DD"
-            ngbDatepicker
-            #birthDayDp="ngbDatepicker"
-            formControlName="birthDay"
-            data-cy="birthDay"
-
-          />
-          <!-- Como meto el calendario en el input para que se vea bonito -->
-          <button type="button" class="btn btn-secondary" (click)="birthDayDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          <label class="form-label" for="birthDay">Fecha de Nacimiento</label>
+          <div class="input-group">
+            <input
+              type="birthDay"
+              class="form-control"
+              id="birthDay"
+              name="birthDay"
+              placeholder="AAAA/MM/DD"
+              ngbDatepicker
+              #birthDayDp="ngbDatepicker"
+              formControlName="birthDay"
+              data-cy="birthDay"
+            />
+            <!-- Como meto el calendario en el input para que se vea bonito -->
+            <button type="button" class="btn btn-secondary btnregister" (click)="birthDayDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
         </div>
 
-          <div *ngIf="registerForm.get('birthDay')!.invalid && (registerForm.get('birthDay')!.dirty || registerForm.get('birthDay')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('birthDay')?.errors?.required"
-            >
-              Se requiere una fecha de nacimiento.
-            </small>
+        <div
+          *ngIf="registerForm.get('birthDay')!.invalid && (registerForm.get('birthDay')!.dirty || registerForm.get('birthDay')!.touched)"
+        >
+          <small class="form-text text-danger" *ngIf="registerForm.get('birthDay')?.errors?.required">
+            Se requiere una fecha de nacimiento.
+          </small>
+        </div>
 
-
-          </div>
-
-
-
-          <!-- Termina birthday -->
+        <!-- Termina birthday -->
 
         <!-- Empieza Contrasenna  -->
         <div class="mb-3">
@@ -333,29 +331,23 @@
 
         <!-- Termina Contrasenna  -->
 
-
-
-
         <!-- Boton de "Enviar" -->
         <button
           type="submit"
+          title="Crear cuenta"
           [disabled]="registerForm.invalid"
           class="btn btn-primary btnCrearCuenta"
-          jhiTranslate="register.form.button"
           data-cy="submit"
         >
-          Crear la cuenta
+          <fa-icon icon="save"></fa-icon>&nbsp;
         </button>
       </form>
 
-
       <!-- Mensaje de Soporte Final -->
       <div class="mt-3 alert alert-warning">
-        <span >Si tiene problemas al </span>
+        <span>Si tiene problemas al </span>
         <a class="alert-link" routerLink="/login" jhiTranslate="global.messages.info.authenticated.link">iniciar sesión</a
-        ><span
-          >, puede escribirnos a nuestro correo:<br />Contacto: bitbuildersp3@gmail.com <br />San José, Costa Rica.</span
-        >
+        ><span>, puede escribirnos a nuestro correo:<br />Contacto: bitbuildersp3@gmail.com <br />San José, Costa Rica.</span>
       </div>
     </div>
   </div>

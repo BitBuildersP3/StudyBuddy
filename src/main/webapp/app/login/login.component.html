@@ -1,10 +1,12 @@
 <div class="container">
+  <!-- <jhi-alert-error></jhi-alert-error> -->
+
   <div class="screen">
     <div class="screen__content">
       <form class="login" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
-          <label class="username-label" for="username" jhiTranslate="global.form.username.label">Usuario</label>
+          <label class="username-label" for="username">Usuario</label>
           <input
             type="text"
             class="form-control form-control-lg"
@@ -18,7 +20,7 @@
         </div>
         <div class="login__field">
           <i class="login__icon fas fa-lock"></i>
-          <label for="password" jhiTranslate="login.form.password">Contraseña</label>
+          <label for="password">Contraseña</label>
           <input
             type="password"
             class="form-control form-control-lg"
@@ -29,7 +31,7 @@
             data-cy="password"
           />
         </div>
-        <button type="submit" class="button login__submit" jhiTranslate="login.form.button" data-cy="submit">Iniciar sesión</button>
+        <button type="submit" class="button login__submit" data-cy="submit">Iniciar sesión</button>
       </form>
       <div class="conteinerForgot">
         <div class="alert container-credencials">
@@ -43,8 +45,8 @@
         </div>
 
         <div class="alert container-credencials">
-          <span jhiTranslate="global.messages.info.register.noaccount">¿Aún no tienes una cuenta?</span>
-          <a class="alert-link" routerLink="/account/register" jhiTranslate="global.messages.info.register.link">Crea una cuenta</a>
+          <span>¿Aún no tienes una cuenta?</span>
+          <a class="alert-link" routerLink="/account/register">Crea una cuenta</a>
         </div>
       </div>
     </div>

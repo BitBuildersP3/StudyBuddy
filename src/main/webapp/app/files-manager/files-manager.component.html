@@ -1,0 +1,21 @@
+<!-- <p>{{ idCourse }}</p> -->
+
+<div class="files-manager-container">
+  <h2 class="tituloPrincipal">Seleccione Tipo de Archivo a subir</h2>
+  <div class="button-container">
+    <button title="Agrega un video." (click)="showVideoFile()" [ngClass]="{ 'active-button': activeButton === 'video' }">Video</button>
+    <button title="Agrega un grupo de archivos en la web."  (click)="showIndexedFile()" [ngClass]="{ 'active-button': activeButton === 'indexed' }">Archivo Indexado</button>
+    <button title="Agrega un archivo propio" (click)="showOwnFile()" [ngClass]="{ 'active-button': activeButton === 'own' }">Archivo Propio</button>
+  </div>
+  <div class="file-component-container">
+    <ng-container *ngIf="selectedFileComponent === 'video'">
+      <jhi-video-register-file [idCourse]="idCourse" [idSection]="idSection"></jhi-video-register-file>
+    </ng-container>
+    <ng-container *ngIf="selectedFileComponent === 'indexed'">
+      <jhi-index-register-file [idCourse]="idCourse" [idSection]="idSection"></jhi-index-register-file>
+    </ng-container>
+    <ng-container *ngIf="selectedFileComponent === 'own'">
+      <jhi-own-register-file [idCourse]="idCourse" [idSection]="idSection"></jhi-own-register-file>
+    </ng-container>
+  </div>
+</div>

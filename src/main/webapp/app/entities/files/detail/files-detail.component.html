@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="files">
-      <h2 data-cy="filesDetailsHeading"><span jhiTranslate="studyBuddyApp.files.detail.title">Files</span></h2>
+      <h2 data-cy="filesDetailsHeading"><span >Archivo</span></h2>
 
       <hr />
 
@@ -10,56 +10,88 @@
       <jhi-alert></jhi-alert>
 
       <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dt><span >ID:</span></dt>
+
         <dd>
           <span>{{ files.id }}</span>
         </dd>
-        <dt><span jhiTranslate="studyBuddyApp.files.type">Type</span></dt>
-        <dd>
-          <span>{{ files.type }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.files.url1">Url 1</span></dt>
-        <dd>
-          <span>{{ files.url1 }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.files.url2">Url 2</span></dt>
-        <dd>
-          <span>{{ files.url2 }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.files.url3">Url 3</span></dt>
-        <dd>
-          <span>{{ files.url3 }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.files.status">Status</span></dt>
-        <dd>
-          <span>{{ files.status }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.files.name">Name</span></dt>
+
+
+        <dt><span >Nombre:</span></dt>
         <dd>
           <span>{{ files.name }}</span>
         </dd>
-        <dt><span jhiTranslate="studyBuddyApp.files.excerpt">Excerpt</span></dt>
+
+        <dt><span >Descripción:</span></dt>
         <dd>
           <span>{{ files.excerpt }}</span>
         </dd>
-        <dt><span jhiTranslate="studyBuddyApp.files.publishDate">Publish Date</span></dt>
+
+
+        <dt><span >Fecha de subida:</span></dt>
         <dd>
           <span>{{ files.publishDate | formatMediumDate }}</span>
         </dd>
-        <dt><span jhiTranslate="studyBuddyApp.files.section">Section</span></dt>
-        <dd>
+
+
+
+        <ng-container *ngIf=" files.type === 'index' ">
+
+
+
+          <dt><span >Url 1:</span></dt>
+          <dd>
+            <span>{{ files.url1 }}</span>
+          </dd>
+
+          <dt><span >Url 2:</span></dt>
+          <dd>
+            <span>{{ files.url2 }}</span>
+          </dd>
+
+          <dt><span >Url 3:</span></dt>
+          <dd>
+            <span>{{ files.url3 }}</span>
+          </dd>
+
+        </ng-container>
+
+        <ng-container *ngIf=" files.type === 'own' || files.type === 'video' ">
+
+
+          <dt><span >Url 1:</span></dt>
+          <dd>
+            <span>{{ files.url1 }}</span>
+          </dd>
+
+        </ng-container>
+
+
+        <dt style="display: none;" ><span>Clase:</span></dt>
+        <dd  style="display: none;">
           <div *ngIf="files.section">
             <a [routerLink]="['/section', files.section.id, 'view']">{{ files.section.id }}</a>
           </div>
         </dd>
+
+        <dt  style="display: none;"><span >Estado:</span></dt>
+        <dd style="display: none;">
+          <span>{{ files.status }}</span>
+        </dd>
+
+        <dt  style="display: none;"><span >Tipo:</span></dt>
+        <dd  style="display: none;">
+          <span>{{ files.type }}</span>
+        </dd>
+
       </dl>
 
-      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      <button title="volver" type="submit" (click)="previousState()" class="btn btnEdit" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span ></span>
       </button>
 
-      <button type="button" [routerLink]="['/files', files.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      <button title="editar" type="button" [routerLink]="['/files', files.id, 'edit']" class="btn btnEdit">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span ></span>
       </button>
     </div>
   </div>

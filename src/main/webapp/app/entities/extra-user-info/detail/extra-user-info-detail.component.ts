@@ -6,6 +6,7 @@ import { IExtraUserInfo } from '../extra-user-info.model';
 @Component({
   selector: 'jhi-extra-user-info-detail',
   templateUrl: './extra-user-info-detail.component.html',
+  styleUrls: ['./extra-user-info.css'],
 })
 export class ExtraUserInfoDetailComponent implements OnInit {
   extraUserInfo: IExtraUserInfo | null = null;

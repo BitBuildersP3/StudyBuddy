@@ -45,6 +45,12 @@ public class Courses implements Serializable {
     @Column(name = "user_id")
     private Integer userId;
 
+    @Column(name = "owner_name")
+    private String ownerName;
+
+    @Column(name = "user_name")
+    private String userName;
+
     @Column(name = "user_votes")
     private Double userVotes;
 
@@ -54,6 +60,9 @@ public class Courses implements Serializable {
         joinColumns = @JoinColumn(name = "courses_id"),
         inverseJoinColumns = @JoinColumn(name = "user_id")
     )
+    /*@JsonIgnoreProperties("courses")
+    private Set<User> user = new HashSet<>();*/
+
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<User> users = new HashSet<>();
 
@@ -62,9 +71,15 @@ public class Courses implements Serializable {
     private Category category;
 
     @OneToMany(mappedBy = "courses")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "files", "courses" }, allowSetters = true)
+    @Cache(usage = CacheConcurrencyStrategy.NONE)
+    @JsonIgnoreProperties(value = { "", "courses" }, allowSetters = true)
     private Set<Section> sections = new HashSet<>();
+
+    public Courses(Long idCourse) {
+        this.setId(idCourse);
+    }
+
+    public Courses() {}
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -170,6 +185,32 @@ public class Courses implements Serializable {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getOwnerName() {
+        return this.ownerName;
+    }
+
+    public Courses ownerName(String ownerName) {
+        this.setOwnerName(ownerName);
+        return this;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getUserName() {
+        return this.userName;
+    }
+
+    public Courses userName(String userName) {
+        this.setUserName(userName);
+        return this;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Double getUserVotes() {
@@ -283,6 +324,8 @@ public class Courses implements Serializable {
             ", score=" + getScore() +
             ", excerpt='" + getExcerpt() + "'" +
             ", userId=" + getUserId() +
+            ", ownerName='" + getOwnerName() + "'" +
+            ", userName='" + getUserName() + "'" +
             ", userVotes=" + getUserVotes() +
             "}";
     }

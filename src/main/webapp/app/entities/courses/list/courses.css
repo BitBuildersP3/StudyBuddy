@@ -1,0 +1,106 @@
+:root {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: #f6f9ff;
+  color: #444444;
+}
+
+h1,
+h2,
+h3,
+h4,
+h6 {
+  font-family: 'Nunito', sans-serif;
+}
+.h5 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+}
+
+/* .active{
+  background-color: #983F56;
+  border-radius: 5px;
+  padding: 2px 5px;
+  color: white;
+}
+
+.locked{
+  background-color: #983F56;
+  border-radius: 5px;
+  padding: 2px 5px;
+  color: white;
+} */
+
+/*--------------------------------------------------------------
+    # Main
+    --------------------------------------------------------------*/
+#main {
+  margin-top: 60px;
+  padding: 20px 30px;
+  transition: all 0.3s;
+}
+.sub {
+  text-align: justify;
+  font-size: 16px;
+  color: #666666;
+}
+.negrita {
+  font-weight: bold;
+}
+
+.item-cont {
+  width: 50%;
+}
+
+.principalConteiner {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.secondConteiner {
+  width: 100%;
+  height: auto;
+  flex-direction: row;
+  display: flex;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.card-image {
+  width: 20%;
+  flex-direction: row;
+  display: flex;
+  padding: 1rem;
+}
+.info {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+.imgg {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.botones {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.txt-cont {
+  width: 40%;
+}
+.btn {
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

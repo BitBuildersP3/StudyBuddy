@@ -6,9 +6,9 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { ICourses, NewCourses } from '../courses.model';
-
+import { map } from 'rxjs/operators';
+import { RestExtraUserInfo } from '../../extra-user-info/service/extra-user-info.service';
 export type PartialUpdateCourses = Partial<ICourses> & Pick<ICourses, 'id'>;
-
 export type EntityResponseType = HttpResponse<ICourses>;
 export type EntityArrayResponseType = HttpResponse<ICourses[]>;
 
@@ -22,6 +22,10 @@ export class CoursesService {
     return this.http.post<ICourses>(this.resourceUrl, courses, { observe: 'response' });
   }
 
+  getCoursesByPrompt(prompt: string): Observable<EntityArrayResponseType> {
+    return this.http.get<ICourses[]>(`${this.resourceUrl}/findByPrompt/${prompt}`, { observe: 'response' });
+  }
+
   update(courses: ICourses): Observable<EntityResponseType> {
     return this.http.put<ICourses>(`${this.resourceUrl}/${this.getCoursesIdentifier(courses)}`, courses, { observe: 'response' });
   }
@@ -30,8 +34,36 @@ export class CoursesService {
     return this.http.patch<ICourses>(`${this.resourceUrl}/${this.getCoursesIdentifier(courses)}`, courses, { observe: 'response' });
   }
 
+  getFiveOwner(): Observable<EntityArrayResponseType> {
+    return this.http.get<ICourses[]>(`${this.resourceUrl}/getFiveByOwner`, { observe: 'response' });
+  }
+
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<ICourses>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  findOwner(ownerName: string): Observable<EntityArrayResponseType> {
+    return this.http.get<ICourses[]>(`${this.resourceUrl}/${ownerName}`, { observe: 'response' });
+  }
+
+  getTopTenCourses(): Observable<EntityArrayResponseType> {
+    return this.http.get<ICourses[]>(`${this.resourceUrl}/topTen`, { observe: 'response' });
+  }
+
+  getFiveCourseById(id: number | undefined): Observable<EntityArrayResponseType> {
+    return this.http.get<ICourses[]>(`${this.resourceUrl}/fiveEnrolled/${id}`, { observe: 'response' });
+  }
+
+  getCouseDataById(id: number): Observable<EntityResponseType> {
+    return this.http.get<ICourses>(`${this.resourceUrl}/getAllData/${id}`, { observe: 'response' });
+  }
+
+  getByOwner(ownerName: string): Observable<EntityArrayResponseType> {
+    return this.http.get<ICourses[]>(`${this.resourceUrl}/owner/${ownerName}`, { observe: 'response' });
+  }
+
+  getRegisteredCoursesByUserId(user: number): Observable<EntityArrayResponseType> {
+    return this.http.get<ICourses[]>(`${this.resourceUrl}/enrolled/${user}`, { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
@@ -45,6 +77,14 @@ export class CoursesService {
 
   getCoursesIdentifier(courses: Pick<ICourses, 'id'>): number {
     return courses.id;
+  }
+
+  getIsRegister(id: string): Observable<any> {
+    return this.http.get<any>(`${this.resourceUrl}/isRegistered/${id}`, { observe: 'response' });
+  }
+
+  getIsOwner(id: number): Observable<any> {
+    return this.http.get<any>(`${this.resourceUrl}/isOwner/${id}`, { observe: 'response' });
   }
 
   compareCourses(o1: Pick<ICourses, 'id'> | null, o2: Pick<ICourses, 'id'> | null): boolean {

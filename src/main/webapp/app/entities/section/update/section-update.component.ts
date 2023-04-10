@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -9,14 +9,22 @@ import { ISection } from '../section.model';
 import { SectionService } from '../service/section.service';
 import { ICourses } from 'app/entities/courses/courses.model';
 import { CoursesService } from 'app/entities/courses/service/courses.service';
+import dayjs from 'dayjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'jhi-section-update',
   templateUrl: './section-update.component.html',
 })
 export class SectionUpdateComponent implements OnInit {
+  @Input() title = '';
+  @Input() course: any = '';
+  @Input() idSection = 0;
+  @Output() customEvent = new EventEmitter();
+  @Output() closeEvent = new EventEmitter();
+
   isSaving = false;
-  section: ISection | null = null;
+  section: any | null = null;
 
   coursesSharedCollection: ICourses[] = [];
 
@@ -31,28 +39,63 @@ export class SectionUpdateComponent implements OnInit {
 
   compareCourses = (o1: ICourses | null, o2: ICourses | null): boolean => this.coursesService.compareCourses(o1, o2);
 
-  ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ section }) => {
-      this.section = section;
-      if (section) {
-        this.updateForm(section);
-      }
+  triggerCustomEvent(): void {
+    this.customEvent.emit();
+  }
 
-      this.loadRelationshipsOptions();
-    });
+  ngOnInit(): void {
+    if (this.idSection !== undefined && this.idSection !== 0) {
+      this.sectionService.find(this.idSection).subscribe((data: any) => {
+        this.section = data.body;
+
+        if (data) {
+          this.updateForm(data.body);
+        }
+
+        this.loadRelationshipsOptions();
+      });
+    }
   }
 
   previousState(): void {
     window.history.back();
   }
 
+  onClose(): void {
+    this.customEvent.emit();
+  }
+  showSwall(): void {
+    Swal.fire({
+      icon: 'success',
+      title: 'Datos guardados correctamente',
+      showConfirmButton: true,
+      timer: 2000,
+    }).then(result => {
+      location.reload();
+    });
+  }
+
   save(): void {
     this.isSaving = true;
     const section = this.sectionFormService.getSection(this.editForm);
+    const newObjSection = {
+      creationDate: dayjs(),
+      description: section.description,
+      excerpt: section.excerpt,
+      name: section.name,
+      id: section.id,
+      status: 'active',
+      time: 0,
+      courses: this.course,
+    };
     if (section.id !== null) {
-      this.subscribeToSaveResponse(this.sectionService.update(section));
+      if ((newObjSection.name !== null, newObjSection.description !== null, newObjSection.excerpt !== null)) {
+        this.subscribeToSaveResponse(this.sectionService.update(newObjSection));
+      }
     } else {
-      this.subscribeToSaveResponse(this.sectionService.create(section));
+      if ((newObjSection.name !== null, newObjSection.description !== null, newObjSection.excerpt !== null)) {
+        this.subscribeToSaveResponse(this.sectionService.create(newObjSection));
+      }
     }
   }
 
@@ -64,12 +107,12 @@ export class SectionUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    this.previousState();
+    this.editForm.reset();
+    this.customEvent.emit();
+    this.showSwall();
   }
 
-  protected onSaveError(): void {
-    // Api for inheritance.
-  }
+  protected onSaveError(): void {}
 
   protected onSaveFinalize(): void {
     this.isSaving = false;
@@ -78,7 +121,6 @@ export class SectionUpdateComponent implements OnInit {
   protected updateForm(section: ISection): void {
     this.section = section;
     this.sectionFormService.resetForm(this.editForm, section);
-
     this.coursesSharedCollection = this.coursesService.addCoursesToCollectionIfMissing<ICourses>(
       this.coursesSharedCollection,
       section.courses

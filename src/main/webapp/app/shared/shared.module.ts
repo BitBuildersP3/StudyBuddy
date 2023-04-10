@@ -14,9 +14,11 @@ import { SortDirective } from './sort/sort.directive';
 import { ItemCountComponent } from './pagination/item-count.component';
 import { FilterComponent } from './filter/filter.component';
 import { CloudinaryButtonComponent } from './cloudinary/cloudinary-button/cloudinary-button.component';
+import { ModalComponent } from './modal/modal.component';
 @NgModule({
   imports: [SharedLibsModule],
   declarations: [
+    ModalComponent,
     FindLanguageFromKeyPipe,
     TranslateDirective,
     AlertComponent,
@@ -32,6 +34,7 @@ import { CloudinaryButtonComponent } from './cloudinary/cloudinary-button/cloudi
     CloudinaryButtonComponent,
   ],
   exports: [
+    ModalComponent,
     SharedLibsModule,
     FindLanguageFromKeyPipe,
     TranslateDirective,

@@ -4,7 +4,11 @@ import { Router } from '@angular/router';
 
 import { LoginService } from 'app/login/login.service';
 import { AccountService } from 'app/core/auth/account.service';
+import { NavbarComponent } from '../layouts/navbar/navbar.component';
+import Swal from 'sweetalert2';
+import { Title } from '@angular/platform-browser';
 
+import { RefreshService } from '../shared/refresh-service.service';
 @Component({
   selector: 'jhi-login',
   templateUrl: './login.component.html',
@@ -22,10 +26,17 @@ export class LoginComponent implements OnInit, AfterViewInit {
     rememberMe: new FormControl(false, { nonNullable: true, validators: [Validators.required] }),
   });
 
-  constructor(private accountService: AccountService, private loginService: LoginService, private router: Router) {}
+  constructor(
+    private accountService: AccountService,
+    private loginService: LoginService,
+    private router: Router,
+    private titleService: Title,
+    private refreshService: RefreshService
+  ) {}
 
   ngOnInit(): void {
-    // if already authenticated then navigate to home page
+    this.titleService.setTitle('Página de Acceso');
+
     this.accountService.identity().subscribe(() => {
       if (this.accountService.isAuthenticated()) {
         this.router.navigate(['']);
@@ -42,8 +53,16 @@ export class LoginComponent implements OnInit, AfterViewInit {
       next: () => {
         this.authenticationError = false;
         if (!this.router.getCurrentNavigation()) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Inicio de sesión exitoso',
+            showConfirmButton: false,
+            timer: 2000,
+          });
+
+          this.refreshService.refresh();
           // There were no routing during login (eg from navigationToStoredUrl)
-          this.router.navigate(['']);
+          this.router.navigate(['landing']);
         }
       },
       error: () => (this.authenticationError = true),

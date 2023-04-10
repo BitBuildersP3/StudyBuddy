@@ -1,0 +1,100 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div class="separador"></div>
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading">Subir Archivo Propio</h2>
+      <div class="separador"></div>
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_name">Nombre del archivo: </label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="field_name"
+            data-cy="name"
+            formControlName="name"
+            placeholder="Escribe el nombre del video aquí."
+          />
+          <!-- Validacion Nombre del archivo - INICIO -->
+
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required">
+              Se requiere un nombre para su archivo (Video).
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.minlength">
+              Se requiere que el nombre del archivo sea de por lo menos 5 caracteres.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.maxlength">
+              El nombre del archivo no puede tener más de 250 caracteres.
+            </small>
+
+          </div>
+          <!-- Validacion Nombre del archivo - FIN-->
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_excerpt">Descripción: </label>
+          <textarea
+            class="form-control"
+            name="excerpt"
+            id="field_excerpt"
+            data-cy="excerpt"
+            formControlName="excerpt"
+            placeholder="Escribe una descripción del video que deseas subir aquí."
+            maxlength="250"
+          ></textarea>
+          <!-- Validacion Descripcion - INICIO -->
+
+          <div *ngIf="editForm.get('excerpt')!.invalid && (editForm.get('excerpt')!.dirty || editForm.get('excerpt')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.required">
+              Se requiere una descripción para su archivo.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.minlength">
+              Se requiere que la descripción sea de por lo menos 5 caracteres.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.maxlength">
+              La descripción del archivo no puede tener más de 250 caracteres.
+            </small>
+
+          </div>
+          <!-- Validacion Descripcion- FIN-->
+        </div>
+
+        <!-- Boton de Cloudinay -->
+        <jhi-cloudinary-button (urlChanged)="myURLFromCloudinary($event)" [text]="$any('Subir Archivo')"> </jhi-cloudinary-button>
+      </div>
+
+      <div class="info-box row mb-3">
+        <p>Recuerda leer nuestros términos y condiciones antes de utilizar nuestros servicios.</p>
+        <p>¿Necesitas ayuda? Puedes ver este tutorial en nuestro canal de YouTube:</p>
+        <!-- Cambiar este link cuando este el tutorial -->
+        <a class="linkvideo" href="https://www.youtube.com/watch?v=eBGIQ7ZuuiU&ab_channel=YouGotRickRolled">Tutorial en YouTube</a>
+      </div>
+
+      <div>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

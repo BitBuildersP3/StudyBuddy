@@ -1,8 +1,9 @@
 package com.cenfotec.repository;
 
-import com.cenfotec.domain.Courses;
+import com.cenfotec.domain.*;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
@@ -28,4 +29,27 @@ public interface CoursesRepository extends CoursesRepositoryWithBagRelationships
     default Page<Courses> findAllWithEagerRelationships(Pageable pageable) {
         return this.fetchBagRelationships(this.findAll(pageable));
     }
+
+    @Query("SELECT courses FROM Courses courses  WHERE courses.ownerName = :ownerName")
+    List<Courses> findByUserName(@Param("ownerName") String ownerName);
+
+    List<Courses> findTop5ByOwnerNameLikeAndStatusIs(String ownerName, String status);
+
+    @Query("select courses from Courses courses where courses.id = :id")
+    Optional<Courses> findAllDataByCourseId(@Param("id") long id);
+
+    List<Courses> findCoursesByUsersLike(User user);
+
+    List<Courses> findTop10ByStatusIsOrderByScoreDesc(String status);
+
+    List<Courses> findTop5ByUsersLikeAndStatusIs(User user, String status);
+
+    @Query("select courses from Courses courses where courses.ownerName like %:prompt% or courses.name like %:prompt%")
+    List<Courses> findCoursesByPrompt(@Param("prompt") String prompt);
+    /*    *
+    *
+    * @Query("select files, files.section, files.section.courses.name  from Files files")
+    List<Files> findAllDataByCourseId(@Param("id") long id);
+    *
+    * */
 }

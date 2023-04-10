@@ -31,14 +31,14 @@ export class SectionService {
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
-  create(section: NewSection): Observable<EntityResponseType> {
+  create(section: any): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(section);
     return this.http
       .post<RestSection>(this.resourceUrl, copy, { observe: 'response' })
       .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
-  update(section: ISection): Observable<EntityResponseType> {
+  update(section: any): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(section);
     return this.http
       .put<RestSection>(`${this.resourceUrl}/${this.getSectionIdentifier(section)}`, copy, { observe: 'response' })

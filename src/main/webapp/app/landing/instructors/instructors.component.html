@@ -1,0 +1,21 @@
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h6 class="section-title bg-white text-center text-primary px-3">Instructores</h6>
+      <h1 class="mb-5">Instructores Relevantes</h1>
+    </div>
+    <div class="row g-4">
+      <div *ngFor="let instructor of instructors" class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="team-item bg-light">
+          <div class="overflow-hidden">
+            <img class="img-fluid" src="{{ instructor.image }}" alt="" />
+          </div>
+          <div class="text-center p-4">
+            <h3 class="mb-0">{{ instructor.slideTitle }}</h3>
+            <p>{{ instructor.slideExerpt }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

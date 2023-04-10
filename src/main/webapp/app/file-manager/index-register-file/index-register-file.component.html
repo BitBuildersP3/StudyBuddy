@@ -1,0 +1,222 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div class="separador"></div>
+
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading">Crear Archivo Indexado</h2>
+
+      <div class="separador"></div>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_name">Nombre del archivo: </label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="field_name"
+            data-cy="name"
+            formControlName="name"
+            placeholder="Escribe el nombre del archivo aquí."
+          />
+          <!-- Validacion Nombre del archivo - INICIO -->
+
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required">
+              Se requiere un nombre para su archivo.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.minlength">
+              Se requiere que el nombre del archivo sea de por lo menos 5 caracteres.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.maxlength">
+              El nombre del archivo no puede tener más de 250 caracteres.
+            </small>
+
+          </div>
+          <!-- Validacion Nombre del archivo - FIN-->
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_excerpt">Descripción: </label>
+          <textarea
+            class="form-control"
+            name="excerpt"
+            id="field_excerpt"
+            data-cy="excerpt"
+            formControlName="excerpt"
+            placeholder="Escribe una descripción del archivo que deseas subir aquí."
+            maxlength="250"
+          ></textarea>
+          <!-- Validacion Descripcion - INICIO -->
+
+          <div *ngIf="editForm.get('excerpt')!.invalid && (editForm.get('excerpt')!.dirty || editForm.get('excerpt')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.required">
+              Se requiere una descripción para su archivo.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.minlength">
+              Se requiere que la descripción sea de por lo menos 5 caracteres.
+            </small>
+
+            <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.maxlength">
+              La descripción del archivo no puede tener más de 250 caracteres.
+            </small>
+
+          </div>
+          <!-- Validacion Descripcion- FIN-->
+        </div>
+
+        <div class="separador"></div>
+
+        <h3>Selecciona el servicio de almacenamiento</h3>
+
+        <div class="separador"></div>
+
+        <div class="separador-inputs row mb-3">
+          <div class="row mb-3">
+            <label class="form-label" for="field_url1">Url 1: </label>
+            <input
+              type="text"
+              class="form-control"
+              name="url1"
+              id="field_url1"
+              data-cy="url1"
+              formControlName="url1"
+              placeholder="Enlace de Google Drive aquí."
+            />
+
+            <!-- Validacion URL 1 - INICIO -->
+            <div *ngIf="editForm.get('url1')!.invalid && (editForm.get('url1')!.dirty || editForm.get('url1')!.touched)">
+              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.required">
+                Se requiere una url
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.minlength">
+                Se requiere que la url de por lo menos 5 caracteres.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.maxlength">
+                Su url no puede tener más de 250 caracteres.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.pattern">
+                Se requiere una url valida.
+              </small>
+
+            </div>
+            <!-- Validacion URL 1 - FIN-->
+          </div>
+
+          <a href="https://drive.google.com/" target="_blank" class="btn-extern">Drive</a>
+        </div>
+
+        <div class="separador-inputs row mb-3">
+          <div class="row mb-3">
+            <label class="form-label" for="field_url2">Url 2: </label>
+            <input
+              type="text"
+              class="form-control"
+              name="url2"
+              id="field_url2"
+              data-cy="url2"
+              formControlName="url2"
+              placeholder="Enlace de Media Fire aquí."
+            />
+
+            <!-- Validacion URL 2 - INICIO -->
+            <div *ngIf="editForm.get('url2')!.invalid && (editForm.get('url2')!.dirty || editForm.get('url2')!.touched)">
+              <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.required">
+                Se requiere una url
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.minlength">
+                Se requiere que la url de por lo menos 5 caracteres.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.maxlength">
+                Su url no puede tener más de 250 caracteres.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.pattern">
+                Se requiere una url valida.
+              </small>
+
+            </div>
+            <!-- Validacion URL 2 - FIN-->
+          </div>
+
+          <a href="https://www.mediafire.com/" target="_blank" class="btn-extern">Media Fire</a>
+        </div>
+
+        <div class="separador-inputs row mb-3">
+          <div class="row mb-3">
+            <label class="form-label" for="field_url3">Url 3: </label>
+            <input
+              type="text"
+              class="form-control"
+              name="url3"
+              id="field_url3"
+              data-cy="url3"
+              formControlName="url3"
+              placeholder="Enlace de Mega aquí."
+            />
+            <!-- Validacion URL 3 - INICIO -->
+            <div *ngIf="editForm.get('url1')!.invalid && (editForm.get('url3')!.dirty || editForm.get('url3')!.touched)">
+              <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.required">
+                Se requiere una url
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.minlength">
+                Se requiere que la url de por lo menos 5 caracteres.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.maxlength">
+                Su url no puede tener más de 250 caracteres.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.pattern">
+                Se requiere una url valida.
+              </small>
+
+            </div>
+            <!-- Validacion URL 3 - FIN-->
+
+          </div>
+
+          <a href="https://mega.nz/" target="_blank" class="btn-extern">Mega</a>
+        </div>
+      </div>
+
+      <div class="separador"></div>
+
+      <div class="info-box row mb-3">
+        <p>Recuerda leer nuestros términos y condiciones antes de utilizar nuestros servicios.</p>
+        <p>¿Necesitas ayuda? Puedes ver este tutorial en nuestro canal de YouTube:</p>
+        <!-- Cambiar este link cuando este el tutorial -->
+        <a class="linkvideo" href="https://www.youtube.com/watch?v=eBGIQ7ZuuiU&ab_channel=YouGotRickRolled">Tutorial en YouTube</a>
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          title="Guardar"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btnView"
+        >Guardar
+          <fa-icon icon="save"></fa-icon>&nbsp;
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

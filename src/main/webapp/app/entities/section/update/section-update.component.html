@@ -1,100 +1,48 @@
-<div class="d-flex justify-content-center">
-  <div class="col-8">
-    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-section-heading" data-cy="SectionCreateUpdateHeading" jhiTranslate="studyBuddyApp.section.home.createOrEditLabel">
-        Crear o editar Section
-      </h2>
+<form name="editForm" class="custom-form align-items-center edit-w" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+  <h2 id="jhi-section-heading" data-cy="SectionCreateUpdateHeading">{{ title }}</h2>
 
-      <div>
-        <jhi-alert-error></jhi-alert-error>
+  <div class="cardForm">
+    <jhi-alert-error></jhi-alert-error>
 
-        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
-          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
+    <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+      <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+      <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+    </div>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.section.name" for="field_name">Name</label>
-          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
-        </div>
+    <div class="row mb-3">
+      <label class="form-label" for="field_name">Nombre</label>
+      <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+    </div>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.section.description" for="field_description">Description</label>
-          <input
-            type="text"
-            class="form-control"
-            name="description"
-            id="field_description"
-            data-cy="description"
-            formControlName="description"
-          />
-        </div>
+    <div class="row mb-3">
+      <label class="form-label" for="field_description">Descripción</label>
+      <input
+        type="text"
+        class="form-control"
+        name="description"
+        id="field_description"
+        data-cy="description"
+        formControlName="description"
+      />
+    </div>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.section.excerpt" for="field_excerpt">Excerpt</label>
-          <input type="text" class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.section.creationDate" for="field_creationDate">Creation Date</label>
-          <div class="input-group">
-            <input
-              id="field_creationDate"
-              data-cy="creationDate"
-              type="text"
-              class="form-control"
-              name="creationDate"
-              ngbDatepicker
-              #creationDateDp="ngbDatepicker"
-              formControlName="creationDate"
-            />
-            <button type="button" class="btn btn-secondary" (click)="creationDateDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
-            </button>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.section.time" for="field_time">Time</label>
-          <input type="number" class="form-control" name="time" id="field_time" data-cy="time" formControlName="time" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.section.status" for="field_status">Status</label>
-          <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.section.courses" for="field_courses">Courses</label>
-          <select
-            class="form-control"
-            id="field_courses"
-            data-cy="courses"
-            name="courses"
-            formControlName="courses"
-            [compareWith]="compareCourses"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="coursesOption" *ngFor="let coursesOption of coursesSharedCollection">{{ coursesOption.id }}</option>
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
-        </button>
-
-        <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn btn-primary"
-        >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
-        </button>
-      </div>
-    </form>
+    <div class="row mb-3">
+      <label class="form-label" for="field_excerpt">Detalle</label>
+      <input type="text" class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" />
+    </div>
   </div>
-</div>
+
+  <div>
+    <button
+      type="submit"
+      title="Guardar"
+      id="save-entity"
+      data-cy="entityCreateSaveButton"
+      [disabled]="editForm.invalid || isSaving"
+      class="btn btn-primary d-flex"
+      (click)="triggerCustomEvent()"
+    >
+      <fa-icon icon="save"></fa-icon>
+    </button>
+  </div>
+</form>

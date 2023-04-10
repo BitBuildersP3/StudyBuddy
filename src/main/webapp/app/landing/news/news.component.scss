@@ -1,0 +1,61 @@
+$color-principal: #15537d;
+$color-secundario: #6dabd5;
+$color-alertas: #983f56;
+$color-bordes: #de9a38;
+$color-fondoBlanc: #dfe2ea;
+h6 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.g-4 {
+  align-items: center;
+  justify-content: center;
+}
+
+.separador {
+  border-bottom: solid $color-principal 2px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.myCard {
+  max-height: 400px;
+}
+
+.alert {
+  width: 100%;
+  margin: 20px auto;
+  padding: 30px;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 5px #ccc;
+  border-left: 5px solid #ebebeb;
+  text-align: center;
+}
+
+@mixin alert($name, $bgColor) {
+  $accentColor: darken($bgColor, 50);
+  .#{$name} {
+    background-color: #{$bgColor};
+    border-left: 5px solid $accentColor;
+    .close {
+      border-color: $accentColor;
+      color: $accentColor;
+    }
+  }
+}
+
+.w-for-5 {
+  width: calc(100% / 5);
+}
+
+.cust-cont-imgs {
+  max-height: 15rem;
+
+  img {
+    min-height: 15rem;
+    width: 100%;
+    object-fit: cover;
+  }
+}
