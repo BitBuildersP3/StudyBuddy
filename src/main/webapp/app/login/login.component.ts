@@ -53,19 +53,19 @@ export class LoginComponent implements OnInit, AfterViewInit {
       next: () => {
         this.authenticationError = false;
         if (!this.router.getCurrentNavigation()) {
-          Swal.fire({
-            icon: 'success',
-            title: 'Inicio de sesión exitoso',
-            showConfirmButton: false,
-            timer: 2000,
-          });
-
           this.refreshService.refresh();
           // There were no routing during login (eg from navigationToStoredUrl)
           this.router.navigate(['landing']);
         }
       },
-      error: () => (this.authenticationError = true),
+      error: () => {
+        (this.authenticationError = true),
+          Swal.fire({
+            icon: 'error',
+            title: 'Usuario o Contraseña incorrecta',
+            showConfirmButton: true,
+          });
+      },
     });
   }
 }
