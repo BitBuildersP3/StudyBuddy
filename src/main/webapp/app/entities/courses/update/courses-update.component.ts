@@ -27,7 +27,7 @@ export class CoursesUpdateComponent implements OnInit {
   ownerName: string;
   usersSharedCollection: IUser[] = [];
   categoriesSharedCollection: ICategory[] = [];
-  previewURL: string = 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1680045450/peter-gombos-8y3e2M6APy4-unsplash_dgh1ui.jpg';
+  previewURL: string = 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1681166198/default-image_ltck0i.webp';
   editForm: CoursesFormGroup = this.coursesFormService.createCoursesFormGroup();
   users?: Pick<IUser, 'id' | 'login'>[] | null;
   constructor(
@@ -99,6 +99,7 @@ export class CoursesUpdateComponent implements OnInit {
       courses.ownerName = this.ownerName;
       courses.userId = this.idUser;
       courses.status = 'active';
+      courses.score = 0;
       this.subscribeToSaveResponse(this.coursesService.create(courses));
       Swal.fire({
         icon: 'success',
