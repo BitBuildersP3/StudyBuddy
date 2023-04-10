@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" class="custom-form align-items-center" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-courses-heading" data-cy="CoursesCreateUpdateHeading">Crear o editar curso</h2>
+      <h2 id="jhi-courses-heading" data-cy="CoursesCreateUpdateHeading">Crear curso</h2>
 
       <div class="cardForm">
         <jhi-alert-error></jhi-alert-error>
@@ -28,14 +28,14 @@
 
         <div class="mb-3">
           <label class="label" for="field_description">Descripción</label>
-          <input
+          <textarea
             type="text"
-            class="form-control"
+            class="textInput"
             name="description"
             id="field_description"
             data-cy="description"
             formControlName="description"
-          />
+          ></textarea>
         </div>
 
         <!--<div class="row mb-3">
