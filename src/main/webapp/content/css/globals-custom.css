@@ -674,3 +674,12 @@ p {
   justify-content: center;
   align-items: center;
 }
+
+.card {
+  min-height: 55rem;
+}
+
+/* text Global colors */
+.txt-dark-blue {
+  color: #15537d;
+}
