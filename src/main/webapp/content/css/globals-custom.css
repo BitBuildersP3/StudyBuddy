@@ -23,6 +23,9 @@
   bottom: 45px;
   z-index: 99;
 }
+.color {
+  background-color: #dfe2e4 !important;
+}
 
 /*** Spinner ***/
 #spinner {
@@ -670,4 +673,13 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.card {
+  min-height: 55rem;
+}
+
+/* text Global colors */
+.txt-dark-blue {
+  color: #15537d;
 }

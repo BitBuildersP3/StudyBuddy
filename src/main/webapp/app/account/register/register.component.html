@@ -7,19 +7,15 @@
       <div class="alert alert-success" *ngIf="success" jhiTranslate="register.messages.success">
         <strong>¡Registro guardado!</strong> Por favor, revise su correo electrónico para confirmar.
       </div>
-
       <div class="alert alert-danger" *ngIf="error" jhiTranslate="register.messages.error.fail">
         <strong>¡El registro ha fallado!</strong> Por favor, inténtelo de nuevo más tarde.
       </div>
-
       <div class="alert alert-danger" *ngIf="errorUserExists" jhiTranslate="register.messages.error.userexists">
         <strong>¡El nombre de usuario ya está registrado!</strong> Por favor, escoja otro usuario.
       </div>
-
       <div class="alert alert-danger" *ngIf="errorEmailExists" jhiTranslate="register.messages.error.emailexists">
         <strong>¡El correo electrónico ya está en uso!</strong> Por favor, escoja otro email.
       </div>
-
       <div class="alert alert-danger" *ngIf="doNotMatch" jhiTranslate="global.messages.error.dontmatch">
         ¡La contraseña y la confirmación de contraseña no coinciden!
       </div>
@@ -27,7 +23,7 @@
   </div>
 
   <div class="d-flex justify-content-center">
-    <div class="col-md-8">
+    <div class="cardForm">
       <!-- Inicia Form -->
       <form
         name="form"
@@ -38,33 +34,15 @@
         *ngIf="!success"
       >
         <!-- Empieza Username  -->
-        <div class="cardForm">
-          <label class="form-label" for="login" jhiTranslate="global.form.username.label">Usuario</label>
-          <input
-            type="text"
-            class="form-control"
-            id="login"
-            name="login"
-            placeholder="{{ 'global.form.username.placeholder' | translate }}"
-            formControlName="login"
-            data-cy="username"
-            #login
-          />
-
+        <div class="mb-3">
+          <label class="label" for="login">Usuario</label>
+          <input type="text" class="form-control" id="login2" name="login" formControlName="login" data-cy="username" #login />
           <div *ngIf="registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('login')?.errors?.required"
-              jhiTranslate="register.messages.validate.login.required"
-            >
+            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.required">
               Su nombre de usuario es obligatorio.
             </small>
 
-            <small
-              class="form-text text-danger"
-              *ngIf="registerForm.get('login')?.errors?.minlength"
-              jhiTranslate="register.messages.validate.login.minlength"
-            >
+            <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.minlength">
               Su nombre de usuario debe tener al menos 1 caracter.
             </small>
 
@@ -133,7 +111,6 @@
             </div>
           </div>
           <!-- Termina Email  -->
-
           <!-- Nuevos Inputs -->
           <!-- Inicia Phone -->
           <div class="mb-3">
@@ -296,7 +273,6 @@
             formControlName="confirmPassword"
             data-cy="secondPassword"
           />
-
           <div
             *ngIf="
               registerForm.get('confirmPassword')!.invalid &&
@@ -310,7 +286,6 @@
             >
               Se requiere que confirme la contraseña.
             </small>
-
             <small
               class="form-text text-danger"
               *ngIf="registerForm.get('confirmPassword')?.errors?.minlength"
@@ -318,7 +293,6 @@
             >
               Se requiere que su contraseña de confirmación tenga por lo menos 4 caracteres
             </small>
-
             <small
               class="form-text text-danger"
               *ngIf="registerForm.get('confirmPassword')?.errors?.maxlength"

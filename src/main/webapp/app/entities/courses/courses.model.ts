@@ -14,7 +14,7 @@ export interface ICourses {
   userName?: string | null;
   userVotes?: number | null;
   users?: Pick<IUser, 'id' | 'login'>[] | null;
-  category?: Pick<ICategory, 'id'> | null;
+  category?: Pick<ICategory, 'id' | 'name'> | null;
 }
 
 export type NewCourses = Omit<ICourses, 'id'> & { id: null };
