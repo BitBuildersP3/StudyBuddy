@@ -1,6 +1,7 @@
 package com.cenfotec.web.rest;
 
 import com.cenfotec.domain.TodoList;
+import com.cenfotec.domain.User;
 import com.cenfotec.repository.TodoListRepository;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -171,6 +172,13 @@ public class TodoListResource {
         Optional<TodoList> todoList = todoListRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(todoList);
     }
+
+    // @GetMapping("/todo-lists/my/{id}")
+    // public List<TodoList> GetMyTasks(@PathVariable Long id) {
+    //     User user = new User(id);
+    //     List<TodoList> res = todoListRepository.findMyTaks(user);
+    //     return res;
+    // }
 
     /**
      * {@code DELETE  /todo-lists/:id} : delete the "id" todoList.

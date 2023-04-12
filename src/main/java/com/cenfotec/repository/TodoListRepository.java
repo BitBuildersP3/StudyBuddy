@@ -1,6 +1,7 @@
 package com.cenfotec.repository;
 
 import com.cenfotec.domain.TodoList;
+import com.cenfotec.domain.User;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -28,6 +29,8 @@ public interface TodoListRepository extends JpaRepository<TodoList, Long> {
     default Page<TodoList> findAllWithEagerRelationships(Pageable pageable) {
         return this.findAllWithToOneRelationships(pageable);
     }
+
+    //  List<TodoList> findMyTaks(User user);
 
     @Query(
         value = "select distinct todoList from TodoList todoList left join fetch todoList.user",
