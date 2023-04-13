@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
 import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -32,6 +32,7 @@ export class TodoListComponent implements OnInit {
   status = '';
   isChecked = false;
   editForm: TodoListFormGroup = this.todoListFormService.createTodoListFormGroup();
+  visiblePopup = false;
   constructor(
     protected todoListService: TodoListService,
     protected activatedRoute: ActivatedRoute,
@@ -41,7 +42,8 @@ export class TodoListComponent implements OnInit {
     protected modalService: NgbModal,
     protected extraUser: ExtraUserInfoService,
     protected todoListFormService: TodoListFormService,
-    private titleService: Title
+    private titleService: Title,
+    private el: ElementRef
   ) {
     this.ownerName = '';
   }
@@ -63,7 +65,13 @@ export class TodoListComponent implements OnInit {
       },
     });
   }
+  mostrarPopup() {
+    this.visiblePopup = true;
+  }
 
+  ocultarPopup() {
+    this.visiblePopup = false;
+  }
   save(): void {
     this.isSaving = true;
     const todoList = this.todoListFormService.getTodoList(this.editForm);
@@ -150,7 +158,8 @@ export class TodoListComponent implements OnInit {
           showConfirmButton: true,
         }).then(result => {
           if (result.isConfirmed) {
-            location.reload();
+            //location.reload();
+            this.load();
           }
         });
       }

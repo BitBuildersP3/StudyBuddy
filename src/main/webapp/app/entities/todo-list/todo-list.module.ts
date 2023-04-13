@@ -9,5 +9,6 @@ import { TodoListRoutingModule } from './route/todo-list-routing.module';
 @NgModule({
   imports: [SharedModule, TodoListRoutingModule],
   declarations: [TodoListComponent, TodoListDetailComponent, TodoListUpdateComponent, TodoListDeleteDialogComponent],
+  exports: [TodoListComponent],
 })
 export class TodoListModule {}
