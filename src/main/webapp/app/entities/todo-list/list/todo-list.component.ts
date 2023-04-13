@@ -76,6 +76,8 @@ export class TodoListComponent implements OnInit {
       todoList.priority = 1;
       todoList.user = { id: this.idUser, login: this.ownerName };
       this.subscribeToSaveResponse(this.todoListService.create(todoList));
+      const input = document.querySelector('#field_task') as HTMLInputElement;
+      input.value = '';
     }
   }
 
@@ -129,25 +131,30 @@ export class TodoListComponent implements OnInit {
   }
 
   delete(todoList: ITodoList): void {
-    const modalRef = this.modalService.open(TodoListDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.todoList = todoList;
-    // unsubscribe not needed because closed completes on modal close
-    modalRef.closed
-      .pipe(
-        filter(reason => reason === ITEM_DELETED_EVENT),
-        switchMap(() => this.loadFromBackendWithRouteInformations())
-      )
-      .subscribe({
-        next: (res: EntityArrayResponseType) => {
-          Swal.fire({
-            icon: 'success',
-            title: 'Eliminado Correctamente',
-            showConfirmButton: true,
-          });
-          this.onResponseSuccess(res);
-          this.load();
-        },
-      });
+    const todo = todoList.id;
+    Swal.fire({
+      title: '¿Está seguro que desea eliminar el archivo?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí!',
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.todoListService.delete(todo).subscribe(() => {
+          this.activeModal.close(ITEM_DELETED_EVENT);
+        });
+        Swal.fire({
+          icon: 'success',
+          title: 'Eliminado correctamente',
+          showConfirmButton: true,
+        }).then(result => {
+          if (result.isConfirmed) {
+            location.reload();
+          }
+        });
+      }
+    });
   }
 
   navigateToWithComponentValues(): void {

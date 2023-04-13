@@ -10,7 +10,25 @@
   --add-button: #ee9ca7;
   --add-button-shadow: rgba(238, 156, 167, 0.4);
 }
+#flotante {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 9999;
+  /* Otros estilos aquí */
+}
 
+#popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 200px;
+  background-color: white;
+  border: 1px solid black;
+  /* Otros estilos aquí */
+}
 body {
   width: 100%;
   height: 100vh;

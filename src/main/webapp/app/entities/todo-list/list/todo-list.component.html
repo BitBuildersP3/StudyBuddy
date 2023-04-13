@@ -1,35 +1,49 @@
-<div class="conteinerTask">
-  <div class="app-container" id="taskList">
-    <h1 class="app-header">Lista de Tareas</h1>
-    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <div class="add-task">
-        <input type="text" class="task-input" placeholder="Nueva Tarea" name="task" id="field_task" data-cy="task" formControlName="task" />
-        <button
-          type="submit"
-          title="Nueva Tarea"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn"
-        >
-          <fa-icon icon="plus" class="plusColor"></fa-icon>&nbsp;
-        </button>
+<div id="flotante">
+  <button (click)="mostrarPopup()">Mostrar Pop-up</button>
+  <div id="popup" *ngIf="visiblePopup">
+    <!-- Contenido del pop-up aquí -->
+    <div class="conteinerTask">
+      <div class="app-container" id="taskList">
+        <h1 class="app-header">Lista de Tareas</h1>
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+          <div class="add-task">
+            <input
+              type="text"
+              class="task-input"
+              placeholder="Nueva Tarea"
+              name="task"
+              id="field_task"
+              data-cy="task"
+              formControlName="task"
+            />
+            <button
+              type="submit"
+              title="Nueva Tarea"
+              id="save-entity"
+              data-cy="entityCreateSaveButton"
+              [disabled]="editForm.invalid || isSaving"
+              class="btn"
+            >
+              <fa-icon icon="plus" class="plusColor"></fa-icon>&nbsp;
+            </button>
+          </div>
+        </form>
+
+        <ul class="task-list" *ngFor="let todoList of todoLists; trackBy: trackId">
+          <li class="task-list-item" v-for="task in tasks">
+            <label class="task-list-item-label">
+              <input type="checkbox" id="myCheckbox" (change)="onCheckboxChange($event)" />
+              <span>{{ todoList.task }}</span>
+            </label>
+
+            <span class="delete-btn" title="Delete Task">
+              <button type="submit" title="Borrar" (click)="delete(todoList)" class="btn" data-cy="entityDeleteButton">
+                <fa-icon icon="trash-can" class="trashColor"></fa-icon>
+              </button>
+            </span>
+          </li>
+        </ul>
       </div>
-    </form>
-
-    <ul class="task-list" *ngFor="let todoList of todoLists; trackBy: trackId">
-      <li class="task-list-item" v-for="task in tasks">
-        <label class="task-list-item-label">
-          <input type="checkbox" id="myCheckbox" (change)="onCheckboxChange($event)" />
-          <span>{{ todoList.task }}</span>
-        </label>
-
-        <span class="delete-btn" title="Delete Task">
-          <button type="submit" title="Borrar" (click)="delete(todoList)" class="btn" data-cy="entityDeleteButton">
-            <fa-icon icon="trash-can" class="trashColor"></fa-icon>
-          </button>
-        </span>
-      </li>
-    </ul>
+    </div>
   </div>
 </div>
