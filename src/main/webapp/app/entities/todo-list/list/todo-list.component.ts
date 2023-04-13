@@ -78,6 +78,7 @@ export class TodoListComponent implements OnInit {
       this.subscribeToSaveResponse(this.todoListService.create(todoList));
     }
   }
+
   onCheckboxChange(event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
     const todoList = this.todoListFormService.getTodoList(this.editForm);
@@ -109,6 +110,7 @@ export class TodoListComponent implements OnInit {
       title: 'Creado Correctamente',
       showConfirmButton: true,
     });
+    this.load();
     this.previousState();
   }
 
@@ -117,6 +119,13 @@ export class TodoListComponent implements OnInit {
   }
   protected onSaveFinalize(): void {
     this.isSaving = false;
+  }
+  load(): void {
+    this.loadFromBackendWithRouteInformations().subscribe({
+      next: (res: EntityArrayResponseType) => {
+        this.onResponseSuccess(res);
+      },
+    });
   }
 
   delete(todoList: ITodoList): void {
@@ -136,16 +145,9 @@ export class TodoListComponent implements OnInit {
             showConfirmButton: true,
           });
           this.onResponseSuccess(res);
+          this.load();
         },
       });
-  }
-
-  load(): void {
-    this.loadFromBackendWithRouteInformations().subscribe({
-      next: (res: EntityArrayResponseType) => {
-        this.onResponseSuccess(res);
-      },
-    });
   }
 
   navigateToWithComponentValues(): void {
