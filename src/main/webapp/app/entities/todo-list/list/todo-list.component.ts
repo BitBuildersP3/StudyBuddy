@@ -32,7 +32,7 @@ export class TodoListComponent implements OnInit {
   status = '';
   isChecked = false;
   editForm: TodoListFormGroup = this.todoListFormService.createTodoListFormGroup();
-  visiblePopup = false;
+  visiblePopup = true;
   constructor(
     protected todoListService: TodoListService,
     protected activatedRoute: ActivatedRoute,
@@ -66,7 +66,9 @@ export class TodoListComponent implements OnInit {
     });
   }
   mostrarPopup() {
-    this.visiblePopup = true;
+    this.visiblePopup = !this.visiblePopup;
+    console.log(this.visiblePopup);
+    console.log('Click aquí');
   }
 
   ocultarPopup() {
@@ -178,9 +180,11 @@ export class TodoListComponent implements OnInit {
   }
 
   protected fillComponentAttributeFromRoute(params: ParamMap, data: Data): void {
-    const sort = (params.get(SORT) ?? data[DEFAULT_SORT_DATA]).split(',');
-    this.predicate = sort[0];
-    this.ascending = sort[1] === ASC;
+    // if (params.get(SORT) !== null || data[DEFAULT_SORT_DATA] !== null) {
+    //   const sort = (params.get(SORT) ?? data[DEFAULT_SORT_DATA])?.split(',');
+    //   this.predicate = sort[0];
+    //   this.ascending = sort[1] === ASC;
+    // }
   }
 
   protected onResponseSuccess(response: EntityArrayResponseType): void {

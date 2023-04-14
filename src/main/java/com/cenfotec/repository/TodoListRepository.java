@@ -1,5 +1,6 @@
 package com.cenfotec.repository;
 
+import com.cenfotec.domain.Courses;
 import com.cenfotec.domain.TodoList;
 import com.cenfotec.domain.User;
 import java.util.List;
@@ -30,7 +31,10 @@ public interface TodoListRepository extends JpaRepository<TodoList, Long> {
         return this.findAllWithToOneRelationships(pageable);
     }
 
-    //  List<TodoList> findMyTaks(User user);
+    List<TodoList> findMyTaks(String user);
+
+    @Query("SELECT t FROM TodoList t JOIN FETCH t.user u WHERE u.login = :userLogin")
+    List<TodoList> findByCreatedBy(@Param("userLogin") String userLogin);
 
     @Query(
         value = "select distinct todoList from TodoList todoList left join fetch todoList.user",

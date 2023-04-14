@@ -1,26 +1,6 @@
-<div id="flotante">
-  <button
-    type="button"
-    id="cancel-save"
-    title="Lista de tareas"
-    data-cy="entityCreateCancelButton"
-    class="btn btnEnrolled"
-    (click)="mostrarPopup()"
-  >
-    <fa-icon icon="list-check"></fa-icon>&nbsp;
-  </button>
-  <div id="popup" *ngIf="visiblePopup">
-    <div class="d-flex align-items-end gap-2 justify-content-end">
-      <button type="button" id="cancel-save" title="Cerrar" data-cy="entityCreateCancelButton" class="btn" (click)="ocultarPopup()">
-        <fa-icon icon="xmark"></fa-icon>&nbsp;
-      </button>
-    </div>
-  </div>
-</div>
-
 <!-- Contenido del pop-up aquí -->
-<div class="conteinerTask">
-  <div class="app-container" id="taskList">
+<div class="app-container" id="taskList">
+  <div class="conteinerTask">
     <h1 class="app-header">Lista de Tareas</h1>
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <div class="add-task">

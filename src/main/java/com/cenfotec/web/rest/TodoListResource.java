@@ -1,11 +1,14 @@
 package com.cenfotec.web.rest;
 
+import com.cenfotec.domain.Courses;
 import com.cenfotec.domain.TodoList;
 import com.cenfotec.domain.User;
 import com.cenfotec.repository.TodoListRepository;
+import com.cenfotec.security.SecurityUtils;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -173,13 +176,6 @@ public class TodoListResource {
         return ResponseUtil.wrapOrNotFound(todoList);
     }
 
-    // @GetMapping("/todo-lists/my/{id}")
-    // public List<TodoList> GetMyTasks(@PathVariable Long id) {
-    //     User user = new User(id);
-    //     List<TodoList> res = todoListRepository.findMyTaks(user);
-    //     return res;
-    // }
-
     /**
      * {@code DELETE  /todo-lists/:id} : delete the "id" todoList.
      *
@@ -194,5 +190,18 @@ public class TodoListResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/todo-lists/my/{user}")
+    public List<TodoList> GetMyTasks(@PathVariable Long id) {
+        User user = new User(id);
+        log.debug("REST request to get TodoList : {}", user);
+        List<TodoList> res = todoListRepository.findMyTaks(user.getLogin());
+        return res;
+    }
+
+    @GetMapping("/todo-lists/my/{userLogin}")
+    public List<TodoList> getTasksByUser(@PathVariable("userLogin") String userLogin) {
+        return todoListRepository.findByCreatedBy(userLogin);
     }
 }
