@@ -13,6 +13,31 @@
     </div>
   </h2>
 
+
+
+  <form (ngSubmit)="searchEvent()">
+    <div class="row pt-4">
+      <div class="col-4"></div>
+      <div class="col-4 text-center">
+        <input
+          id="searchInputId"
+          [(ngModel)]="promptValue"
+          name="promptValue"
+          type="text"
+          class="textInput col-4"
+          style="width: 100%"
+          placeholder="Busca un evento por su nombre o creador"
+        />
+      </div>
+      <div class="col-4 align-bottom">
+        <button type="submit" title="Buscar" name="submit" id="save-entity" data-cy="entityCreateSaveButton" class="btn m-3">
+          <fa-icon icon="search"></fa-icon>&nbsp;
+        </button>
+      </div>
+    </div>
+  </form>
+
+
   <!-- Lista de cards para eventos - INICIO -->
 
   <div class="principalConteiner mt-5">

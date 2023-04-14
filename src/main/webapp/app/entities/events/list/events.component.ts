@@ -22,6 +22,8 @@ export class EventsComponent implements OnInit {
   predicate = 'id';
   ascending = true;
 
+  promptValue: string = '';
+
   constructor(
     protected eventsService: EventsService,
     protected activatedRoute: ActivatedRoute,
@@ -119,5 +121,18 @@ export class EventsComponent implements OnInit {
     } else {
       return [predicate + ',' + ascendingQueryParam];
     }
+  }
+
+  searchEvent() {
+
+    console.log(this.promptValue);
+
+    if (this.promptValue !== '') {
+      this.eventsService.getEventsByPrompt(this.promptValue).subscribe({
+        next: result => {
+          this.onResponseSuccess(result);
+        },
+      });
+    } else this.load();
   }
 }
