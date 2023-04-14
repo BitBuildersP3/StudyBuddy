@@ -13,6 +13,7 @@ import { UserService } from 'app/entities/user/user.service';
 @Component({
   selector: 'jhi-events-update',
   templateUrl: './events-update.component.html',
+  styleUrls: ['./events-update.component.scss'],
 })
 export class EventsUpdateComponent implements OnInit {
   isSaving = false;

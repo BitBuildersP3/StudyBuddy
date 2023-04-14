@@ -1,14 +1,14 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" class="custom-form align-items-center" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-events-heading" data-cy="EventsCreateUpdateHeading">Crear o editar Eventos</h2>
+      <h2 id="jhi-events-heading" data-cy="EventsCreateUpdateHeading">Gestor de Eventos</h2>
 
       <div class="cardForm">
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="mb-3" *ngIf="editForm.controls.id.value !== null">
+        <div class="mb-3" *ngIf="editForm.controls.id.value !== null" style="display: none;">
           <label class="form-label" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true"  />
         </div>
 
         <div class="mb-3">
@@ -18,15 +18,46 @@
 
         <div class="mb-3">
           <label class="form-label" for="field_description">Descripción</label>
-          <input
+          <textarea
             type="text"
-            class="form-control"
+            class="textInput"
             name="description"
             id="field_description"
             data-cy="description"
             formControlName="description"
-          />
+            maxlength="250"
+          ></textarea>
         </div>
+
+
+
+
+
+        <div class="mb-3">
+          <label class="form-label" for="field_url">Enlace</label>
+          <input type="text" class="form-control" name="url" id="field_url" data-cy="url" formControlName="url" />
+        </div>
+
+        <div class="mb-3" style="display: none;">
+          <label class="form-label" for="field_status">Estado</label>
+          <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_address">Dirección</label>
+          <input type="text" class="form-control" name="address" id="field_address" data-cy="address" formControlName="address" />
+        </div>
+
+        <div class="mb-3" style="display: none;">
+          <label class="label" for="field_user">Usuario</label>
+          <select class="b input" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.login }}</option>
+          </select>
+        </div>
+
+        <!--  Fechas -->
+
 
         <div class="mb-3">
           <label class="label" for="field_startDate">Fecha de inicio</label>
@@ -62,29 +93,12 @@
           </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_url">Url</label>
-          <input type="text" class="form-control" name="url" id="field_url" data-cy="url" formControlName="url" />
-        </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_status">Estado</label>
-          <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
-        </div>
+        <!--  Fechas -->
 
-        <div class="mb-3">
-          <label class="form-label" for="field_address">Dirección</label>
-          <input type="text" class="form-control" name="address" id="field_address" data-cy="address" formControlName="address" />
-        </div>
-
-        <div class="mb-3">
-          <label class="label" for="field_user">Usuario</label>
-          <select class="b input" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
-            <option [ngValue]="null"></option>
-            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.login }}</option>
-          </select>
-        </div>
       </div>
+
+
 
       <div>
         <button
