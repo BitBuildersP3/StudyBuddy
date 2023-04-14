@@ -22,4 +22,6 @@ export class EventsDetailComponent implements OnInit {
   previousState(): void {
     window.history.back();
   }
+
+
 }

@@ -2,12 +2,16 @@
   <div class="col-8">
     <div *ngIf="events">
       <h2 data-cy="eventsDetailsHeading"><span >{{ events.name }}</span></h2>
-
+      <div class="separador"> </div>
       <hr />
+
+
 
       <jhi-alert-error></jhi-alert-error>
 
       <jhi-alert></jhi-alert>
+
+      <div class="cardForm">
 
       <dl class="row-md jh-entity-details">
 
@@ -26,7 +30,7 @@
         </dd>
         <dt><span >Enlace: </span></dt>
         <dd>
-          <span>{{ events.url }}</span>
+          <a class="btnEnlace" href="{{ events.url }}"  target="_blank">Abrir enlace</a>
         </dd>
         <dt><span >Ubicación: </span></dt>
         <dd>
@@ -37,6 +41,9 @@
           <span>{{ events.user?.login }}</span>
         </dd>
       </dl>
+
+      </div>
+      <div class="separador"> </div>
 
       <button title="Volver" type="submit" (click)="previousState()" class="btn btnEdit btnCustEdit" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span ></span>
