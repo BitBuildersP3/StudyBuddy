@@ -1,3 +1,5 @@
+
+
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" class="custom-form align-items-center" novalidate (ngSubmit)="save()" [formGroup]="editForm">
@@ -35,7 +37,8 @@
 
         <div class="mb-3">
           <label class="form-label" for="field_url">Enlace</label>
-          <input type="text" class="form-control" name="url" id="field_url" data-cy="url" formControlName="url" />
+          <input type="text" class="form-control inputIcon " name="url" id="field_url" data-cy="url" formControlName="url" />
+
         </div>
 
         <div class="mb-3" style="display: none;">
@@ -57,6 +60,7 @@
         </div>
 
         <!--  Fechas -->
+
 
 
         <div class="mb-3">
@@ -92,8 +96,6 @@
             <button type="button" class="btn btn-secondary" (click)="endDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
           </div>
         </div>
-
-
         <!--  Fechas -->
 
       </div>
