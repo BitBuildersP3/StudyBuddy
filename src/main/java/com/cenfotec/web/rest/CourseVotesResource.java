@@ -76,7 +76,7 @@ public class CourseVotesResource {
         return ResponseEntity.ok().body(courseVotesRepository.getCourseVotesByIdCourse(id));
     }
 
-    @PostMapping("/course-votes/addVote/{prompt}")
+    @GetMapping("/course-votes/addVote/{prompt}")
     public ResponseEntity<ArrayNode> test(@PathVariable String prompt) throws JsonProcessingException {
         String[] promptSplit = prompt.split("-");
         Long idCourse = Long.parseLong(promptSplit[0]);
@@ -88,8 +88,7 @@ public class CourseVotesResource {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode json = (ObjectNode) mapper.readTree(courseVotes.getJson());
 
-        ObjectNode votesArray = (ObjectNode) json.get("votes");
-
+        String votesArray = json.findParent("votes").toPrettyString();
         /*ObjectMapper mapper =  new ObjectMapper();
         ArrayNode jsonNodes =  mapper.createArrayNode();
         ObjectNode json = mapper.createObjectNode();
