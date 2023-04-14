@@ -51,14 +51,18 @@
               <p class="negrita">{{ events.name }}</p>
 
               <span>
-                <p class="sub">Descripción: {{ events.description }}</p>
+                <div class="descrip-recuadro">
+                <p class="sub tilesub">Descripción: </p>
+                <p class="sub descrsub">{{ events.description }}</p>
+                </div>
               </span>
               <span>
                 <p class="sub">
-                  Inicio: <span class="active"> {{ events.startDate }} </span>
+                  Inicio: <span class="active"> {{ events.startDate!.toString().slice(0, 16) }}  </span>
+                  <span class="sub"> Fin: {{ events.endDate!.toString().slice(0, 16) }} </span>
                 </p>
               </span>
-              <span class="sub"> Fin: {{ events.endDate }} </span>
+
             </h5>
           </div>
         </div>

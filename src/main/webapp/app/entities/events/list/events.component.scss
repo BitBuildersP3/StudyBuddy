@@ -34,6 +34,7 @@ h6 {
 }
 .negrita {
   font-weight: bold;
+  text-align: center;
 
 }
 
@@ -81,8 +82,9 @@ h6 {
 .botones {
   width: 20%;
   display: flex;
-  padding-right: 6rem;
+  padding-right: 5rem;
   gap: 1rem;
+  padding-left: 3rem;
 }
 
 .txt-cont {
@@ -93,4 +95,34 @@ h6 {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
+}
+
+.descrip-recuadro {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+
+
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: #f6f9ff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+}
+
+.tilesub{
+  font-weight: bold;
+  justify-content: start;
+  color: #000000;
+}
+
+.descrsub{
+  justify-content: start;
+  text-align: justify;
+  font-size: 16px;
+  color: #666666;
+  padding-left: 2rem;
+  padding-right: 5rem;
 }
