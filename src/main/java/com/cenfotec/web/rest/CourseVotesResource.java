@@ -88,7 +88,8 @@ public class CourseVotesResource {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode json = (ObjectNode) mapper.readTree(courseVotes.getJson());
 
-        String votesArray = json.findParent("votes").toPrettyString();
+        String votesArrayString = json.findParent("votes").toPrettyString();
+        ArrayNode votesArray = (ArrayNode) mapper.readTree(votesArrayString);
         /*ObjectMapper mapper =  new ObjectMapper();
         ArrayNode jsonNodes =  mapper.createArrayNode();
         ObjectNode json = mapper.createObjectNode();
