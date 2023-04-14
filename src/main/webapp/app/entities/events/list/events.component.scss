@@ -29,7 +29,7 @@ h6 {
 .sub {
   text-align: justify;
   font-size: 16px;
-  color: #666666;
+  color: #de9a38;
   padding-left: 2rem;
 }
 .negrita {
@@ -51,12 +51,15 @@ h6 {
   align-items: center;
 }
 .secondConteiner {
-  width: 70%;
+  //width: 70%;
   height: auto;
   flex-direction: row;
   display: flex;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 1rem;
+
+  width: 65%;
+  max-width: 65rem;
 
 }
 
@@ -98,7 +101,7 @@ h6 {
 }
 
 .descrip-recuadro {
-  width: 100%;
+ 
   height: auto;
   display: flex;
   flex-direction: column;
@@ -109,15 +112,15 @@ h6 {
   margin-bottom: 1rem;
   background-color: #dfe2e4;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  width: 40rem;
-  max-width: 40rem;
+  width: 100%;
+  max-width: 50rem;
 
 }
 
 .tilesub{
   font-weight: bold;
   justify-content: start;
-  color: #000000;
+  color: #15537d;
 }
 
 .descrsub{
