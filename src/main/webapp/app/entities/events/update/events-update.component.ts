@@ -9,6 +9,7 @@ import { IEvents } from '../events.model';
 import { EventsService } from '../service/events.service';
 import { IUser } from 'app/entities/user/user.model';
 import { UserService } from 'app/entities/user/user.service';
+import {User} from "../../../admin/user-management/user-management.model";
 
 @Component({
   selector: 'jhi-events-update',
@@ -23,11 +24,15 @@ export class EventsUpdateComponent implements OnInit {
 
   editForm: EventsFormGroup = this.eventsFormService.createEventsFormGroup();
 
+  user: User | null = null;
+
   constructor(
     protected eventsService: EventsService,
     protected eventsFormService: EventsFormService,
     protected userService: UserService,
-    protected activatedRoute: ActivatedRoute
+    protected activatedRoute: ActivatedRoute,
+
+  private route: ActivatedRoute
   ) {}
 
   compareUser = (o1: IUser | null, o2: IUser | null): boolean => this.userService.compareUser(o1, o2);
@@ -35,12 +40,23 @@ export class EventsUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ events }) => {
       this.events = events;
+
+      // Para obtener el usuario autor
+      this.route.data.subscribe(({ user }) => {
+        this.user = user;
+        console.log('ESTE USUARIO ES: +', this.user?.login)
+      });
+
       if (events) {
         this.updateForm(events);
       }
 
       this.loadRelationshipsOptions();
     });
+
+
+
+
   }
 
   previousState(): void {

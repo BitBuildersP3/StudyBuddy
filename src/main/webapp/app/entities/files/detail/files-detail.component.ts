@@ -12,6 +12,8 @@ import { Title } from '@angular/platform-browser';
 export class FilesDetailComponent implements OnInit {
   files: IFiles | null = null;
 
+  userId: number | undefined;
+
   constructor(protected activatedRoute: ActivatedRoute, private titleService: Title) {}
 
   ngOnInit(): void {

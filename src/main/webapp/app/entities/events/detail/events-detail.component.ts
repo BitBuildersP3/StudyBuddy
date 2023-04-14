@@ -6,6 +6,7 @@ import { IEvents } from '../events.model';
 @Component({
   selector: 'jhi-events-detail',
   templateUrl: './events-detail.component.html',
+  styleUrls: ['./events-detail.component.scss'],
 })
 export class EventsDetailComponent implements OnInit {
   events: IEvents | null = null;

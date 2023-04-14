@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="events">
-      <h2 data-cy="eventsDetailsHeading"><span jhiTranslate="studyBuddyApp.events.detail.title">Events</span></h2>
+      <h2 data-cy="eventsDetailsHeading"><span >{{ events.name }}</span></h2>
 
       <hr />
 
@@ -10,50 +10,40 @@
       <jhi-alert></jhi-alert>
 
       <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="global.field.id">ID</span></dt>
-        <dd>
-          <span>{{ events.id }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.events.name">Name</span></dt>
-        <dd>
-          <span>{{ events.name }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.events.description">Description</span></dt>
+
+
+        <dt><span >Descripción: </span></dt>
         <dd>
           <span>{{ events.description }}</span>
         </dd>
-        <dt><span jhiTranslate="studyBuddyApp.events.startDate">Start Date</span></dt>
+        <dt><span >Fecha de Inicio:</span></dt>
         <dd>
           <span>{{ events.startDate | formatMediumDate }}</span>
         </dd>
-        <dt><span jhiTranslate="studyBuddyApp.events.endDate">End Date</span></dt>
+        <dt><span >Fecha de Finalización: </span></dt>
         <dd>
           <span>{{ events.endDate | formatMediumDate }}</span>
         </dd>
-        <dt><span jhiTranslate="studyBuddyApp.events.url">Url</span></dt>
+        <dt><span >Enlace: </span></dt>
         <dd>
           <span>{{ events.url }}</span>
         </dd>
-        <dt><span jhiTranslate="studyBuddyApp.events.status">Status</span></dt>
-        <dd>
-          <span>{{ events.status }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.events.address">Address</span></dt>
+        <dt><span >Ubicación: </span></dt>
         <dd>
           <span>{{ events.address }}</span>
         </dd>
-        <dt><span jhiTranslate="studyBuddyApp.events.user">User</span></dt>
+        <dt><span >Autor: </span></dt>
         <dd>
           <span>{{ events.user?.login }}</span>
         </dd>
       </dl>
 
-      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      <button title="Volver" type="submit" (click)="previousState()" class="btn btnEdit btnCustEdit" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span ></span>
       </button>
 
-      <button type="button" [routerLink]="['/events', events.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      <button title="Editar" type="button" [routerLink]="['/events', events.id, 'edit']" class="btn btnEdit">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span ></span>
       </button>
     </div>
   </div>
