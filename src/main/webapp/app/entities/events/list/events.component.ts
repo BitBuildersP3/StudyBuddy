@@ -13,6 +13,7 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'jhi-events',
   templateUrl: './events.component.html',
+  styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements OnInit {
   events?: IEvents[];

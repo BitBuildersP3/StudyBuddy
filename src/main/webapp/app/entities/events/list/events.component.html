@@ -13,6 +13,66 @@
     </div>
   </h2>
 
+  <!-- Lista de cards para eventos - INICIO -->
+
+  <div class="principalConteiner mt-5">
+    <div class="item-cont" *ngFor="let events of events">
+      <div class="secondConteiner">
+
+
+        <div class="txt-cont">
+          <div class="info">
+            <h5>
+              <p class="negrita">{{ events.name }}</p>
+
+              <span>
+                <p class="sub">Descripción: {{ events.description }}</p>
+              </span>
+              <span>
+                <p class="sub">
+                  Inicio: <span class="active"> {{ events.startDate }} </span>
+                </p>
+              </span>
+              <span class="sub"> Fin: {{ events.endDate }} </span>
+            </h5>
+          </div>
+        </div>
+
+        <!-- Botones - Inicio -->
+        <div class="botones">
+
+
+
+          <button
+            type="submit"
+            title="Ver"
+            [routerLink]="['/events', events.id, 'view']"
+            class="btn btnView"
+            data-cy="entityDetailsButton"
+          >
+            <fa-icon icon="eye"></fa-icon>
+          </button>
+
+          <button
+            type="button"
+            id="cancel-save"
+            title="Matricular"
+
+            data-cy="entityCreateCancelButton"
+            class="btn btnEnrolled"
+          >
+            <!-- Buscar otro icono-->
+            <fa-icon icon="graduation-cap"></fa-icon>
+          </button>
+
+        </div>
+        <!-- FIN - Botones  -->
+      </div>
+    </div>
+  </div>
+
+        <!-- FIN - Lista de cards para eventos -->
+
   <jhi-alert-error></jhi-alert-error>
 
   <jhi-alert></jhi-alert>
