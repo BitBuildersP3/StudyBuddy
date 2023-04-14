@@ -120,7 +120,10 @@ ul {
     color: black;
   }
 }
-
+.inputTak {
+  width: 100%;
+  min-width: 23rem;
+}
 .task-list-item {
   background-color: #f6fafd;
   border-radius: 4px;
@@ -130,6 +133,8 @@ ul {
   align-items: center;
   gap: 1rem;
   justify-content: space-between;
+  width: 100%;
+  min-width: 22rem;
   input {
     width: 16px;
     height: 16px;
@@ -172,6 +177,8 @@ ul {
     position: relative;
     transition: 0.2s;
     cursor: pointer;
+    width: 100%;
+    min-width: 4rem;
   }
 }
 .trashColor {
@@ -181,6 +188,9 @@ ul {
 .plusColor {
   color: #67b83d;
   margin-right: -0.3rem;
+}
+.margi {
+  margin-top: -1rem;
 }
 .delete-btn {
   margin-left: 18rem;

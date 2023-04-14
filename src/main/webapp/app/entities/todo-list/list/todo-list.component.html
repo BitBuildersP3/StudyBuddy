@@ -4,7 +4,15 @@
     <h1 class="app-header">Lista de Tareas</h1>
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <div class="add-task">
-        <input type="text" class="task-input" placeholder="Nueva Tarea" name="task" id="field_task" data-cy="task" formControlName="task" />
+        <input
+          type="text"
+          class="task-input inputTak"
+          placeholder="Nueva Tarea"
+          name="task"
+          id="field_task"
+          data-cy="task"
+          formControlName="task"
+        />
         <button
           type="submit"
           title="Nueva Tarea"
@@ -18,7 +26,7 @@
       </div>
     </form>
 
-    <ul class="task-list" *ngFor="let todoList of todoLists; trackBy: trackId">
+    <ul class="task-list" class="margi" *ngFor="let todoList of todoLists; trackBy: trackId">
       <li class="task-list-item" v-for="task in tasks">
         <label class="task-list-item-label">
           <input type="checkbox" id="myCheckbox" (change)="onCheckboxChange($event)" />
