@@ -26,7 +26,7 @@
           type="text"
           class="textInput col-4"
           style="width: 100%"
-          placeholder="Busca un evento por su nombre o creador"
+          placeholder="Busca un evento por su nombre"
         />
       </div>
       <div class="col-4 align-bottom">
@@ -100,117 +100,11 @@
 
   <jhi-alert-error></jhi-alert-error>
 
-  <jhi-alert></jhi-alert>
+
 
   <div class="alert alert-warning" id="no-result" *ngIf="events?.length === 0">
-    <span jhiTranslate="studyBuddyApp.events.home.notFound">Ningún Events encontrado</span>
+    <span jhiTranslate="studyBuddyApp.events.home.notFound">Ningún evento encontrado</span>
   </div>
 
-  <div class="table-responsive table-entities" id="entities" *ngIf="events && events.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
-            <div class="d-flex">
-              <span jhiTranslate="global.field.id">ID</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="name">
-            <div class="d-flex">
-              <span>Nombre</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="description">
-            <div class="d-flex">
-              <span>Descripción</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="startDate">
-            <div class="d-flex">
-              <span>Start Date</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="endDate">
-            <div class="d-flex">
-              <span>End Date</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="url">
-            <div class="d-flex">
-              <span>Url</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="status">
-            <div class="d-flex">
-              <span>Estado</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="address">
-            <div class="d-flex">
-              <span>Dirección</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="user.login">
-            <div class="d-flex">
-              <span>Usuario</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let events of events; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/events', events.id, 'view']">{{ events.id }}</a>
-          </td>
-          <td>{{ events.name }}</td>
-          <td>{{ events.description }}</td>
-          <td>{{ events.startDate | formatMediumDate }}</td>
-          <td>{{ events.endDate | formatMediumDate }}</td>
-          <td>{{ events.url }}</td>
-          <td>{{ events.status }}</td>
-          <td>{{ events.address }}</td>
-          <td>
-            {{ events.user?.login }}
-          </td>
-          <td class="text-end">
-            <div class="btn-group">
-              <button
-                type="submit"
-                title="Ver"
-                [routerLink]="['/events', events.id, 'view']"
-                class="btn btnView"
-                data-cy="entityDetailsButton"
-              >
-                <fa-icon icon="eye"></fa-icon>
-              </button>
 
-              <button
-                type="submit"
-                title="Editar"
-                [routerLink]="['/events', events.id, 'edit']"
-                class="btn btnEdit"
-                data-cy="entityEditButton"
-              >
-                <fa-icon icon="pencil-alt"></fa-icon>
-              </button>
-
-              <button type="submit" title="Eliminar" (click)="delete(events)" class="btn btnDelete" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 </div>
