@@ -3,15 +3,26 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" class="custom-form align-items-center" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-events-heading" data-cy="EventsCreateUpdateHeading">Gestor de Eventos</h2>
+
+
+      <div class="d-flex align-items-center gap-2 justify-content-center">
+        <h2 id="jhi-events-heading" data-cy="EventsCreateUpdateHeading" class="titulito">Gestor de Eventos</h2>
+      </div>
+
+      <div class="separador"> </div>
+
 
       <div class="cardForm">
-        <jhi-alert-error></jhi-alert-error>
 
-        <div class="mb-3" *ngIf="editForm.controls.id.value !== null" style="display: none;">
-          <label class="form-label" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true"  />
+
+
+
+        <div class="position-absolute" *ngIf="editForm.controls.id.value !== null" style="display: none;" >
+          <label class="" for="field_id">ID</label>
+          <input type="number" class="" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true"  />
         </div>
+
+
 
         <div class="mb-3">
           <label class="form-label" for="field_name">Nombre</label>
@@ -37,7 +48,9 @@
 
         <div class="mb-3">
           <label class="form-label" for="field_url">Enlace</label>
+
           <input type="text" class="form-control inputIcon " name="url" id="field_url" data-cy="url" formControlName="url" />
+
 
         </div>
 
@@ -64,7 +77,7 @@
 
 
         <div class="mb-3">
-          <label class="label" for="field_startDate">Fecha de inicio</label>
+          <label class="form-label" for="field_startDate">Fecha de inicio</label>
           <div class="input-group">
             <input
               id="field_startDate"
@@ -76,7 +89,7 @@
               #startDateDp="ngbDatepicker"
               formControlName="startDate"
             />
-            <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            <button type="button" class="btn btn-secondary btnCalendar" (click)="startDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
           </div>
         </div>
 
@@ -93,7 +106,7 @@
               #endDateDp="ngbDatepicker"
               formControlName="endDate"
             />
-            <button type="button" class="btn btn-secondary" (click)="endDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            <button type="button" class="btn btn-secondary btnCalendar" (click)="endDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
           </div>
         </div>
         <!--  Fechas -->
@@ -102,6 +115,7 @@
 
 
 
+      <jhi-alert-error></jhi-alert-error>
       <div>
         <button
           type="button"
