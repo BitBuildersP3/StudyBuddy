@@ -74,6 +74,7 @@ export class TodoListComponent implements OnInit {
   ocultarPopup() {
     this.visiblePopup = false;
   }
+
   save(): void {
     this.isSaving = true;
     const todoList = this.todoListFormService.getTodoList(this.editForm);
@@ -112,7 +113,10 @@ export class TodoListComponent implements OnInit {
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ITodoList>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
-      error: () => this.onSaveError(),
+      error: er => {
+        console.log(er);
+        return this.onSaveError();
+      },
     });
   }
 
@@ -127,7 +131,11 @@ export class TodoListComponent implements OnInit {
   }
 
   protected onSaveError(): void {
-    // Api for inheritance.
+    Swal.fire({
+      icon: 'error',
+      title: 'Error encontrado',
+      showConfirmButton: true,
+    });
   }
   protected onSaveFinalize(): void {
     this.isSaving = false;
@@ -180,11 +188,11 @@ export class TodoListComponent implements OnInit {
   }
 
   protected fillComponentAttributeFromRoute(params: ParamMap, data: Data): void {
-    // if (params.get(SORT) !== null || data[DEFAULT_SORT_DATA] !== null) {
-    //   const sort = (params.get(SORT) ?? data[DEFAULT_SORT_DATA])?.split(',');
-    //   this.predicate = sort[0];
-    //   this.ascending = sort[1] === ASC;
-    // }
+    //    if (params.get(SORT) !== null || data[DEFAULT_SORT_DATA] !== null) {
+    //    const sort = (params.get(SORT) ?? data[DEFAULT_SORT_DATA])?.split(',');
+    //      this.predicate = sort[0];
+    //     this.ascending = sort[1] === ASC;
+    //  }
   }
 
   protected onResponseSuccess(response: EntityArrayResponseType): void {

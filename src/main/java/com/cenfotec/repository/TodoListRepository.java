@@ -31,7 +31,7 @@ public interface TodoListRepository extends JpaRepository<TodoList, Long> {
         return this.findAllWithToOneRelationships(pageable);
     }
 
-    List<TodoList> findMyTaks(String user);
+    List<TodoList> findByUserLike(User user);
 
     @Query("SELECT t FROM TodoList t JOIN FETCH t.user u WHERE u.login = :userLogin")
     List<TodoList> findByCreatedBy(@Param("userLogin") String userLogin);

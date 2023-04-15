@@ -56,6 +56,7 @@ public class TodoListResource {
             throw new BadRequestAlertException("A new todoList cannot already have an ID", ENTITY_NAME, "idexists");
         }
         TodoList result = todoListRepository.save(todoList);
+
         return ResponseEntity
             .created(new URI("/api/todo-lists/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -192,16 +193,10 @@ public class TodoListResource {
             .build();
     }
 
-    @GetMapping("/todo-lists/my/{user}")
-    public List<TodoList> GetMyTasks(@PathVariable Long id) {
+    @GetMapping("/todo-lists/isRegistered/{id}")
+    public List<TodoList> isUserRegister(@PathVariable Long id) {
         User user = new User(id);
-        log.debug("REST request to get TodoList : {}", user);
-        List<TodoList> res = todoListRepository.findMyTaks(user.getLogin());
+        List<TodoList> res = todoListRepository.findByUserLike(user);
         return res;
-    }
-
-    @GetMapping("/todo-lists/my/{userLogin}")
-    public List<TodoList> getTasksByUser(@PathVariable("userLogin") String userLogin) {
-        return todoListRepository.findByCreatedBy(userLogin);
     }
 }
