@@ -384,4 +384,15 @@
       </ul>
     </div>
   </div>
+  <ng-container *ngIf="account">
+    <div class="floating-btn-foro bubble" (click)="setOpenForo()">
+      <span class="text-light">Foro</span>
+    </div>
+    <div *ngIf="isOpenForo" class="foro-cont">
+      <div class="bg-white top-close-bar" (click)="setOpenForo()">
+        <a class="close-foro"> <fa-icon icon="angle-down"></fa-icon></a>
+      </div>
+      <iframe [src]="safeUrl" width="400px" height="600px"></iframe>
+    </div>
+  </ng-container>
 </nav>
