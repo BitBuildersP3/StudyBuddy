@@ -30,7 +30,6 @@ import { IndexRegisterFileComponent } from './file-manager/index-register-file/i
 import { OwnRegisterFileComponent } from './file-manager/own-register-file/own-register-file.component';
 import { VideoRegisterFileComponent } from './file-manager/video-register-file/video-register-file.component';
 
-
 @NgModule({
   imports: [
     BrowserModule,

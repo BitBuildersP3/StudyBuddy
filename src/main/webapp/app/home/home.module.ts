@@ -6,9 +6,8 @@ import { HOME_ROUTE } from './home.route';
 import { HomeComponent } from './home.component';
 import { AboutUsComponent } from 'app/landing/about-us/about-us.component';
 import { FilesManagerModule } from 'app/files-manager/files-manager.module';
-import {ToolPomodoreModule} from "../tool-pomodore/tool-pomodore.module";
 @NgModule({
-    imports: [SharedModule, FilesManagerModule, RouterModule.forChild([HOME_ROUTE])],
+  imports: [SharedModule, FilesManagerModule, RouterModule.forChild([HOME_ROUTE])],
   declarations: [HomeComponent],
 })
 export class HomeModule {}
