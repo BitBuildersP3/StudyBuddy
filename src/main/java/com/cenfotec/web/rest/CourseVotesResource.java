@@ -81,11 +81,10 @@ public class CourseVotesResource {
     }
 
     @GetMapping("/course-votes/addVote/{prompt}")
-    public ResponseEntity<CourseVotes> test(@PathVariable String prompt) throws JsonProcessingException {
+    public ResponseEntity<CourseVotes> addUserVoteToACourse(@PathVariable String prompt) throws JsonProcessingException {
         String[] promptSplit = prompt.split("-");
         Long idCourse = Long.parseLong(promptSplit[0]);
         int points = Integer.parseInt(promptSplit[1]);
-        String totalAvg = promptSplit[2];
 
         CourseVotes courseVotes = courseVotesRepository.getCourseVotesByIdCourse(idCourse);
         String name = SecurityUtils.getCurrentUserLogin().orElse(null);
@@ -106,7 +105,14 @@ public class CourseVotesResource {
             votesArray.add(objectNode);
             courseVotes.setJson(mapper.writeValueAsString(json));
             courseVotesRepository.save(courseVotes);
-        } else {}
+        } else {
+            String updatedJson = JsonPath
+                .parse(courseVotes.getJson())
+                .set("$.votes[?(@.user == \"" + name + "\")].score", points)
+                .jsonString();
+            courseVotes.setJson(updatedJson);
+            courseVotesRepository.save(courseVotes);
+        }
 
         return ResponseEntity.ok().body(courseVotes);
     }
