@@ -683,3 +683,8 @@ p {
 .txt-dark-blue {
   color: #15537d;
 }
+
+/* Todo-list */
+.todolist-modal-height {
+  margin: 35rem 0 5rem 0;
+}

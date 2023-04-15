@@ -135,6 +135,7 @@ ul {
   justify-content: space-between;
   width: 100%;
   min-width: 22rem;
+  max-width: 22rem;
   input {
     width: 16px;
     height: 16px;
@@ -193,7 +194,6 @@ ul {
   margin-top: -1rem;
 }
 .delete-btn {
-  margin-left: 18rem;
   display: block;
   width: 16px;
   height: 16px;
