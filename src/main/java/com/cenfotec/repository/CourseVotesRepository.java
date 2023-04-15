@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface CourseVotesRepository extends JpaRepository<CourseVotes, Long> {
-    public CourseVotes getCourseVotesByIdCourse(Long idCourse);
+    CourseVotes getCourseVotesByIdCourse(Long idCourse);
 }

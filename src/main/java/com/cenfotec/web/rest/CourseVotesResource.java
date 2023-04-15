@@ -2,12 +2,15 @@ package com.cenfotec.web.rest;
 
 import com.cenfotec.domain.CourseVotes;
 import com.cenfotec.repository.CourseVotesRepository;
+import com.cenfotec.security.SecurityUtils;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.jayway.jsonpath.JsonPath;
+import com.mysql.cj.xdevapi.JsonArray;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -16,6 +19,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -77,35 +81,34 @@ public class CourseVotesResource {
     }
 
     @GetMapping("/course-votes/addVote/{prompt}")
-    public ResponseEntity<ArrayNode> test(@PathVariable String prompt) throws JsonProcessingException {
+    public ResponseEntity<CourseVotes> test(@PathVariable String prompt) throws JsonProcessingException {
         String[] promptSplit = prompt.split("-");
         Long idCourse = Long.parseLong(promptSplit[0]);
-        String points = promptSplit[1];
+        int points = Integer.parseInt(promptSplit[1]);
         String totalAvg = promptSplit[2];
 
         CourseVotes courseVotes = courseVotesRepository.getCourseVotesByIdCourse(idCourse);
+        String name = SecurityUtils.getCurrentUserLogin().orElse(null);
 
-        ObjectMapper mapper = new ObjectMapper();
-        ObjectNode json = (ObjectNode) mapper.readTree(courseVotes.getJson());
+        List<String> currentUserData = JsonPath.read(courseVotes.getJson(), "$.votes[?(@.user == \"" + name + "\")]");
 
-        String votesArrayString = json.findParent("votes").toPrettyString();
-        ArrayNode votesArray = (ArrayNode) mapper.readTree(votesArrayString);
-        /*ObjectMapper mapper =  new ObjectMapper();
-        ArrayNode jsonNodes =  mapper.createArrayNode();
-        ObjectNode json = mapper.createObjectNode();
-        ObjectNode newJson =  mapper.createObjectNode();
-        json.putArray("test");
-        jsonNodes = (ArrayNode) json.get("test");
-        newJson.put("nombre", "Andres");
-        newJson.put("edad", 123);
-        newJson.put("telefono", 12345);
-        jsonNodes.add(newJson);
-        newJson.put("nombre", "Andres");
-        newJson.put("edad", 123);
-        newJson.put("telefono", 341234);
-        jsonNodes.add(newJson);*/
+        if (currentUserData.isEmpty()) {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode json = mapper.readTree(courseVotes.getJson());
 
-        return ResponseEntity.ok().body(votesArray.arrayNode());
+            ArrayNode votesArray = (ArrayNode) json.get("votes");
+
+            ObjectNode objectNode = mapper.createObjectNode();
+
+            objectNode.put("score", points);
+            objectNode.put("user", name);
+
+            votesArray.add(objectNode);
+            courseVotes.setJson(mapper.writeValueAsString(json));
+            courseVotesRepository.save(courseVotes);
+        } else {}
+
+        return ResponseEntity.ok().body(courseVotes);
     }
 
     /**
