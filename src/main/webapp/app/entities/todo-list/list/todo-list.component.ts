@@ -214,7 +214,7 @@ export class TodoListComponent implements OnInit {
       eagerload: true,
       sort: this.getSortQueryParam(predicate, ascending),
     };
-    return this.todoListService.query(queryObject).pipe(tap(() => (this.isLoading = false)));
+    return this.todoListService.getMyTaks(this.idUser).pipe(tap(() => (this.isLoading = false)));
   }
 
   protected handleNavigation(predicate?: string, ascending?: boolean): void {
