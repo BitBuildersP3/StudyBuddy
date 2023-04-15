@@ -63,6 +63,9 @@ public class CacheConfiguration {
             createCache(cm, com.cenfotec.domain.Files.class.getName());
             createCache(cm, com.cenfotec.domain.Category.class.getName());
             createCache(cm, com.cenfotec.domain.Category.class.getName() + ".courses");
+            createCache(cm, com.cenfotec.domain.UserVotes.class.getName());
+            createCache(cm, com.cenfotec.domain.CourseVotes.class.getName());
+            createCache(cm, com.cenfotec.domain.ForoEntity.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

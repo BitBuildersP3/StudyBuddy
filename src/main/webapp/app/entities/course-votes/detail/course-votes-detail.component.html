@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="courseVotes">
+      <h2 data-cy="courseVotesDetailsHeading"><span jhiTranslate="studyBuddyApp.courseVotes.detail.title">Course Votes</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ courseVotes.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.courseVotes.idCourse">Id Course</span></dt>
+        <dd>
+          <span>{{ courseVotes.idCourse }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.courseVotes.json">Json</span></dt>
+        <dd>
+          <span>{{ courseVotes.json }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/course-votes', courseVotes.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

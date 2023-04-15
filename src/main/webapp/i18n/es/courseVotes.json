@@ -1,0 +1,25 @@
+{
+  "studyBuddyApp": {
+    "courseVotes": {
+      "home": {
+        "title": "Course Votes",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Course Votes",
+        "createOrEditLabel": "Crear o editar Course Votes",
+        "notFound": "Ningún Course Votes encontrado"
+      },
+      "created": "Un nuevo Course Votes ha sido creado con el identificador {{ param }}",
+      "updated": "Un Course Votes ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Course Votes ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Course Votes {{ id }}?"
+      },
+      "detail": {
+        "title": "Course Votes"
+      },
+      "id": "ID",
+      "idCourse": "Id Course",
+      "json": "Json"
+    }
+  }
+}

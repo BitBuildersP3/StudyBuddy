@@ -1,0 +1,15 @@
+entity UserVotes {
+	idUser String,
+    json String
+}
+
+entity CourseVotes {
+	idCourse Long
+    json String
+}
+
+entity ForoEntity {
+	Id String
+    json String
+}
+    
