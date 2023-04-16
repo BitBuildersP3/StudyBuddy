@@ -60,7 +60,7 @@ public class CourseVotesResource {
         if (courseVotes.getId() != null) {
             throw new BadRequestAlertException("A new courseVotes cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        courseVotes.setJson("{\"votes\" : [] }");
+        courseVotes.setJson("{\"votes\" : [], \"avg\" : 0, \"num\" : 0}");
         CourseVotes result = courseVotesRepository.save(courseVotes);
         return ResponseEntity
             .created(new URI("/api/course-votes/" + result.getId()))
@@ -85,6 +85,7 @@ public class CourseVotesResource {
         String[] promptSplit = prompt.split("-");
         Long idCourse = Long.parseLong(promptSplit[0]);
         int points = Integer.parseInt(promptSplit[1]);
+        String updatedJson;
 
         CourseVotes courseVotes = courseVotesRepository.getCourseVotesByIdCourse(idCourse);
         String name = SecurityUtils.getCurrentUserLogin().orElse(null);
@@ -103,16 +104,16 @@ public class CourseVotesResource {
             objectNode.put("user", name);
 
             votesArray.add(objectNode);
-            courseVotes.setJson(mapper.writeValueAsString(json));
-            courseVotesRepository.save(courseVotes);
+            updatedJson = mapper.writeValueAsString(json);
         } else {
-            String updatedJson = JsonPath
-                .parse(courseVotes.getJson())
-                .set("$.votes[?(@.user == \"" + name + "\")].score", points)
-                .jsonString();
-            courseVotes.setJson(updatedJson);
-            courseVotesRepository.save(courseVotes);
+            updatedJson = JsonPath.parse(courseVotes.getJson()).set("$.votes[?(@.user == \"" + name + "\")].score", points).jsonString();
         }
+
+        double avgPoints = JsonPath.read(updatedJson, "$..votes..score.avg()");
+        int totalVotes = JsonPath.read(updatedJson, "$.votes.length()");
+        updatedJson = JsonPath.parse(updatedJson).set("$.avg", avgPoints).set("$.num", totalVotes).jsonString();
+        courseVotes.setJson(updatedJson);
+        courseVotesRepository.save(courseVotes);
 
         return ResponseEntity.ok().body(courseVotes);
     }
