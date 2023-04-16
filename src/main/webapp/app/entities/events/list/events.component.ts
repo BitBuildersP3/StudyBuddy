@@ -58,14 +58,22 @@ export class EventsComponent implements OnInit {
   }
   // función para editar el evento y así "inscribirse al evento"
   updateAddedList(idEvent: IEvents): void {
+    const separator = '-';
+    const searchData = this.ownerName;
     this.isSaving = true;
     if (idEvent.status == null) {
       idEvent.status = 'Pendiente';
     }
-    idEvent.status = this.ownerName;
-    //idEvent.status = idEvent.status.concat(this.ownerName,);
-    console.log('status:  ' + idEvent.status);
-    this.subscribeToSaveResponse(this.eventsService.partialUpdate(idEvent));
+    if (idEvent.status.includes(searchData)) {
+      Swal.fire({
+        icon: 'info',
+        title: 'Usted ya se encuntra previamente instrito en este evento',
+        showConfirmButton: true,
+      });
+    } else {
+      idEvent.status = idEvent.status.concat('-', this.ownerName);
+      this.subscribeToSaveResponse(this.eventsService.partialUpdate(idEvent));
+    }
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IEvents>>): void {

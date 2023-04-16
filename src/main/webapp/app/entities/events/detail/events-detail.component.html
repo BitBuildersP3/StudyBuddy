@@ -1,56 +1,56 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="events">
-      <h2 data-cy="eventsDetailsHeading"><span >{{ events.name }}</span></h2>
-      <div class="separador"> </div>
+      <h2 data-cy="eventsDetailsHeading">
+        <span>{{ events.name }}</span>
+      </h2>
+      <div class="separador"></div>
       <hr />
-
-
 
       <jhi-alert-error></jhi-alert-error>
 
       <jhi-alert></jhi-alert>
 
       <div class="cardForm">
+        <dl class="row-md jh-entity-details">
+          <dt><span>Descripción: </span></dt>
+          <dd>
+            <span>{{ events.description }}</span>
+          </dd>
+          <dt><span>Fecha de Inicio:</span></dt>
+          <dd>
+            <span>{{ events.startDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Fecha de Finalización: </span></dt>
+          <dd>
+            <span>{{ events.endDate | formatMediumDate }}</span>
+          </dd>
 
-      <dl class="row-md jh-entity-details">
+          <div *ngIf="mostrarAtributos">
+            <dt><span>Enlace: </span></dt>
+            <dd>
+              <a class="btnEnlace" href="{{ events.url }}" target="_blank">Abrir enlace</a>
+            </dd>
+            <dt><span>Ubicación: </span></dt>
+            <dd>
+              <span>{{ events.address }}</span>
+            </dd>
+          </div>
 
-
-        <dt><span >Descripción: </span></dt>
-        <dd>
-          <span>{{ events.description }}</span>
-        </dd>
-        <dt><span >Fecha de Inicio:</span></dt>
-        <dd>
-          <span>{{ events.startDate | formatMediumDate }}</span>
-        </dd>
-        <dt><span >Fecha de Finalización: </span></dt>
-        <dd>
-          <span>{{ events.endDate | formatMediumDate }}</span>
-        </dd>
-        <dt><span >Enlace: </span></dt>
-        <dd>
-          <a class="btnEnlace" href="{{ events.url }}"  target="_blank">Abrir enlace</a>
-        </dd>
-        <dt><span >Ubicación: </span></dt>
-        <dd>
-          <span>{{ events.address }}</span>
-        </dd>
-        <dt><span >Autor: </span></dt>
-        <dd>
-          <span>{{ events.user?.login }}</span>
-        </dd>
-      </dl>
-
+          <dt><span>Autor: </span></dt>
+          <dd>
+            <span>{{ events.user?.login }}</span>
+          </dd>
+        </dl>
       </div>
-      <div class="separador"> </div>
+      <div class="separador"></div>
 
       <button title="Volver" type="submit" (click)="previousState()" class="btn btnEdit btnCustEdit" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span ></span>
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span></span>
       </button>
 
       <button title="Editar" type="button" [routerLink]="['/events', events.id, 'edit']" class="btn btnEdit">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span ></span>
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span></span>
       </button>
     </div>
   </div>
