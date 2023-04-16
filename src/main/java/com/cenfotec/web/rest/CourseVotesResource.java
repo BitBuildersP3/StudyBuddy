@@ -119,14 +119,14 @@ public class CourseVotesResource {
     }
 
     @GetMapping("/course-votes/getCurrentUserVotes/{id}")
-    public ResponseEntity<ObjectNode> getCurrentUserVotes(@PathVariable Long id) throws JsonProcessingException {
+    public ResponseEntity<JsonNode> getCurrentUserVotes(@PathVariable Long id) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
 
         String name = SecurityUtils.getCurrentUserLogin().orElse(null);
         CourseVotes courseVotes = courseVotesRepository.getCourseVotesByIdCourse(id);
-        List<String> currentUserData = JsonPath.read(courseVotes.getJson(), "$.votes[?(@.user == \"" + name + "\")]");
+        String currentUserData = JsonPath.read(courseVotes.getJson(), "$.votes[?(@.user == \"" + name + "\")]").toString();
 
-        return ResponseEntity.ok().body((ObjectNode) mapper.readTree(currentUserData.get(0)));
+        return ResponseEntity.ok().body(mapper.readTree(currentUserData));
     }
 
     /**
