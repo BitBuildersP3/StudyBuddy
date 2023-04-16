@@ -2,13 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
 import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { EntityResponseType } from 'app/entities/news/service/news.service';
 import { IEvents } from '../events.model';
 import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/config/navigation.constants';
 import { EntityArrayResponseType, EventsService } from '../service/events.service';
 import { EventsDeleteDialogComponent } from '../delete/events-delete-dialog.component';
 import { SortService } from 'app/shared/sort/sort.service';
 import { Title } from '@angular/platform-browser';
+import { HttpResponse } from '@angular/common/http';
+import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
+import Swal from 'sweetalert2';
+import { finalize, map } from 'rxjs/operators';
 
 @Component({
   selector: 'jhi-events',
@@ -18,26 +22,91 @@ import { Title } from '@angular/platform-browser';
 export class EventsComponent implements OnInit {
   events?: IEvents[];
   isLoading = false;
+  isSaving = false;
+  ownerName: string = '';
 
   predicate = 'id';
   ascending = true;
 
   promptValue: string = '';
-
   constructor(
     protected eventsService: EventsService,
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected sortService: SortService,
     protected modalService: NgbModal,
-    private titleService: Title
+    private titleService: Title,
+    protected extraUser: ExtraUserInfoService
   ) {}
 
   trackId = (_index: number, item: IEvents): number => this.eventsService.getEventsIdentifier(item);
 
   ngOnInit(): void {
     this.titleService.setTitle('Eventos');
-    this.load();
+    this.extraUser.getInfoByCurrentUser().subscribe({
+      next: (res: EntityResponseType) => {
+        // @ts-ignore
+        this.idUser = res.body?.user.id;
+        const login = res.body?.user?.login;
+        if (login != null) {
+          this.ownerName = login;
+          console.log(this.ownerName);
+        }
+        this.load();
+      },
+    });
+  }
+  // función para editar el evento y así "inscribirse al evento"
+  updateAddedList(idEvent: IEvents): void {
+    this.isSaving = true;
+    if (idEvent.status == null) {
+      idEvent.status = 'Pendiente';
+    }
+    idEvent.status = this.ownerName;
+    //idEvent.status = idEvent.status.concat(this.ownerName,);
+    console.log('status:  ' + idEvent.status);
+    this.subscribeToSaveResponse(this.eventsService.partialUpdate(idEvent));
+  }
+
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IEvents>>): void {
+    result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
+      next: () => this.onSaveSuccess(),
+      error: e => this.onSaveError(e),
+    });
+  }
+
+  previousState(): void {
+    window.history.back();
+  }
+
+  protected onSaveSuccess(): void {
+    Swal.fire({
+      icon: 'success',
+      title: 'Inscrito correctamente',
+      showConfirmButton: true,
+    });
+  }
+
+  protected onSaveError(e: any): void {
+    Swal.fire({
+      icon: 'success',
+      title: 'Error',
+      showDenyButton: true,
+      denyButtonColor: '#6dabd5',
+      confirmButtonText: 'Seguir Matriculando',
+      denyButtonText: `Ir a mis cursos`,
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.router.navigate(['courses']);
+      } else if (result.isDenied) {
+        this.router.navigate(['courses/enrolled']);
+      }
+    });
+    console.log(e);
+  }
+
+  protected onSaveFinalize(): void {
+    this.isSaving = false;
   }
 
   delete(events: IEvents): void {
@@ -124,7 +193,6 @@ export class EventsComponent implements OnInit {
   }
 
   searchEvent() {
-
     console.log(this.promptValue);
 
     if (this.promptValue !== '') {

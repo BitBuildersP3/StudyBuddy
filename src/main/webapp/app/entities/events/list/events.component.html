@@ -13,8 +13,6 @@
     </div>
   </h2>
 
-
-
   <form (ngSubmit)="searchEvent()">
     <div class="row pt-4">
       <div class="col-4"></div>
@@ -37,14 +35,11 @@
     </div>
   </form>
 
-
   <!-- Lista de cards para eventos - INICIO -->
 
   <div class="principalConteiner mt-5">
     <div class="item-cont" *ngFor="let events of events">
       <div class="secondConteiner">
-
-
         <div class="txt-cont">
           <div class="info">
             <h5>
@@ -52,33 +47,23 @@
 
               <span>
                 <div class="descrip-recuadro">
-                <p class="sub tilesub">Descripción: </p>
-                <p class="sub descrsub">{{ events.description }}</p>
+                  <p class="sub tilesub">Descripción:</p>
+                  <p class="sub descrsub">{{ events.description }}</p>
                 </div>
               </span>
               <span>
                 <p class="sub">
-                  Inicio: <span class="active"> {{ events.startDate!.toString().slice(6, 16) }}  </span>
+                  Inicio: <span class="active"> {{ events.startDate!.toString().slice(6, 16) }} </span>
                   <span class="sub"> Fin: {{ events.endDate!.toString().slice(6, 16) }} </span>
                 </p>
               </span>
-
             </h5>
           </div>
         </div>
 
         <!-- Botones - Inicio -->
         <div class="botones">
-
-
-
-          <button
-            type="submit"
-            title="Ver"
-            [routerLink]="['/events', events.id, 'view']"
-            class="btn btnView"
-            data-cy="entityDetailsButton"
-          >
+          <button type="submit" title="Ver" [routerLink]="['/events', events.id, 'view']" class="btn btnView" data-cy="entityDetailsButton">
             <fa-icon icon="eye"></fa-icon>
           </button>
 
@@ -86,29 +71,23 @@
             type="button"
             id="cancel-save"
             title="Matricular"
-
             data-cy="entityCreateCancelButton"
             class="btn btnEnrolled"
+            (click)="updateAddedList(events)"
           >
-            <!-- Buscar otro icono-->
             <fa-icon icon="graduation-cap"></fa-icon>
           </button>
-
         </div>
         <!-- FIN - Botones  -->
       </div>
     </div>
   </div>
 
-        <!-- FIN - Lista de cards para eventos -->
+  <!-- FIN - Lista de cards para eventos -->
 
   <jhi-alert-error></jhi-alert-error>
-
-
 
   <div class="alert alert-warning" id="no-result" *ngIf="events?.length === 0">
     <span jhiTranslate="studyBuddyApp.events.home.notFound">Ningún evento encontrado</span>
   </div>
-
-
 </div>
