@@ -118,6 +118,17 @@ public class CourseVotesResource {
         return ResponseEntity.ok().body(courseVotes);
     }
 
+    @GetMapping("/course-votes/getCurrentUserVotes/{id}")
+    public ResponseEntity<ObjectNode> getCurrentUserVotes(@PathVariable Long id) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        String name = SecurityUtils.getCurrentUserLogin().orElse(null);
+        CourseVotes courseVotes = courseVotesRepository.getCourseVotesByIdCourse(id);
+        List<String> currentUserData = JsonPath.read(courseVotes.getJson(), "$.votes[?(@.user == \"" + name + "\")]");
+
+        return ResponseEntity.ok().body((ObjectNode) mapper.readTree(currentUserData.get(0)));
+    }
+
     /**
      * {@code PUT  /course-votes/:id} : Updates an existing courseVotes.
      *
