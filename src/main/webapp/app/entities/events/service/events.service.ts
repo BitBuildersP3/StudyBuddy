@@ -125,4 +125,9 @@ export class EventsService {
       body: res.body ? res.body.map(item => this.convertDateFromServer(item)) : null,
     });
   }
+
+  getEventsByPrompt(prompt: string): Observable<EntityArrayResponseType> {
+    return this.http.get<IEvents[]>(`${this.resourceUrl}/findByPrompt/${prompt}`, { observe: 'response' });
+  }
+
 }

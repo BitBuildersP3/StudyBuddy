@@ -1,5 +1,6 @@
 package com.cenfotec.repository;
 
+import com.cenfotec.domain.Courses;
 import com.cenfotec.domain.Events;
 import java.util.List;
 import java.util.Optional;
@@ -40,4 +41,8 @@ public interface EventsRepository extends JpaRepository<Events, Long> {
 
     @Query("select events from Events events left join fetch events.user where events.id =:id")
     Optional<Events> findOneWithToOneRelationships(@Param("id") Long id);
+
+    // Solo por nombre de evento
+    @Query("select events from Events events where events.name like %:prompt%" )
+    List<Events> findEventsByPromptByPrompt(@Param("prompt") String prompt);
 }
