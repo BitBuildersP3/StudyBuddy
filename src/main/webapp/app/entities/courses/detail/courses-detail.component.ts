@@ -9,6 +9,7 @@ import { ITEM_DELETED_EVENT } from '../../../config/navigation.constants';
 import Swal from 'sweetalert2';
 import { Title } from '@angular/platform-browser';
 import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
+import { CourseVotesService } from '../../course-votes/service/course-votes.service';
 
 @Component({
   selector: 'jhi-courses-detail',
@@ -37,6 +38,12 @@ export class CoursesDetailComponent implements OnInit {
   counter = 0;
   isOwner = true;
   isRegister = true;
+
+  TotalVotes: number | undefined | null;
+  totalUsers: number | undefined | null;
+
+  currentUserVote: number | undefined | null;
+
   constructor(
     protected activatedRoute: ActivatedRoute,
     private courseService: CoursesService,
@@ -45,7 +52,8 @@ export class CoursesDetailComponent implements OnInit {
     private sectionService: SectionService,
     protected filesService: FilesService,
     private titleService: Title,
-    private extraInfoService: ExtraUserInfoService
+    private extraInfoService: ExtraUserInfoService,
+    private courseVotesService: CourseVotesService
   ) {}
 
   setIsOpen(): void {
@@ -102,6 +110,38 @@ export class CoursesDetailComponent implements OnInit {
     this.courseService.getIsOwner(this.courses?.id).subscribe(response => {
       this.isOwner = response.body;
     });
+
+    this.courseVotesService.getUserVotes(this.courses?.id).subscribe(response => {
+      console.log(response.body);
+      if (response.body) {
+        // @ts-ignore
+        this.currentUserVote = response.body[0]['score'];
+      }
+    });
+
+    this.courseVotesService.getByCourse(this.courses.id).subscribe(response => {
+      // @ts-ignore
+      let json = JSON.parse(response.body.json);
+      this.totalUsers = json['num'];
+      this.TotalVotes = json['avg'];
+    });
+  }
+
+  scoreCourse(score: number) {
+    let prompt: string = `${this.courses.id}-${score}`;
+    this.courseVotesService
+      .addVote(prompt)
+      .subscribe(response => {
+        // @ts-ignore
+        let json = JSON.parse(response.body.json);
+        this.totalUsers = json['num'];
+        this.TotalVotes = json['avg'];
+      })
+      .add(() => {
+        this.courses.score = this.TotalVotes;
+        this.courses.userVotes = this.totalUsers;
+        this.courseService.partialUpdate(this.courses).subscribe();
+      });
   }
 
   // this method get the value of the current user and the id of the current course

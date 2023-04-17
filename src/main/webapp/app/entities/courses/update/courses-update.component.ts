@@ -15,6 +15,7 @@ import { EntityResponseType, ExtraUserInfoService } from 'app/entities/extra-use
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { CourseVotesService } from '../../course-votes/service/course-votes.service';
 
 @Component({
   selector: 'jhi-courses-update',
@@ -39,7 +40,8 @@ export class CoursesUpdateComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     protected extraUser: ExtraUserInfoService,
     private router: Router,
-    private titleService: Title
+    private titleService: Title,
+    private courseVotesService: CourseVotesService
   ) {
     this.ownerName = '';
   }
@@ -106,6 +108,7 @@ export class CoursesUpdateComponent implements OnInit {
       courses.status = 'active';
       courses.score = 0;
       this.subscribeToSaveResponse(this.coursesService.create(courses));
+
       Swal.fire({
         icon: 'success',
         title: 'Curso creado correctamente',
@@ -118,12 +121,14 @@ export class CoursesUpdateComponent implements OnInit {
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICourses>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
-      next: () => this.onSaveSuccess(),
+      next: result => this.onSaveSuccess(result.body),
       error: () => this.onSaveError(),
     });
   }
 
-  protected onSaveSuccess(): void {}
+  protected onSaveSuccess(result: ICourses | null): void {
+    this.courseVotesService.saveCoursesVotes(result?.id).subscribe();
+  }
 
   protected onSaveError(): void {
     // Api for inheritance.

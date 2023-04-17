@@ -51,7 +51,6 @@
               </li>
             </ng-container>
           </ul>
-
           <div class="cont-btns">
             <button
               title="Volver"
@@ -136,6 +135,20 @@
               <ng-container *ngIf="currentSection.description && j < 1">
                 <span><b>Descripción:</b> {{ currentSection.description }}</span>
               </ng-container>
+              <div class="separador"></div>
+              <div class="row">
+                <div class="col-4"><jhi-votes label="Puntuacion del curso" [disable]="true" [votes]="TotalVotes"></jhi-votes></div>
+                <div class="col-5">
+                  <b style="position: relative; top: 57%; margin-left: 10px">{{ TotalVotes }} por {{ totalUsers }} usuarios</b>
+                </div>
+              </div>
+              <jhi-votes
+                label="Puntua este curso"
+                [disable]="false"
+                [userVotes]="currentUserVote"
+                (votesChanges)="scoreCourse($event)"
+              ></jhi-votes>
+
               <!-- end constant content -->
 
               <!-- start validation of type index -->
