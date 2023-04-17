@@ -44,7 +44,7 @@ public interface CoursesRepository extends CoursesRepositoryWithBagRelationships
 
     List<Courses> findTop5ByUsersLikeAndStatusIs(User user, String status);
 
-    @Query("select courses from Courses courses where courses.ownerName like %:prompt% or courses.name like %:prompt%")
+    @Query("select courses from Courses courses where  courses.ownerName like %:prompt% or courses.name like %:prompt%")
     List<Courses> findCoursesByPrompt(@Param("prompt") String prompt);
     /*    *
     *
