@@ -27,7 +27,8 @@ export class CoursesUpdateComponent implements OnInit {
   ownerName: string;
   usersSharedCollection: IUser[] = [];
   categoriesSharedCollection: ICategory[] = [];
-  previewURL: string = 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1681166198/default-image_ltck0i.webp';
+  defaulImg: string = 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1681166198/default-image_ltck0i.webp';
+  previewURL: string | null | undefined = this.defaulImg;
   editForm: CoursesFormGroup = this.coursesFormService.createCoursesFormGroup();
   users?: Pick<IUser, 'id' | 'login'>[] | null;
   constructor(
@@ -68,6 +69,8 @@ export class CoursesUpdateComponent implements OnInit {
         console.log(res.body);
       },
     });
+    this.previewURL = this.courses?.previewImg;
+    console.log(this.previewURL);
   }
 
   saveUrl(URL: string): void {
@@ -83,10 +86,10 @@ export class CoursesUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const courses = this.coursesFormService.getCourses(this.editForm);
-    if (this.previewURL !== '') courses.previewImg = this.previewURL;
 
     if (courses.id !== null) {
       courses.users?.push({ id: this.idUser, login: this.ownerName });
+      courses.previewImg = this.previewURL;
       this.subscribeToSaveResponse(this.coursesService.partialUpdate(courses));
       Swal.fire({
         icon: 'success',
@@ -96,6 +99,8 @@ export class CoursesUpdateComponent implements OnInit {
       });
       this.router.navigate(['courses/myCourses']);
     } else {
+      courses.previewImg = this.previewURL;
+      if (courses.previewImg === undefined) courses.previewImg = this.defaulImg;
       courses.ownerName = this.ownerName;
       courses.userId = this.idUser;
       courses.status = 'active';

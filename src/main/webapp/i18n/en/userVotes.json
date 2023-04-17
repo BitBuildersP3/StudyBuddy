@@ -1,0 +1,25 @@
+{
+  "studyBuddyApp": {
+    "userVotes": {
+      "home": {
+        "title": "User Votes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new User Votes",
+        "createOrEditLabel": "Create or edit a User Votes",
+        "notFound": "No User Votes found"
+      },
+      "created": "A new User Votes is created with identifier {{ param }}",
+      "updated": "A User Votes is updated with identifier {{ param }}",
+      "deleted": "A User Votes is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Votes {{ id }}?"
+      },
+      "detail": {
+        "title": "User Votes"
+      },
+      "id": "ID",
+      "idUser": "Id User",
+      "json": "Json"
+    }
+  }
+}

@@ -745,3 +745,8 @@ p {
 .box-shadow {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+/* Todo-list */
+.todolist-modal-height {
+  margin: 35rem 0 5rem 0;
+}

@@ -1,111 +1,44 @@
-<div>
-  <h2 id="page-heading" data-cy="TodoListHeading">
-    <span jhiTranslate="studyBuddyApp.todoList.home.title">Todo Lists</span>
+<!-- Contenido del pop-up aquí -->
+<div class="app-container" id="taskList">
+  <div class="conteinerTask">
+    <h1 class="app-header">Lista de Tareas</h1>
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <div class="add-task">
+        <input
+          type="text"
+          class="task-input inputTak"
+          placeholder="Nueva Tarea"
+          name="task"
+          id="field_task"
+          data-cy="task"
+          formControlName="task"
+        />
+        <button
+          type="submit"
+          title="Nueva Tarea"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn"
+        >
+          <fa-icon icon="plus" class="plusColor"></fa-icon>&nbsp;
+        </button>
+      </div>
+    </form>
 
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="studyBuddyApp.todoList.home.refreshListLabel">Refrescar lista</span>
-      </button>
+    <ul class="task-list" class="margi" *ngFor="let todoList of todoLists; trackBy: trackId">
+      <li class="task-list-item" v-for="task in tasks">
+        <label class="task-list-item-label">
+          <input type="checkbox" id="myCheckbox" (change)="onCheckboxChange($event)" />
+          <span>{{ todoList.task }}</span>
+        </label>
 
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-todo-list"
-        [routerLink]="['/todo-list/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="studyBuddyApp.todoList.home.createLabel"> Crear nuevo Todo List </span>
-      </button>
-    </div>
-  </h2>
-
-  <jhi-alert-error></jhi-alert-error>
-
-  <jhi-alert></jhi-alert>
-
-  <div class="alert alert-warning" id="no-result" *ngIf="todoLists?.length === 0">
-    <span jhiTranslate="studyBuddyApp.todoList.home.notFound">Ningún Todo Lists encontrado</span>
-  </div>
-
-  <div class="table-responsive table-entities" id="entities" *ngIf="todoLists && todoLists.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
-            <div class="d-flex">
-              <span jhiTranslate="global.field.id">ID</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="task">
-            <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.todoList.task">Task</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="priority">
-            <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.todoList.priority">Priority</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="status">
-            <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.todoList.status">Status</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="user.login">
-            <div class="d-flex">
-              <span jhiTranslate="studyBuddyApp.todoList.user">User</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let todoList of todoLists; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/todo-list', todoList.id, 'view']">{{ todoList.id }}</a>
-          </td>
-          <td>{{ todoList.task }}</td>
-          <td>{{ todoList.priority }}</td>
-          <td>{{ todoList.status }}</td>
-          <td>
-            {{ todoList.user?.login }}
-          </td>
-          <td class="text-end">
-            <div class="btn-group">
-              <button
-                type="submit"
-                [routerLink]="['/todo-list', todoList.id, 'view']"
-                class="btn btn-info btn-sm"
-                data-cy="entityDetailsButton"
-              >
-                <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
-              </button>
-
-              <button
-                type="submit"
-                [routerLink]="['/todo-list', todoList.id, 'edit']"
-                class="btn btn-primary btn-sm"
-                data-cy="entityEditButton"
-              >
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
-              </button>
-
-              <button type="submit" (click)="delete(todoList)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <span class="delete-btn" title="Delete Task">
+          <button type="submit" title="Borrar" (click)="delete(todoList)" class="btn" data-cy="entityDeleteButton">
+            <fa-icon icon="trash-can" class="trashColor"></fa-icon>
+          </button>
+        </span>
+      </li>
+    </ul>
   </div>
 </div>

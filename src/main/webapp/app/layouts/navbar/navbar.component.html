@@ -245,6 +245,42 @@
                 <span jhiTranslate="global.menu.entities.category">Category</span>
               </a>
             </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="user-votes"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.entities.userVotes">User Votes</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="course-votes"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.entities.courseVotes">Course Votes</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="foro-entity"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.entities.foroEntity">Foro Entity</span>
+              </a>
+            </li>
             <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
           </ul>
         </li>
@@ -349,10 +385,13 @@
                 <span jhiTranslate="global.menu.account.password">Contraseña</span>
               </a>
             </li>
-            <li *ngSwitchCase="true">
-              <a class="dropdown-item" routerLink="account/sessions" routerLinkActive="active" (click)="collapseNavbar()">
-                <fa-icon icon="cloud" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.account.sessions">Sesiones</span>
+            <!-- *ngSwitchCase="true" -->
+            <li *ngIf="account?.login != 'admin' && account?.login != null">
+              <a class="dropdown-item" routerLink="foro-entity/new" routerLinkActive="active" (click)="collapseNavbar()">
+                <!-- <fa-icon icon="cloud" [fixedWidth]="true"></fa-icon> -->
+                <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+
+                <span>Tema para foro</span>
               </a>
             </li>
             <li *ngSwitchCase="true">

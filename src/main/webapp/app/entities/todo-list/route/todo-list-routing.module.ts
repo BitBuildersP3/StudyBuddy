@@ -9,38 +9,38 @@ import { TodoListRoutingResolveService } from './todo-list-routing-resolve.servi
 import { ASC } from 'app/config/navigation.constants';
 
 const todoListRoute: Routes = [
-  {
-    path: '',
-    component: TodoListComponent,
-    data: {
-      defaultSort: 'id,' + ASC,
-    },
-    canActivate: [UserRouteAccessService],
-  },
-  {
-    path: ':id/view',
-    component: TodoListDetailComponent,
-    resolve: {
-      todoList: TodoListRoutingResolveService,
-    },
-    canActivate: [UserRouteAccessService],
-  },
-  {
-    path: 'new',
-    component: TodoListUpdateComponent,
-    resolve: {
-      todoList: TodoListRoutingResolveService,
-    },
-    canActivate: [UserRouteAccessService],
-  },
-  {
-    path: ':id/edit',
-    component: TodoListUpdateComponent,
-    resolve: {
-      todoList: TodoListRoutingResolveService,
-    },
-    canActivate: [UserRouteAccessService],
-  },
+  // {
+  //   path: '',
+  //   component: TodoListComponent,
+  //   data: {
+  //     defaultSort: 'id,' + ASC,
+  //   },
+  //   canActivate: [UserRouteAccessService],
+  // },
+  // {
+  //   path: ':id/view',
+  //   component: TodoListDetailComponent,
+  //   resolve: {
+  //     todoList: TodoListRoutingResolveService,
+  //   },
+  //   canActivate: [UserRouteAccessService],
+  // },
+  // {
+  //   path: 'new',
+  //   component: TodoListUpdateComponent,
+  //   resolve: {
+  //     todoList: TodoListRoutingResolveService,
+  //   },
+  //   canActivate: [UserRouteAccessService],
+  // },
+  // {
+  //   path: ':id/edit',
+  //   component: TodoListUpdateComponent,
+  //   resolve: {
+  //     todoList: TodoListRoutingResolveService,
+  //   },
+  //   canActivate: [UserRouteAccessService],
+  // },
 ];
 
 @NgModule({

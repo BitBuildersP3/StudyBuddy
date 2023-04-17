@@ -1,0 +1,24 @@
+{
+  "applications": "*",
+  "changelogDate": "20230413164012",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "course_votes",
+  "fields": [
+    {
+      "fieldName": "idCourse",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "json",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CourseVotes",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}
