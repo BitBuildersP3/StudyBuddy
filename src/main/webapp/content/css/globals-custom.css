@@ -713,19 +713,24 @@ p {
 }
 
 .foro-cont {
-  background-color: #666666;
+  background-color: #ffffff;
   transition: 1s ease-in-out;
   position: fixed;
   bottom: 2rem;
   right: 2rem;
   display: flex;
   flex-direction: column;
-  border-radius: 0.2rem;
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.foro-cont iframe {
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .top-close-bar {
   padding: 0.2rem 0rem;
   padding-left: 1rem;
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .close-foro {
@@ -737,6 +742,6 @@ p {
   font-size: 1.2rem;
 }
 
-iframe .poweredBy {
-  display: none !important;
+.box-shadow {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

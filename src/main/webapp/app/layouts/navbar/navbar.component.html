@@ -385,10 +385,10 @@
     </div>
   </div>
   <ng-container *ngIf="account">
-    <div class="floating-btn-foro bubble" (click)="setOpenForo()">
-      <span class="text-light">Foro</span>
+    <div class="floating-btn-foro bubble box-shadow" (click)="setOpenForo()">
+      <strong class="text-light">Foro</strong>
     </div>
-    <div *ngIf="isOpenForo" class="foro-cont">
+    <div *ngIf="isOpenForo" class="foro-cont box-shadow">
       <div class="bg-white top-close-bar" (click)="setOpenForo()">
         <a class="close-foro"> <fa-icon icon="angle-down"></fa-icon></a>
       </div>
