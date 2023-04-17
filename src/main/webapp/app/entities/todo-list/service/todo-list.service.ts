@@ -42,7 +42,9 @@ export class TodoListService {
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
-
+  getMyTaks(id: number): Observable<EntityArrayResponseType> {
+    return this.http.get<ITodoList[]>(`${this.resourceUrl}/isRegistered/${id}`, { observe: 'response' });
+  }
   getTodoListIdentifier(todoList: Pick<ITodoList, 'id'>): number {
     return todoList.id;
   }
