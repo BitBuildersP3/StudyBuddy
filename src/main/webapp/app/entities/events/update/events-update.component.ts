@@ -11,6 +11,7 @@ import { EventsService } from '../service/events.service';
 import { IUser } from 'app/entities/user/user.model';
 import { UserService } from 'app/entities/user/user.service';
 import { User } from '../../../admin/user-management/user-management.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'jhi-events-update',
@@ -54,9 +55,16 @@ export class EventsUpdateComponent implements OnInit {
       },
     });
 
+    // No borrar esto es para el modificar
     this.activatedRoute.data.subscribe(({ events }) => {
       this.events = events;
-      //this.loadRelationshipsOptions();
+
+      if (events) {
+        this.updateForm(events);
+      }
+
+      this.loadRelationshipsOptions();
+      // No borrar esto es para el modificar
     });
   }
 
@@ -86,10 +94,22 @@ export class EventsUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
+    Swal.fire({
+      icon: 'success',
+      title: 'Evento exitoso',
+      showConfirmButton: true,
+      timer: 2000,
+    });
     this.previousState();
   }
 
   protected onSaveError(): void {
+    Swal.fire({
+      icon: 'error',
+      title: 'Ha ocurrido un error',
+      showConfirmButton: true,
+      timer: 2000,
+    });
     // Api for inheritance.
   }
 
