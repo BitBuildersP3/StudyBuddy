@@ -51,12 +51,24 @@ export class EventsUpdateComponent implements OnInit {
           this.ownerName = login;
           console.log(this.ownerName);
         }
+
+
       },
+
+
+
     });
 
+    // No borrar esto es para el modificar
     this.activatedRoute.data.subscribe(({ events }) => {
       this.events = events;
-      //this.loadRelationshipsOptions();
+
+      if (events) {
+        this.updateForm(events);
+      }
+
+      this.loadRelationshipsOptions();
+      // No borrar esto es para el modificar
     });
   }
 
