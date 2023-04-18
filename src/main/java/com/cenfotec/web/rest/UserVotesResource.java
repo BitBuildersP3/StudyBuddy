@@ -1,8 +1,17 @@
 package com.cenfotec.web.rest;
 
 import com.cenfotec.domain.UserVotes;
+import com.cenfotec.domain.UserVotes;
+import com.cenfotec.domain.UserVotes;
 import com.cenfotec.repository.UserVotesRepository;
+import com.cenfotec.security.SecurityUtils;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.jayway.jsonpath.JsonPath;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -51,6 +60,7 @@ public class UserVotesResource {
         if (userVotes.getId() != null) {
             throw new BadRequestAlertException("A new userVotes cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        userVotes.setJson("{\"votes\" : [], \"avg\" : 0, \"num\" : 0}");
         UserVotes result = userVotesRepository.save(userVotes);
         return ResponseEntity
             .created(new URI("/api/user-votes/" + result.getId()))
@@ -178,5 +188,57 @@ public class UserVotesResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/user-votes/createByProxy/{id}")
+    public void createAndAsociateUserVotes(@PathVariable String id) throws URISyntaxException {
+        UserVotes userVotes = new UserVotes();
+        userVotes.setIdUser(id);
+        this.createUserVotes(userVotes);
+    }
+
+    @GetMapping("/user-votes/getByUser/{id}")
+    public ResponseEntity<UserVotes> getByUserId(@PathVariable String id) {
+        return ResponseEntity.ok().body(userVotesRepository.getUserVotesByIdUser(id));
+    }
+
+    @GetMapping("/user-votes/addVote/{prompt}")
+    public ResponseEntity<UserVotes> addUserVoteToACourse(@PathVariable String prompt) throws JsonProcessingException {
+        String[] promptSplit = prompt.split("-");
+        String userName = promptSplit[0];
+        int points = Integer.parseInt(promptSplit[1]);
+        String name = SecurityUtils.getCurrentUserLogin().orElse(null);
+        String updatedJson;
+
+        UserVotes userVotes = userVotesRepository.getUserVotesByIdUser(userName);
+
+        List<String> currentUserData = JsonPath.read(userVotes.getJson(), "$.votes[?(@.user == \"" + name + "\")]");
+
+        if (currentUserData.isEmpty()) {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode json = mapper.readTree(userVotes.getJson());
+
+            ArrayNode votesArray = (ArrayNode) json.get("votes");
+
+            ObjectNode objectNode = mapper.createObjectNode();
+
+            objectNode.put("score", points);
+            objectNode.put("user", name);
+
+            votesArray.add(objectNode);
+            updatedJson = mapper.writeValueAsString(json);
+        } else {
+            updatedJson = JsonPath.parse(userVotes.getJson()).set("$.votes[?(@.user == \"" + name + "\")].score", points).jsonString();
+            userVotes.setJson(updatedJson);
+            userVotesRepository.save(userVotes);
+        }
+
+        double avgPoints = JsonPath.read(updatedJson, "$..votes..score.avg()");
+        int totalVotes = JsonPath.read(updatedJson, "$.votes.length()");
+        updatedJson = JsonPath.parse(updatedJson).set("$.avg", avgPoints).set("$.num", totalVotes).jsonString();
+        userVotes.setJson(updatedJson);
+        userVotesRepository.save(userVotes);
+
+        return ResponseEntity.ok().body(userVotes);
     }
 }

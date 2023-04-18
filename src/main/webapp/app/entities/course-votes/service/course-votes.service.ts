@@ -38,6 +38,22 @@ export class CourseVotesService {
     return this.http.get<ICourseVotes>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  saveCoursesVotes(id: number | undefined): Observable<EntityResponseType> {
+    return this.http.get<ICourseVotes>(`${this.resourceUrl}/createByProxy/${id}`, { observe: 'response' });
+  }
+
+  getUserVotes(id: number | undefined): Observable<HttpResponse<string>> {
+    return this.http.get<string>(`${this.resourceUrl}/getCurrentUserVotes/${id}`, { observe: 'response' });
+  }
+
+  getByCourse(id: number | undefined): Observable<HttpResponse<ICourseVotes>> {
+    return this.http.get<ICourseVotes>(`${this.resourceUrl}/getByCourse/${id}`, { observe: 'response' });
+  }
+
+  addVote(id: string | undefined): Observable<HttpResponse<ICourseVotes>> {
+    return this.http.get<ICourseVotes>(`${this.resourceUrl}/addVote/${id}`, { observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<ICourseVotes[]>(this.resourceUrl, { params: options, observe: 'response' });

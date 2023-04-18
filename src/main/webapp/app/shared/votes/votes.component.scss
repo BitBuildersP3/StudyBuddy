@@ -1,0 +1,23 @@
+igc-rating {
+  --symbol-size: 44px !important;
+  --symbol-full-color: hsla(var(--igc-warn-A400), var(--igc-warn-a));
+  --symbol-empty-color: hsla(var(--igc-warn-A400), var(--igc-warn-a));
+}
+
+igc-rating[disabled] {
+  --symbol-full-color: hsla(var(--igc-gray-400), var(--igc-gray-a));
+  --symbol-empty-color: hsla(var(--igc-gray-400), var(--igc-gray-a));
+}
+
+igc-rating::part(label) {
+  text-align: justify;
+  font-size: 16px;
+  color: #666666;
+  text-transform: var(--igc-overline-text-transform);
+  color: hsla(var(--igc-gray-600), var(--igc-gray-a));
+}
+
+igc-rating::part(symbols) {
+  gap: 15px;
+  --symbol-full-color: #de9a38;
+}
