@@ -1,0 +1,47 @@
+.titulito{
+  font-weight: bold;
+  text-align: center;
+  margin-top: 2rem;
+  color: #15537d;
+}
+.separador {
+  height: 1px; /* Altura de la línea */
+  width: 14rem; /* Longitud de la línea */
+  background-color: #15537d; /* Color de la línea */
+  margin-bottom: 1rem;
+}
+.cardForm {
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  border-color: #181d38;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  /* column-gap: 5rem; */
+  justify-content: space-around;
+
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 80rem;
+  padding-bottom: 2rem;
+}
+
+.form-label {
+  font-weight: bold;
+  color: #15537d;
+  text-align: center;
+  margin-top: 1rem;
+}
+.btnCalendar {
+  width: 3rem;
+  border-radius: 6px;
+  background-color: #15537d;
+}
+
+
+.cardForm{
+
+}

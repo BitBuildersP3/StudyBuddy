@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userVotes">
+      <h2 data-cy="userVotesDetailsHeading"><span jhiTranslate="studyBuddyApp.userVotes.detail.title">User Votes</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ userVotes.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.userVotes.idUser">Id User</span></dt>
+        <dd>
+          <span>{{ userVotes.idUser }}</span>
+        </dd>
+        <dt><span jhiTranslate="studyBuddyApp.userVotes.json">Json</span></dt>
+        <dd>
+          <span>{{ userVotes.json }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-votes', userVotes.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

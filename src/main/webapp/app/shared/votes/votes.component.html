@@ -1,0 +1,68 @@
+<div *ngIf="!disable">
+  <igc-rating
+    id="none"
+    value="{{ userVotes }}"
+    label="{{ label }}"
+    size="large"
+    min="1"
+    max="5"
+    (igcChange)="ratingChanged($event)"
+    hover-preview
+  >
+    <igc-rating-symbol>
+      <igc-icon name="full-star" slot></igc-icon>
+      <igc-icon name="star" slot="empty"></igc-icon>
+    </igc-rating-symbol>
+    <igc-rating-symbol>
+      <igc-icon name="full-star" slot></igc-icon>
+      <igc-icon name="star" slot="empty"></igc-icon>
+    </igc-rating-symbol>
+    <igc-rating-symbol>
+      <igc-icon name="full-star" slot></igc-icon>
+      <igc-icon name="star" slot="empty"></igc-icon>
+    </igc-rating-symbol>
+    <igc-rating-symbol size="medium">
+      <igc-icon name="full-star" slot></igc-icon>
+      <igc-icon name="star" slot="empty"></igc-icon>
+    </igc-rating-symbol>
+    <igc-rating-symbol>
+      <igc-icon name="full-star" slot></igc-icon>
+      <igc-icon name="star" slot="empty"></igc-icon>
+    </igc-rating-symbol>
+  </igc-rating>
+</div>
+
+<div *ngIf="disable">
+  <igc-rating
+    id="none"
+    value="{{ votes }}"
+    label="{{ label }}"
+    size="large"
+    min="1"
+    max="5"
+    (igcChange)="ratingChanged($event)"
+    disabled
+    hover-preview
+  >
+    <igc-rating-symbol>
+      <igc-icon name="full-star" slot></igc-icon>
+      <igc-icon name="star" slot="empty"></igc-icon>
+    </igc-rating-symbol>
+    <igc-rating-symbol>
+      <igc-icon name="full-star" slot></igc-icon>
+      <igc-icon name="star" slot="empty"></igc-icon>
+    </igc-rating-symbol>
+    <igc-rating-symbol>
+      <igc-icon name="full-star" slot></igc-icon>
+      <igc-icon name="star" slot="empty"></igc-icon>
+    </igc-rating-symbol>
+    <igc-rating-symbol size="medium">
+      <igc-icon name="full-star" slot></igc-icon>
+      <igc-icon name="star" slot="empty"></igc-icon>
+    </igc-rating-symbol>
+    <igc-rating-symbol>
+      <igc-icon name="full-star" slot></igc-icon>
+      <igc-icon name="star" slot="empty"></igc-icon>
+    </igc-rating-symbol>
+  </igc-rating>
+</div>

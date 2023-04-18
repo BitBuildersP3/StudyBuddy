@@ -16,6 +16,9 @@
         "section": "Section",
         "files": "Files",
         "category": "Category",
+        "userVotes": "User Votes",
+        "courseVotes": "Course Votes",
+        "foroEntity": "Foro Entity",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

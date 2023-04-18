@@ -1,0 +1,24 @@
+{
+  "applications": "*",
+  "changelogDate": "20230413164013",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "foro_entity",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "json",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ForoEntity",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

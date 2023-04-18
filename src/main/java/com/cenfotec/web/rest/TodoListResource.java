@@ -1,10 +1,14 @@
 package com.cenfotec.web.rest;
 
+import com.cenfotec.domain.Courses;
 import com.cenfotec.domain.TodoList;
+import com.cenfotec.domain.User;
 import com.cenfotec.repository.TodoListRepository;
+import com.cenfotec.security.SecurityUtils;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -52,6 +56,7 @@ public class TodoListResource {
             throw new BadRequestAlertException("A new todoList cannot already have an ID", ENTITY_NAME, "idexists");
         }
         TodoList result = todoListRepository.save(todoList);
+
         return ResponseEntity
             .created(new URI("/api/todo-lists/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -186,5 +191,12 @@ public class TodoListResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/todo-lists/isRegistered/{id}")
+    public List<TodoList> isUserRegister(@PathVariable Long id) {
+        User user = new User(id);
+        List<TodoList> res = todoListRepository.findByUserLike(user);
+        return res;
     }
 }

@@ -1,0 +1,24 @@
+{
+  "applications": "*",
+  "changelogDate": "20230413164011",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "user_votes",
+  "fields": [
+    {
+      "fieldName": "idUser",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "json",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "UserVotes",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

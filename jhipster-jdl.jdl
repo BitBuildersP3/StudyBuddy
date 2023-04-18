@@ -1,0 +1,9 @@
+entity UserVotes{
+	userName String
+    json String
+}
+
+entity CourseVotes {
+	courseId Long
+    json String
+}
