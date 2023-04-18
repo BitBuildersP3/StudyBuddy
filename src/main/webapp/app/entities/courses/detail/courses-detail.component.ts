@@ -67,12 +67,29 @@ export class CoursesDetailComponent implements OnInit {
   }
 
   remove(section: any): void {
-    const delSecton = {
-      id: section.id,
-      status: 'deleted',
-    };
-    this.sectionService.partialUpdate(delSecton).subscribe(() => {
-      this.fetchCourseData(this.courses?.id);
+    Swal.fire({
+      title: '¿Está seguro que desea borrar la clase?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Sí',
+    }).then(result => {
+      if (result.isConfirmed) {
+        const delSecton = {
+          id: section.id,
+          status: 'deleted',
+        };
+        this.sectionService.partialUpdate(delSecton).subscribe(() => {
+          this.fetchCourseData(this.courses?.id);
+        });
+        Swal.fire({
+          icon: 'success',
+          title: 'Eliminado correctamente',
+          showConfirmButton: true,
+        });
+      }
     });
   }
 
