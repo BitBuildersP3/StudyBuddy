@@ -1,14 +1,14 @@
 package com.cenfotec.web.rest;
 
-import com.cenfotec.domain.Courses;
-import com.cenfotec.domain.ExtraUserInfo;
-import com.cenfotec.domain.Files;
-import com.cenfotec.domain.Section;
-import com.cenfotec.domain.User;
+import com.cenfotec.domain.*;
+import com.cenfotec.repository.CourseVotesRepository;
 import com.cenfotec.repository.CoursesRepository;
 import com.cenfotec.repository.UserRepository;
 import com.cenfotec.security.SecurityUtils;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;

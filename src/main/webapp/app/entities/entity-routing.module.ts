@@ -50,6 +50,21 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./category/category.module').then(m => m.CategoryModule),
       },
 
+      {
+        path: 'user-votes',
+        data: { pageTitle: 'studyBuddyApp.userVotes.home.title' },
+        loadChildren: () => import('./user-votes/user-votes.module').then(m => m.UserVotesModule),
+      },
+      {
+        path: 'course-votes',
+        data: { pageTitle: 'studyBuddyApp.courseVotes.home.title' },
+        loadChildren: () => import('./course-votes/course-votes.module').then(m => m.CourseVotesModule),
+      },
+      {
+        path: 'foro-entity',
+        data: { pageTitle: 'studyBuddyApp.foroEntity.home.title' },
+        loadChildren: () => import('./foro-entity/foro-entity.module').then(m => m.ForoEntityModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

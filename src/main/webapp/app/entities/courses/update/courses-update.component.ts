@@ -94,7 +94,7 @@ export class CoursesUpdateComponent implements OnInit {
       Swal.fire({
         icon: 'success',
         title: 'Curso modificado correctamente',
-        showConfirmButton: false,
+        showConfirmButton: true,
         timer: 2000,
       });
       this.router.navigate(['courses/myCourses']);
@@ -109,7 +109,7 @@ export class CoursesUpdateComponent implements OnInit {
       Swal.fire({
         icon: 'success',
         title: 'Curso creado correctamente',
-        showConfirmButton: false,
+        showConfirmButton: true,
         timer: 2000,
       });
       this.router.navigate(['courses/myCourses']);

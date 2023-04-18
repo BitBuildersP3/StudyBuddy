@@ -20,6 +20,9 @@
     <include file="config/liquibase/changelog/20230318204537_added_entity_Section.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230318204637_added_entity_Files.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230318204737_added_entity_Category.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230413164011_added_entity_UserVotes.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230413164012_added_entity_CourseVotes.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230413164013_added_entity_ForoEntity.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20230318203937_added_entity_constraints_ExtraUserInfo.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230318204037_added_entity_constraints_News.xml" relativeToChangelogFile="false"/>

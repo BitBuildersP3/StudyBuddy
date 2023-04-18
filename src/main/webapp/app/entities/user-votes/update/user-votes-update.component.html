@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-user-votes-heading" data-cy="UserVotesCreateUpdateHeading" jhiTranslate="studyBuddyApp.userVotes.home.createOrEditLabel">
+        Crear o editar User Votes
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.userVotes.idUser" for="field_idUser">Id User</label>
+          <input type="text" class="form-control" name="idUser" id="field_idUser" data-cy="idUser" formControlName="idUser" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="studyBuddyApp.userVotes.json" for="field_json">Json</label>
+          <input type="text" class="form-control" name="json" id="field_json" data-cy="json" formControlName="json" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
