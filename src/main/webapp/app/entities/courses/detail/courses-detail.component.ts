@@ -113,7 +113,7 @@ export class CoursesDetailComponent implements OnInit {
 
     this.courseVotesService.getUserVotes(this.courses?.id).subscribe(response => {
       console.log(response.body);
-      if (response.body) {
+      if (response.body?.length !== 0) {
         // @ts-ignore
         this.currentUserVote = response.body[0]['score'];
       }
