@@ -35,7 +35,13 @@
     </p>
     <p>
       <jhi-votes label="" [disable]="true" [votes]="userTotalScore"></jhi-votes>
-      <jhi-votes label="Puntua este usuario" [disable]="false" [userVotes]="currentUserVote" (votesChanges)="scoreUser($event)"></jhi-votes>
+      <jhi-votes
+        *ngIf="!isCurrentUser"
+        label="Puntua este usuario"
+        [disable]="false"
+        [userVotes]="currentUserVote"
+        (votesChanges)="scoreUser($event)"
+      ></jhi-votes>
     </p>
 
     <div class="botones" style="">

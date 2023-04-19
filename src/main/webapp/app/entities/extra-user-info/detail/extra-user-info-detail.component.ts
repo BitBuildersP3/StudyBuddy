@@ -15,6 +15,9 @@ export class ExtraUserInfoDetailComponent implements OnInit {
   userTotalVotes: number | undefined | null;
   userTotalScore: number | undefined | null;
   currentUserVote: number | undefined | null;
+
+  isCurrentUser: boolean = false;
+
   constructor(
     protected activatedRoute: ActivatedRoute,
     private userVotesService: UserVotesService,
@@ -24,6 +27,11 @@ export class ExtraUserInfoDetailComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ extraUserInfo }) => {
       this.extraUserInfo = extraUserInfo;
+    });
+
+    this.extraUserInfoService.getInfoByCurrentUser().subscribe(result => {
+      this.isCurrentUser = result.body?.user?.login == this.extraUserInfo.user.login;
+      console.log(this.isCurrentUser);
     });
 
     this.userVotesService.getUserVotes(this.extraUserInfo?.user?.login).subscribe(response => {

@@ -10,6 +10,7 @@
             <div class="text-start col-sm-10 col-lg-8 justify-content-start">
               <h3 class="text-primary text-uppercase mb-3 animated slideInDown">Curso destacado</h3>
               <h1 class="display-3 text-white animated slideInDown">{{ slide.slideTitle }}</h1>
+              <jhi-votes [disable]="true" [votes]="slide.score"> </jhi-votes>
               <p class="fs-5 text-white mb-4 pb-2">
                 {{ slide.slideExerpt }}
               </p>

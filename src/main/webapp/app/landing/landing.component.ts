@@ -11,6 +11,7 @@ interface CoursesData {
   slideExerpt: string | null | undefined;
   redirect: number | null | undefined;
   status: string | null | undefined;
+  score: number | null | undefined;
 }
 
 @Component({
@@ -43,6 +44,7 @@ export class LandingComponent implements OnInit {
           next: value => {
             value.body?.map((data, index) => {
               this.userCuourses.push({
+                score: undefined,
                 redirect: data.id,
                 image: data.previewImg,
                 slideExerpt: data.excerpt,
@@ -59,6 +61,7 @@ export class LandingComponent implements OnInit {
       next: value => {
         value.body?.map((data, index) => {
           this.ownerCourses.push({
+            score: undefined,
             redirect: data.id,
             image: data.previewImg,
             slideExerpt: data.excerpt,
@@ -74,6 +77,7 @@ export class LandingComponent implements OnInit {
       next: value => {
         value.body?.map((data, index) => {
           this.slides.push({
+            score: data.score,
             redirect: data.id,
             image: data.previewImg,
             slideExerpt: data.excerpt,

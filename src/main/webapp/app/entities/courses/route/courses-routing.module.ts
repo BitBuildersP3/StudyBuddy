@@ -17,6 +17,14 @@ const coursesRoute: Routes = [
     canActivate: [UserRouteAccessService],
   },
   {
+    path: ':prompt',
+    component: CoursesComponent,
+    data: {
+      defaultSort: 'id,' + ASC,
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
     path: 'myCourses',
     component: CoursesComponentMyCourses,
     data: {

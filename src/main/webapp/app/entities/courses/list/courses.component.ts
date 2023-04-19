@@ -62,6 +62,13 @@ export class CoursesComponent implements OnInit {
         console.log(res.body);
       },
     });
+    this.activatedRoute.paramMap.subscribe(params => {
+      let prompt = params.get('prompt');
+      if (prompt != null) {
+        this.promptValue = prompt;
+        this.searchCourse();
+      }
+    });
   }
   saveUrl(URL: string): void {
     this.previewURL = URL;
@@ -109,6 +116,8 @@ export class CoursesComponent implements OnInit {
       }
     });
   }
+
+  setSearch() {}
 
   protected onSaveError(e: any): void {
     console.log(e);
