@@ -8,8 +8,6 @@
   </h2>
 
   <jhi-alert-error></jhi-alert-error>
-
-  <jhi-alert></jhi-alert>
 </div>
 
 <aside class="profile-card">
@@ -36,8 +34,8 @@
       <span class="sub">Votos de usuario: {{ extraUserInfo.userVotes }} </span>
     </p>
     <p>
-      <jhi-votes label="" [disable]="true"></jhi-votes>
-      <jhi-votes label="Puntua este usuario" [disable]="false"></jhi-votes>
+      <jhi-votes label="" [disable]="true" [votes]="userTotalScore"></jhi-votes>
+      <jhi-votes label="Puntua este usuario" [disable]="false" [userVotes]="currentUserVote" (votesChanges)="scoreUser($event)"></jhi-votes>
     </p>
 
     <div class="botones" style="">

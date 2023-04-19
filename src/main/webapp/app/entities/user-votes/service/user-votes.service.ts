@@ -6,6 +6,7 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IUserVotes, NewUserVotes } from '../user-votes.model';
+import { ICourseVotes } from '../../course-votes/course-votes.model';
 
 export type PartialUpdateUserVotes = Partial<IUserVotes> & Pick<IUserVotes, 'id'>;
 
@@ -24,6 +25,22 @@ export class UserVotesService {
 
   update(userVotes: IUserVotes): Observable<EntityResponseType> {
     return this.http.put<IUserVotes>(`${this.resourceUrl}/${this.getUserVotesIdentifier(userVotes)}`, userVotes, { observe: 'response' });
+  }
+
+  createByUser(userName: string): Observable<EntityResponseType> {
+    return this.http.get<IUserVotes>(`${this.resourceUrl}/createByProxy/${userName}`, { observe: 'response' });
+  }
+
+  getUserVotes(id: string | undefined): Observable<HttpResponse<string>> {
+    return this.http.get<string>(`${this.resourceUrl}/getCurrentUserVotes/${id}`, { observe: 'response' });
+  }
+
+  getByUser(id: string | undefined): Observable<HttpResponse<IUserVotes>> {
+    return this.http.get<IUserVotes>(`${this.resourceUrl}/getByUser/${id}`, { observe: 'response' });
+  }
+
+  addVote(id: string | undefined): Observable<HttpResponse<IUserVotes>> {
+    return this.http.get<IUserVotes>(`${this.resourceUrl}/addVote/${id}`, { observe: 'response' });
   }
 
   partialUpdate(userVotes: PartialUpdateUserVotes): Observable<EntityResponseType> {

@@ -263,6 +263,9 @@
                 [userVotes]="currentUserVote"
                 (votesChanges)="scoreCourse($event)"
               ></jhi-votes>
+              <b
+                >Creado por: <a [routerLink]="['/extra-user-info', ownerPublicId, 'view']">{{ ownerPublicName }}</a> </b
+              ><img class="profile-image rounded-circle" src="{{ ownerImg }}" />
             </ng-container>
             <!-- end constant content -->
           </div>

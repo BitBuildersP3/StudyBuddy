@@ -1,5 +1,6 @@
 package com.cenfotec.web.rest;
 
+import com.cenfotec.domain.CourseVotes;
 import com.cenfotec.domain.UserVotes;
 import com.cenfotec.domain.UserVotes;
 import com.cenfotec.domain.UserVotes;
@@ -240,5 +241,16 @@ public class UserVotesResource {
         userVotesRepository.save(userVotes);
 
         return ResponseEntity.ok().body(userVotes);
+    }
+
+    @GetMapping("/user-votes/getCurrentUserVotes/{id}")
+    public ResponseEntity<JsonNode> getCurrentUserVotes(@PathVariable String id) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        String name = SecurityUtils.getCurrentUserLogin().orElse(null);
+        UserVotes courseVotes = userVotesRepository.getUserVotesByIdUser(id);
+        String currentUserData = JsonPath.read(courseVotes.getJson(), "$.votes[?(@.user == \"" + name + "\")]").toString();
+
+        return ResponseEntity.ok().body(mapper.readTree(currentUserData));
     }
 }

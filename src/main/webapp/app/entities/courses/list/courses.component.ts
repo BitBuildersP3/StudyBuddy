@@ -139,6 +139,11 @@ export class CoursesComponent implements OnInit {
       });
   }
 
+  comparation(courseOne: ICourses, courseTwo: ICourses): number {
+    // @ts-ignore
+    return courseOne.score > courseTwo.score ? -1 : 1;
+  }
+
   load(): void {
     this.loadFromBackendWithRouteInformations().subscribe({
       next: (res: EntityArrayResponseType) => {
@@ -168,6 +173,7 @@ export class CoursesComponent implements OnInit {
     const dataFromBody = this.fillComponentAttributesFromResponseBody(response.body);
     this.courses = this.refineData(dataFromBody);
     this.courses = this.courses.filter(course => course.status === 'active');
+    this.courses.sort(this.comparation);
   }
 
   protected refineData(data: ICourses[]): ICourses[] {

@@ -107,6 +107,12 @@ export class ExtraUserInfoService {
       .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
+  getInfoByGivenUser(userName: string): Observable<EntityResponseType> {
+    return this.http
+      .get<RestExtraUserInfo>(`${this.resourceUrl}/byGivenUser/${userName}`, { observe: 'response' })
+      .pipe(map(res => this.convertResponseFromServer(res)));
+  }
+
   protected convertDateFromClient<T extends IExtraUserInfo | NewExtraUserInfo | PartialUpdateExtraUserInfo>(extraUserInfo: T): RestOf<T> {
     return {
       ...extraUserInfo,
