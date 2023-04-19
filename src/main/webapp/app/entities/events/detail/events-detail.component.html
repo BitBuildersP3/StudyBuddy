@@ -25,6 +25,10 @@
           <dd>
             <span>{{ events.endDate | formatMediumDate }}</span>
           </dd>
+          <dt><span>Autor: </span></dt>
+          <dd>
+            <span>{{ events.user?.login }}</span>
+          </dd>
           <!-- div en donde se valida si el usuario es parte del evento para mostarle la ubicación y el enlace respectivo -->
           <div *ngIf="mostrarAtributos">
             <dt><span>Enlace: </span></dt>
@@ -36,11 +40,6 @@
               <span>{{ events.address }}</span>
             </dd>
           </div>
-
-          <dt><span>Autor: </span></dt>
-          <dd>
-            <span>{{ events.user?.login }}</span>
-          </dd>
         </dl>
       </div>
       <div class="separador"></div>
