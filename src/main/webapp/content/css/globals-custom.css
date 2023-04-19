@@ -684,6 +684,68 @@ p {
   color: #15537d;
 }
 
+/* foro */
+.floating-btn-foro {
+  position: fixed;
+  width: 4rem;
+  height: 4rem;
+  background-color: #666666;
+  bottom: 2rem;
+  right: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #de9a38;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.floating-btn-foro:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 10px 10px 0 0;
+  border-color: #de9a38 transparent transparent transparent;
+  bottom: -10px;
+  right: 10px;
+}
+
+.foro-cont {
+  background-color: #ffffff;
+  transition: 1s ease-in-out;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.foro-cont iframe {
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.top-close-bar {
+  padding: 0.2rem 0rem;
+  padding-left: 1rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.close-foro {
+  text-align: center;
+  color: #15537d;
+}
+
+.close-foro {
+  font-size: 1.2rem;
+}
+
+.box-shadow {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 /* Todo-list */
 .todolist-modal-height {
   margin: 35rem 0 5rem 0;

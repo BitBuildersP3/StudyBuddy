@@ -385,10 +385,13 @@
                 <span jhiTranslate="global.menu.account.password">Contraseña</span>
               </a>
             </li>
-            <li *ngSwitchCase="true">
-              <a class="dropdown-item" routerLink="account/sessions" routerLinkActive="active" (click)="collapseNavbar()">
-                <fa-icon icon="cloud" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.account.sessions">Sesiones</span>
+            <!-- *ngSwitchCase="true" -->
+            <li *ngIf="account?.login != 'admin' && account?.login != null">
+              <a class="dropdown-item" routerLink="foro-entity/new" routerLinkActive="active" (click)="collapseNavbar()">
+                <!-- <fa-icon icon="cloud" [fixedWidth]="true"></fa-icon> -->
+                <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
+
+                <span>Tema para foro</span>
               </a>
             </li>
             <li *ngSwitchCase="true">
@@ -420,4 +423,15 @@
       </ul>
     </div>
   </div>
+  <ng-container *ngIf="account">
+    <div class="floating-btn-foro bubble box-shadow" (click)="setOpenForo()">
+      <strong class="text-light">Foro</strong>
+    </div>
+    <div *ngIf="isOpenForo" class="foro-cont box-shadow">
+      <div class="bg-white top-close-bar" (click)="setOpenForo()">
+        <a class="close-foro"> <fa-icon icon="angle-down"></fa-icon></a>
+      </div>
+      <iframe [src]="safeUrl" width="400px" height="600px"></iframe>
+    </div>
+  </ng-container>
 </nav>

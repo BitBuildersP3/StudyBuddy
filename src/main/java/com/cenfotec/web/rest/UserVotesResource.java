@@ -4,6 +4,8 @@ import com.cenfotec.domain.CourseVotes;
 import com.cenfotec.domain.UserVotes;
 import com.cenfotec.domain.UserVotes;
 import com.cenfotec.domain.UserVotes;
+import com.cenfotec.domain.UserVotes;
+import com.cenfotec.domain.UserVotes;
 import com.cenfotec.repository.UserVotesRepository;
 import com.cenfotec.security.SecurityUtils;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;

@@ -17,6 +17,7 @@ import {
   PartialUpdateExtraUserInfo,
 } from '../../entities/extra-user-info/service/extra-user-info.service';
 import { RefreshService } from '../../shared/refresh-service.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'jhi-navbar',
@@ -33,7 +34,8 @@ export class NavbarComponent implements OnInit {
   version = '';
   account: Account | null = null;
   entitiesNavbarItems: any[] = [];
-
+  isOpenForo = false;
+  safeUrl: any = '';
   constructor(
     private loginService: LoginService,
     private translateService: TranslateService,
@@ -42,7 +44,8 @@ export class NavbarComponent implements OnInit {
     private profileService: ProfileService,
     private router: Router,
     private extraUserInfoService: ExtraUserInfoService,
-    private refreshService: RefreshService
+    private refreshService: RefreshService,
+    private sanitizer: DomSanitizer
   ) {
     if (VERSION) {
       this.version = VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`;
@@ -65,6 +68,16 @@ export class NavbarComponent implements OnInit {
     });
 
     this.updateUserData();
+  }
+
+  sanitizeUrl(): void {
+    const dirtyUrl: any = `https://deadsimplechat.com/w3dGDjW9b?username=${this.account?.login}`;
+    this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(dirtyUrl);
+  }
+
+  setOpenForo(): void {
+    this.sanitizeUrl();
+    this.isOpenForo = !this.isOpenForo;
   }
 
   updateUserData() {
