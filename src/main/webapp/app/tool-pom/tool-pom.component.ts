@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 interface Time {
   minutes: number;
@@ -58,7 +58,8 @@ export class ToolPomComponent implements OnInit {
     console.log("array en 1: " + actualnumLeft2);
     console.log("tiempo de array 0 " + arrayTime[0])
     console.log("tiempo de array 1 " + arrayTime[1])
-    this.timeLeft = (actualnumLeft * 60) + actualnumLeft2;
+    // this.timeLeft = (actualnumLeft * 60) ;
+    this.timeLeft = 5;
     console.log("En donde se hizo el parseo" + this.timeLeft);
   }
 
@@ -113,6 +114,11 @@ export class ToolPomComponent implements OnInit {
       };
     }
 
+  formatSecondsToMinutes(seconds: number): string {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  }
     handleTime(): void {
 
     console.log("TimeLeft =" + this.timeLeft);
@@ -132,19 +138,18 @@ export class ToolPomComponent implements OnInit {
       clearInterval(this.interval);
     } else {
       this.timeLeft--;
-      // Bronca con el $
+
       const minutesAndSeconds = this.convertSeconds(this.timeLeft);
-       // this.timeLeftDOM.innerText = ${('0' + minutesAndSeconds.minutes).slice(-2)}:${('0' + minutesAndSeconds.seconds).slice(-2)};
-        const timeLeftDOM = document.getElementById('timeLeftDOM') as HTMLElement;
 
+        const timeLeftDOM = document.getElementById('timeLeft') as HTMLElement;
 
+console.log("timeLeftDOM" + timeLeftDOM);
 
-        timeLeftDOM.textContent = `${('0' + minutesAndSeconds.minutes).slice(-2)}:${('0' + minutesAndSeconds.seconds).slice(-2)}`;
+        timeLeftDOM.innerText = this.formatSecondsToMinutes(this.timeLeft);
         console.log(timeLeftDOM);
 
       }
   }
-
     handleLengthButton(lengthValue: number, htmlElement: HTMLElement, isAddition: boolean, isBreakLength: boolean): number {
       let result = 1;
       if (isAddition) {
