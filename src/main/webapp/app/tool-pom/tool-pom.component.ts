@@ -121,13 +121,13 @@ export class ToolPomComponent implements OnInit {
   }
     handleTime(): void {
 
-    console.log("TimeLeft =" + this.timeLeft);
+    //console.log("TimeLeft =" + this.timeLeft);
       if (this.timeLeft <= 0) {
       if (this.isSession) {
-        this.labelSessionBreak.innerText = "Session";
+        this.labelSessionBreak.innerText = "SESIÓN";
         this.timeLeft = this.timeLength;
       } else {
-        this.labelSessionBreak.innerText = "Break";
+        this.labelSessionBreak.innerText = "DESCANSO";
         this.timeLeft = this.breakLength;
         const beep = document.getElementById('beep') as HTMLAudioElement;
         beep.currentTime = 0;
@@ -143,7 +143,7 @@ export class ToolPomComponent implements OnInit {
 
         const timeLeftDOM = document.getElementById('timeLeft') as HTMLElement;
 
-console.log("timeLeftDOM" + timeLeftDOM);
+//console.log("timeLeftDOM" + timeLeftDOM);
 
         timeLeftDOM.innerText = this.formatSecondsToMinutes(this.timeLeft);
         console.log(timeLeftDOM);
@@ -155,6 +155,7 @@ console.log("timeLeftDOM" + timeLeftDOM);
       if (isAddition) {
         result = ++lengthValue;
         htmlElement.innerText = result.toString();
+
       } else {
         if (lengthValue !== 1) {
           result = --lengthValue;
@@ -167,14 +168,15 @@ console.log("timeLeftDOM" + timeLeftDOM);
       let resultSeconds = result * 60;
       if (!isBreakLength) {
         this.timeLength = resultSeconds;
-        if (this.labelSessionBreak.innerText === 'SESSION') {
+        console.log("rata "+this.labelSessionBreak.innerText+" rata 2 "+(('0' + result).slice(-2) + ":00")+ " rata 3 " +resultSeconds )
+        if (this.labelSessionBreak.innerText === 'SESIÓN') {
           this.timeLeftDOM.innerText = ('0' + result).slice(-2) + ":00";
           this.timeLeft = resultSeconds;
         }
       } else {
         this.breakLength = resultSeconds;
 
-        if (this.labelSessionBreak.innerText === 'BREAK') {
+        if (this.labelSessionBreak.innerText === 'DESCANSO') {
           this.timeLeftDOM.innerText = ('0' + result).slice(-2) + ":00";
           this.timeLeft = resultSeconds;
         }
