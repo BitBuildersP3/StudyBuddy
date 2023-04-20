@@ -1,1 +1,52 @@
 <p>tool-pom works!</p>
+<!-- Pomodoro Container -->
+<div class="arg">
+
+
+
+
+<div class="pomodoro-container">
+
+  <!-- Session -->
+  <div class="pomodoro-item">
+    <div id="labelSessionBreak" class="label">Sesión</div>
+    <div class="row-pomodoro">
+      <div id="timeLeft">25:00</div>
+    </div>
+  </div>
+
+  <!-- Session Length -->
+  <div class="pomodoro-item">
+    <div class="label">Duración de la sesión</div>
+    <div class="row-pomodoro">
+      <button id="sessionDecrement" class="btn-updown">-</button>
+      <div id="sessionLength" class="row-pomodoro lengthTime">25</div>
+      <button id="sessionIncrement" class="btn-updown">+</button>
+    </div>
+  </div>
+
+  <!-- Break Length -->
+  <div class="pomodoro-item">
+    <div class="label">Descanso</div>
+    <div class="row-pomodoro">
+      <button id="breakDecrement" class="btn-updown">-</button>
+      <div id="breakLength" class="row-pomodoro lengthTime">5</div>
+      <button id="breakIncrement" class="btn-updown">+</button>
+    </div>
+  </div>
+
+  <!-- Play/Pause/Reset -->
+  <div class="pomodoro-item playerButton">
+    <div class="row-pomodoro buttonRow">
+      <button id="buttonPlay" class="btn-controller">
+        <i id="playIcon" class="fa-solid fa-play " aria-hidden="true" ></i>
+      </button>
+      <button id="buttonReset" class="btn-controller">
+        <i class="fas fa-sync" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+
