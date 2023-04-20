@@ -28,7 +28,7 @@ h6 {
 }
 .htx {
   color: black;
-  text-decoration: underline#6DABD5;
+  text-decoration: underline#ffb300;
   margin-top: 80px;
 }
 .btn {
@@ -155,7 +155,8 @@ h2 {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 35px;
+  color: #15537d;
 }
 
 h2 {

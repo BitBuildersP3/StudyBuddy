@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { User } from '../user-management.model';
+import { IUser, User } from '../user-management.model';
 
 @Component({
   selector: 'jhi-user-mgmt-detail',
@@ -10,7 +10,7 @@ import { User } from '../user-management.model';
 })
 export class UserManagementDetailComponent implements OnInit {
   user: User | null = null;
-
+  mostrarAtributos = false;
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {

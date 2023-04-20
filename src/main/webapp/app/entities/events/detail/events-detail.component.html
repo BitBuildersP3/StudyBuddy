@@ -1,34 +1,37 @@
-<div class="d-flex justify-content-center">
-  <div class="col-8">
+<div class="margint d-flex justify-content-center">
+  <div class="">
     <div *ngIf="events">
       <h2 data-cy="eventsDetailsHeading">
-        <span>{{ events.name }}</span>
+        <span><fa-icon icon="file-lines"></fa-icon> {{ events.name }}</span>
       </h2>
       <div class="separador"></div>
       <hr />
-
       <jhi-alert-error></jhi-alert-error>
-
       <jhi-alert></jhi-alert>
 
       <div class="cardForm">
         <dl class="row-md jh-entity-details">
-          <dt><span>Autor: </span></dt>
-          <dd>
-            <span>{{ events.user?.login }}</span>
-          </dd>
           <!-- div en donde se valida si el usuario es parte del evento para mostarle la ubicación y el enlace respectivo -->
           <ng-container *ngIf="mostrarAtributos">
-            <dt><span>Enlace: </span></dt>
+            <dt>
+              <fa-icon icon="video"></fa-icon>
+            </dt>
             <dd>
               <a class="btnEnlace" href="{{ events.url }}" target="_blank">Abrir enlace</a>
             </dd>
-            <dt><span>Ubicación: </span></dt>
+            <dt>
+              <span>Lugar: </span>
+            </dt>
             <dd>
-              <span>{{ events.address }}</span>
+              <span>{{ events.address }} </span>
             </dd>
           </ng-container>
-
+          <dt>
+            <span>Autor: </span>
+          </dt>
+          <dd>
+            <span>{{ events.user?.login }}</span>
+          </dd>
           <dt><span>Descripción: </span></dt>
           <dd>
             <span>{{ events.description }}</span>
