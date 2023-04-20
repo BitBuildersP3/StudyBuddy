@@ -51,8 +51,15 @@ export class ToolPomComponent implements OnInit {
     this.breakIncrement = document.getElementById('breakIncrement') as HTMLButtonElement;
 
     const arrayTime: any = this.timeLeftDOM.innerText.split(":");
+    console.log("Arreglo entero" + arrayTime);
     let actualnumLeft: number = arrayTime[0];
-    this.timeLeft = (actualnumLeft * 60) + parseInt(arrayTime[1]);
+    let actualnumLeft2: number = arrayTime[1];
+    console.log("array en 0: " + actualnumLeft);
+    console.log("array en 1: " + actualnumLeft2);
+    console.log("tiempo de array 0 " + arrayTime[0])
+    console.log("tiempo de array 1 " + arrayTime[1])
+    this.timeLeft = (actualnumLeft * 60) + actualnumLeft2;
+    console.log("En donde se hizo el parseo" + this.timeLeft);
   }
 
   addEventListeners(): void {
@@ -107,6 +114,8 @@ export class ToolPomComponent implements OnInit {
     }
 
     handleTime(): void {
+
+    console.log("TimeLeft =" + this.timeLeft);
       if (this.timeLeft <= 0) {
       if (this.isSession) {
         this.labelSessionBreak.innerText = "Session";
@@ -127,7 +136,11 @@ export class ToolPomComponent implements OnInit {
       const minutesAndSeconds = this.convertSeconds(this.timeLeft);
        // this.timeLeftDOM.innerText = ${('0' + minutesAndSeconds.minutes).slice(-2)}:${('0' + minutesAndSeconds.seconds).slice(-2)};
         const timeLeftDOM = document.getElementById('timeLeftDOM') as HTMLElement;
+
+
+
         timeLeftDOM.textContent = `${('0' + minutesAndSeconds.minutes).slice(-2)}:${('0' + minutesAndSeconds.seconds).slice(-2)}`;
+        console.log(timeLeftDOM);
 
       }
   }
