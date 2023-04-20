@@ -22,6 +22,7 @@ body {
 }
 .pomodoro-item {
   width: 100%;
+
 }
 .label {
   font-size: 0.7rem;
@@ -60,7 +61,7 @@ body {
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
-  background-color: transparent;
+  background-color: green;
   color: red;
 }
 /* Pomodoro item row */

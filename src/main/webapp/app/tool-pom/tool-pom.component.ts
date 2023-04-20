@@ -51,7 +51,8 @@ export class ToolPomComponent implements OnInit {
     this.breakIncrement = document.getElementById('breakIncrement') as HTMLButtonElement;
 
     const arrayTime: any = this.timeLeftDOM.innerText.split(":");
-    this.timeLeft = parseInt(String (arrayTime[0] * 60)) + parseInt(arrayTime[1]);
+    let actualnumLeft: number = arrayTime[0];
+    this.timeLeft = (actualnumLeft * 60) + parseInt(arrayTime[1]);
   }
 
   addEventListeners(): void {
@@ -123,9 +124,12 @@ export class ToolPomComponent implements OnInit {
     } else {
       this.timeLeft--;
       // Bronca con el $
-      //const minutesAndSeconds = this.convertSeconds(this.timeLeft);
-      //this.timeLeftDOM.innerText = ${('0' + minutesAndSeconds.minutes).slice(-2)}:${('0' + minutesAndSeconds.seconds).slice(-2)};
-    }
+      const minutesAndSeconds = this.convertSeconds(this.timeLeft);
+       // this.timeLeftDOM.innerText = ${('0' + minutesAndSeconds.minutes).slice(-2)}:${('0' + minutesAndSeconds.seconds).slice(-2)};
+        const timeLeftDOM = document.getElementById('timeLeftDOM') as HTMLElement;
+        timeLeftDOM.textContent = `${('0' + minutesAndSeconds.minutes).slice(-2)}:${('0' + minutesAndSeconds.seconds).slice(-2)}`;
+
+      }
   }
 
     handleLengthButton(lengthValue: number, htmlElement: HTMLElement, isAddition: boolean, isBreakLength: boolean): number {
