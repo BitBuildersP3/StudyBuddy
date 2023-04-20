@@ -13,8 +13,6 @@
 </div>
 
 <aside class="profile-card">
-  <header></header>
-
   <div class="profile-bio" *ngIf="extraUserInfo">
     <div class="card-image">
       <img class="imgg" [src]="extraUserInfo.profilePicture" alt="Usuario {{ extraUserInfo.user?.login }}" />
@@ -37,12 +35,18 @@
     <p>
       <span class="sub">Votos de usuario: {{ extraUserInfo.userVotes }} </span>
     </p>
+    <p>
+      <jhi-votes label="" [disable]="true"></jhi-votes>
+      <jhi-votes label="Puntua este usuario" [disable]="false"></jhi-votes>
+    </p>
 
-    <div class="botones">
+    <div class="botones" style="">
       <button type="submit" title="Atrás" (click)="previousState()" class="btn btnBack" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;
       </button>
     </div>
   </div>
+
+  <header></header>
 </aside>
 <!-- that’s all folks! -->

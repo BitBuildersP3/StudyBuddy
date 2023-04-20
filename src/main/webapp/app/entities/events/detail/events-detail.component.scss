@@ -1,0 +1,146 @@
+// Colores
+$colorPrimario: #15537D;
+$colorSecundario: #DFE2E4;
+$colorTerciario: #6DABD5;
+$detalles: #DE9A38;
+$alerta: #983F56;
+
+// Estilos para el componente
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.col-8 {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+h2 {
+  font-size: 36px;
+  font-weight: bold;
+  color: $colorPrimario;
+  margin-bottom: 30px;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: $colorSecundario;
+  margin-bottom: 30px;
+}
+
+.jh-entity-details {
+  margin-bottom: 30px;
+}
+
+dt {
+  font-size: 18px;
+  font-weight: bold;
+  color: $colorPrimario;
+  margin-bottom: 10px;
+}
+
+dd {
+  font-size: 16px;
+  margin-left: 0;
+}
+
+.btn {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.btnEdit {
+  background-color: $colorPrimario;
+  color: #fff;
+  padding: 10px 20px;
+  margin-right: 10px;
+}
+
+.btnCustEdit {
+  background-color: $detalles;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.fa-icon {
+  margin-right: 10px;
+}
+
+[data-cy="entityDetailsBackButton"] {
+  margin-right: 0;
+}
+
+// Estilos para los componentes de alerta
+.jhi-alert-error {
+  background-color: $alerta;
+  color: #fff;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.jhi-alert {
+  background-color: #fff;
+  color: $colorTerciario;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.btnEnlace {
+  display: inline-block;
+  background-color: $alerta;
+  color: white;
+  padding: 2px 7px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+}
+
+.separador {
+  height: 1px; /* Altura de la línea */
+  width: 54rem; /* Longitud de la línea */
+  background-color: #15537d; /* Color de la línea */
+  margin-bottom: 1rem;
+  align-content: center;
+}
+
+.cardForm {
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  border-color: #181d38;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  /* column-gap: 5rem; */
+  justify-content: space-around;
+
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  flex-wrap: wrap;
+  max-width: 50rem;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.jh-entity-details {
+  margin-top: 2rem;
+}

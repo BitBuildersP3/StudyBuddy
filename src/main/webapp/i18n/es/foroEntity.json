@@ -1,0 +1,24 @@
+{
+  "studyBuddyApp": {
+    "foroEntity": {
+      "home": {
+        "title": "Foro Entities",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Foro Entity",
+        "createOrEditLabel": "Crear o editar Foro Entity",
+        "notFound": "Ningún Foro Entities encontrado"
+      },
+      "created": "Un nuevo Foro Entity ha sido creado con el identificador {{ param }}",
+      "updated": "Un Foro Entity ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Foro Entity ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Foro Entity {{ id }}?"
+      },
+      "detail": {
+        "title": "Foro Entity"
+      },
+      "id": "Id",
+      "json": "Json"
+    }
+  }
+}

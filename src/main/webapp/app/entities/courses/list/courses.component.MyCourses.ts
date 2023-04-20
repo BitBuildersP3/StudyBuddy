@@ -89,7 +89,6 @@ export class CoursesComponentMyCourses implements OnInit {
   }
   protected onSaveSuccess(): void {
     // TODO: Agregar sweetAlert
-    Swal.fire('HOLA');
   }
 
   protected onSaveError(e: any): void {

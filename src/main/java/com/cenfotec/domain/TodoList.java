@@ -33,6 +33,12 @@ public class TodoList implements Serializable {
     @ManyToOne
     private User user;
 
+    public TodoList(Long id) {
+        this.id = id;
+    }
+
+    public TodoList() {}
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {

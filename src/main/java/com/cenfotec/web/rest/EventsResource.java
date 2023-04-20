@@ -1,5 +1,6 @@
 package com.cenfotec.web.rest;
 
+import com.cenfotec.domain.Courses;
 import com.cenfotec.domain.Events;
 import com.cenfotec.repository.EventsRepository;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
@@ -196,5 +197,10 @@ public class EventsResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/events//findByPrompt/{prompt}")
+    public List<Events> getCoursesByPrompt(@PathVariable String prompt) {
+        return eventsRepository.findEventsByPromptByPrompt(prompt);
     }
 }

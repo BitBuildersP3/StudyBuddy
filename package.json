@@ -93,6 +93,7 @@
     "bootstrap": "5.2.0",
     "cloudinary-core": "^2.13.0",
     "dayjs": "1.11.5",
+    "igniteui-webcomponents": "^4.2.3",
     "ngx-cloudinary-upload-widget": "^0.0.7",
     "ngx-infinite-scroll": "14.0.0",
     "ngx-webstorage": "10.0.1",
