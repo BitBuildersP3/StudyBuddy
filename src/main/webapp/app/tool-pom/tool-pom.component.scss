@@ -1,11 +1,18 @@
+$color-principal: #15537d;
+$color-secundario: #6dabd5;
+$color-alertas: #983f56;
+$color-bordes: #de9a38;
+$color-fondoBlanc: #dfe2ea;
+
+
 * {
   box-sizing: border-box;
 }
 body {
   margin: 0px;
   font-family: 'Arial', sans-serif;
-  background-color: #181818;
-  color: #fff;
+  background-color: $color-principal;
+  color: $color-secundario;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,19 +29,22 @@ body {
 }
 .pomodoro-item {
   width: 100%;
+  color: $color-principal;
+  text-align: center;
+
 
 }
 .label {
   font-size: 0.7rem;
   text-transform: uppercase;
-  color: #ffd800;
+  color: $color-bordes;
 }
 .row-pomodoro {
   margin: 8px 0 16px 0;
   text-align: center;
 }
 .playerButton {
-  border-top: solid 3px #ffd800;
+  border-top: solid 3px $color-bordes;
   padding-top: 12px;
 
 }
@@ -54,7 +64,7 @@ body {
   border-radius: 50%;
   cursor: pointer;
   // Botonsitos
-  color: black;
+  color: $color-principal;
   background: transparent;
   box-shadow: 0px 0px 10px 10px rgba(0,0,0,0.3);
 }
