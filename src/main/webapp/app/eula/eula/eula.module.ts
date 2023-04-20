@@ -5,10 +5,10 @@ import {EulaComponent} from "../eula.component";
 
 
 @NgModule({
-  declarations: [EulaComponent],
+  declarations: [],
   imports: [
     CommonModule
   ],
-  exports: [EulaComponent],
+  exports: [],
 })
 export class EulaModule { }
