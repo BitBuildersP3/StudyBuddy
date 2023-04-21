@@ -143,15 +143,36 @@
                 <span><b>Nombre del Archivo:</b> {{ file.excerpt }}</span>
                 <div class="cont-links">
                   <span><b>Enlaces:</b></span>
-                  <a title="Abre este enlace." class="btn btn-info text-white" *ngIf="file.url1" href="{{ file.url1 }}" target="_blank">
-                    {{ linkTitle }}</a
+                  <a
+                    title="Abre este enlace."
+                    class="d-flex btn-info text-white btnFilesServer"
+                    *ngIf="file.url1"
+                    href="{{ file.url1 }}"
+                    target="_blank"
                   >
-                  <a title="Abre este enlace." class="btn btn-info text-white" *ngIf="file.url2" href="{{ file.url2 }}" target="_blank">
-                    {{ linkTitle }}</a
+                    <fa-icon icon="link"></fa-icon>
+                    Drive
+                  </a>
+                  <a
+                    title="Abre este enlace."
+                    class="d-flex btn btn-info text-white btnFilesServer"
+                    *ngIf="file.url2"
+                    href="{{ file.url2 }}"
+                    target="_blank"
                   >
-                  <a title="Abre este enlace." class="btn btn-info text-white" *ngIf="file.url3" href="{{ file.url3 }}" target="_blank">
-                    {{ linkTitle }}</a
+                    <fa-icon icon="link"></fa-icon>
+                    MediaFire
+                  </a>
+                  <a
+                    title="Abre este enlace."
+                    class="d-flex btn btn-info text-white btnFilesServer"
+                    *ngIf="file.url3"
+                    href="{{ file.url3 }}"
+                    target="_blank"
                   >
+                    <fa-icon icon="link"></fa-icon>
+                    MegaUpload
+                  </a>
 
                   <!-- <a href="https://www.example.com/my-document.pdf">Link to My Document</a> -->
                 </div>

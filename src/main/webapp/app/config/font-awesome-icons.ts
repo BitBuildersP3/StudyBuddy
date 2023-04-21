@@ -54,6 +54,7 @@ import {
   faAddressBook,
   faAddressCard,
   faUserGear,
+  faLink,
 
   // jhipster-needle-add-icon-import
 } from '@fortawesome/free-solid-svg-icons';
@@ -114,6 +115,7 @@ export const fontAwesomeIcons = [
   faAddressBook,
   faAddressCard,
   faUserGear,
+  faLink,
 
   // jhipster-needle-add-icon-import
 ];
