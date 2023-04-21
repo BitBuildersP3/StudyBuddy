@@ -239,6 +239,7 @@ h6 {
 
 .card-body {
   padding: 0 20px 20px 20px;
+  height: 60rem;
 }
 
 .card-img-overlay {
@@ -661,7 +662,7 @@ h6 {
 }
 
 .sidebar-nav .nav-heading {
-  font-size: 11px;
+  font-size: 20px;
   text-transform: uppercase;
   color: #899bbd;
   font-weight: 600;
@@ -673,9 +674,10 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #4154f1;
+  color: #de9a38;
+  /* color: #4154f1; */
   transition: 0.3;
-  background: #f6f9ff;
+  background: red;
   padding: 10px 15px;
   border-radius: 4px;
 }
@@ -696,7 +698,7 @@ h6 {
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
+  color: #67b83d;
   background: #f6f9ff;
 }
 
@@ -987,7 +989,7 @@ h6 {
   # Profie Page
   --------------------------------------------------------------*/
 .profile .profile-card img {
-  max-width: 120px;
+  max-width: 13rem;
 }
 
 .profile .profile-card h2 {

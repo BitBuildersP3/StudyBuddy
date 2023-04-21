@@ -6,7 +6,8 @@ import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { LANGUAGES } from 'app/config/language.constants';
 import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
-
+import Swal from 'sweetalert2';
+import { EntityResponseType, PartialUpdateExtraUserInfo } from '../../entities/extra-user-info/service/extra-user-info.service';
 const initialAccount: any = {} as Account;
 
 @Component({
@@ -17,6 +18,8 @@ const initialAccount: any = {} as Account;
 export class SettingsComponent implements OnInit {
   success = false;
   languages = LANGUAGES;
+  profileImg: string | null | undefined = `https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364359/cld-sample.jpg`;
+  partialExtraUserInfo: PartialUpdateExtraUserInfo = { id: 0, profilePicture: '' };
 
   settingsForm = new FormGroup({
     firstName: new FormControl(initialAccount.firstName, {
@@ -71,7 +74,29 @@ export class SettingsComponent implements OnInit {
       });
     });
   }
+  updateUserData() {
+    this.extraInfoService.getInfoByCurrentUser().subscribe({
+      next: (res: EntityResponseType) => {
+        // console.log(res);
+        this.profileImg = res.body?.profilePicture;
+        this.partialExtraUserInfo.id = <number>res.body?.id;
+        this.partialExtraUserInfo.profilePicture = <string>res.body?.profilePicture;
+      },
+    });
+  }
+  //this method shows the image
+  openModal() {
+    Swal.fire({
+      title: 'Tu foto de perfil',
+      html: `<img src="${this.profileImg}" style="widtd = 20.75em; height: 20.75em"/> `,
+    });
+  }
 
+  updateProfileImg(url: string) {
+    this.partialExtraUserInfo.profilePicture = url;
+    this.extraInfoService.partialUpdate(this.partialExtraUserInfo).subscribe();
+    this.profileImg = url;
+  }
   save(): void {
     this.success = false;
 
