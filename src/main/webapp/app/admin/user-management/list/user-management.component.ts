@@ -16,7 +16,7 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'jhi-user-mgmt',
   templateUrl: './user-management.component.html',
-  styleUrls: ['./user-management.component.css'],
+  styleUrls: ['./user-management.css'],
 })
 export class UserManagementComponent implements OnInit {
   currentAccount: Account | null = null;

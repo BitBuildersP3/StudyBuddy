@@ -1,9 +1,9 @@
 // Colores
-$colorPrimario: #15537D;
-$colorSecundario: #DFE2E4;
-$colorTerciario: #6DABD5;
-$detalles: #DE9A38;
-$alerta: #983F56;
+$colorPrimario: #15537d;
+$colorSecundario: #dfe2e4;
+$colorTerciario: #6dabd5;
+$detalles: #de9a38;
+$alerta: #983f56;
 
 // Estilos para el componente
 .d-flex {
@@ -81,7 +81,7 @@ dd {
   margin-right: 10px;
 }
 
-[data-cy="entityDetailsBackButton"] {
+[data-cy='entityDetailsBackButton'] {
   margin-right: 0;
 }
 
@@ -115,7 +115,7 @@ dd {
 
 .separador {
   height: 1px; /* Altura de la línea */
-  width: 54rem; /* Longitud de la línea */
+  width: 52rem; /* Longitud de la línea */
   background-color: #15537d; /* Color de la línea */
   margin-bottom: 1rem;
   align-content: center;
@@ -141,6 +141,10 @@ dd {
   margin-bottom: 2rem;
 }
 
-.jh-entity-details {
-  margin-top: 2rem;
+// .jh-entity-details {
+//   margin-top: 2rem;
+// }
+
+.margint {
+  margin-top: 7rem;
 }
