@@ -1,0 +1,74 @@
+// Define las variables de color
+$color-principal: #15537d;
+$color-secundario: #6dabd5;
+$color-alertas: #983f56;
+$color-bordes: #de9a38;
+$color-fondoBlanc: #dfe2ea;
+
+// Aplica los colores a las distintas partes del formulario
+h2#jhi-files-heading {
+  color: $color-principal;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 20px;
+  margin-top: 25px;
+}
+
+.row.mb-3 input[type='text'],
+.row.mb-3 textarea {
+  border: 1px solid $color-bordes;
+  background-color: $color-fondoBlanc;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: $color-secundario;
+  }
+}
+
+.row.mb-3 select {
+  border: 1px solid $color-bordes;
+  background-color: $color-fondoBlanc;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: $color-secundario;
+  }
+}
+
+button[type='button'],
+button[type='submit'] {
+  background-color: $color-secundario;
+  color: white;
+  border-color: $color-secundario;
+  &:hover {
+    background-color: darken($color-secundario, 10%);
+    border-color: darken($color-secundario, 10%);
+  }
+}
+
+.jhi-alert-error {
+  background-color: $color-alertas;
+  color: white;
+  border-color: $color-alertas;
+}
+
+label {
+  font-weight: bold;
+  text-align: center;
+}
+label span {
+  display: inline-block;
+}
+.myIdInput {
+  text-align: center;
+  border: 1px solid $color-bordes;
+  font-weight: bold;
+}
+
+.cloudBotton {
+  text-align: center;
+
+  color: white;
+  border-color: $color-secundario;
+
+}
