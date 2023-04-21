@@ -48,6 +48,7 @@ h6 {
   # Page Title
   --------------------------------------------------------------*/
 .pagetitle {
+  justify-content: center;
   margin-bottom: 10px;
 }
 
@@ -56,6 +57,10 @@ h6 {
   margin-bottom: 0;
   font-weight: 600;
   color: #012970;
+}
+.lineB {
+  border-bottom: 1px solid #6dabd5;
+  font-size: 25px;
 }
 
 /*--------------------------------------------------------------
@@ -590,7 +595,7 @@ h6 {
   # Sidebar
   --------------------------------------------------------------*/
 .sidebar {
-  position: fixed;
+  position: absolute;
   top: 60px;
   left: 0;
   bottom: 0;
@@ -603,6 +608,8 @@ h6 {
   scrollbar-color: #aab7cf transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
+  height: 60rem;
+  margin-top: -2.3rem;
 }
 
 @media (max-width: 1199px) {

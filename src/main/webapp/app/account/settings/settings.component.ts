@@ -8,6 +8,8 @@ import { LANGUAGES } from 'app/config/language.constants';
 import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
 import Swal from 'sweetalert2';
 import { EntityResponseType, PartialUpdateExtraUserInfo } from '../../entities/extra-user-info/service/extra-user-info.service';
+import { Title } from '@angular/platform-browser';
+import { EntityNavbarItems } from 'app/entities/entity-navbar-items';
 const initialAccount: any = {} as Account;
 
 @Component({
@@ -16,9 +18,10 @@ const initialAccount: any = {} as Account;
   styleUrls: ['./settings.css'],
 })
 export class SettingsComponent implements OnInit {
+  entitiesNavbarItems: any[] = [];
   success = false;
   languages = LANGUAGES;
-  profileImg: string | null | undefined = `https://res.cloudinary.com/dwxpyowvn/image/upload/v1679364359/cld-sample.jpg`;
+  profileImg: string | null | undefined;
   partialExtraUserInfo: PartialUpdateExtraUserInfo = { id: 0, profilePicture: '' };
 
   settingsForm = new FormGroup({
@@ -60,30 +63,31 @@ export class SettingsComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private translateService: TranslateService,
-    private extraInfoService: ExtraUserInfoService
+    private extraInfoService: ExtraUserInfoService,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('Perfil');
     this.extraInfoService.getInfoByCurrentUser().subscribe(data => {
       this.accountService.identity().subscribe(account => {
         if (account) {
+          this.entitiesNavbarItems = EntityNavbarItems;
           const customForm = { ...account, ...data.body };
 
           this.settingsForm.patchValue(customForm);
+          this.extraInfoService.getInfoByCurrentUser().subscribe({
+            next: (res: EntityResponseType) => {
+              this.profileImg = res.body?.profilePicture;
+              this.partialExtraUserInfo.id = <number>res.body?.id;
+              this.partialExtraUserInfo.profilePicture = <string>res.body?.profilePicture;
+            },
+          });
         }
       });
     });
   }
-  updateUserData() {
-    this.extraInfoService.getInfoByCurrentUser().subscribe({
-      next: (res: EntityResponseType) => {
-        // console.log(res);
-        this.profileImg = res.body?.profilePicture;
-        this.partialExtraUserInfo.id = <number>res.body?.id;
-        this.partialExtraUserInfo.profilePicture = <string>res.body?.profilePicture;
-      },
-    });
-  }
+
   //this method shows the image
   openModal() {
     Swal.fire({
