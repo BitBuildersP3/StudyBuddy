@@ -9,6 +9,7 @@ import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IExtraUserInfo, NewExtraUserInfo } from '../extra-user-info.model';
+import { ICourses } from '../../courses/courses.model';
 
 export type PartialUpdateExtraUserInfo = Partial<IExtraUserInfo> & Pick<IExtraUserInfo, 'id'>;
 
@@ -111,6 +112,10 @@ export class ExtraUserInfoService {
     return this.http
       .get<RestExtraUserInfo>(`${this.resourceUrl}/byGivenUser/${userName}`, { observe: 'response' })
       .pipe(map(res => this.convertResponseFromServer(res)));
+  }
+
+  getFiveTopUser(): Observable<EntityArrayResponseType> {
+    return this.http.get<IExtraUserInfo[]>(`${this.resourceUrl}/topFive`, { observe: 'response' });
   }
 
   protected convertDateFromClient<T extends IExtraUserInfo | NewExtraUserInfo | PartialUpdateExtraUserInfo>(extraUserInfo: T): RestOf<T> {

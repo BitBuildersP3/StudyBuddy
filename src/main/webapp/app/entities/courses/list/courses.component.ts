@@ -49,7 +49,6 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Cursos Existentes');
-    this.load();
     this.extraUser.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {
         // @ts-ignore
@@ -67,6 +66,8 @@ export class CoursesComponent implements OnInit {
       if (prompt != null) {
         this.promptValue = prompt;
         this.searchCourse();
+      } else {
+        this.load();
       }
     });
   }

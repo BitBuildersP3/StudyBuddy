@@ -1,5 +1,6 @@
 package com.cenfotec.web.rest;
 
+import com.cenfotec.domain.Courses;
 import com.cenfotec.domain.ExtraUserInfo;
 import com.cenfotec.repository.ExtraUserInfoRepository;
 import com.cenfotec.security.SecurityUtils;
@@ -222,5 +223,10 @@ public class ExtraUserInfoResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/extra-user-infos/topFive")
+    public List<ExtraUserInfo> getTopTenCourses() {
+        return extraUserInfoRepository.findTop5ByOrderByScoreDesc();
     }
 }
