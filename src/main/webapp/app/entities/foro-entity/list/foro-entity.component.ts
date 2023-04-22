@@ -12,11 +12,12 @@ import { SortService } from 'app/shared/sort/sort.service';
 @Component({
   selector: 'jhi-foro-entity',
   templateUrl: './foro-entity.component.html',
+  styleUrls: ['./foro-entity.component.scss'],
 })
 export class ForoEntityComponent implements OnInit {
   foroEntities?: IForoEntity[];
   isLoading = false;
-
+  filteredArray: any = [];
   predicate = 'id';
   ascending = true;
 
@@ -78,6 +79,13 @@ export class ForoEntityComponent implements OnInit {
   protected onResponseSuccess(response: EntityArrayResponseType): void {
     const dataFromBody = this.fillComponentAttributesFromResponseBody(response.body);
     this.foroEntities = this.refineData(dataFromBody);
+    this.foroEntities.map(value => {
+      const splitVals = value.json?.split(',');
+      // console.log(splitVals);
+      // ['Nombre del usuario: user', 'Correo: email', 'Nombre del tema: test coma name', 'Proposito del tema: desc tema test'];
+      this.filteredArray.push(splitVals);
+    });
+    // console.log(this.foroEntities[5].json?.split(','));
   }
 
   protected refineData(data: IForoEntity[]): IForoEntity[] {

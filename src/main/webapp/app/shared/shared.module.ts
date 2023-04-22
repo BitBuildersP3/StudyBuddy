@@ -15,10 +15,12 @@ import { ItemCountComponent } from './pagination/item-count.component';
 import { FilterComponent } from './filter/filter.component';
 import { CloudinaryButtonComponent } from './cloudinary/cloudinary-button/cloudinary-button.component';
 import { ModalComponent } from './modal/modal.component';
+import { ModalNoButtonComponent } from './modal-no-button/modal-no-button.component';
 @NgModule({
   imports: [SharedLibsModule],
   declarations: [
     ModalComponent,
+    ModalNoButtonComponent,
     FindLanguageFromKeyPipe,
     TranslateDirective,
     AlertComponent,
@@ -36,6 +38,7 @@ import { ModalComponent } from './modal/modal.component';
   exports: [
     ModalComponent,
     SharedLibsModule,
+    ModalNoButtonComponent,
     FindLanguageFromKeyPipe,
     TranslateDirective,
     AlertComponent,

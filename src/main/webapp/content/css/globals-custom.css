@@ -505,7 +505,8 @@
   font-weight: 400;
 }
 .custom-form input,
-select {
+select,
+textarea {
   border-radius: 10px;
   font-size: 1.3rem;
   padding: 1rem;

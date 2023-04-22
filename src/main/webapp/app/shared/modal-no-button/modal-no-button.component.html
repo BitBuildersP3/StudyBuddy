@@ -1,0 +1,6 @@
+<div *ngIf="state" (click)="setOpen()" class="bg-modal"></div>
+
+<div *ngIf="state" class="wrapper bg-white">
+  <span (click)="setOpen()" class="btn cust-close btnDelete"><fa-icon icon="times"></fa-icon> </span>
+  <ng-content class=""></ng-content>
+</div>
