@@ -40,4 +40,6 @@ public interface ExtraUserInfoRepository extends JpaRepository<ExtraUserInfo, Lo
 
     @Query("select extraUserInfo from ExtraUserInfo extraUserInfo where extraUserInfo.user.login = :name")
     Optional<ExtraUserInfo> findByUserIsCurrentUser(@Param("name") String name);
+
+    List<ExtraUserInfo> findTop5ByOrderByScoreDesc();
 }

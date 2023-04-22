@@ -8,6 +8,7 @@ import { RegisterService } from './register.service';
 
 // Imports nuevos
 import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
+import { UserVotesService } from '../../entities/user-votes/service/user-votes.service';
 
 @Component({
   selector: 'jhi-register',
@@ -69,7 +70,8 @@ export class RegisterComponent implements AfterViewInit {
   constructor(
     private translateService: TranslateService,
     private registerService: RegisterService,
-    private extraUserInfoService: ExtraUserInfoService
+    private extraUserInfoService: ExtraUserInfoService,
+    private userVotesService: UserVotesService
   ) {}
 
   ngAfterViewInit(): void {
@@ -96,8 +98,10 @@ export class RegisterComponent implements AfterViewInit {
 
       this.registerService
         .save({ login, email, password, langKey: this.translateService.currentLang, phone, degree, profilePicture, birthDay })
-        .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
-
+        .subscribe({ next: () => (this.success = true), error: response => this.processError(response) })
+        .add(() => {
+          this.userVotesService.createByUser(login).subscribe();
+        });
       // this.registerExtraInfo(phone, degree, birthDay, login);
     }
   }

@@ -54,7 +54,7 @@
               </span>
               <span>
                 <p class="sub">
-                  Puntuación: <span class="active"> {{ courses.score }} </span>
+                  Puntuación: <span class="active"> <jhi-votes [votes]="courses.score" [disable]="true"></jhi-votes> </span>
                 </p>
               </span>
               <span class="sub"> Dueño: {{ courses.ownerName }} </span>

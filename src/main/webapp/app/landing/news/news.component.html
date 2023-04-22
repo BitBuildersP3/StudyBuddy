@@ -13,12 +13,14 @@
           </div>
           <div class="position-relative d-flex justify-content-center" style="margin-top: -23px">
             <div class="bg-light d-flex justify-content-center pt-2 px-1">
-              <a class="btn btn-primary mx-1" href="/courses/{{ new.redirect }}/view">Ver más</a>
+              <a class="btn btn-primary mx-1" href="/{{ redirect }}/{{ new.redirect }}/view">Ver más</a>
+              <a class="btn btn-primary mx-1" href="courses/search/{{ new.slideTitle }}">Ver cursos</a>
             </div>
           </div>
           <div class="text-center p-4">
             <h5 class="mb-0">{{ new.slideTitle }}</h5>
-            <p>"{{ new.slideExerpt }}"</p>
+            <p>{{ new.slideExerpt }}</p>
+            <jhi-votes [disable]="true" [votes]="new.score"></jhi-votes>
           </div>
         </div>
       </div>
