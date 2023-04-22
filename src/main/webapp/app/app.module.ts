@@ -31,7 +31,6 @@ import { OwnRegisterFileComponent } from './file-manager/own-register-file/own-r
 import { VideoRegisterFileComponent } from './file-manager/video-register-file/video-register-file.component';
 import { EulaComponent } from './eula/eula.component';
 
-
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
@@ -41,22 +40,20 @@ import { EulaComponent } from './eula/eula.component';
     // jhipster-needle-angular-add-module JHipster will add new module here
     AppRoutingModule,
     // Set this to true to enable service worker (PWA)
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: false}),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
     HttpClientModule,
-    NgxWebstorageModule.forRoot({prefix: 'jhi', separator: '-', caseSensitive: true}),
+    NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
     TranslationModule,
   ],
   providers: [
     Title,
-    {provide: LOCALE_ID, useValue: 'es'},
-    {provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter},
+    { provide: LOCALE_ID, useValue: 'es' },
+    { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
   ],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   bootstrap: [MainComponent],
-  exports: [
-
-  ]
+  exports: [],
 })
 export class AppModule {
   constructor(applicationConfigService: ApplicationConfigService, iconLibrary: FaIconLibrary, dpConfig: NgbDatepickerConfig) {

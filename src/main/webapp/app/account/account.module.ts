@@ -11,8 +11,8 @@ import { PasswordResetInitComponent } from './password-reset/init/password-reset
 import { PasswordResetFinishComponent } from './password-reset/finish/password-reset-finish.component';
 import { SettingsComponent } from './settings/settings.component';
 import { accountState } from './account.route';
-import {EulaModule} from "../eula/eula/eula.module";
-import {EulaComponent} from "../eula/eula.component";
+import { EulaModule } from '../eula/eula/eula.module';
+import { EulaComponent } from '../eula/eula.component';
 
 @NgModule({
   imports: [SharedModule, RouterModule.forChild(accountState)],
