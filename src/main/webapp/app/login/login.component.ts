@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   login(): void {
     this.loginService.login(this.loginForm.getRawValue()).subscribe({
-      next: () => {
+      next: response => {
+        console.log(response);
         this.authenticationError = false;
         if (!this.router.getCurrentNavigation()) {
           this.refreshService.refresh();
@@ -58,7 +59,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.router.navigate(['landing']);
         }
       },
-      error: () => {
+      error: resposne => {
+        console.log(resposne);
         (this.authenticationError = true),
           Swal.fire({
             icon: 'error',
