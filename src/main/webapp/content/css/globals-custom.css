@@ -101,6 +101,7 @@
   font-weight: 600;
   margin-left: 1rem;
 }
+
 .btn.btn-primary,
 .btn.btn-secondary {
   color: #ffffff;
@@ -749,4 +750,14 @@ p {
 /* Todo-list */
 .todolist-modal-height {
   margin: 35rem 0 5rem 0;
+}
+
+.btnFilesServer {
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  height: 3rem;
+  gap: 0.5rem;
+  text-decoration: none;
+  border-radius: 5px;
 }

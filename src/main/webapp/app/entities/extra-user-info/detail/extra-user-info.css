@@ -28,7 +28,7 @@ h6 {
 }
 .htx {
   color: black;
-  text-decoration: underline#6DABD5;
+  text-decoration: underline#ffb300;
   margin-top: 80px;
 }
 .btn {
@@ -75,6 +75,8 @@ h6 {
   flex-direction: row;
   display: flex;
   padding: 1rem;
+  min-width: 9rem;
+  max-width: 12rem;
 }
 
 .info {
@@ -98,6 +100,7 @@ h6 {
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  padding-block: 1rem;
 }
 
 .txt-cont {
@@ -152,7 +155,8 @@ h2 {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 35px;
+  color: #15537d;
 }
 
 h2 {

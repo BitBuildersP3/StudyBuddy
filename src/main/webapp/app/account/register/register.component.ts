@@ -25,6 +25,9 @@ export class RegisterComponent implements AfterViewInit {
   errorUserExists = false;
   success = false;
 
+  // En caso de querer poner esta validacion en otros
+  // Poner esto:  checkboxControl: FormControl<boolean | null>;
+
   registerForm = new FormGroup({
     login: new FormControl('', {
       nonNullable: true,
@@ -59,6 +62,8 @@ export class RegisterComponent implements AfterViewInit {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
     }),
+
+    checkboxControl: new FormControl(false, Validators.requiredTrue),
   });
 
   // , private extraUserInfoService: ExtraUserInfoService
