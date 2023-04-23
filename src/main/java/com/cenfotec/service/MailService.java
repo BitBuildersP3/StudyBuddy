@@ -1,6 +1,8 @@
 package com.cenfotec.service;
 
 import com.cenfotec.domain.User;
+import com.cenfotec.service.dto.AdminUserDTO;
+import com.cenfotec.service.dto.UserDTO;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import javax.mail.MessagingException;
@@ -89,6 +91,18 @@ public class MailService {
         context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, locale);
+        sendEmail(user.getEmail(), subject, content, false, true);
+    }
+
+    public void sendPersonalizedEmail(AdminUserDTO user, String content, String subject) {
+        if (user.getEmail() == null) {
+            log.debug("Email doesn't exist for user '{}'", user.getLogin());
+            return;
+        }
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable(USER, user);
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
         sendEmail(user.getEmail(), subject, content, false, true);
     }
 

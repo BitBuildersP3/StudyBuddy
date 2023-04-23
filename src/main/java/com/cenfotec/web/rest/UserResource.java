@@ -147,12 +147,32 @@ public class UserResource {
         if (existingUser.isPresent() && (!existingUser.get().getId().equals(userDTO.getId()))) {
             throw new LoginAlreadyUsedException();
         }
+
         Optional<AdminUserDTO> updatedUser = userService.updateUser(userDTO);
+        if (existingUser.get().isActivated() != userDTO.isActivated()) {
+            activateNotification(updatedUser.get());
+        }
 
         return ResponseUtil.wrapOrNotFound(
             updatedUser,
             HeaderUtil.createAlert(applicationName, "userManagement.updated", userDTO.getLogin())
         );
+    }
+
+    private void activateNotification(AdminUserDTO user) {
+        if (!user.isActivated()) {
+            mailService.sendPersonalizedEmail(
+                user,
+                "Su usuario ha sido bloqueado por acción del administrador de la pagina StudyBuddy. Favor contactarse a este email: bitbuildersp3@gmail.com para mas información",
+                "Usuario bloqueado"
+            );
+        } else {
+            mailService.sendPersonalizedEmail(
+                user,
+                "Su usuario ha sido re-activado por acción del administrador de la pagina StudyBuddy.",
+                "Usuario re-activado"
+            );
+        }
     }
 
     /**
@@ -204,8 +224,6 @@ public class UserResource {
         userService.deleteUser(login);
         return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName, "userManagement.deleted", login)).build();
     }
-
-
     /*
     // Traer el usuario por id
     @GetMapping("/user/{id}")
@@ -216,7 +234,5 @@ public class UserResource {
         return ResponseEntity.ok().body(usuarioDTO);
     }
 */
-
-
 
 }
