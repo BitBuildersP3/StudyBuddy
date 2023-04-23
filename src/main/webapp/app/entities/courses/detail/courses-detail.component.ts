@@ -169,6 +169,7 @@ export class CoursesDetailComponent implements OnInit {
         this.courses.userVotes = this.totalUsers;
         this.courseService.partialUpdate(this.courses).subscribe();
       });
+    this.currentUserVote = score;
   }
 
   // this method get the value of the current user and the id of the current course
