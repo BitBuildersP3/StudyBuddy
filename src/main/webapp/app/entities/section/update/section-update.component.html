@@ -1,6 +1,7 @@
 <form name="editForm" class="custom-form align-items-center edit-w" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-  <h2 id="jhi-section-heading" data-cy="SectionCreateUpdateHeading">{{ title }}</h2>
+  <h2 id="jhi-section-heading" data-cy="SectionCreateUpdateHeading" class="titulo">{{ title }}</h2>
 
+  <div class="separador"> </div>
   <div class="cardForm">
     <jhi-alert-error></jhi-alert-error>
 
@@ -32,7 +33,7 @@
     </div>
   </div>
 
-  <div>
+  <div  class ="divBtn">
     <button
       type="submit"
       title="Guardar"
