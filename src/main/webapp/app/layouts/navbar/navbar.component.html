@@ -434,4 +434,20 @@
       <iframe [src]="safeUrl" width="400px" height="600px"></iframe>
     </div>
   </ng-container>
+
+  <ng-container *ngIf="account">
+    <div class="floating-btn-foro bubble box-shadow" (click)="setOpenPomodoro()">
+      <strong class="text-light">Pomodoro</strong>
+
+    </div>
+    <div *ngIf="isOpenForo" class="foro-cont box-shadow">
+      <div class="bg-white top-close-bar" (click)="setOpenPomodoro()">
+        <a class="close-foro"> <fa-icon icon="play-pause"></fa-icon></a>
+
+      </div>
+      <iframe [src]="safeUrl" width="400px" height="600px"></iframe>
+      <jhi-tool-pom></jhi-tool-pom>
+    </div>
+  </ng-container>
+
 </nav>

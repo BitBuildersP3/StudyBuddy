@@ -35,6 +35,8 @@ export class NavbarComponent implements OnInit {
   account: Account | null = null;
   entitiesNavbarItems: any[] = [];
   isOpenForo = false;
+
+  isOpenPomodoro = false;
   safeUrl: any = '';
   constructor(
     private loginService: LoginService,
@@ -80,6 +82,10 @@ export class NavbarComponent implements OnInit {
     this.isOpenForo = !this.isOpenForo;
   }
 
+  setOpenPomodoro(): void {
+    this.sanitizeUrl();
+    this.isOpenPomodoro = !this.isOpenPomodoro;
+  }
   updateUserData() {
     this.extraUserInfoService.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {

@@ -29,6 +29,7 @@ import { FilesManagerComponent } from './files-manager/files-manager.component';
 import { IndexRegisterFileComponent } from './file-manager/index-register-file/index-register-file.component';
 import { OwnRegisterFileComponent } from './file-manager/own-register-file/own-register-file.component';
 import { VideoRegisterFileComponent } from './file-manager/video-register-file/video-register-file.component';
+import {ToolPomModule} from "./tool-pom/tool-pom/tool-pom.module";
 
 
 @NgModule({
@@ -40,10 +41,11 @@ import { VideoRegisterFileComponent } from './file-manager/video-register-file/v
     // jhipster-needle-angular-add-module JHipster will add new module here
     AppRoutingModule,
     // Set this to true to enable service worker (PWA)
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: false}),
     HttpClientModule,
-    NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
+    NgxWebstorageModule.forRoot({prefix: 'jhi', separator: '-', caseSensitive: true}),
     TranslationModule,
+    ToolPomModule,
   ],
   providers: [
     Title,
