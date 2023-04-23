@@ -123,7 +123,7 @@ export class ToolPomComponent implements OnInit {
     //console.log("TimeLeft =" + this.timeLeft);
     if (this.timeLeft <= 0) {
       if (this.isSession) {
-        this.labelSessionBreak.innerText = 'SESIÓN';
+        this.labelSessionBreak.innerText = 'TRABAJO';
         this.timeLeft = this.timeLength;
       } else {
         this.labelSessionBreak.innerText = 'DESCANSO';
@@ -168,7 +168,7 @@ export class ToolPomComponent implements OnInit {
       console.log(
         'rata ' + this.labelSessionBreak.innerText + ' rata 2 ' + (('0' + result).slice(-2) + ':00') + ' rata 3 ' + resultSeconds
       );
-      if (this.labelSessionBreak.innerText === 'SESIÓN') {
+      if (this.labelSessionBreak.innerText === 'TRABAJO') {
         this.timeLeftDOM.innerText = ('0' + result).slice(-2) + ':00';
         this.timeLeft = resultSeconds;
       }
