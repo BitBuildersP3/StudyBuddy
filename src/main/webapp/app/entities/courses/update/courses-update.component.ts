@@ -20,6 +20,7 @@ import { CourseVotesService } from '../../course-votes/service/course-votes.serv
 @Component({
   selector: 'jhi-courses-update',
   templateUrl: './courses-update.component.html',
+  styleUrls: ['./courses-form.scss'],
 })
 export class CoursesUpdateComponent implements OnInit {
   isSaving = false;
