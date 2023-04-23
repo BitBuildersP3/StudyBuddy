@@ -7,6 +7,7 @@ import { ForoEntityFormService, ForoEntityFormGroup } from './foro-entity-form.s
 import { IForoEntity } from '../foro-entity.model';
 import { ForoEntityService } from '../service/foro-entity.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'jhi-foro-entity-update',
@@ -17,7 +18,7 @@ export class ForoEntityUpdateComponent implements OnInit {
   foroEntity: IForoEntity | null = null;
 
   // editForm: ForoEntityFormGroup = this.foroEntityFormService.createForoEntityFormGroup();
-
+  currentUser: any = {};
   foroEntityForm = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(50)]],
     purpose: ['', [Validators.required, Validators.maxLength(255)]],
@@ -27,10 +28,16 @@ export class ForoEntityUpdateComponent implements OnInit {
     protected foroEntityService: ForoEntityService,
     protected foroEntityFormService: ForoEntityFormService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private extraUserService: ExtraUserInfoService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.extraUserService.getInfoByCurrentUser().subscribe(result => {
+      this.currentUser = result.body;
+      console.log(this.currentUser);
+    });
+  }
   // this.activatedRoute.data.subscribe(({ foroEntity }) => {
   //   this.foroEntity = foroEntity;
   //   if (foroEntity) {
@@ -46,11 +53,13 @@ export class ForoEntityUpdateComponent implements OnInit {
     if (this.foroEntityForm.valid) {
       const obj = {
         id: this.generateRandomId(),
-        json: `Nombre del usuario: user,Correo: email,Nombre del tema: ${this.foroEntityForm.value.name},Proposito del tema: ${this.foroEntityForm.value.purpose}`,
+        json: `Nombre del usuario: ${this.currentUser.user.login},Correo: ${this.currentUser.user.email},Nombre del tema: ${this.foroEntityForm.value.name},Proposito del tema: ${this.foroEntityForm.value.purpose}`,
       };
       this.isSaving = true;
 
-      this.subscribeToSaveResponse(this.foroEntityService.create(obj));
+      console.log(obj);
+
+      // this.subscribeToSaveResponse(this.foroEntityService.create(obj));
 
       // console.log(obj);
 
