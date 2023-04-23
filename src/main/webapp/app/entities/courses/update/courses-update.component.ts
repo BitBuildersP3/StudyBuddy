@@ -52,7 +52,7 @@ export class CoursesUpdateComponent implements OnInit {
   compareCategory = (o1: ICategory | null, o2: ICategory | null): boolean => this.categoryService.compareCategory(o1, o2);
 
   ngOnInit(): void {
-    this.titleService.setTitle('Actualizar curso');
+    this.titleService.setTitle('Curso');
     this.activatedRoute.data.subscribe(({ courses }) => {
       this.courses = courses;
       if (courses) {

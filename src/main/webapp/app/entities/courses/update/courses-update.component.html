@@ -1,18 +1,10 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" class="custom-form align-items-center" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2  data-cy="CoursesCreateUpdateHeading" class="titulo">Crear Curso</h2>
-      <div class="separador"> </div>
+      <h2 data-cy="CoursesCreateUpdateHeading" class="titulo">Crear Curso</h2>
+      <div class="separador"></div>
       <jhi-alert-error></jhi-alert-error>
       <div class="cardForm">
-
-
-        <!--<div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
-          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>-->
-
-
         <div class="mb-3">
           <label class="label" for="field_name">Nombre</label>
           <input type="text" class="input" name="name" id="field_name" data-cy="name" formControlName="name" />
@@ -85,19 +77,14 @@
           </select>
         </div>
 
-
-
         <div class="mb-3">
           <label class="label" for="field_previewImg">Imagen del curso</label>
           <img id="cloudinaryImg" src="{{ editForm.controls.previewImg.value }}" />
           <jhi-cloudinary-button (urlChanged)="saveUrl($event)" [text]="$any('Subir Foto')" class="cloudBotton"></jhi-cloudinary-button>
         </div>
-
       </div>
 
-      <div  class ="divBtn">
-
-
+      <div class="divBtn">
         <button
           type="button"
           id="cancel-save"

@@ -5,9 +5,6 @@ $color-alertas: #983f56;
 $color-bordes: #de9a38;
 $color-fondoBlanc: #dfe2ea;
 
-
-
-
 .titulo {
   color: $color-principal;
   font-weight: bold;
@@ -59,12 +56,10 @@ label {
   font-weight: bold;
   font-size: 22px;
   border-radius: 9px;
-
 }
 label span {
   display: inline-block;
 }
-
 
 .cloudBotton {
   text-align: center;
@@ -72,44 +67,27 @@ label span {
   margin-bottom: 2rem;
   color: white;
   border-color: $color-secundario;
-
 }
 
-.cardForm{
-
+.cardForm {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 9px;
   border-color: #181d38;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  /* column-gap: 5rem; */
   justify-content: space-around;
-
-  /*
-  width: 100%;
-  display: flex;
- flex-direction: column;
-  align-items: center;
-
-  max-width: 80rem;
-  padding-bottom: 2rem;
- */
   margin: 0 auto;
-
   display: flex;
   padding-bottom: 2rem;
   flex-wrap: wrap;
   align-items: center;
-
-  width: fit-content;
+  width: 44rem;
   padding: 0 2rem;
 }
 
-.labelForm{
-
+.labelForm {
   text-align: left;
-
 }
 
 .divBtn {
@@ -118,16 +96,12 @@ label span {
   margin-bottom: 1rem;
 }
 
-.acortado{
-
+.acortado {
   width: 560px;
-
 }
 
-.form-check-label{
-
+.form-check-label {
   margin-bottom: 1rem;
-
 }
 
 .separador {
@@ -139,13 +113,11 @@ label span {
   align-items: center;
 }
 
-.mb-3{
+.mb-3 {
   // background-color:$color-secundario ;
   // border-radius: 1rem;
 }
 
-
-
-.centero{
+.centero {
   text-align: center;
 }
