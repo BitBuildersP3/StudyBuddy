@@ -11,6 +11,7 @@ import { CategoryService } from '../service/category.service';
 @Component({
   selector: 'jhi-category-update',
   templateUrl: './category-update.component.html',
+  styleUrls: ['./category-form.scss'],
 })
 export class CategoryUpdateComponent implements OnInit {
   isSaving = false;

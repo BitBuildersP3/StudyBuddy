@@ -51,10 +51,11 @@
       <button title="Volver" type="submit" (click)="previousState()" class="btn btnEdit btnCustEdit" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span></span>
       </button>
-
-      <button title="Editar" type="button" [routerLink]="['/events', events.id, 'edit']" class="btn btnEdit">
+      <ng-container *ngIf = "mostrarEditar">
+      <button title="Editar" type="button" [routerLink]="['/events', events.id, 'edit']" class="btn btnEdit" >
         <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span></span>
       </button>
+      </ng-container>
     </div>
   </div>
 </div>

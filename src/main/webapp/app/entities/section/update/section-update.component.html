@@ -1,10 +1,11 @@
 <form name="editForm" class="custom-form align-items-center edit-w" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-  <h2 id="jhi-section-heading" data-cy="SectionCreateUpdateHeading">{{ title }}</h2>
+  <h2 id="jhi-section-heading" data-cy="SectionCreateUpdateHeading" class="titulo">{{ title }}</h2>
 
+  <div class="separador"> </div>
   <div class="cardForm">
     <jhi-alert-error></jhi-alert-error>
 
-    <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+    <div class="row mb-3" *ngIf="editForm.controls.id.value !== null" style="display: none;">
       <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
       <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
     </div>
@@ -32,7 +33,7 @@
     </div>
   </div>
 
-  <div>
+  <div  class ="divBtn">
     <button
       type="submit"
       title="Guardar"

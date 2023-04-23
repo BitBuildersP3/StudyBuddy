@@ -20,6 +20,7 @@ import { CourseVotesService } from '../../course-votes/service/course-votes.serv
 @Component({
   selector: 'jhi-courses-update',
   templateUrl: './courses-update.component.html',
+  styleUrls: ['./courses-form.scss'],
 })
 export class CoursesUpdateComponent implements OnInit {
   isSaving = false;
@@ -51,7 +52,7 @@ export class CoursesUpdateComponent implements OnInit {
   compareCategory = (o1: ICategory | null, o2: ICategory | null): boolean => this.categoryService.compareCategory(o1, o2);
 
   ngOnInit(): void {
-    this.titleService.setTitle('Actualizar curso');
+    this.titleService.setTitle('Curso');
     this.activatedRoute.data.subscribe(({ courses }) => {
       this.courses = courses;
       if (courses) {

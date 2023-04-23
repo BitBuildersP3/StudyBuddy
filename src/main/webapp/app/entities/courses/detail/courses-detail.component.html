@@ -71,21 +71,6 @@
             <ng-container *ngFor="let file of currentSection.files; let j = index">
               <!-- validation of type video -->
               <ng-container *ngIf="file.type === 'video'" jhiUrlChange [url]="file.url1" (onUrlReady)="sanitizeUrl($event)">
-                <!--<p *ngIf="sanitizeUrl(file.url1)"></p>
-            <ng-container *ngIf="file.type === 'video'" jhiUrlChange [url]="file.url1" (onUrlReady)="sanitizeUrl($event)">
-              <!--<p *ngIf="sanitizeUrl(file.url1)"></p>
-              <div class="cont-video">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  [src]=""
-                  [src]=""
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay;  picture-in-picture;"
-                  allowfullscreen
-                ></iframe>
-              </div>-->
                 <iframe
                   id="existing-iframe-example"
                   width="640"

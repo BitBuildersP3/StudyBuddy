@@ -13,6 +13,7 @@ import { UserService } from 'app/entities/user/user.service';
 @Component({
   selector: 'jhi-extra-user-info-update',
   templateUrl: './extra-user-info-update.component.html',
+  styleUrls: ['./extra-user-info-form.scss'],
 })
 export class ExtraUserInfoUpdateComponent implements OnInit {
   isSaving = false;

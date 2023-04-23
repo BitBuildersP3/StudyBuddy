@@ -29,7 +29,7 @@ import { FilesManagerComponent } from './files-manager/files-manager.component';
 import { IndexRegisterFileComponent } from './file-manager/index-register-file/index-register-file.component';
 import { OwnRegisterFileComponent } from './file-manager/own-register-file/own-register-file.component';
 import { VideoRegisterFileComponent } from './file-manager/video-register-file/video-register-file.component';
-import { EulaComponent } from './eula/eula.component';
+
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
