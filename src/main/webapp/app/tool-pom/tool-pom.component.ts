@@ -71,11 +71,11 @@ export class ToolPomComponent implements OnInit {
         }
         this.interval = setInterval(() => this.handleTime(), 1000);
 
-        this.playIcon.classList.remove('fa-play');
-        this.playIcon.classList.add('fa-pause');
+        this.playIcon.classList.remove('circle-play');
+        this.playIcon.classList.add('circle-stop');
       } else {
-        this.playIcon.classList.add('fa-play');
-        this.playIcon.classList.remove('fa-pause');
+        this.playIcon.classList.add('circle-play');
+        this.playIcon.classList.remove('circle-stop');
       }
       this.playIsClicked = !this.playIsClicked;
     });
