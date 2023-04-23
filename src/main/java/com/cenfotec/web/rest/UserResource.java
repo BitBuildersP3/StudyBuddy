@@ -163,13 +163,13 @@ public class UserResource {
         if (!user.isActivated()) {
             mailService.sendPersonalizedEmail(
                 user,
-                "Su usuario a sido bloqueado por accion del administrador de la pagina StudyBuddy. Favor contactarse a este emial: bitbuildersp3@gmail.com para mas informacion",
+                "Su usuario ha sido bloqueado por acción del administrador de la pagina StudyBuddy. Favor contactarse a este email: bitbuildersp3@gmail.com para mas información",
                 "Usuario bloqueado"
             );
         } else {
             mailService.sendPersonalizedEmail(
                 user,
-                "Su usuario a sido re-activado por accion del administrador de la pagina StudyBuddy.",
+                "Su usuario ha sido re-activado por acción del administrador de la pagina StudyBuddy.",
                 "Usuario re-activado"
             );
         }
