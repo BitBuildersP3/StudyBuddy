@@ -134,6 +134,26 @@
               <span *ngIf="currentSection.creationDate && j < 1"><b>Fecha de publicación:</b> {{ currentSection.creationDate }}</span>
               <ng-container *ngIf="currentSection.description && j < 1">
                 <span><b>Descripción:</b> {{ currentSection.description }}</span>
+                <div *ngIf="file.type != 'index' && file.type != 'own'">
+                  <div class="separador"></div>
+                  <div class="row">
+                    <div class="col-4"><jhi-votes label="Puntuacion del curso" [disable]="true" [votes]="TotalVotes"></jhi-votes></div>
+                    <div class="col-5">
+                      <b style="position: relative; top: 57%; margin-left: 10px"
+                        >{{ TotalVotes | number: '1.1-1' }} por {{ totalUsers }} usuarios</b
+                      >
+                    </div>
+                  </div>
+                  <jhi-votes
+                    label="Puntua este curso"
+                    [disable]="false"
+                    [userVotes]="currentUserVote"
+                    (votesChanges)="scoreCourse($event)"
+                  ></jhi-votes>
+                  <b
+                    >Creado por: <a [routerLink]="['/extra-user-info', ownerPublicId, 'view']">{{ ownerPublicName }}</a> </b
+                  ><img class="profile-image rounded-circle" src="{{ ownerImg }}" />
+                </div>
               </ng-container>
 
               <!-- end constant content -->
@@ -211,6 +231,24 @@
                     <span class="d-none d-md-inline"></span>
                   </button>
                 </div>
+                <div class="separador"></div>
+                <div class="row">
+                  <div class="col-4"><jhi-votes label="Puntuacion del curso" [disable]="true" [votes]="TotalVotes"></jhi-votes></div>
+                  <div class="col-5">
+                    <b style="position: relative; top: 57%; margin-left: 10px"
+                      >{{ TotalVotes | number: '1.1-1' }} por {{ totalUsers }} usuarios</b
+                    >
+                  </div>
+                </div>
+                <jhi-votes
+                  label="Puntua este curso"
+                  [disable]="false"
+                  [userVotes]="currentUserVote"
+                  (votesChanges)="scoreCourse($event)"
+                ></jhi-votes>
+                <b
+                  >Creado por: <a [routerLink]="['/extra-user-info', ownerPublicId, 'view']">{{ ownerPublicName }}</a> </b
+                ><img class="profile-image rounded-circle" src="{{ ownerImg }}" />
               </ng-container>
 
               <ng-container *ngIf="file.type === 'own'">
@@ -256,6 +294,24 @@
                     <span class="d-none d-md-inline"></span>
                   </button>
                 </div>
+                <div class="separador"></div>
+                <div class="row">
+                  <div class="col-4"><jhi-votes label="Puntuacion del curso" [disable]="true" [votes]="TotalVotes"></jhi-votes></div>
+                  <div class="col-5">
+                    <b style="position: relative; top: 57%; margin-left: 10px"
+                      >{{ TotalVotes | number: '1.1-1' }} por {{ totalUsers }} usuarios</b
+                    >
+                  </div>
+                </div>
+                <jhi-votes
+                  label="Puntua este curso"
+                  [disable]="false"
+                  [userVotes]="currentUserVote"
+                  (votesChanges)="scoreCourse($event)"
+                ></jhi-votes>
+                <b
+                  >Creado por: <a [routerLink]="['/extra-user-info', ownerPublicId, 'view']">{{ ownerPublicName }}</a> </b
+                ><img class="profile-image rounded-circle" src="{{ ownerImg }}" />
               </ng-container>
 
               <!-- end validation of type index -->
@@ -275,7 +331,9 @@
               <div class="row">
                 <div class="col-4"><jhi-votes label="Puntuacion del curso" [disable]="true" [votes]="TotalVotes"></jhi-votes></div>
                 <div class="col-5">
-                  <b style="position: relative; top: 57%; margin-left: 10px">{{ TotalVotes }} por {{ totalUsers }} usuarios</b>
+                  <b style="position: relative; top: 57%; margin-left: 10px"
+                    >{{ TotalVotes | number: '1.1-1' }} por {{ totalUsers }} usuarios</b
+                  >
                 </div>
               </div>
               <jhi-votes

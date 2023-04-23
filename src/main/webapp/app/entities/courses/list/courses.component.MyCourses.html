@@ -33,7 +33,9 @@
                 <p class="sub">Descripción: {{ courses.description }}</p>
               </span>
               <span>
-                <p class="sub">Puntuación: {{ courses.score }}</p>
+                <p class="sub">
+                  Puntuación: <span class="active"> <jhi-votes [votes]="courses.score" [disable]="true"></jhi-votes> </span>
+                </p>
               </span>
               <span class="sub"> Dueño: {{ courses.ownerName }} </span>
             </h5>
