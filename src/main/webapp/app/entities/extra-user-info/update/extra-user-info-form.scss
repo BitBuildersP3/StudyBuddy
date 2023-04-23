@@ -67,8 +67,8 @@ label span {
 
 
 .cloudBotton {
-  text-align: left;
-  margin-top: 2rem;
+  text-align: center;
+  margin-top: 1rem;
   color: white;
   border-color: $color-secundario;
 
@@ -125,7 +125,7 @@ label span {
 
 .form-check-label{
 
- margin-bottom: 1rem;
+  margin-bottom: 1rem;
 
 }
 
@@ -139,6 +139,12 @@ label span {
 }
 
 .mb-3{
- // background-color:$color-secundario ;
+  // background-color:$color-secundario ;
   // border-radius: 1rem;
+}
+
+
+
+.centero{
+  text-align: center;
 }
