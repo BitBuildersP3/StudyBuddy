@@ -51,8 +51,6 @@ export class TodoListComponent implements OnInit {
   trackId = (_index: number, item: ITodoList): number => this.todoListService.getTodoListIdentifier(item);
 
   ngOnInit(): void {
-    this.titleService.setTitle('Lista de Tareas');
-
     this.extraUser.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {
         // @ts-ignore
@@ -65,16 +63,6 @@ export class TodoListComponent implements OnInit {
       },
     });
   }
-  mostrarPopup() {
-    this.visiblePopup = !this.visiblePopup;
-    console.log(this.visiblePopup);
-    console.log('Click aquí');
-  }
-
-  ocultarPopup() {
-    this.visiblePopup = false;
-  }
-
   save(): void {
     this.isSaving = true;
     const todoList = this.todoListFormService.getTodoList(this.editForm);
@@ -151,7 +139,7 @@ export class TodoListComponent implements OnInit {
   delete(todoList: ITodoList): void {
     const todo = todoList.id;
     Swal.fire({
-      title: '¿Está seguro que desea eliminar el archivo?',
+      title: '¿Está seguro que desea eliminar la tarea?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -168,7 +156,6 @@ export class TodoListComponent implements OnInit {
           showConfirmButton: true,
         }).then(result => {
           if (result.isConfirmed) {
-            //location.reload();
             this.load();
           }
         });
@@ -187,13 +174,7 @@ export class TodoListComponent implements OnInit {
     );
   }
 
-  protected fillComponentAttributeFromRoute(params: ParamMap, data: Data): void {
-    //    if (params.get(SORT) !== null || data[DEFAULT_SORT_DATA] !== null) {
-    //    const sort = (params.get(SORT) ?? data[DEFAULT_SORT_DATA])?.split(',');
-    //      this.predicate = sort[0];
-    //     this.ascending = sort[1] === ASC;
-    //  }
-  }
+  protected fillComponentAttributeFromRoute(params: ParamMap, data: Data): void {}
 
   protected onResponseSuccess(response: EntityArrayResponseType): void {
     const dataFromBody = this.fillComponentAttributesFromResponseBody(response.body);
