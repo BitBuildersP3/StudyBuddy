@@ -5,12 +5,14 @@ $color-alertas: #983f56;
 $color-bordes: #de9a38;
 $color-fondoBlanc: #dfe2ea;
 
-// Aplica los colores a las distintas partes del formulario
-h2#jhi-files-heading {
+
+
+
+.titulo {
   color: $color-principal;
   font-weight: bold;
-  text-align: left;
-  margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 15px;
   margin-top: 25px;
 }
 
@@ -53,8 +55,11 @@ button[type='submit'] {
 }
 
 label {
+  margin-top: 2rem;
   font-weight: bold;
-  text-align: center;
+  font-size: 22px;
+  border-radius: 9px;
+
 }
 label span {
   display: inline-block;
@@ -63,6 +68,7 @@ label span {
   text-align: center;
   border: 1px solid $color-bordes;
   font-weight: bold;
+
 }
 
 .cloudBotton {
@@ -71,4 +77,64 @@ label span {
   color: white;
   border-color: $color-secundario;
 
+}
+
+.cardForm{
+
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 9px;
+  border-color: #181d38;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  /* column-gap: 5rem; */
+  justify-content: space-around;
+
+  /*
+  width: 100%;
+  display: flex;
+ flex-direction: column;
+  align-items: center;
+
+  max-width: 80rem;
+  padding-bottom: 2rem;
+ */
+  margin: 0 auto;
+
+  display: flex;
+  padding-bottom: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+
+  width: fit-content;
+  padding: 0 2rem;
+}
+
+.labelForm{
+
+  text-align: left;
+
+}
+
+.divBtn {
+  margin-top: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.acortado{
+
+  width: 560px;
+
+}
+
+.form-check-label{
+
+ margin-bottom: 1rem;
+
+}
+
+.mb-3{
+ // background-color:$color-secundario ;
+  // border-radius: 1rem;
 }
