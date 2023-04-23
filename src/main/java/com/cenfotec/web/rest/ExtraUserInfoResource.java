@@ -1,5 +1,6 @@
 package com.cenfotec.web.rest;
 
+import com.cenfotec.domain.Courses;
 import com.cenfotec.domain.ExtraUserInfo;
 import com.cenfotec.repository.ExtraUserInfoRepository;
 import com.cenfotec.security.SecurityUtils;
@@ -185,6 +186,16 @@ public class ExtraUserInfoResource {
         return retVal;
     }
 
+    @GetMapping("/extra-user-infos/byGivenUser/{user}")
+    public Optional<ExtraUserInfo> getExtraUserInfosByGivenUser(
+        @RequestParam(required = false, defaultValue = "false") boolean eagerload,
+        @PathVariable String user
+    ) {
+        log.debug("REST request to get ExtraUserInfos by the user");
+        Optional<ExtraUserInfo> retVal = extraUserInfoRepository.findByUserIsCurrentUser(user);
+        return retVal;
+    }
+
     /**
      * {@code GET  /extra-user-infos/:id} : get the "id" extraUserInfo.
      *
@@ -212,5 +223,10 @@ public class ExtraUserInfoResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/extra-user-infos/topFive")
+    public List<ExtraUserInfo> getTopTenCourses() {
+        return extraUserInfoRepository.findTop5ByOrderByScoreDesc();
     }
 }

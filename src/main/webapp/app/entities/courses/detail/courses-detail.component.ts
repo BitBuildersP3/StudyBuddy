@@ -39,6 +39,10 @@ export class CoursesDetailComponent implements OnInit {
   isOwner = true;
   isRegister = true;
 
+  ownerImg: string | undefined | null;
+  ownerPublicId: number | undefined | null;
+  ownerPublicName: string | undefined | null;
+
   TotalVotes: number | undefined | null;
   totalUsers: number | undefined | null;
 
@@ -103,7 +107,6 @@ export class CoursesDetailComponent implements OnInit {
       this.sections = this.courseResponse.sections;
       this.sections = this.sections.filter((obj: any) => obj.status === 'active');
       this.sections.sort((a: any, b: any) => a.id - b.id);
-
       this.setCurrentSection(this.sections[0]);
     });
   }
@@ -142,6 +145,13 @@ export class CoursesDetailComponent implements OnInit {
       this.totalUsers = json['num'];
       this.TotalVotes = json['avg'];
     });
+
+    this.extraInfoService.getInfoByGivenUser(this.courses.ownerName).subscribe(response => {
+      console.log(response);
+      this.ownerImg = response.body?.profilePicture;
+      this.ownerPublicId = response.body?.id;
+      this.ownerPublicName = this.courses.ownerName;
+    });
   }
 
   scoreCourse(score: number) {
@@ -159,6 +169,7 @@ export class CoursesDetailComponent implements OnInit {
         this.courses.userVotes = this.totalUsers;
         this.courseService.partialUpdate(this.courses).subscribe();
       });
+    this.currentUserVote = score;
   }
 
   // this method get the value of the current user and the id of the current course

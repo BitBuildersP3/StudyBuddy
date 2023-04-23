@@ -1,55 +1,58 @@
-<div class="d-flex justify-content-center">
-  <div class="col-8">
+<div class="d-flex justify-content-center margint">
+  <div class="">
     <div *ngIf="user">
-      <h2>
-        <span jhiTranslate="userManagement.detail.title">Usuario</span> [<strong>{{ user.login }}</strong
-        >]
-      </h2>
+      <div class="justify-content-center align-items-center">
+        <h2>
+          <span>
+            <fa-icon icon="user"></fa-icon>
+            Usuario:</span
+          >
+          <strong>{{ user.login }}</strong>
+        </h2>
+      </div>
+      <div class="separador"></div>
 
-      <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="userManagement.login">Login</span></dt>
-        <dd>
-          <span>{{ user.login }}</span>
-          <span *ngIf="user.activated" class="badge bg-success" jhiTranslate="userManagement.activated">Activado</span>
-          <span *ngIf="!user.activated" class="badge bg-danger" jhiTranslate="userManagement.deactivated">Desactivado</span>
-        </dd>
+      <div class="cardForm">
+        <dl class="row-md jh-entity-details">
+          <dt><span>Alias</span></dt>
+          <dd>
+            <span>{{ user.login }}</span>
+            <span *ngIf="user.activated" class="badge bg-success" jhiTranslate="userManagement.activated">Activado</span>
+            <span *ngIf="!user.activated" class="badge bg-danger" jhiTranslate="userManagement.deactivated">Desactivado</span>
+          </dd>
 
-        <dt><span jhiTranslate="userManagement.firstName">Nombre</span></dt>
-        <dd>{{ user.firstName }}</dd>
+          <dt><span jhiTranslate="userManagement.email">Email</span></dt>
+          <dd>{{ user.email }}</dd>
 
-        <dt><span jhiTranslate="userManagement.lastName">Apellidos</span></dt>
-        <dd>{{ user.lastName }}</dd>
+          <dt><span jhiTranslate="userManagement.profiles">Perfiles</span></dt>
+          <dd>
+            <ul class="list-unstyled">
+              <li *ngFor="let authority of user.authorities">
+                <span *ngIf="authority == 'ROLE_USER'">Usuario</span>
+                <span *ngIf="authority == 'ROLE_ADMIN'">Administrador</span>
+              </li>
+            </ul>
+          </dd>
+          <dt><span jhiTranslate="userManagement.firstName">Nombre</span></dt>
+          <dd>{{ user.firstName }}</dd>
 
-        <dt><span jhiTranslate="userManagement.email">Email</span></dt>
-        <dd>{{ user.email }}</dd>
+          <dt><span>Apellidos</span></dt>
+          <dd>{{ user.lastName }}</dd>
 
-        <dt><span jhiTranslate="userManagement.langKey">Idioma</span></dt>
-        <dd>{{ user.langKey }}</dd>
+          <dt><span jhiTranslate="userManagement.lastModifiedBy">Modificado por</span></dt>
+          <dd>{{ user.lastModifiedBy }}</dd>
 
-        <dt><span jhiTranslate="userManagement.createdBy">Creado por</span></dt>
-        <dd>{{ user.createdBy }}</dd>
+          <dt><span jhiTranslate="userManagement.createdDate">Fecha de creación</span></dt>
+          <dd>{{ user.createdDate | date: 'dd/MM/yy HH:mm' }}</dd>
 
-        <dt><span jhiTranslate="userManagement.createdDate">Fecha de creación</span></dt>
-        <dd>{{ user.createdDate | date: 'dd/MM/yy HH:mm' }}</dd>
+          <dt><span jhiTranslate="userManagement.lastModifiedDate">Fecha de modificación</span></dt>
+          <dd>{{ user.lastModifiedDate | date: 'dd/MM/yy HH:mm' }}</dd>
+        </dl>
+      </div>
+      <div class="separador"></div>
 
-        <dt><span jhiTranslate="userManagement.lastModifiedBy">Modificado por</span></dt>
-        <dd>{{ user.lastModifiedBy }}</dd>
-
-        <dt><span jhiTranslate="userManagement.lastModifiedDate">Fecha de modificación</span></dt>
-        <dd>{{ user.lastModifiedDate | date: 'dd/MM/yy HH:mm' }}</dd>
-
-        <dt><span jhiTranslate="userManagement.profiles">Perfiles</span></dt>
-        <dd>
-          <ul class="list-unstyled">
-            <li *ngFor="let authority of user.authorities">
-              <span class="badge bg-info">{{ authority }}</span>
-            </li>
-          </ul>
-        </dd>
-      </dl>
-
-      <button type="submit" routerLink="../../" class="btn btn-info">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      <button title="Volver" type="submit" routerLink="../../" class="btn btnEdit btnCustEdit" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span></span>
       </button>
     </div>
   </div>

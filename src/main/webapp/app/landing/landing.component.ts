@@ -11,6 +11,7 @@ interface CoursesData {
   slideExerpt: string | null | undefined;
   redirect: number | null | undefined;
   status: string | null | undefined;
+  score: number | null | undefined;
 }
 
 @Component({
@@ -22,6 +23,7 @@ export class LandingComponent implements OnInit {
   slides: CoursesData[] = [];
   userCuourses: CoursesData[] = [];
   ownerCourses: CoursesData[] = [];
+  topUsers: CoursesData[] = [];
   private currentUserId: number | undefined = 0;
 
   constructor(private courseService: CoursesService, private extraUserInfo: ExtraUserInfoService, private titleService: Title) {}
@@ -43,6 +45,7 @@ export class LandingComponent implements OnInit {
           next: value => {
             value.body?.map((data, index) => {
               this.userCuourses.push({
+                score: data.score,
                 redirect: data.id,
                 image: data.previewImg,
                 slideExerpt: data.excerpt,
@@ -59,6 +62,7 @@ export class LandingComponent implements OnInit {
       next: value => {
         value.body?.map((data, index) => {
           this.ownerCourses.push({
+            score: data.score,
             redirect: data.id,
             image: data.previewImg,
             slideExerpt: data.excerpt,
@@ -70,10 +74,24 @@ export class LandingComponent implements OnInit {
       },
     });
 
+    this.extraUserInfo.getFiveTopUser().subscribe(response => {
+      response.body?.map((data, index) => {
+        this.topUsers.push({
+          score: data.score,
+          redirect: data.id,
+          image: data.profilePicture,
+          slideExerpt: data.degree,
+          slideTitle: data.user?.login,
+          status: undefined,
+        });
+      });
+    });
+
     this.courseService.getTopTenCourses().subscribe({
       next: value => {
         value.body?.map((data, index) => {
           this.slides.push({
+            score: data.score,
             redirect: data.id,
             image: data.previewImg,
             slideExerpt: data.excerpt,

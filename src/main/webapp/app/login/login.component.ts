@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   login(): void {
     this.loginService.login(this.loginForm.getRawValue()).subscribe({
-      next: () => {
+      next: response => {
         this.authenticationError = false;
         if (!this.router.getCurrentNavigation()) {
           this.refreshService.refresh();
@@ -58,13 +58,21 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.router.navigate(['landing']);
         }
       },
-      error: () => {
-        (this.authenticationError = true),
+      error: response => {
+        this.authenticationError = true;
+        if (response.status == 401) {
+          Swal.fire({
+            icon: 'error',
+            html: '<h2>El usuario está desactivado</h2> <b> Por favor activalo con tu correo o comunicate con <a style="color:deepskyblue" target="_blank" href="https://mail.google.com/mail/?view=cm&fs=1&to=bitbuildersp3@gmail.com&subject=Solicitud%20de%20información">nosotros</a></b>',
+            showConfirmButton: true,
+          });
+        } else {
           Swal.fire({
             icon: 'error',
             title: 'Usuario o Contraseña incorrecta',
             showConfirmButton: true,
           });
+        }
       },
     });
   }

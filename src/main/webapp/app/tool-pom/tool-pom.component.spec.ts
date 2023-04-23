@@ -8,9 +8,8 @@ describe('ToolPomComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToolPomComponent ]
-    })
-    .compileComponents();
+      declarations: [ToolPomComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ToolPomComponent);
     component = fixture.componentInstance;

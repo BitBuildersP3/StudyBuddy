@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 interface Time {
   minutes: number;
@@ -8,7 +8,7 @@ interface Time {
 @Component({
   selector: 'jhi-tool-pom',
   templateUrl: './tool-pom.component.html',
-  styleUrls: ['./tool-pom.component.scss']
+  styleUrls: ['./tool-pom.component.scss'],
 })
 export class ToolPomComponent implements OnInit {
   buttonPlay!: HTMLButtonElement;
@@ -50,32 +50,32 @@ export class ToolPomComponent implements OnInit {
     this.breakDecrement = document.getElementById('breakDecrement') as HTMLButtonElement;
     this.breakIncrement = document.getElementById('breakIncrement') as HTMLButtonElement;
 
-    const arrayTime: any = this.timeLeftDOM.innerText.split(":");
-    console.log("Arreglo entero" + arrayTime);
+    const arrayTime: any = this.timeLeftDOM.innerText.split(':');
+    console.log('Arreglo entero' + arrayTime);
     let actualnumLeft: number = arrayTime[0];
     let actualnumLeft2: number = arrayTime[1];
-    console.log("array en 0: " + actualnumLeft);
-    console.log("array en 1: " + actualnumLeft2);
-    console.log("tiempo de array 0 " + arrayTime[0])
-    console.log("tiempo de array 1 " + arrayTime[1])
+    console.log('array en 0: ' + actualnumLeft);
+    console.log('array en 1: ' + actualnumLeft2);
+    console.log('tiempo de array 0 ' + arrayTime[0]);
+    console.log('tiempo de array 1 ' + arrayTime[1]);
     // this.timeLeft = (actualnumLeft * 60) ;
     this.timeLeft = 5;
-    console.log("En donde se hizo el parseo" + this.timeLeft);
+    console.log('En donde se hizo el parseo' + this.timeLeft);
   }
 
   addEventListeners(): void {
     this.buttonPlay.addEventListener('click', () => {
       if (this.playIsClicked) {
         if (this.interval) {
-          clearInterval(this.interval)
+          clearInterval(this.interval);
         }
         this.interval = setInterval(() => this.handleTime(), 1000);
 
-        this.playIcon.classList.remove('fa-play');
-        this.playIcon.classList.add('fa-pause');
+        this.playIcon.classList.remove('circle-play');
+        this.playIcon.classList.add('circle-stop');
       } else {
-        this.playIcon.classList.add('fa-play');
-        this.playIcon.classList.remove('fa-pause');
+        this.playIcon.classList.add('circle-play');
+        this.playIcon.classList.remove('circle-stop');
       }
       this.playIsClicked = !this.playIsClicked;
     });
@@ -84,9 +84,9 @@ export class ToolPomComponent implements OnInit {
       this.breakLength = 5 * 60;
       this.timeLength = 25 * 60;
       this.timeLeft = this.timeLength;
-      this.breakLengthDOM.innerText = "5";
-      this.sessionLengthDOM.innerText = "25";
-      this.timeLeftDOM.innerText = "25:00";
+      this.breakLengthDOM.innerText = '5';
+      this.sessionLengthDOM.innerText = '25';
+      this.timeLeftDOM.innerText = '25:00';
       if (!this.playIsClicked) {
         this.buttonPlay.click();
       }
@@ -101,33 +101,32 @@ export class ToolPomComponent implements OnInit {
     });
 
     this.breakDecrement.addEventListener('click', () => {
-      this.breakLength = this.handleLengthButton(parseInt(this.breakLengthDOM.innerText), this.breakLengthDOM, false,true);
+      this.breakLength = this.handleLengthButton(parseInt(this.breakLengthDOM.innerText), this.breakLengthDOM, false, true);
     });
     this.breakIncrement.addEventListener('click', () => {
       this.breakLength = this.handleLengthButton(parseInt(this.breakLengthDOM.innerText), this.breakLengthDOM, true, true);
     });
   }
-    convertSeconds(seconds: number): Time {
-      return {
-        minutes: Math.floor(seconds / 60),
-        seconds: seconds % 60
-      };
-    }
+  convertSeconds(seconds: number): Time {
+    return {
+      minutes: Math.floor(seconds / 60),
+      seconds: seconds % 60,
+    };
+  }
 
   formatSecondsToMinutes(seconds: number): string {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
     return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
   }
-    handleTime(): void {
-
+  handleTime(): void {
     //console.log("TimeLeft =" + this.timeLeft);
-      if (this.timeLeft <= 0) {
+    if (this.timeLeft <= 0) {
       if (this.isSession) {
-        this.labelSessionBreak.innerText = "SESIÓN";
+        this.labelSessionBreak.innerText = 'SESIÓN';
         this.timeLeft = this.timeLength;
       } else {
-        this.labelSessionBreak.innerText = "DESCANSO";
+        this.labelSessionBreak.innerText = 'DESCANSO';
         this.timeLeft = this.breakLength;
         const beep = document.getElementById('beep') as HTMLAudioElement;
         beep.currentTime = 0;
@@ -141,48 +140,46 @@ export class ToolPomComponent implements OnInit {
 
       const minutesAndSeconds = this.convertSeconds(this.timeLeft);
 
-        const timeLeftDOM = document.getElementById('timeLeft') as HTMLElement;
+      const timeLeftDOM = document.getElementById('timeLeft') as HTMLElement;
 
-//console.log("timeLeftDOM" + timeLeftDOM);
+      //console.log("timeLeftDOM" + timeLeftDOM);
 
-        timeLeftDOM.innerText = this.formatSecondsToMinutes(this.timeLeft);
-        console.log(timeLeftDOM);
-
-      }
-  }
-    handleLengthButton(lengthValue: number, htmlElement: HTMLElement, isAddition: boolean, isBreakLength: boolean): number {
-      let result = 1;
-      if (isAddition) {
-        result = ++lengthValue;
-        htmlElement.innerText = result.toString();
-
-      } else {
-        if (lengthValue !== 1) {
-          result = --lengthValue;
-          htmlElement.innerText = result.toString();
-        }
-      }
-      if (!this.playIsClicked) {
-        this.buttonPlay.click();
-      }
-      let resultSeconds = result * 60;
-      if (!isBreakLength) {
-        this.timeLength = resultSeconds;
-        console.log("rata "+this.labelSessionBreak.innerText+" rata 2 "+(('0' + result).slice(-2) + ":00")+ " rata 3 " +resultSeconds )
-        if (this.labelSessionBreak.innerText === 'SESIÓN') {
-          this.timeLeftDOM.innerText = ('0' + result).slice(-2) + ":00";
-          this.timeLeft = resultSeconds;
-        }
-      } else {
-        this.breakLength = resultSeconds;
-
-        if (this.labelSessionBreak.innerText === 'DESCANSO') {
-          this.timeLeftDOM.innerText = ('0' + result).slice(-2) + ":00";
-          this.timeLeft = resultSeconds;
-        }
-      }
-      return resultSeconds;
+      timeLeftDOM.innerText = this.formatSecondsToMinutes(this.timeLeft);
+      console.log(timeLeftDOM);
     }
+  }
+  handleLengthButton(lengthValue: number, htmlElement: HTMLElement, isAddition: boolean, isBreakLength: boolean): number {
+    let result = 1;
+    if (isAddition) {
+      result = ++lengthValue;
+      htmlElement.innerText = result.toString();
+    } else {
+      if (lengthValue !== 1) {
+        result = --lengthValue;
+        htmlElement.innerText = result.toString();
+      }
+    }
+    if (!this.playIsClicked) {
+      this.buttonPlay.click();
+    }
+    let resultSeconds = result * 60;
+    if (!isBreakLength) {
+      this.timeLength = resultSeconds;
+      console.log(
+        'rata ' + this.labelSessionBreak.innerText + ' rata 2 ' + (('0' + result).slice(-2) + ':00') + ' rata 3 ' + resultSeconds
+      );
+      if (this.labelSessionBreak.innerText === 'SESIÓN') {
+        this.timeLeftDOM.innerText = ('0' + result).slice(-2) + ':00';
+        this.timeLeft = resultSeconds;
+      }
+    } else {
+      this.breakLength = resultSeconds;
 
-
+      if (this.labelSessionBreak.innerText === 'DESCANSO') {
+        this.timeLeftDOM.innerText = ('0' + result).slice(-2) + ':00';
+        this.timeLeft = resultSeconds;
+      }
+    }
+    return resultSeconds;
+  }
 }

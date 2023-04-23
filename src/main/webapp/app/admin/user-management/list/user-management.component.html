@@ -1,93 +1,133 @@
-<div>
-  <h2>
-    <span id="user-management-page-heading" data-cy="userManagementPageHeading" class="titulo">Usuarios</span>
+<body>
+  <div>
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+      <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+          <a class="nav-link collapsed">
+            <i class="bi bi-grid"></i>
+            <span class="lineB"><fa-icon icon="user"></fa-icon> Panel de administración</span>
+          </a>
+        </li>
+        <!-- End Dashboard Nav -->
 
-    <div class="d-flex justify-content-start">
-      <button class="btn btnEdit" title="Refrescar Tabla" (click)="loadAll()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-      </button>
-      <button class="btn btnView" title="Crear Usuario" [routerLink]="['./new']">
-        <fa-icon icon="user-plus"></fa-icon>
-      </button>
-    </div>
-  </h2>
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="courses/myCourses">
+            <i class="bi bi-layout-text-window-reverse"></i><span> <fa-icon icon="address-book"></fa-icon> Mis cursos </span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="courses/enrolled">
+            <i class="bi bi-layout-text-window-reverse"></i><span> <fa-icon icon="book"></fa-icon> Cursos matriculados </span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+        </li>
+        <!-- End Tables Nav -->
+      </ul>
+    </aside>
+    <!-- End Sidebar-->
+    <main id="main" class="main">
+      <div class="card-box pd-20 height-100-p mb-30">
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <img src="content/images/banner-img.png" alt="" />
+          </div>
+          <div class="col-md-8">
+            <h4 class="">¡Bienvenido señor Administrador!</h4>
+            <p class="font-18 max-width-600">
+              En esta sección podrá ver la información de los usuarios de Studdy Buddy. Además, podrá modificar la información de los
+              usuarios o restringirles el acceso a la plataforma.
+            </p>
+          </div>
+        </div>
+      </div>
 
-  <jhi-alert-error></jhi-alert-error>
+      <div class="tableConteiner">
+        <h2>
+          <div class="d-flex justify-content-center espace">
+            <span id="user-management-page-heading" data-cy="userManagementPageHeading" class="">Usuarios inscritos a Studdy Buddy</span>
+          </div>
 
-  <jhi-alert></jhi-alert>
-
-  <div class="table-responsive" *ngIf="users">
-    <table class="table table-striped" aria-describedby="user-management-page-heading">
-      <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="transition()">
-          <th scope="col" jhiSortBy="login"><span>Id</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="login"><span>Usuario</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="email"><span>Correo</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col"><span>Rol</span></th>
-          <th scope="col"><span>Modificado por</span></th>
-          <th scope="col" jhiSortBy="email"><span>Estado</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col"><span>Acciones</span></th>
-        </tr>
-      </thead>
-      <tbody *ngIf="users">
-        <tr *ngFor="let user of users; trackBy: trackIdentity">
-          <td>{{ user.id }}</td>
-          <td>{{ user.login }}</td>
-          <td>{{ user.email }}</td>
-
-          <td>
-            <div *ngFor="let authority of user.authorities">
-              <span *ngIf="authority == 'ROLE_USER'">Usuario</span>
-              <span *ngIf="authority == 'ROLE_ADMIN'">Administrador</span>
-            </div>
-          </td>
-          <td>{{ user.lastModifiedBy }}</td>
-          <!-- rol -->
-          <td>
-            <button class="btn btnDelete" title="Bloqueado" (click)="setActive(user, true)" *ngIf="!user.activated">
-              <fa-icon icon="ban"></fa-icon>
+          <div class="d-flex justify-content-start">
+            <button class="btn btnEdit" title="Refrescar Tabla" (click)="loadAll()" [disabled]="isLoading">
+              <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
             </button>
-
-            <button
-              class="btn btnActive"
-              title="Activo"
-              (click)="setActive(user, false)"
-              *ngIf="user.activated"
-              [disabled]="!currentAccount || currentAccount.login === user.login"
-            >
-              <fa-icon icon="check"></fa-icon>
+            <button class="btn btnView" title="Crear Usuario" [routerLink]="['./new']">
+              <fa-icon icon="user-plus"></fa-icon>
             </button>
-          </td>
-          <!-- actions -->
-          <td class="">
-            <div class="btn-group">
-              <button type="submit" title="Ver" [routerLink]="['./', user.login, 'view']" class="btn btnView">
-                <fa-icon icon="eye"></fa-icon>
-              </button>
+          </div>
+        </h2>
 
-              <button
-                type="submit"
-                title="Editar"
-                [routerLink]="['./', user.login, 'edit']"
-                queryParamsHandling="merge"
-                class="btn btnEdit"
-              >
-                <fa-icon icon="pencil-alt"></fa-icon>
-              </button>
+        <div class="table-responsive" *ngIf="users">
+          <table class="table table-striped" aria-describedby="user-management-page-heading">
+            <thead>
+              <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="transition()">
+                <th scope="col" jhiSortBy="login"><span>Usuario</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col" jhiSortBy="email"><span>Correo</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"><span>Rol</span></th>
+                <th scope="col"><span>Modificado por</span></th>
+                <th scope="col" jhiSortBy="email"><span>Estado</span> <fa-icon icon="sort"></fa-icon></th>
+                <th scope="col"><span>Acciones</span></th>
+              </tr>
+            </thead>
+            <tbody *ngIf="users">
+              <tr *ngFor="let user of users; trackBy: trackIdentity">
+                <td>{{ user.login }}</td>
+                <td>{{ user.email }}</td>
 
-              <button
-                type="button"
-                title="Borrar"
-                (click)="deleteUser(user)"
-                class="btn btnDelete"
-                [disabled]="!currentAccount || currentAccount.login === user.login"
-              >
-                <fa-icon icon="times"></fa-icon>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+                <td>
+                  <div *ngFor="let authority of user.authorities">
+                    <span *ngIf="authority == 'ROLE_USER'">Usuario</span>
+                    <span *ngIf="authority == 'ROLE_ADMIN'">Administrador</span>
+                  </div>
+                </td>
+                <td>{{ user.lastModifiedBy }}</td>
+                <td>
+                  <button class="btn btnDelete" title="Bloqueado" (click)="setActive(user, true)" *ngIf="!user.activated">
+                    <fa-icon icon="ban"></fa-icon>
+                  </button>
+
+                  <button
+                    class="btn btnActive"
+                    title="Activo"
+                    (click)="setActive(user, false)"
+                    *ngIf="user.activated"
+                    [disabled]="!currentAccount || currentAccount.login === user.login"
+                  >
+                    <fa-icon icon="check"></fa-icon>
+                  </button>
+                </td>
+                <td class="">
+                  <div class="btn-group">
+                    <button type="submit" title="Ver" [routerLink]="['./', user.login, 'view']" class="btn btnView">
+                      <fa-icon icon="eye"></fa-icon>
+                    </button>
+
+                    <button
+                      type="submit"
+                      title="Editar"
+                      [routerLink]="['./', user.login, 'edit']"
+                      queryParamsHandling="merge"
+                      class="btn btnEdit"
+                    >
+                      <fa-icon icon="pencil-alt"></fa-icon>
+                    </button>
+
+                    <button
+                      type="button"
+                      title="Borrar"
+                      (click)="deleteUser(user)"
+                      class="btn btnDelete"
+                      [disabled]="!currentAccount || currentAccount.login === user.login"
+                    >
+                      <fa-icon icon="times"></fa-icon>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
   </div>
-</div>
+</body>

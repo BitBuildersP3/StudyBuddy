@@ -1,223 +1,413 @@
-<div>
-  <div class="d-flex justify-content-center">
-    <div class="col-md-8">
-      <h2 class="text-center" *ngIf="settingsForm.value.login">
-        Ajustes del usuario <strong class="light-blue-txt">{{ settingsForm.value.login }}</strong>
-      </h2>
+<body>
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-item">
+        <a class="nav-link collapsed">
+          <i class="bi bi-grid"></i>
+          <span class="lineB"><fa-icon icon="user"></fa-icon> Perfil de usuario</span>
+        </a>
+      </li>
+      <!-- End Dashboard Nav -->
 
-      <div class="alert alert-success" *ngIf="success" jhiTranslate="settings.messages.success">
-        <strong>¡Ajustes guardados!</strong>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="courses/myCourses">
+          <i class="bi bi-layout-text-window-reverse"></i><span> <fa-icon icon="address-book"></fa-icon> Mis cursos </span>
+          <i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="courses/enrolled">
+          <i class="bi bi-layout-text-window-reverse"></i><span> <fa-icon icon="book"></fa-icon> Cursos matriculados </span>
+          <i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+      </li>
+      <!-- End Tables Nav -->
+    </ul>
+  </aside>
+  <!-- End Sidebar-->
+
+  <main id="main" class="main">
+    <!-- End Page Title -->
+
+    <section class="section profile">
+      <div class="row">
+        <div class="col-xl-4">
+          <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+              <!--        cloudinary and profile pic -->
+              <div
+                class="nav-item pointer pad-2"
+                display="dynamic"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{
+                  exact: true
+                }"
+              >
+                <img (click)="openModal()" alt="Foto de peril" class="profile-image rounded-circle" src="{{ profileImg }}" />
+              </div>
+              <div *ngIf="settingsForm.value.login">
+                <h2 class="text-center">
+                  Nombre: <strong class="light-blue-txt">{{ settingsForm.value.firstName }}</strong>
+                </h2>
+                <h3 class="text-center">Correo: {{ settingsForm.value.email }}</h3>
+                <h3 class="text-center">Título: {{ settingsForm.value.degree }}</h3>
+              </div>
+
+              <div class="social-links mt-2"></div>
+              <jhi-cloudinary-button [text]="$any('conf. Foto')" (urlChanged)="updateProfileImg($event)"></jhi-cloudinary-button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-8">
+          <div class="card">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered">
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Editar Perfil</button>
+                </li>
+              </ul>
+              <div class="tab-content pt-2">
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                  <h2 class="text-center" *ngIf="settingsForm.value.login">
+                    <fa-icon icon="user-gear"></fa-icon>
+                    Ajustes del usuario <strong class="light-blue-txt">{{ settingsForm.value.login }}</strong>
+                  </h2>
+
+                  <form
+                    class="form-styles custom-form align-items-center"
+                    name="form"
+                    role="form"
+                    (ngSubmit)="save()"
+                    [formGroup]="settingsForm"
+                    *ngIf="settingsForm.value.login"
+                    novalidate
+                  >
+                    <div class="mb-3">
+                      <label class="form-label" for="firstName" jhiTranslate="settings.form.firstname">Nombre</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        name="firstName"
+                        placeholder="{{ 'settings.form.firstname.placeholder' | translate }}"
+                        formControlName="firstName"
+                        data-cy="firstname"
+                      />
+
+                      <div
+                        *ngIf="
+                          settingsForm.get('firstName')!.invalid &&
+                          (settingsForm.get('firstName')!.dirty || settingsForm.get('firstName')!.touched)
+                        "
+                      >
+                        <small
+                          class="form-text text-danger"
+                          *ngIf="settingsForm.get('firstName')?.errors?.required"
+                          jhiTranslate="settings.messages.validate.firstname.required"
+                        >
+                          Se requiere que ingrese su nombre.
+                        </small>
+
+                        <small
+                          class="form-text text-danger"
+                          *ngIf="settingsForm.get('firstName')?.errors?.minlength"
+                          jhiTranslate="settings.messages.validate.firstname.minlength"
+                        >
+                          Se requiere que su nombre tenga por lo menos 1 caracter
+                        </small>
+
+                        <small
+                          class="form-text text-danger"
+                          *ngIf="settingsForm.get('firstName')?.errors?.maxlength"
+                          jhiTranslate="settings.messages.validate.firstname.maxlength"
+                        >
+                          Su nombre no puede tener más de 50 caracteres
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="form-label" for="lastName" jhiTranslate="settings.form.lastname">Apellidos</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        name="lastName"
+                        placeholder="{{ 'settings.form.lastname.placeholder' | translate }}"
+                        formControlName="lastName"
+                        data-cy="lastname"
+                      />
+
+                      <div
+                        *ngIf="
+                          settingsForm.get('lastName')!.invalid &&
+                          (settingsForm.get('lastName')!.dirty || settingsForm.get('lastName')!.touched)
+                        "
+                      >
+                        <small
+                          class="form-text text-danger"
+                          *ngIf="settingsForm.get('lastName')?.errors?.required"
+                          jhiTranslate="settings.messages.validate.lastname.required"
+                        >
+                          Se requiere que ingrese sus apellidos.
+                        </small>
+
+                        <small
+                          class="form-text text-danger"
+                          *ngIf="settingsForm.get('lastName')?.errors?.minlength"
+                          jhiTranslate="settings.messages.validate.lastname.minlength"
+                        >
+                          Se requiere que sus apellidos tengan por lo menos 1 caracter
+                        </small>
+
+                        <small
+                          class="form-text text-danger"
+                          *ngIf="settingsForm.get('lastName')?.errors?.maxlength"
+                          jhiTranslate="settings.messages.validate.lastname.maxlength"
+                        >
+                          Sus apellidos no pueden tener más de 50 caracteres
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="form-label" for="email" jhiTranslate="global.form.email.label">Correo electrónico</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                        placeholder="{{ 'global.form.email.placeholder' | translate }}"
+                        formControlName="email"
+                        data-cy="email"
+                      />
+
+                      <div
+                        *ngIf="
+                          settingsForm.get('email')!.invalid && (settingsForm.get('email')!.dirty || settingsForm.get('email')!.touched)
+                        "
+                      >
+                        <small
+                          class="form-text text-danger"
+                          *ngIf="settingsForm.get('email')?.errors?.required"
+                          jhiTranslate="global.messages.validate.email.required"
+                        >
+                          Se requiere un correo electrónico.
+                        </small>
+
+                        <small
+                          class="form-text text-danger"
+                          *ngIf="settingsForm.get('email')?.errors?.email"
+                          jhiTranslate="global.messages.validate.email.invalid"
+                        >
+                          Su correo electrónico no es válido.
+                        </small>
+
+                        <small
+                          class="form-text text-danger"
+                          *ngIf="settingsForm.get('email')?.errors?.minlength"
+                          jhiTranslate="global.messages.validate.email.minlength"
+                        >
+                          Se requiere que su correo electrónico tenga por lo menos 5 caracteres
+                        </small>
+
+                        <small
+                          class="form-text text-danger"
+                          *ngIf="settingsForm.get('email')?.errors?.maxlength"
+                          jhiTranslate="global.messages.validate.email.maxlength"
+                        >
+                          Su correo electrónico no puede tener más de 50 caracteres
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="form-label" for="phone">Teléfono</label>
+                      <input
+                        type="phone"
+                        class="form-control"
+                        id="phone"
+                        name="phone"
+                        placeholder="Su teléfono"
+                        formControlName="phone"
+                        data-cy="phone"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="degree">Título</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="degree"
+                        name="degree"
+                        placeholder="Su título"
+                        formControlName="degree"
+                        data-cy="degree"
+                      />
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="form-label" for="birthDay">Fecha de nacimiento</label>
+                      <div class="input-group">
+                        <input
+                          placeholder="Su fecha de nacimiento"
+                          id="birthDay"
+                          data-cy="birthDay"
+                          type="text"
+                          class="form-control"
+                          name="birthDay"
+                          ngbDatepicker
+                          #birthDayDp="ngbDatepicker"
+                          formControlName="birthDay"
+                        />
+                        <button type="button" class="btn btn-secondary" (click)="birthDayDp.toggle()">
+                          <fa-icon icon="calendar-alt"></fa-icon>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <input
+                        type="text"
+                        class="form-control d-lg-none"
+                        id="id"
+                        name="id"
+                        placeholder="{{ 'global.form.id.placeholder' }}"
+                        formControlName="id"
+                        data-cy="id"
+                      />
+                    </div>
+
+                    <div class="mb-3">
+                      <button
+                        type="submit"
+                        [disabled]="settingsForm.invalid"
+                        class="btn btn-primary submit-btn"
+                        jhiTranslate="settings.form.button"
+                        data-cy="submit"
+                      >
+                        Guardar
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                  <!-- Profile Edit Form -->
+                  <form>
+                    <div class="row mb-3">
+                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                      <div class="col-md-8 col-lg-9">
+                        <img src="" alt="Profile" />
+                        <div class="pt-2">
+                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson" />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
+                      <div class="col-md-8 col-lg-9">
+                        <textarea name="about" class="form-control" id="about" style="height: 100px">
+Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea
+                        >
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke" />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="job" type="text" class="form-control" id="Job" value="Web Designer" />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="country" type="text" class="form-control" id="Country" value="USA" />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022" />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071" />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com" />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#" />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#" />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#" />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#" />
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                  </form>
+                  <!-- End Profile Edit Form -->
+                </div>
+              </div>
+              <!-- End Bordered Tabs -->
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+  </main>
+  <!-- End #main -->
 
-      <jhi-alert-error></jhi-alert-error>
-
-      <form
-        class="form-styles custom-form align-items-center"
-        name="form"
-        role="form"
-        (ngSubmit)="save()"
-        [formGroup]="settingsForm"
-        *ngIf="settingsForm.value.login"
-        novalidate
-      >
-        <div class="mb-3">
-          <label class="form-label" for="firstName" jhiTranslate="settings.form.firstname">Nombre</label>
-          <input
-            type="text"
-            class="form-control"
-            id="firstName"
-            name="firstName"
-            placeholder="{{ 'settings.form.firstname.placeholder' | translate }}"
-            formControlName="firstName"
-            data-cy="firstname"
-          />
-
-          <div
-            *ngIf="
-              settingsForm.get('firstName')!.invalid && (settingsForm.get('firstName')!.dirty || settingsForm.get('firstName')!.touched)
-            "
-          >
-            <small
-              class="form-text text-danger"
-              *ngIf="settingsForm.get('firstName')?.errors?.required"
-              jhiTranslate="settings.messages.validate.firstname.required"
-            >
-              Se requiere que ingrese su nombre.
-            </small>
-
-            <small
-              class="form-text text-danger"
-              *ngIf="settingsForm.get('firstName')?.errors?.minlength"
-              jhiTranslate="settings.messages.validate.firstname.minlength"
-            >
-              Se requiere que su nombre tenga por lo menos 1 caracter
-            </small>
-
-            <small
-              class="form-text text-danger"
-              *ngIf="settingsForm.get('firstName')?.errors?.maxlength"
-              jhiTranslate="settings.messages.validate.firstname.maxlength"
-            >
-              Su nombre no puede tener más de 50 caracteres
-            </small>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="lastName" jhiTranslate="settings.form.lastname">Apellidos</label>
-          <input
-            type="text"
-            class="form-control"
-            id="lastName"
-            name="lastName"
-            placeholder="{{ 'settings.form.lastname.placeholder' | translate }}"
-            formControlName="lastName"
-            data-cy="lastname"
-          />
-
-          <div
-            *ngIf="settingsForm.get('lastName')!.invalid && (settingsForm.get('lastName')!.dirty || settingsForm.get('lastName')!.touched)"
-          >
-            <small
-              class="form-text text-danger"
-              *ngIf="settingsForm.get('lastName')?.errors?.required"
-              jhiTranslate="settings.messages.validate.lastname.required"
-            >
-              Se requiere que ingrese sus apellidos.
-            </small>
-
-            <small
-              class="form-text text-danger"
-              *ngIf="settingsForm.get('lastName')?.errors?.minlength"
-              jhiTranslate="settings.messages.validate.lastname.minlength"
-            >
-              Se requiere que sus apellidos tengan por lo menos 1 caracter
-            </small>
-
-            <small
-              class="form-text text-danger"
-              *ngIf="settingsForm.get('lastName')?.errors?.maxlength"
-              jhiTranslate="settings.messages.validate.lastname.maxlength"
-            >
-              Sus apellidos no pueden tener más de 50 caracteres
-            </small>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="email" jhiTranslate="global.form.email.label">Correo electrónico</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            name="email"
-            placeholder="{{ 'global.form.email.placeholder' | translate }}"
-            formControlName="email"
-            data-cy="email"
-          />
-
-          <div *ngIf="settingsForm.get('email')!.invalid && (settingsForm.get('email')!.dirty || settingsForm.get('email')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="settingsForm.get('email')?.errors?.required"
-              jhiTranslate="global.messages.validate.email.required"
-            >
-              Se requiere un correo electrónico.
-            </small>
-
-            <small
-              class="form-text text-danger"
-              *ngIf="settingsForm.get('email')?.errors?.email"
-              jhiTranslate="global.messages.validate.email.invalid"
-            >
-              Su correo electrónico no es válido.
-            </small>
-
-            <small
-              class="form-text text-danger"
-              *ngIf="settingsForm.get('email')?.errors?.minlength"
-              jhiTranslate="global.messages.validate.email.minlength"
-            >
-              Se requiere que su correo electrónico tenga por lo menos 5 caracteres
-            </small>
-
-            <small
-              class="form-text text-danger"
-              *ngIf="settingsForm.get('email')?.errors?.maxlength"
-              jhiTranslate="global.messages.validate.email.maxlength"
-            >
-              Su correo electrónico no puede tener más de 50 caracteres
-            </small>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="phone">Teléfono</label>
-          <input
-            type="phone"
-            class="form-control"
-            id="phone"
-            name="phone"
-            placeholder="Su teléfono"
-            formControlName="phone"
-            data-cy="phone"
-          />
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="degree">Título</label>
-          <input
-            type="text"
-            class="form-control"
-            id="degree"
-            name="degree"
-            placeholder="Su título"
-            formControlName="degree"
-            data-cy="degree"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="birthDay">Fecha de nacimiento</label>
-          <div class="input-group">
-            <input
-              placeholder="Su fecha de nacimiento"
-              id="birthDay"
-              data-cy="birthDay"
-              type="text"
-              class="form-control"
-              name="birthDay"
-              ngbDatepicker
-              #birthDayDp="ngbDatepicker"
-              formControlName="birthDay"
-            />
-            <button type="button" class="btn btn-secondary" (click)="birthDayDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <input
-            type="text"
-            class="form-control d-lg-none"
-            id="id"
-            name="id"
-            placeholder="{{ 'global.form.id.placeholder' }}"
-            formControlName="id"
-            data-cy="id"
-          />
-        </div>
-
-        <div class="mb-3">
-          <button
-            type="submit"
-            [disabled]="settingsForm.invalid"
-            class="btn btn-primary submit-btn"
-            jhiTranslate="settings.form.button"
-            data-cy="submit"
-          >
-            Guardar
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+</body>
