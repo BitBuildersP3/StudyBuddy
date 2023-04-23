@@ -46,12 +46,13 @@ export class UserManagementComponent implements OnInit {
 
   setActive(user: User, isActivated: boolean): void {
     Swal.fire({
-      title: '¿Está seguro que desea bloquear al usuario?',
+      title: '¿Está seguro que desea modificar el estado del usuario?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí!',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Sí',
     }).then(result => {
       if (result.isConfirmed) {
         this.userService.update({ ...user, activated: isActivated }).subscribe(() => this.loadAll());
