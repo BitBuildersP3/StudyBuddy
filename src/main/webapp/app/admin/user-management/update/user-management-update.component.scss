@@ -134,6 +134,15 @@ label span {
 
 }
 
+.separador {
+  height: 1px; /* Altura de la línea */
+  width: 14rem; /* Longitud de la línea */
+  background-color: #15537d; /* Color de la línea */
+  margin: 0 auto 1rem auto; /* Establecer los márgenes */
+  display: flex;
+  align-items: center;
+}
+
 .mb-3{
  // background-color:$color-secundario ;
   // border-radius: 1rem;
