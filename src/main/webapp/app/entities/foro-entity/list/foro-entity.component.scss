@@ -1,6 +1,6 @@
 .item-cont {
   // height: 1.5 rem;
-  width: 40%;
+  width: 100%;
 }
 .secondConteiner {
   min-height: 18rem;
@@ -19,4 +19,27 @@
 
 .botones button {
   color: #fff;
+}
+
+.principalConteiner {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns with equal width */
+  grid-gap: 10px; /* Gap between grid items */
+}
+
+.info-cont {
+  border: solid 0.2rem #de9a38;
+  border-radius: 0.3rem;
+  display: flex;
+  padding: 2rem;
+  flex-direction: column;
+  margin: 2rem;
+  align-items: center;
+
+  text-align: center;
+
+  button {
+    max-width: 10rem;
+    width: 100%;
+  }
 }

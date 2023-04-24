@@ -36,6 +36,10 @@ export class ForoEntityComponent implements OnInit {
     this.load();
   }
 
+  redirectConfig(): void {
+    window.location.href = 'https://deadsimplechat.com/dashboard/chatrooms/edit/64361f7161110317821f9f1f';
+  }
+
   approve(): void {
     Swal.fire({
       title: 'Aceptar petición',

@@ -59,7 +59,7 @@ export class ForoEntityUpdateComponent implements OnInit {
 
       console.log(obj);
 
-      // this.subscribeToSaveResponse(this.foroEntityService.create(obj));
+      this.subscribeToSaveResponse(this.foroEntityService.create(obj));
 
       // console.log(obj);
 

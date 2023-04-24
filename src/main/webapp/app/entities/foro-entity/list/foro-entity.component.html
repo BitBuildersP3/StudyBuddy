@@ -1,11 +1,15 @@
 <div class="p-5">
   <div class="d-flex justify-content-center flex-column align-items-center p-4">
     <h2 id="page-heading" data-cy="ForoEntityHeading">
-      <strong>Peticiones de temas para el foro </strong>
+      <strong class="txt-dark-blue">Peticiones de temas para el foro </strong>
       <button class="btn btnEdit color-w" title="Refrescar Tabla" (click)="load()" [disabled]="isLoading">
         <fa-icon class="" icon="sync" [spin]="isLoading"></fa-icon>
       </button>
     </h2>
+    <div class="info-cont">
+      <p>Configure detalles relacionados con el foro, como los temas, permisos de usuario, etc.</p>
+      <button (click)="redirectConfig()" class="btn btnEdit color-w">Configurar</button>
+    </div>
   </div>
 
   <jhi-alert-error></jhi-alert-error>
