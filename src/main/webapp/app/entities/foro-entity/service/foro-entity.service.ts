@@ -18,7 +18,7 @@ export class ForoEntityService {
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
-  create(foroEntity: NewForoEntity): Observable<EntityResponseType> {
+  create(foroEntity: any): Observable<EntityResponseType> {
     return this.http.post<IForoEntity>(this.resourceUrl, foroEntity, { observe: 'response' });
   }
 
