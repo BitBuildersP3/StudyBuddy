@@ -15,10 +15,20 @@
   <jhi-alert-error></jhi-alert-error>
 
   <jhi-alert></jhi-alert>
+  <!--
+   <div class="alert alert-warning" id="no-result" *ngIf="foroEntities?.length === 0">
+     <span >Ningún Foro  encontrado</span>
+   </div>
+  -->
+   <!-- fin lista  -->
 
-  <div class="alert alert-warning" id="no-result" *ngIf="foroEntities?.length === 0">
-    <span jhiTranslate="studyBuddyApp.foroEntity.home.notFound">Ningún Foro Entities encontrado</span>
+  <div class="wapper-no-cont" id="no-result" *ngIf="foroEntities?.length === 0">
+    <div class="cont-title">
+      <h1>El usuario no ha creado temas aún</h1>
+      <fa-icon class="icon shake" icon="circle-exclamation"></fa-icon>
+    </div>
   </div>
+
 
   <div class="" id="entities" *ngIf="foroEntities && foroEntities.length > 0">
     <div class="principalConteiner">
@@ -29,7 +39,7 @@
               <p>{{ spreaded }}</p>
             </ng-container>
           </div>
-
+          <p>Holis</p>
           <!-- Botones -->
           <div class="botones">
             <button type="submit" title="Ver" (click)="approve()" class="btn btnActive" data-cy="entityDetailsButton">
@@ -41,7 +51,12 @@
           </div>
         </div>
       </div>
+
     </div>
+
+
+
+
 
     <!-- <div *ngFor="let foroEntity of foroEntities">
       <p>{{ foroEntity.id }}</p>
