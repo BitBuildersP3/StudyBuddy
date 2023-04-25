@@ -9,6 +9,8 @@ import { RegisterService } from './register.service';
 // Imports nuevos
 import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
 import { UserVotesService } from '../../entities/user-votes/service/user-votes.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-register',
@@ -71,7 +73,8 @@ export class RegisterComponent implements AfterViewInit {
     private translateService: TranslateService,
     private registerService: RegisterService,
     private extraUserInfoService: ExtraUserInfoService,
-    private userVotesService: UserVotesService
+    private userVotesService: UserVotesService,
+    public router: Router
   ) {}
 
   ngAfterViewInit(): void {
@@ -101,8 +104,16 @@ export class RegisterComponent implements AfterViewInit {
         .subscribe({ next: () => (this.success = true), error: response => this.processError(response) })
         .add(() => {
           this.userVotesService.createByUser(login).subscribe();
+          if (this.success == true) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Registrado correctamente',
+              text: 'Por favor, revise su correo electrónico para activar la cuenta.',
+              showConfirmButton: true,
+            });
+            this.router.navigate(['login']);
+          }
         });
-      // this.registerExtraInfo(phone, degree, birthDay, login);
     }
   }
 

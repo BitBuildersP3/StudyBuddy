@@ -129,19 +129,6 @@ export class CoursesComponentMyCourses implements OnInit {
         });
       }
     });
-    /*const modalRef = this.modalService.open(CoursesDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.courses = courses;
-    // unsubscribe not needed because closed completes on modal close
-    modalRef.closed
-      .pipe(
-        filter(reason => reason === ITEM_DELETED_EVENT),
-        switchMap(() => this.loadFromBackendWithRouteInformations())
-      )
-      .subscribe({
-        next: (res: EntityArrayResponseType) => {
-          this.onResponseSuccess(res);
-        },
-      });*/
   }
 
   load(): void {
