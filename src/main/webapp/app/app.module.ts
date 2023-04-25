@@ -21,6 +21,8 @@ import { fontAwesomeIcons } from './config/font-awesome-icons';
 import { httpInterceptorProviders } from 'app/core/interceptor/index';
 import { MainComponent } from './layouts/main/main.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
+import { ForoEntityModule } from 'app/entities/foro-entity/foro-entity.module';
+
 import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
@@ -37,6 +39,7 @@ import { VideoRegisterFileComponent } from './file-manager/video-register-file/v
     BrowserModule,
     SharedModule,
     HomeModule,
+    ForoEntityModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     AppRoutingModule,
     // Set this to true to enable service worker (PWA)

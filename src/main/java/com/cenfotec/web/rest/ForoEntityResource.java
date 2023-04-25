@@ -48,10 +48,11 @@ public class ForoEntityResource {
     @PostMapping("/foro-entities")
     public ResponseEntity<ForoEntity> createForoEntity(@RequestBody ForoEntity foroEntity) throws URISyntaxException {
         log.debug("REST request to save ForoEntity : {}", foroEntity);
-        if (foroEntity.getId() != null) {
-            throw new BadRequestAlertException("A new foroEntity cannot already have an ID", ENTITY_NAME, "idexists");
-        }
+//        if (foroEntity.getId() != null) {
+//            throw new BadRequestAlertException("A new foroEntity cannot already have an ID", ENTITY_NAME, "idexists");
+//        }
         ForoEntity result = foroEntityRepository.save(foroEntity);
+        System.out.println(result);
         return ResponseEntity
             .created(new URI("/api/foro-entities/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId()))
