@@ -17,8 +17,12 @@ export class EventsDetailComponent implements OnInit {
   eve: IEvents | null = null;
   mostrarAtributos = false;
 
+  mostrarEditar = false;
+
   isSaving = false;
   ownerName: string = '';
+
+  actualUser: string = '';
   constructor(
     protected activatedRoute: ActivatedRoute,
     protected eventsService: EventsService,
@@ -34,6 +38,7 @@ export class EventsDetailComponent implements OnInit {
         const login = res.body?.user?.login;
         if (login != null) {
           this.ownerName = login;
+          this.actualUser = login;
           console.log('yo soy el loging ' + login);
         }
         this.activatedRoute.data.subscribe(({ events }) => {
@@ -55,6 +60,17 @@ export class EventsDetailComponent implements OnInit {
       this.mostrarAtributos = !this.mostrarAtributos;
       console.log('TE ESTOY BUSCANDO' + idEvent.status);
     }
+
+
+    if (idEvent.user?.login == this.actualUser) {
+      this.mostrarEditar = !this.mostrarEditar;
+      console.log('TE ESTOY BUSCANDO' + idEvent.user);
+    }
+
+
+    console.log('Evento USER: ' + idEvent.user?.login);
+    console.log('Evento USER: ' + this.actualUser);
+
   }
 
   previousState(): void {

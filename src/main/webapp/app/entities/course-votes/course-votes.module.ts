@@ -9,5 +9,6 @@ import { CourseVotesRoutingModule } from './route/course-votes-routing.module';
 @NgModule({
   imports: [SharedModule, CourseVotesRoutingModule],
   declarations: [CourseVotesComponent, CourseVotesDetailComponent, CourseVotesUpdateComponent, CourseVotesDeleteDialogComponent],
+  exports: [CourseVotesComponent],
 })
 export class CourseVotesModule {}

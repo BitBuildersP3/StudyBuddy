@@ -8,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class NewsComponent implements OnInit {
   @Input()
   news: any[] = [];
+  @Input()
+  redirect: any = '';
 
   constructor() {}
 

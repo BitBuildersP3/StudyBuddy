@@ -1,27 +1,32 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-category-heading" data-cy="CategoryCreateUpdateHeading" jhiTranslate="studyBuddyApp.category.home.createOrEditLabel">
-        Crear o editar Category
+      <h2 id="jhi-category-heading" data-cy="CategoryCreateUpdateHeading" class="titulo">
+        Crear o editar categoría
       </h2>
 
       <div>
+
+        <div class="separador"> </div>
         <jhi-alert-error></jhi-alert-error>
+        <div class="cardForm">
 
         <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
-          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <label class="label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="textInput acortado" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="studyBuddyApp.category.name" for="field_name">Name</label>
-          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <label class="label"  for="field_name">Nombre de la categoría</label>
+          <input type="text" class="textInput acortado" name="name" id="field_name" data-cy="name" formControlName="name" />
         </div>
       </div>
+      </div>
 
+      <div  class ="divBtn">
       <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        <button type="button" title="Cancelar" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span ></span>
         </button>
 
         <button
@@ -30,10 +35,13 @@
           data-cy="entityCreateSaveButton"
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
+          title="Guardar"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span ></span>
         </button>
       </div>
+      </div>
+
     </form>
   </div>
 </div>

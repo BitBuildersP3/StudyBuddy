@@ -58,7 +58,7 @@ export class ForoEntityComponent implements OnInit {
 
   delete(foroEntity: any): void {
     Swal.fire({
-      title: 'Aceptar petición',
+      title: '¿Desea eliminar la petición?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

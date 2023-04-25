@@ -1,4 +1,4 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import locale from '@angular/common/locales/es';
@@ -32,7 +32,9 @@ import { IndexRegisterFileComponent } from './file-manager/index-register-file/i
 import { OwnRegisterFileComponent } from './file-manager/own-register-file/own-register-file.component';
 import { VideoRegisterFileComponent } from './file-manager/video-register-file/video-register-file.component';
 
+
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
     SharedModule,
@@ -54,6 +56,7 @@ import { VideoRegisterFileComponent } from './file-manager/video-register-file/v
   ],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   bootstrap: [MainComponent],
+  exports: [],
 })
 export class AppModule {
   constructor(applicationConfigService: ApplicationConfigService, iconLibrary: FaIconLibrary, dpConfig: NgbDatepickerConfig) {

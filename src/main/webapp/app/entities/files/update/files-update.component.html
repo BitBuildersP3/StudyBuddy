@@ -1,17 +1,19 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate class="custom-form align-items-center" (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading">Editar Archivos</h2>
+      <h2 id="jhi-files-heading" data-cy="FilesCreateUpdateHeading" class="titulo">Editar Archivos</h2>
 
+
+      <div class="separador"></div>
       <div class="cardForm">
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="mb-3" *ngIf="editForm.controls.id.value !== null">
+        <div class="mb-3" *ngIf="editForm.controls.id.value !== null" style="display: none;">
           <label class="form-label" for="field_id">ID: </label>
           <input type="number" class="form-control myIdInput" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>
 
-        <div class="separador"></div>
+
 
         <div class="mb-3">
           <label class="form-label" for="field_name">Nombre del archivo:</label>
@@ -118,8 +120,10 @@
       </div>
 
       <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+
+        <div  class ="divBtn">
+        <button title="Cancelar" type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span ></span>
         </button>
 
         <button
@@ -128,9 +132,12 @@
           data-cy="entityCreateSaveButton"
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
+          title="Guardar"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span ></span>
         </button>
+
+        </div>
       </div>
     </form>
   </div>

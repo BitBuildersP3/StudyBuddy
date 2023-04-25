@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { SharedLibsModule } from './shared-libs.module';
 import { FindLanguageFromKeyPipe } from './language/find-language-from-key.pipe';
 import { TranslateDirective } from './language/translate.directive';
@@ -16,7 +15,9 @@ import { FilterComponent } from './filter/filter.component';
 import { CloudinaryButtonComponent } from './cloudinary/cloudinary-button/cloudinary-button.component';
 import { ModalComponent } from './modal/modal.component';
 import { ModalNoButtonComponent } from './modal-no-button/modal-no-button.component';
+import { VotesComponent } from './votes/votes.component';
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [SharedLibsModule],
   declarations: [
     ModalComponent,
@@ -34,6 +35,7 @@ import { ModalNoButtonComponent } from './modal-no-button/modal-no-button.compon
     ItemCountComponent,
     FilterComponent,
     CloudinaryButtonComponent,
+    VotesComponent,
   ],
   exports: [
     ModalComponent,
@@ -52,6 +54,7 @@ import { ModalNoButtonComponent } from './modal-no-button/modal-no-button.compon
     ItemCountComponent,
     FilterComponent,
     CloudinaryButtonComponent,
+    VotesComponent,
   ],
 })
 export class SharedModule {}
