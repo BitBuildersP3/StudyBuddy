@@ -762,3 +762,7 @@ p {
   text-decoration: none;
   border-radius: 5px;
 }
+
+.backColorSmoke {
+  background-color: whitesmoke;
+}
