@@ -447,4 +447,19 @@
       <iframe [src]="safeUrl" width="400px" height="600px"></iframe>
     </div>
   </ng-container>
+
+  <ng-container>
+    <div class="floating-cont-tools floating-position-left">
+      <!-- TodoList -->
+      <jhi-modal [btnLabel]="'TodoList'" [typeBtn]="'solo-icon'" [icon]="'list-check'">
+        <jhi-todo-list class="todolist-modal-height"></jhi-todo-list>
+      </jhi-modal>
+      <fa-icon icon="clock" [fixedWidth]="true"></fa-icon>
+    </div>
+  </ng-container>
+
+  <div class="floating-position-left">
+    <!-- Pomodoro -->
+    <jhi-tool-pom></jhi-tool-pom>
+  </div>
 </nav>

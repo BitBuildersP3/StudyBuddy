@@ -701,7 +701,6 @@ p {
   background-color: #de9a38;
   border-radius: 10px;
   padding: 10px;
-  margin: 10px;
 }
 
 .floating-btn-foro:after {
@@ -765,4 +764,10 @@ p {
 
 .backColorSmoke {
   background-color: whitesmoke;
+}
+
+.floating-position-left {
+  position: fixed;
+  left: 2rem;
+  bottom: 2rem;
 }
