@@ -63,7 +63,6 @@
             </span>
           </a>
         </li>
-        <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
         <li
           *ngSwitchCase="true"
           ngbDropdown
@@ -174,7 +173,6 @@
                 <span jhiTranslate="global.menu.admin.apidocs">API</span>
               </a>
             </li>
-            <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
           </ul>
         </li>
         <li
@@ -227,7 +225,6 @@
             <!-- *ngSwitchCase="true" -->
             <li *ngIf="!account?.authorities?.includes('ROLE_ADMIN') && account?.login != null">
               <a class="dropdown-item" routerLink="foro-entity/new" routerLinkActive="active" (click)="collapseNavbar()">
-                <!-- <fa-icon icon="cloud" [fixedWidth]="true"></fa-icon> -->
                 <fa-icon icon="plus" [fixedWidth]="true"></fa-icon>
 
                 <span>Tema para foro</span>
@@ -236,7 +233,6 @@
 
             <li *ngIf="account?.authorities?.includes('ROLE_ADMIN') && account?.login != null">
               <a class="dropdown-item" routerLink="foro-entity" routerLinkActive="active" (click)="collapseNavbar()">
-                <!-- <fa-icon icon="cloud" [fixedWidth]="true"></fa-icon> -->
                 <fa-icon icon="list" [fixedWidth]="true"></fa-icon>
                 <span>Peticiones de temas</span>
               </a>
