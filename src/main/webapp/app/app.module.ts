@@ -22,6 +22,7 @@ import { httpInterceptorProviders } from 'app/core/interceptor/index';
 import { MainComponent } from './layouts/main/main.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { ForoEntityModule } from 'app/entities/foro-entity/foro-entity.module';
+import { PomodoroComponent } from './entities/pomodoro/list/pomodoro.component';
 
 import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
@@ -31,7 +32,6 @@ import { FilesManagerComponent } from './files-manager/files-manager.component';
 import { IndexRegisterFileComponent } from './file-manager/index-register-file/index-register-file.component';
 import { OwnRegisterFileComponent } from './file-manager/own-register-file/own-register-file.component';
 import { VideoRegisterFileComponent } from './file-manager/video-register-file/video-register-file.component';
-
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

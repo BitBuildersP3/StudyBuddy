@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Route } from '@angular/router';
 
 import { errorRoute } from './layouts/error/error.route';
 import { navbarRoute } from './layouts/navbar/navbar.route';
@@ -23,6 +24,10 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
         {
           path: 'account',
           loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
+        },
+        {
+          path: 'tools',
+          loadChildren: () => import('./tools/tools.module').then(m => m.ToolsModule),
         },
         {
           path: 'landing',

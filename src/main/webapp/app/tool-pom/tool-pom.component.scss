@@ -24,7 +24,8 @@ body {
   border: 1px solid black;
   border-radius: 1rem;
   padding: 20px;
-  width: 225px;
+  width: 100%;
+  max-width: 480px;
 }
 .pomodoro-item {
   width: 100%;
