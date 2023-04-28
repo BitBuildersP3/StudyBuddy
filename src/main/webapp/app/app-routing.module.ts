@@ -27,11 +27,19 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
         },
         {
           path: 'tools',
+          canActivate: [UserRouteAccessService],
+
+          data: {
+            authorities: [Authority.ADMIN, Authority.USER],
+          },
           loadChildren: () => import('./tools/tools.module').then(m => m.ToolsModule),
         },
         {
           path: 'landing',
-          // canActivate: [UserRouteAccessService],
+          canActivate: [UserRouteAccessService],
+          data: {
+            authorities: [Authority.ADMIN, Authority.USER],
+          },
           loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule),
         },
         {
