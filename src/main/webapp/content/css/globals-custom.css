@@ -683,7 +683,7 @@ p {
 
 /* text Global colors */
 .txt-dark-blue {
-  color: #15537d;
+  color: #15537d !important;
 }
 
 /* foro */
@@ -770,4 +770,32 @@ p {
   position: fixed;
   left: 2rem;
   bottom: 2rem;
+}
+
+.subt-cont {
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.subt-tools {
+  font-weight: 400 !important;
+  font-size: 30px;
+  line-height: 32px;
+  margin: 0 0 12px 0;
+  color: #15537d !important;
+  text-align: center;
+  width: 100%;
+}
+.cont-sttings-pom {
+  width: 100%;
+}
+
+#save-entity {
+  height: 2.5rem;
+  border: none;
+}
+
+#save-entity fa-icon:hover {
+  color: #de9a38;
+  font-size: 1rem;
 }

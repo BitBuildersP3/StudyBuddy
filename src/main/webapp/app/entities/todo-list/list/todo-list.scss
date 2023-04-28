@@ -28,7 +28,6 @@ ul {
   padding: 0;
 }
 .conteinerTask {
-  margin-top: 3rem;
   gap: 1rem;
   display: flex;
   flex-direction: column;
@@ -44,7 +43,7 @@ ul {
   padding: 24px;
   overflow: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  min-height: 29rem;
+  min-height: 32rem;
 }
 
 .app-header {
@@ -84,7 +83,7 @@ ul {
   padding: 0 4px;
   outline: none;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: solid 3px #de9a38;
   background-color: transparent;
   color: black;
   box-shadow: none;
@@ -94,6 +93,12 @@ ul {
     color: black;
   }
 }
+
+.inputTak,
+.task-list-item-label span {
+  font-size: 1rem;
+}
+
 .inputTak {
   width: 100%;
   min-width: 23rem;
