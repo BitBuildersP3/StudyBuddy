@@ -1,10 +1,10 @@
 <title>Curso</title>
 
 <ng-container *ngIf="sections.length > 0; else noSections">
-  <div class="d-flex justify-content-center align-items-center wapper">
-    <div class="col-8">
+  <div class="backColorSmoke d-flex justify-content-center align-items-center wapper">
+    <div class="box-shadow col-8">
       <div class="cont-cols" *ngIf="courses">
-        <div class="col-class">
+        <div class="col-class-space col-class">
           <div>
             <h1 data-cy="coursesDetailsHeading" class="titles"><span>Curso:</span> {{ courses.name }}</h1>
           </div>
@@ -64,7 +64,7 @@
           </div>
         </div>
 
-        <div class="col-content" *ngIf="currentSection">
+        <div class="spaceColor col-content" *ngIf="currentSection">
           <h1 data-cy="coursesDetailsHeading" class="titles"><span>Clase:</span> {{ currentSection.name }}</h1>
           <div class="d-flex flex-column gap-4" *ngIf="isRegister || isOwner">
             <!-- start for -->
@@ -119,13 +119,13 @@
               <span *ngIf="currentSection.creationDate && j < 1"><b>Fecha de publicación:</b> {{ currentSection.creationDate }}</span>
               <ng-container *ngIf="currentSection.description && j < 1">
                 <span><b>Descripción:</b> {{ currentSection.description }}</span>
-                <div *ngIf="file.type != 'index' && file.type != 'own'">
+                <div class="" *ngIf="file.type != 'index' && file.type != 'own'">
                   <div class="separador"></div>
                   <div class="row">
                     <div class="col-4"><jhi-votes label="Puntuacion del curso" [disable]="true" [votes]="TotalVotes"></jhi-votes></div>
                     <div class="col-5">
                       <b style="position: relative; top: 57%; margin-left: 10px"
-                        >{{ TotalVotes | number: '1.1-1' }} por {{ totalUsers }} usuarios</b
+                        >Calificación {{ TotalVotes | number: '1.1-1' }} por {{ totalUsers }} usuarios</b
                       >
                     </div>
                   </div>

@@ -44,3 +44,25 @@ Logo styles
 .box-shadow {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+// tools
+.floating-position-left {
+  position: fixed;
+  left: 2rem;
+  bottom: 2rem;
+}
+
+.floating-cont-tools {
+  background-color: #15537d;
+  display: flex;
+  flex-direction: column;
+  padding: 0.7rem;
+  border-radius: 0.2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  fa-icon {
+    color: #fff;
+    font-size: 1.3rem;
+  }
+}

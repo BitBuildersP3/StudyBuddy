@@ -58,7 +58,7 @@ export class UserManagementComponent implements OnInit {
         this.userService.update({ ...user, activated: isActivated }).subscribe(() => this.loadAll());
         Swal.fire({
           icon: 'success',
-          title: 'Bloqueado correctamente',
+          title: 'Modificado correctamente',
           showConfirmButton: true,
           timer: 3000,
         }).then(result => {

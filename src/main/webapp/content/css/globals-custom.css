@@ -683,7 +683,7 @@ p {
 
 /* text Global colors */
 .txt-dark-blue {
-  color: #15537d;
+  color: #15537d !important;
 }
 
 /* foro */
@@ -701,7 +701,6 @@ p {
   background-color: #de9a38;
   border-radius: 10px;
   padding: 10px;
-  margin: 10px;
 }
 
 .floating-btn-foro:after {
@@ -761,4 +760,44 @@ p {
   gap: 0.5rem;
   text-decoration: none;
   border-radius: 5px;
+}
+
+.backColorSmoke {
+  background-color: whitesmoke;
+}
+
+.floating-position-left {
+  position: fixed;
+  left: 2rem;
+  bottom: 2rem;
+}
+
+.subt-cont {
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.subt-tools {
+  font-weight: 400 !important;
+  font-size: 30px;
+  line-height: 32px;
+  margin: 0 0 12px 0;
+  color: #15537d !important;
+  text-align: center;
+  width: 100%;
+}
+
+.cont-sttings-pom {
+  width: 100%;
+}
+
+#save-entity {
+  height: 2.5rem;
+  border: none;
+}
+
+#save-entity fa-icon:hover {
+  color: #de9a38;
+  font-size: 1rem;
 }

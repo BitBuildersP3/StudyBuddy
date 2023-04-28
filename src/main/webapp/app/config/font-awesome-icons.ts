@@ -1,5 +1,8 @@
 import {
   faArrowLeft,
+  faPencilRuler,
+  faRuler,
+  faListCheck,
   faMessage,
   faArrowRight,
   faAngleDown,
@@ -56,12 +59,16 @@ import {
   faUserGear,
   faLink,
   faCirclePlay,
-
+  faClock,
   // jhipster-needle-add-icon-import
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeIcons = [
   faArrowRight,
+  faRuler,
+  faPencilRuler,
+
+  faClock,
   faAngleDown,
   faMessage,
   faCircleExclamation,
@@ -118,6 +125,7 @@ export const fontAwesomeIcons = [
   faUserGear,
   faLink,
   faCirclePlay,
+  faListCheck,
 
   // jhipster-needle-add-icon-import
 ];

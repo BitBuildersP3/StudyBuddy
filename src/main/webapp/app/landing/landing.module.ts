@@ -10,13 +10,12 @@ import { FeaturesComponent } from './features/features.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { NewsComponent } from './news/news.component';
 import { InstructorsComponent } from './instructors/instructors.component';
-import { ToolPomModule } from '../tool-pom/tool-pom/tool-pom.module';
 import { TodoListModule } from 'app/entities/todo-list/todo-list.module';
 import { NewsModule } from '../entities/news/news.module';
 import { NewsComponentComponent } from './news-component/news-component.component';
 
 @NgModule({
-  imports: [SharedModule, RouterModule.forChild([LANDING_ROUTE]), ToolPomModule, TodoListModule, NewsModule],
+  imports: [SharedModule, RouterModule.forChild([LANDING_ROUTE]), TodoListModule, NewsModule],
   declarations: [
     LandingComponent,
     CourseCarouselComponent,
