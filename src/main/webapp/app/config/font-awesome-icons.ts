@@ -1,5 +1,6 @@
 import {
   faArrowLeft,
+  faPencilRuler,
   faRuler,
   faListCheck,
   faMessage,
@@ -65,6 +66,7 @@ import {
 export const fontAwesomeIcons = [
   faArrowRight,
   faRuler,
+  faPencilRuler,
 
   faClock,
   faAngleDown,

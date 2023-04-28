@@ -63,48 +63,6 @@ Logo styles
   gap: 0.7rem;
   fa-icon {
     color: #fff;
+    font-size: 1.3rem;
   }
-}
-
-.tool-bubble {
-  width: 40px;
-  height: 40px;
-  background-color: #4caf50;
-  border-radius: 50%;
-  position: relative;
-}
-
-.tool-bubble::before {
-  content: '';
-  display: block;
-  width: 8px;
-  height: 8px;
-  background-color: white;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.tool-bubble::after {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 4px;
-  background-color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-45deg);
-  transform-origin: bottom right;
-  border-top-left-radius: 3px;
-}
-
-.tool-bubble::after {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
-  transform-origin: bottom left;
-  border-top-right-radius: 3px;
 }
