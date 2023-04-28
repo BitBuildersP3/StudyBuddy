@@ -25,7 +25,8 @@
 
         <div class="mb-3">
           <label class="form-label" for="field_image">Imagen</label>
-          <input type="text" class="form-control" name="image" id="field_image" data-cy="image" formControlName="image" />
+          <jhi-cloudinary-button text="Subir imagen" (urlChanged)="saveImage($event)"></jhi-cloudinary-button>
+          <img *ngIf="previewURL != ''" src="{{ previewURL }}" alt="imagen" />
         </div>
 
         <div class="mb-3">

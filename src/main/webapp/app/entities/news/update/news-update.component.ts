@@ -38,7 +38,7 @@ export class NewsUpdateComponent implements OnInit {
       if (news) {
         this.updateForm(news);
       }
-
+      this.previewURL = news.image;
       this.loadRelationshipsOptions();
     });
   }
@@ -47,9 +47,18 @@ export class NewsUpdateComponent implements OnInit {
     window.history.back();
   }
 
+  saveImage(url: string) {
+    this.previewURL = url;
+  }
+
   save(): void {
     this.isSaving = true;
     const news = this.newsFormService.getNews(this.editForm);
+    if (this.previewURL === '') {
+      news.image = 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1681166198/default-image_ltck0i.webp';
+    } else {
+      news.image = this.previewURL;
+    }
     if (news.id !== null) {
       this.subscribeToSaveResponse(this.newsService.update(news));
     } else {
