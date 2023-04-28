@@ -12,9 +12,19 @@ import { NewsComponent } from './news/news.component';
 import { InstructorsComponent } from './instructors/instructors.component';
 import { ToolPomModule } from '../tool-pom/tool-pom/tool-pom.module';
 import { TodoListModule } from 'app/entities/todo-list/todo-list.module';
+import { NewsModule } from '../entities/news/news.module';
+import { NewsComponentComponent } from './news-component/news-component.component';
 
 @NgModule({
-  imports: [SharedModule, RouterModule.forChild([LANDING_ROUTE]), ToolPomModule, TodoListModule],
-  declarations: [LandingComponent, CourseCarouselComponent, FeaturesComponent, AboutUsComponent, NewsComponent, InstructorsComponent],
+  imports: [SharedModule, RouterModule.forChild([LANDING_ROUTE]), ToolPomModule, TodoListModule, NewsModule],
+  declarations: [
+    LandingComponent,
+    CourseCarouselComponent,
+    FeaturesComponent,
+    AboutUsComponent,
+    NewsComponent,
+    InstructorsComponent,
+    NewsComponentComponent,
+  ],
 })
 export class LandingModule {}

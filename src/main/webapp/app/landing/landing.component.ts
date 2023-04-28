@@ -4,8 +4,9 @@ import { CoursesService } from '../entities/courses/service/courses.service';
 import { ExtraUserInfoService } from '../entities/extra-user-info/service/extra-user-info.service';
 import { switchMap } from 'rxjs';
 import { Title } from '@angular/platform-browser';
+import { NewsService } from '../entities/news/service/news.service';
 
-interface CoursesData {
+interface GeneralData {
   image: string | null | undefined;
   slideTitle: string | null | undefined;
   slideExerpt: string | null | undefined;
@@ -20,13 +21,19 @@ interface CoursesData {
   styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent implements OnInit {
-  slides: CoursesData[] = [];
-  userCuourses: CoursesData[] = [];
-  ownerCourses: CoursesData[] = [];
-  topUsers: CoursesData[] = [];
+  slides: GeneralData[] = [];
+  news: GeneralData[] = [];
+  userCuourses: GeneralData[] = [];
+  ownerCourses: GeneralData[] = [];
+  topUsers: GeneralData[] = [];
   private currentUserId: number | undefined = 0;
 
-  constructor(private courseService: CoursesService, private extraUserInfo: ExtraUserInfoService, private titleService: Title) {}
+  constructor(
+    private courseService: CoursesService,
+    private extraUserInfo: ExtraUserInfoService,
+    private titleService: Title,
+    private newsService: NewsService
+  ) {}
 
   ngOnInit(): void {
     this.titleService.setTitle('Página de Inicio');
@@ -97,6 +104,22 @@ export class LandingComponent implements OnInit {
             slideExerpt: data.excerpt,
             slideTitle: data.name,
             status: data.status,
+          });
+        });
+        console.log(this.slides);
+        this.slides = this.slides.filter(course => course.status === 'active');
+      },
+    });
+    this.newsService.findFourNewst().subscribe({
+      next: value => {
+        value.body?.map((data, index) => {
+          this.news.push({
+            score: undefined,
+            redirect: data.id,
+            image: data.image,
+            slideExerpt: data.excerpt,
+            slideTitle: data.name,
+            status: undefined,
           });
         });
         console.log(this.slides);

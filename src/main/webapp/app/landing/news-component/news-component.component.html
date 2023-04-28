@@ -1,0 +1,24 @@
+<div class="container-xxl py-5">
+  <h3 class="text-center">Noticas</h3>
+  <div class="separador"></div>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s" *ngFor="let new of news">
+        <div class="service-item text-center pt-3">
+          <div class="p-4 textContent">
+            <fa-icon icon="eye"></fa-icon>
+            <h5 class="mb-3">{{ new.slideTitle }}</h5>
+            <p>{{ new.slideExerpt }}</p>
+          </div>
+          <div>
+            <jhi-modal class="modal-cust" [typeBtn]="'solo-txt'" [btnLabel]="'Ver noticia'">
+              <jhi-news-detail class="content-modal" [newId]="new.redirect"></jhi-news-detail>
+            </jhi-modal>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="separador" style="margin-top: 5rem"></div>
+</div>

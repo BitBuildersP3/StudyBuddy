@@ -43,6 +43,11 @@ export class NewsService {
       .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
+  findFourNewst(): Observable<EntityArrayResponseType> {
+    return this.http
+      .get<RestNews[]>(`${this.resourceUrl}/fourNews`, { observe: 'response' })
+      .pipe(map(res => this.convertResponseArrayFromServer(res)));
+  }
   partialUpdate(news: PartialUpdateNews): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(news);
     return this.http

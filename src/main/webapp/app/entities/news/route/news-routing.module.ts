@@ -10,13 +10,13 @@ import { ASC } from 'app/config/navigation.constants';
 
 const newsRoute: Routes = [
   {
-    path: '',
+    path: 'list',
     component: NewsComponent,
     data: {
       defaultSort: 'id,' + ASC,
     },
     canActivate: [UserRouteAccessService],
-  },
+  } /*
   {
     path: ':id/view',
     component: NewsDetailComponent,
@@ -24,7 +24,7 @@ const newsRoute: Routes = [
       news: NewsRoutingResolveService,
     },
     canActivate: [UserRouteAccessService],
-  },
+  },*/,
   {
     path: 'new',
     component: NewsUpdateComponent,

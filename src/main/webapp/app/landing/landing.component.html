@@ -14,12 +14,12 @@
     <ng-container link><a class="btn btn-primary mx-1" href="/courses/myCourses">Crear curso</a></ng-container>
     <ng-container myLink> <a class="btn btn-primary mx-1" href="/courses/myCourses">Ver todos mis cursos creados</a></ng-container>
   </jhi-news>
-  <jhi-news [news]="topUsers" redirect="extra-user-info">
+  <jhi-news [news]="topUsers" [coursesRed]="true" redirect="extra-user-info">
     <ng-container title><h3 class="alin mb-5">Mejores Usuarios</h3></ng-container>
-    <ng-container warning> ¡No has creado ningún curso, créalo ahora! </ng-container>
-    <ng-container link><a class="btn btn-primary mx-1" href="/courses/myCourses">Crear curso</a></ng-container>
   </jhi-news>
+  <jhi-news-component [news]="news"></jhi-news-component>
   <jhi-features></jhi-features>
+
   <jhi-about-us></jhi-about-us>
 
   <!-- Pomodoro -->

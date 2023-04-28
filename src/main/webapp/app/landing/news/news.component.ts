@@ -10,6 +10,8 @@ export class NewsComponent implements OnInit {
   news: any[] = [];
   @Input()
   redirect: any = '';
+  @Input()
+  coursesRed: boolean = false;
 
   constructor() {}
 
