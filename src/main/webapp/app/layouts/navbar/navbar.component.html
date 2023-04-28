@@ -278,4 +278,10 @@
       <iframe [src]="safeUrl" width="400px" height="600px"></iframe>
     </div>
   </ng-container>
+
+  <ng-container *ngIf="account">
+    <a class="floating-cont-tools floating-position-left" href="/tools">
+      <fa-icon icon="pencil-ruler" [fixedWidth]="true"></fa-icon>
+    </a>
+  </ng-container>
 </nav>
