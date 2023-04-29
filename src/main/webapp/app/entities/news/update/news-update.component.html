@@ -35,24 +35,7 @@
           <img *ngIf="previewURL != ''" src="{{ previewURL }}" alt="imagen" />
         </div>
 
-        <div class="mb-3">
-          <label class="label" for="field_creationDate">Fecha de creación</label>
-          <div class="input-group">
-            <input
-              id="field_creationDate"
-              data-cy="creationDate"
-              type="text"
-              class="form-control"
-              name="creationDate"
-              ngbDatepicker
-              #creationDateDp="ngbDatepicker"
-              formControlName="creationDate"
-            />
-            <button type="button" class="btn btn-secondary" (click)="creationDateDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
-            </button>
-          </div>
-        </div>
+        <div class="mb-3"></div>
       </div>
 
       <div>

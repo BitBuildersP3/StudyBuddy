@@ -119,7 +119,7 @@ export class LandingComponent implements OnInit {
             image: data.image,
             slideExerpt: data.excerpt,
             slideTitle: data.name,
-            status: undefined,
+            status: data.creationDate?.format('MM-DD-YYYY'),
           });
         });
         console.log(this.slides);

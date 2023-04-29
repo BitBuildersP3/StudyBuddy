@@ -12,7 +12,7 @@ import { UserService } from 'app/entities/user/user.service';
 import { NewsDeleteDialogComponent } from '../delete/news-delete-dialog.component';
 import { ASC, DEFAULT_SORT_DATA, DESC, ITEM_DELETED_EVENT, SORT } from '../../../config/navigation.constants';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import dayjs from 'dayjs';
 @Component({
   selector: 'jhi-news-update',
   templateUrl: './news-update.component.html',
@@ -68,6 +68,8 @@ export class NewsUpdateComponent implements OnInit {
     if (news.id !== null) {
       this.subscribeToSaveResponse(this.newsService.update(news));
     } else {
+      // @ts-ignore
+      news.creationDate = dayjs();
       this.subscribeToSaveResponse(this.newsService.create(news));
     }
   }

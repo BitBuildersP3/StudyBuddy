@@ -25,7 +25,7 @@ public interface NewsRepository extends JpaRepository<News, Long> {
         return this.findAllWithToOneRelationships();
     }
 
-    List<News> findTop4ByOrderByCreationDate();
+    List<News> findTop4ByOrderByCreationDateDesc();
 
     default Page<News> findAllWithEagerRelationships(Pageable pageable) {
         return this.findAllWithToOneRelationships(pageable);

@@ -9,6 +9,7 @@
             <fa-icon icon="eye"></fa-icon>
             <h5 class="mb-3">{{ new.slideTitle }}</h5>
             <p>{{ new.slideExerpt }}</p>
+            <p>{{ new.status }}</p>
           </div>
           <div>
             <jhi-modal class="modal-cust" [typeBtn]="'solo-txt'" [btnLabel]="'Ver noticia'">
@@ -17,14 +18,15 @@
           </div>
         </div>
       </div>
-      <button
-        *jhiHasAnyAuthority="'ROLE_ADMIN'"
-        routerLink="/news/new"
-        class="text-uppercase btn btn-primary py-md-3 px-md-5 me-3 w-40 animated"
-      >
-        Nueva noticia
-      </button>
     </div>
   </div>
+  <button
+    *jhiHasAnyAuthority="'ROLE_ADMIN'"
+    routerLink="/news/new"
+    class="text-uppercase btn btn-primary py-md-3 px-md-5 me-3 w-40 animated"
+    style="margin-top: 5rem"
+  >
+    Nueva noticia
+  </button>
   <div class="separador" style="margin-top: 5rem"></div>
 </div>
