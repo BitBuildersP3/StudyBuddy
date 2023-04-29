@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Data, ParamMap } from '@angular/router';
+import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
 import { NewsFormService, NewsFormGroup } from './news-form.service';
 import { INews } from '../news.model';
-import { NewsService } from '../service/news.service';
+import { EntityArrayResponseType, NewsService } from '../service/news.service';
 import { IUser } from 'app/entities/user/user.model';
 import { UserService } from 'app/entities/user/user.service';
+import { NewsDeleteDialogComponent } from '../delete/news-delete-dialog.component';
+import { ASC, DEFAULT_SORT_DATA, DESC, ITEM_DELETED_EVENT, SORT } from '../../../config/navigation.constants';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-news-update',
@@ -18,6 +21,7 @@ export class NewsUpdateComponent implements OnInit {
   isSaving = false;
   news: INews | null = null;
   previewURL: string = '';
+  isUpdate: boolean = false;
 
   usersSharedCollection: IUser[] = [];
 
@@ -27,7 +31,8 @@ export class NewsUpdateComponent implements OnInit {
     protected newsService: NewsService,
     protected newsFormService: NewsFormService,
     protected userService: UserService,
-    protected activatedRoute: ActivatedRoute
+    protected activatedRoute: ActivatedRoute,
+    protected modalService: NgbModal
   ) {}
 
   compareUser = (o1: IUser | null, o2: IUser | null): boolean => this.userService.compareUser(o1, o2);
@@ -37,6 +42,7 @@ export class NewsUpdateComponent implements OnInit {
       this.news = news;
       if (news) {
         this.updateForm(news);
+        this.isUpdate = true;
       }
       this.previewURL = news.image;
       this.loadRelationshipsOptions();
@@ -66,14 +72,25 @@ export class NewsUpdateComponent implements OnInit {
     }
   }
 
+  delete(news: INews | null): void {
+    const modalRef = this.modalService.open(NewsDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.news = news;
+    // unsubscribe not needed because closed completes on modal close
+    modalRef.closed.subscribe({
+      next: (res: EntityArrayResponseType) => {
+        this.onResponseSuccess();
+      },
+    });
+  }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<INews>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
-      next: () => this.onSaveSuccess(),
+      next: () => this.onResponseSuccess(),
       error: () => this.onSaveError(),
     });
   }
 
-  protected onSaveSuccess(): void {
+  protected onResponseSuccess(): void {
     this.previousState();
   }
 

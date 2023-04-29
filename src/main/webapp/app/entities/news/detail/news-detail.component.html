@@ -2,7 +2,6 @@
   <div class="picsum-img-wrapper">
     <img class="carouselImg" src="{{ news.image }}" alt="imgen" />
   </div>
-
   <div class="d-flex justify-content-center">
     <div class="col-8">
       <h2 data-cy="newsDetailsHeading">
@@ -18,6 +17,9 @@
           <span>{{ news.creationDate | formatMediumDate }}</span>
         </dd>
       </dl>
+      <button type="button" [routerLink]="['/news', news.id, 'edit']" class="btn btn-primary" *jhiHasAnyAuthority="'ROLE_ADMIN'">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
     </div>
   </div>
 </div>

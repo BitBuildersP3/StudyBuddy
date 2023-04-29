@@ -17,8 +17,14 @@
           </div>
         </div>
       </div>
+      <button
+        *jhiHasAnyAuthority="'ROLE_ADMIN'"
+        routerLink="/news/new"
+        class="text-uppercase btn btn-primary py-md-3 px-md-5 me-3 w-40 animated"
+      >
+        Nueva noticia
+      </button>
     </div>
   </div>
-  <button *jhiHasAnyAuthority="'ROLE_ADMIN'"></button>
   <div class="separador" style="margin-top: 5rem"></div>
 </div>
