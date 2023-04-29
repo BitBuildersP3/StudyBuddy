@@ -19,6 +19,13 @@ p {
   width: 50rem;
 }
 
+.separador {
+  height: 1px; /* Altura de la línea */
+  width: 100%; /* Longitud de la línea */
+  background-color: #15537d; /* Color de la línea */
+  margin-bottom: 1rem;
+  align-content: center;
+}
 h5,
 .h5 {
   font-size: 2.25rem;
@@ -28,6 +35,10 @@ h5,
   font-weight: 700;
   line-height: 1.2;
   color: #181d38;
+}
+
+.textContent {
+  min-height: 25rem;
 }
 
 fa-icon {

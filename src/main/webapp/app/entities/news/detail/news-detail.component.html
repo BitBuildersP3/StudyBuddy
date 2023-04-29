@@ -1,50 +1,23 @@
-<div class="d-flex justify-content-center">
-  <div class="col-8">
-    <div *ngIf="news">
-      <h2 data-cy="newsDetailsHeading"><span jhiTranslate="studyBuddyApp.news.detail.title">News</span></h2>
+<div *ngIf="news">
+  <div class="picsum-img-wrapper">
+    <img class="carouselImg" src="{{ news.image }}" alt="imgen" />
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="col-8">
+      <h2 data-cy="newsDetailsHeading">
+        <span>{{ news.name }}</span>
+      </h2>
+      <span>{{ news.excerpt }}</span>
 
       <hr />
-
-      <jhi-alert-error></jhi-alert-error>
-
-      <jhi-alert></jhi-alert>
-
+      <p>{{ news.body }}</p>
       <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="global.field.id">ID</span></dt>
-        <dd>
-          <span>{{ news.id }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.news.name">Name</span></dt>
-        <dd>
-          <span>{{ news.name }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.news.excerpt">Excerpt</span></dt>
-        <dd>
-          <span>{{ news.excerpt }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.news.body">Body</span></dt>
-        <dd>
-          <span>{{ news.body }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.news.image">Image</span></dt>
-        <dd>
-          <span>{{ news.image }}</span>
-        </dd>
-        <dt><span jhiTranslate="studyBuddyApp.news.creationDate">Creation Date</span></dt>
+        <dt><span>Fecha: </span></dt>
         <dd>
           <span>{{ news.creationDate | formatMediumDate }}</span>
         </dd>
-        <dt><span jhiTranslate="studyBuddyApp.news.user">User</span></dt>
-        <dd>
-          <span>{{ news.user?.login }}</span>
-        </dd>
       </dl>
-
-      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
-      </button>
-
-      <button type="button" [routerLink]="['/news', news.id, 'edit']" class="btn btn-primary">
+      <button type="button" [routerLink]="['/news', news.id, 'edit']" class="btn btn-primary" *jhiHasAnyAuthority="'ROLE_ADMIN'">
         <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
       </button>
     </div>

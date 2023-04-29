@@ -14,7 +14,7 @@
           <div class="position-relative d-flex justify-content-center" style="margin-top: -23px">
             <div class="bg-light d-flex justify-content-center pt-2 px-1">
               <a class="btn btn-primary mx-1" href="/{{ redirect }}/{{ new.redirect }}/view">Ver más</a>
-              <a class="btn btn-primary mx-1" href="courses/search/{{ new.slideTitle }}">Ver cursos</a>
+              <a *ngIf="coursesRed" class="btn btn-primary mx-1" href="courses/search/{{ new.slideTitle }}">Ver cursos</a>
             </div>
           </div>
           <div class="text-center p-4">

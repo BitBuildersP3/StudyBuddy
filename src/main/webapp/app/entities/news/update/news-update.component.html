@@ -6,54 +6,36 @@
       </h2>
 
       <div class="cardForm">
-        <jhi-alert-error></jhi-alert-error>
-
-        <div class="mb-3" *ngIf="editForm.controls.id.value !== null">
-          <label class="form-label">ID</label>
-          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
-
         <div class="mb-3">
           <label class="form-label">Nombre</label>
-          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <input type="text" class="form-control" name="name" id="field_name" required data-cy="name" formControlName="name" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Extracto</label>
-          <input type="text" class="form-control" name="excerpt" id="field_excerpt" data-cy="excerpt" formControlName="excerpt" />
+          <label class="form-label">Resumen</label>
+          <input type="text" class="form-control" name="excerpt" id="field_excerpt" required data-cy="excerpt" formControlName="excerpt" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_image">Imagen</label>
-          <input type="text" class="form-control" name="image" id="field_image" data-cy="image" formControlName="image" />
+          <label class="form-label">Cuerpo de la notica</label>
+          <textarea
+            type="textarea"
+            class="form-control"
+            name="body"
+            id="field_body"
+            required
+            data-cy="body"
+            formControlName="body"
+          ></textarea>
         </div>
 
         <div class="mb-3">
-          <label class="label" for="field_creationDate">Fecha de creación</label>
-          <div class="input-group">
-            <input
-              id="field_creationDate"
-              data-cy="creationDate"
-              type="text"
-              class="form-control"
-              name="creationDate"
-              ngbDatepicker
-              #creationDateDp="ngbDatepicker"
-              formControlName="creationDate"
-            />
-            <button type="button" class="btn btn-secondary" (click)="creationDateDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
-            </button>
-          </div>
+          <label class="form-label" for="field_image"> Imagen</label>
+          <jhi-cloudinary-button text="Subir imagen" (urlChanged)="saveImage($event)"></jhi-cloudinary-button>
+          <img *ngIf="previewURL != ''" src="{{ previewURL }}" alt="imagen" />
         </div>
 
-        <div class="mb-3">
-          <label class="label" for="field_user">Usuario</label>
-          <select class="b input" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
-            <option [ngValue]="null"></option>
-            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.login }}</option>
-          </select>
-        </div>
+        <div class="mb-3"></div>
       </div>
 
       <div>
@@ -78,6 +60,10 @@
         >
           <fa-icon icon="save"></fa-icon>&nbsp;
         </button>
+
+        <a title="Eliminar" *ngIf="isUpdate" (click)="delete(news)" class="btn btnDelete" data-cy="entityDeleteButton">
+          <fa-icon icon="times"></fa-icon>
+        </a>
       </div>
     </form>
   </div>
