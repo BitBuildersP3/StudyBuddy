@@ -522,7 +522,7 @@ textarea {
 }
 
 .light-blue-txt {
-  color: #3e8acc;
+  color: #6dabd5;
 }
 
 .submit-btn {
@@ -800,4 +800,8 @@ p {
 #save-entity fa-icon:hover {
   color: #de9a38;
   font-size: 1rem;
+}
+
+.profile-image {
+  height: 13rem;
 }
