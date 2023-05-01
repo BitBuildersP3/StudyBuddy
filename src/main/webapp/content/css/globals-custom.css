@@ -805,3 +805,7 @@ p {
 .profile-image {
   height: 13rem;
 }
+
+.leftk {
+  margin-left: 24rem !important;
+}

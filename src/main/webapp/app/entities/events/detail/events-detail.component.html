@@ -6,9 +6,6 @@
       </h2>
       <div class="separador"></div>
       <hr />
-      <jhi-alert-error></jhi-alert-error>
-      <jhi-alert></jhi-alert>
-
       <div class="cardForm">
         <dl class="row-md jh-entity-details">
           <!-- div en donde se valida si el usuario es parte del evento para mostarle la ubicación y el enlace respectivo -->
@@ -51,10 +48,10 @@
       <button title="Volver" type="submit" (click)="previousState()" class="btn btnEdit btnCustEdit" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span></span>
       </button>
-      <ng-container *ngIf = "mostrarEditar">
-      <button title="Editar" type="button" [routerLink]="['/events', events.id, 'edit']" class="btn btnEdit" >
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span></span>
-      </button>
+      <ng-container *ngIf="mostrarEditar">
+        <button title="Editar" type="button" [routerLink]="['/events', events.id, 'edit']" class="btn btnEdit">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span></span>
+        </button>
       </ng-container>
     </div>
   </div>

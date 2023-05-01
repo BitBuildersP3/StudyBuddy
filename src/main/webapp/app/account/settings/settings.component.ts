@@ -21,9 +21,9 @@ export class SettingsComponent implements OnInit {
   entitiesNavbarItems: any[] = [];
   success = false;
   languages = LANGUAGES;
-  profileImg: string | null | undefined;
   partialExtraUserInfo: PartialUpdateExtraUserInfo = { id: 0, profilePicture: '' };
-
+  defaulImg: string = 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1681166198/default-image_ltck0i.webp';
+  profileImg: string | null | undefined = this.defaulImg;
   settingsForm = new FormGroup({
     firstName: new FormControl(initialAccount.firstName, {
       nonNullable: true,
@@ -131,6 +131,11 @@ export class SettingsComponent implements OnInit {
       if (account.langKey !== this.translateService.currentLang) {
         this.translateService.use(account.langKey);
       }
+      Swal.fire({
+        icon: 'success',
+        title: 'Modificado correctamente',
+        showConfirmButton: true,
+      });
     });
 
     this.extraInfoService.partialUpdate(extraInfo).subscribe(() => {

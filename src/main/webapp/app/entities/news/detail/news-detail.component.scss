@@ -26,17 +26,14 @@ p {
 }
 
 .carouselImg {
-  width: 100% !important;
-  min-height: 55rem !important;
-  max-height: 55rem !important;
+  min-width: 20rem;
+  max-width: 20rem;
   height: 100%;
+  margin-top: 13rem;
   object-fit: cover;
 }
 
 .carouselContainer {
   max-width: 100%;
   max-height: 50%;
-}
-
-.carouselItem {
 }
