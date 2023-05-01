@@ -1,9 +1,11 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" class="custom-form align-items-center" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-news-heading" data-cy="NewsCreateUpdateHeading" jhiTranslate="studyBuddyApp.news.home.createOrEditLabel">
-        Crear o editar Noticias
+      <h2 id="jhi-news-heading" data-cy="NewsCreateUpdateHeading" class="titulo">
+        Gestor de Noticias
       </h2>
+
+      <div class="separador"></div>
 
       <div class="cardForm">
         <div class="mb-3">
@@ -20,7 +22,7 @@
           <label class="form-label">Cuerpo de la notica</label>
           <textarea
             type="textarea"
-            class="form-control"
+            class="textInput"
             name="body"
             id="field_body"
             required
@@ -29,9 +31,9 @@
           ></textarea>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 ">
           <label class="form-label" for="field_image"> Imagen</label>
-          <jhi-cloudinary-button text="Subir imagen" (urlChanged)="saveImage($event)"></jhi-cloudinary-button>
+          <jhi-cloudinary-button text="Subir imagen" (urlChanged)="saveImage($event)" class="centero"></jhi-cloudinary-button>
           <img *ngIf="previewURL != ''" src="{{ previewURL }}" alt="imagen" />
         </div>
 

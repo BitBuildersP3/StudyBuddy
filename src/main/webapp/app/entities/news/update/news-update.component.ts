@@ -16,6 +16,7 @@ import dayjs from 'dayjs';
 @Component({
   selector: 'jhi-news-update',
   templateUrl: './news-update.component.html',
+  styleUrls: ['./news-form.component.scss'],
 })
 export class NewsUpdateComponent implements OnInit {
   isSaving = false;
