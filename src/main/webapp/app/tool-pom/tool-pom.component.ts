@@ -165,9 +165,7 @@ export class ToolPomComponent implements OnInit {
     let resultSeconds = result * 60;
     if (!isBreakLength) {
       this.timeLength = resultSeconds;
-      console.log(
-        'rata ' + this.labelSessionBreak.innerText + ' rata 2 ' + (('0' + result).slice(-2) + ':00') + ' rata 3 ' + resultSeconds
-      );
+
       if (this.labelSessionBreak.innerText === 'TRABAJO') {
         this.timeLeftDOM.innerText = ('0' + result).slice(-2) + ':00';
         this.timeLeft = resultSeconds;
