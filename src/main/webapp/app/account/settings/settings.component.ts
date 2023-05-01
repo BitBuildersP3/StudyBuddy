@@ -22,7 +22,7 @@ export class SettingsComponent implements OnInit {
   success = false;
   languages = LANGUAGES;
   partialExtraUserInfo: PartialUpdateExtraUserInfo = { id: 0, profilePicture: '' };
-  defaulImg: string = 'https://res.cloudinary.com/dwxpyowvn/image/upload/v1681166198/default-image_ltck0i.webp';
+  defaulImg: string = 'https://www.citypng.com/public/uploads/preview/png-round-blue-contact-user-profile-icon-11639786938sxvzj5ogua.png';
   profileImg: string | null | undefined = this.defaulImg;
   settingsForm = new FormGroup({
     firstName: new FormControl(initialAccount.firstName, {
