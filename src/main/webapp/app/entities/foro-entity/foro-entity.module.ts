@@ -9,5 +9,6 @@ import { ForoEntityRoutingModule } from './route/foro-entity-routing.module';
 @NgModule({
   imports: [SharedModule, ForoEntityRoutingModule],
   declarations: [ForoEntityComponent, ForoEntityDetailComponent, ForoEntityUpdateComponent, ForoEntityDeleteDialogComponent],
+  exports: [ForoEntityUpdateComponent],
 })
 export class ForoEntityModule {}

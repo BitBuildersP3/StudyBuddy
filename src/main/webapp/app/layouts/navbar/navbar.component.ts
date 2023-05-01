@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit {
   entitiesNavbarItems: any[] = [];
   isOpenForo = false;
   safeUrl: any = '';
+  isOpenAddSubject = false;
   constructor(
     private loginService: LoginService,
     private translateService: TranslateService,
@@ -50,6 +51,12 @@ export class NavbarComponent implements OnInit {
     if (VERSION) {
       this.version = VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`;
     }
+  }
+
+  setIsOpenAddsubject(): any {
+    this.isOpenAddSubject = !this.isOpenAddSubject;
+    console.log('state', this.isOpenAddSubject);
+    return this.isOpenAddSubject;
   }
 
   ngOnInit(): void {

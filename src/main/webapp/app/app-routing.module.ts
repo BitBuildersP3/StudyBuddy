@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Route } from '@angular/router';
 
 import { errorRoute } from './layouts/error/error.route';
 import { navbarRoute } from './layouts/navbar/navbar.route';
@@ -25,8 +26,20 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
           loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
         },
         {
+          path: 'tools',
+          canActivate: [UserRouteAccessService],
+
+          data: {
+            authorities: [Authority.ADMIN, Authority.USER],
+          },
+          loadChildren: () => import('./tools/tools.module').then(m => m.ToolsModule),
+        },
+        {
           path: 'landing',
-          // canActivate: [UserRouteAccessService],
+          canActivate: [UserRouteAccessService],
+          data: {
+            authorities: [Authority.ADMIN, Authority.USER],
+          },
           loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule),
         },
         {

@@ -1,0 +1,93 @@
+$color-principal: #15537d;
+$color-secundario: #6dabd5;
+$color-alertas: #983f56;
+$color-bordes: #de9a38;
+$color-fondoBlanc: #dfe2ea;
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0px;
+  font-family: 'Arial', sans-serif;
+  background-color: $color-principal;
+  color: $color-secundario;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.pomodoro-container {
+  display: flex;
+  flex-flow: row wrap;
+  border-radius: 1rem;
+  padding: 20px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.pomodoro-item {
+  width: 100%;
+  color: $color-principal;
+  text-align: center;
+}
+.label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: $color-bordes;
+}
+.row-pomodoro {
+  margin: 8px 0 16px 0;
+  text-align: center;
+}
+.playerButton {
+  border-top: solid 3px $color-bordes;
+  padding-top: 12px;
+}
+.buttonRow {
+  display: flex;
+  justify-content: space-around;
+}
+.lengthTime {
+  display: inline-block;
+  padding: 0 20px 0 20px;
+  font-size: 35px;
+}
+.btn-updown {
+  font-size: 1.5rem;
+  width: 30px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  // Botonsitos
+  color: $color-principal;
+  background: transparent;
+  box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.3);
+}
+.btn-controller {
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  background-color: green;
+  color: red;
+}
+/* Pomodoro item row */
+#timeLeft {
+  font-size: 3rem;
+  font-weight: 700;
+}
+.subt-tools {
+  font-weight: 400 !important;
+  font-size: 30px;
+  line-height: 32px;
+  margin: 0 0 12px 0;
+  color: #15537d !important;
+  text-align: center;
+  width: 100%;
+}
+
+.subt-cont {
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}

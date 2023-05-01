@@ -40,7 +40,6 @@
             <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.maxlength">
               El nombre del archivo no puede tener más de 250 caracteres.
             </small>
-
           </div>
           <!-- Validacion Nombre del archivo - FIN-->
         </div>
@@ -70,7 +69,6 @@
             <small class="form-text text-danger" *ngIf="editForm.get('excerpt')?.errors?.maxlength">
               La descripción del archivo no puede tener más de 250 caracteres.
             </small>
-
           </div>
           <!-- Validacion Descripcion- FIN-->
         </div>
@@ -96,9 +94,7 @@
 
             <!-- Validacion URL 1 - INICIO -->
             <div *ngIf="editForm.get('url1')!.invalid && (editForm.get('url1')!.dirty || editForm.get('url1')!.touched)">
-              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.required">
-                Se requiere una url
-              </small>
+              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.required"> Se requiere una url </small>
 
               <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.minlength">
                 Se requiere que la url de por lo menos 5 caracteres.
@@ -108,10 +104,7 @@
                 Su url no puede tener más de 250 caracteres.
               </small>
 
-              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.pattern">
-                Se requiere una url valida.
-              </small>
-
+              <small class="form-text text-danger" *ngIf="editForm.get('url1')?.errors?.pattern"> Se requiere una url valida. </small>
             </div>
             <!-- Validacion URL 1 - FIN-->
           </div>
@@ -134,9 +127,7 @@
 
             <!-- Validacion URL 2 - INICIO -->
             <div *ngIf="editForm.get('url2')!.invalid && (editForm.get('url2')!.dirty || editForm.get('url2')!.touched)">
-              <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.required">
-                Se requiere una url
-              </small>
+              <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.required"> Se requiere una url </small>
 
               <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.minlength">
                 Se requiere que la url de por lo menos 5 caracteres.
@@ -146,10 +137,7 @@
                 Su url no puede tener más de 250 caracteres.
               </small>
 
-              <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.pattern">
-                Se requiere una url valida.
-              </small>
-
+              <small class="form-text text-danger" *ngIf="editForm.get('url2')?.errors?.pattern"> Se requiere una url valida. </small>
             </div>
             <!-- Validacion URL 2 - FIN-->
           </div>
@@ -171,9 +159,7 @@
             />
             <!-- Validacion URL 3 - INICIO -->
             <div *ngIf="editForm.get('url1')!.invalid && (editForm.get('url3')!.dirty || editForm.get('url3')!.touched)">
-              <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.required">
-                Se requiere una url
-              </small>
+              <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.required"> Se requiere una url </small>
 
               <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.minlength">
                 Se requiere que la url de por lo menos 5 caracteres.
@@ -183,13 +169,9 @@
                 Su url no puede tener más de 250 caracteres.
               </small>
 
-              <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.pattern">
-                Se requiere una url valida.
-              </small>
-
+              <small class="form-text text-danger" *ngIf="editForm.get('url3')?.errors?.pattern"> Se requiere una url valida. </small>
             </div>
             <!-- Validacion URL 3 - FIN-->
-
           </div>
 
           <a href="https://mega.nz/" target="_blank" class="btn-extern">Mega</a>
@@ -199,10 +181,9 @@
       <div class="separador"></div>
 
       <div class="info-box row mb-3">
-        <p>Recuerda leer nuestros términos y condiciones antes de utilizar nuestros servicios.</p>
         <p>¿Necesitas ayuda? Puedes ver este tutorial en nuestro canal de YouTube:</p>
         <!-- Cambiar este link cuando este el tutorial -->
-        <a class="linkvideo" href="https://www.youtube.com/watch?v=eBGIQ7ZuuiU&ab_channel=YouGotRickRolled">Tutorial en YouTube</a>
+        <a class="linkvideo" href="https://www.youtube.com/watch?v=4GCj2dkVWtk&ab_channel=BitBuilders">Tutorial en YouTube</a>
       </div>
 
       <div>
@@ -213,8 +194,8 @@
           data-cy="entityCreateSaveButton"
           [disabled]="editForm.invalid || isSaving"
           class="btn btnView"
-        >Guardar
-          <fa-icon icon="save"></fa-icon>&nbsp;
+        >
+          Guardar <fa-icon icon="save"></fa-icon>&nbsp;
         </button>
       </div>
     </form>

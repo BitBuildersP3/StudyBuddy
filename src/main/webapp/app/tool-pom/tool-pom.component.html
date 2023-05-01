@@ -1,0 +1,54 @@
+<!-- Pomodoro Container -->
+<div class="arg">
+  <div class="pomodoro-container">
+    <div class="subt-cont">
+      <h1 class="subt-tools">Pomodoro</h1>
+    </div>
+
+    <!-- Session -->
+    <div class="pomodoro-item">
+      <!-- No cambiar el LABEL -->
+      <div id="labelSessionBreak" class="label">Tiempo restante</div>
+      <div class="row-pomodoro">
+        <div id="timeLeft">25:00</div>
+      </div>
+    </div>
+
+    <!-- Session Length -->
+    <div class="pomodoro-item">
+      <!-- No cambiar el SESIÓN en el LABEL -->
+      <div class="label">TRABAJO</div>
+      <div class="row-pomodoro">
+        <button id="sessionDecrement" class="btn-updown">-</button>
+        <div id="sessionLength" class="row-pomodoro lengthTime">25</div>
+        <button id="sessionIncrement" class="btn-updown">+</button>
+      </div>
+    </div>
+
+    <!-- Break Length -->
+    <div class="pomodoro-item">
+      <!-- No cambiar el DESCANSO en el LABEL -->
+      <div class="label">DESCANSO</div>
+      <div class="row-pomodoro">
+        <button id="breakDecrement" class="btn-updown">-</button>
+        <div id="breakLength" class="row-pomodoro lengthTime">5</div>
+        <button id="breakIncrement" class="btn-updown">+</button>
+      </div>
+    </div>
+
+    <!-- Play/Pause/Reset -->
+    <div class="pomodoro-item playerButton">
+      <div class="row-pomodoro buttonRow">
+        <button title="Pausa" id="buttonPlay" class="btn btnEnrolled" data-icon="eye">
+          <fa-icon icon="circle-play" id="playIcon"></fa-icon>
+        </button>
+
+        <button title="Recargar" id="buttonReset" class="btn btnEnrolled">
+          <fa-icon icon="refresh"></fa-icon>
+        </button>
+      </div>
+    </div>
+    <!-- Sound -->
+    <audio id="beep" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"></audio>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+.add-btn {
+  width: 100%;
+}
+.bg-modal {
+  content: '';
+  position: fixed; /* Stay in place */
+  z-index: 100; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+
+  position: fixed;
+  width: 50%;
+  height: 35rem;
+  z-index: 150;
+  top: 50%; /* Move the item to the middle of the container vertically */
+  left: 50%; /* Move the item to the middle of the container horizontally */
+  transform: translate(-50%, -50%); /* Center the item precisely */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto; /* Enable scroll if needed */
+}
+
+.overflow {
+  overflow: auto;
+}
+
+.cont-relative {
+  position: relative;
+}
+
+.btnEdit {
+  margin: 0;
+}
+
+.cust-close {
+  color: #fff;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}

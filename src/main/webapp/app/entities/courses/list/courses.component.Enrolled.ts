@@ -59,6 +59,8 @@ export class CoursesComponentEnrolled implements OnInit {
         this.load();
       },
     });
+
+    this.courses?.sort(this.comparation);
   }
   saveUrl(URL: string): void {
     this.previewURL = URL;
@@ -114,6 +116,11 @@ export class CoursesComponentEnrolled implements OnInit {
           this.onResponseSuccess(res);
         },
       });
+  }
+
+  comparation(courseOne: ICourses, courseTwo: ICourses): number {
+    // @ts-ignore
+    return courseOne.score < courseTwo.score ? 1 : 0;
   }
 
   load(): void {

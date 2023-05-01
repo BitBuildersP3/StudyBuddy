@@ -1,0 +1,25 @@
+.main-cont {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.cont-tools {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rem;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+h1 {
+  margin: 3rem 0;
+  margin-bottom: 4rem;
+  font-weight: 500;
+}

@@ -8,8 +8,9 @@ import { RegisterService } from './register.service';
 
 // Imports nuevos
 import { ExtraUserInfoService } from 'app/entities/extra-user-info/service/extra-user-info.service';
-
-
+import { UserVotesService } from '../../entities/user-votes/service/user-votes.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-register',
@@ -25,6 +26,9 @@ export class RegisterComponent implements AfterViewInit {
   errorEmailExists = false;
   errorUserExists = false;
   success = false;
+
+  // En caso de querer poner esta validacion en otros
+  // Poner esto:  checkboxControl: FormControl<boolean | null>;
 
   registerForm = new FormGroup({
     login: new FormControl('', {
@@ -60,10 +64,18 @@ export class RegisterComponent implements AfterViewInit {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
     }),
+
+    checkboxControl: new FormControl(false, Validators.requiredTrue),
   });
 
   // , private extraUserInfoService: ExtraUserInfoService
-  constructor(private translateService: TranslateService, private registerService: RegisterService , private extraUserInfoService: ExtraUserInfoService) {}
+  constructor(
+    private translateService: TranslateService,
+    private registerService: RegisterService,
+    private extraUserInfoService: ExtraUserInfoService,
+    private userVotesService: UserVotesService,
+    public router: Router
+  ) {}
 
   ngAfterViewInit(): void {
     if (this.login) {
@@ -82,19 +94,26 @@ export class RegisterComponent implements AfterViewInit {
       this.doNotMatch = true;
     } else {
       const { login, email, phone, degree, birthDay } = this.registerForm.getRawValue();
-      ;
-
       console.log(this.registerForm.getRawValue());
 
       // Foto por defecto de perfil
-      const profilePicture = "https://cdn.shopify.com/s/files/1/1428/7694/articles/smiling_quokka_600x600.png";
-
+      const profilePicture = 'https://cdn.shopify.com/s/files/1/1428/7694/articles/smiling_quokka_600x600.png';
 
       this.registerService
         .save({ login, email, password, langKey: this.translateService.currentLang, phone, degree, profilePicture, birthDay })
-        .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
-
-      // this.registerExtraInfo(phone, degree, birthDay, login);
+        .subscribe({ next: () => (this.success = true), error: response => this.processError(response) })
+        .add(() => {
+          this.userVotesService.createByUser(login).subscribe();
+          if (this.success == true) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Registrado correctamente',
+              text: 'Por favor, revise su correo electrónico para activar la cuenta.',
+              showConfirmButton: true,
+            });
+            this.router.navigate(['login']);
+          }
+        });
     }
   }
 
@@ -110,10 +129,17 @@ export class RegisterComponent implements AfterViewInit {
 
   // Registra la información extra del usuario en la base de datos.
   private registerExtraInfo(pPhone: String, pDegree: String, pBirthDay: any, pLogin: any): void {
-
     // Cambiar foto default de perfil URL
-    const newCustomExtraUserInfo = { phone: pPhone, degree: pDegree, profilePicture: "profile.png", birthDay: pBirthDay, score: 0, userVotes: 0, user: pLogin };
-    console.log("Objeto newCustomExtraUserInfo: " + newCustomExtraUserInfo);
+    const newCustomExtraUserInfo = {
+      phone: pPhone,
+      degree: pDegree,
+      profilePicture: 'profile.png',
+      birthDay: pBirthDay,
+      score: 0,
+      userVotes: 0,
+      user: pLogin,
+    };
+    console.log('Objeto newCustomExtraUserInfo: ' + newCustomExtraUserInfo);
     this.extraUserInfoService.create(newCustomExtraUserInfo);
   }
 }

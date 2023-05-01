@@ -8,15 +8,17 @@ import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/conf
 import { EntityArrayResponseType, ForoEntityService } from '../service/foro-entity.service';
 import { ForoEntityDeleteDialogComponent } from '../delete/foro-entity-delete-dialog.component';
 import { SortService } from 'app/shared/sort/sort.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'jhi-foro-entity',
   templateUrl: './foro-entity.component.html',
+  styleUrls: ['./foro-entity.component.scss'],
 })
 export class ForoEntityComponent implements OnInit {
   foroEntities?: IForoEntity[];
   isLoading = false;
-
+  filteredArray: any = [];
   predicate = 'id';
   ascending = true;
 
@@ -34,21 +36,68 @@ export class ForoEntityComponent implements OnInit {
     this.load();
   }
 
-  delete(foroEntity: IForoEntity): void {
-    const modalRef = this.modalService.open(ForoEntityDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.foroEntity = foroEntity;
-    // unsubscribe not needed because closed completes on modal close
-    modalRef.closed
-      .pipe(
-        filter(reason => reason === ITEM_DELETED_EVENT),
-        switchMap(() => this.loadFromBackendWithRouteInformations())
-      )
-      .subscribe({
-        next: (res: EntityArrayResponseType) => {
-          this.onResponseSuccess(res);
-        },
-      });
+  redirectConfig(): void {
+    window.location.href = 'https://deadsimplechat.com/dashboard/chatrooms/edit/64361f7161110317821f9f1f';
   }
+
+  approve(): void {
+    Swal.fire({
+      title: 'Aceptar petición',
+      text: 'Ve al panel de administración externo para aceptar esta petición.',
+      icon: 'success',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ir',
+    }).then(result => {
+      if (result.isConfirmed) {
+        window.location.href = 'https://deadsimplechat.com/dashboard/chatrooms/edit/64361f7161110317821f9f1f/channels';
+      }
+    });
+  }
+
+  delete(foroEntity: any): void {
+    Swal.fire({
+      title: '¿Desea eliminar la petición?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí!',
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.foroEntityService.delete(foroEntity.id).subscribe(() => {
+          // console.log('delete' + id.toString());
+        });
+        Swal.fire({
+          icon: 'success',
+          title: 'Eliminado correctamente',
+          showConfirmButton: true,
+        }).then(res => {
+          if (result.isConfirmed) {
+            location.reload();
+          }
+        });
+      }
+    });
+  }
+
+  // delete(foroEntity: any): void {
+  //   const modalRef = this.modalService.open(ForoEntityDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+  //   modalRef.componentInstance.foroEntity = foroEntity;
+  //   // unsubscribe not needed because closed completes on modal close
+  //   modalRef.closed
+  //     .pipe(
+  //       filter(reason => reason === ITEM_DELETED_EVENT),
+  //       switchMap(() => this.loadFromBackendWithRouteInformations())
+  //     )
+  //     .subscribe({
+  //       next: (res: EntityArrayResponseType) => {
+  //         this.onResponseSuccess(res);
+  //         this.load();
+  //       },
+  //     });
+  // }
 
   load(): void {
     this.loadFromBackendWithRouteInformations().subscribe({
@@ -78,6 +127,16 @@ export class ForoEntityComponent implements OnInit {
   protected onResponseSuccess(response: EntityArrayResponseType): void {
     const dataFromBody = this.fillComponentAttributesFromResponseBody(response.body);
     this.foroEntities = this.refineData(dataFromBody);
+    this.foroEntities.map(value => {
+      const splitVals = value.json?.split(',');
+      // console.log(splitVals);
+      // ['Nombre del usuario: user', 'Correo: email', 'Nombre del tema: test coma name', 'Proposito del tema: desc tema test'];
+      const arrVals = {
+        id: value.id,
+        json: splitVals,
+      };
+      this.filteredArray.push(arrVals);
+    });
   }
 
   protected refineData(data: IForoEntity[]): IForoEntity[] {

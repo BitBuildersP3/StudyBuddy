@@ -161,6 +161,11 @@ public class NewsResource {
         }
     }
 
+    @GetMapping("/news/fourNews")
+    public List<News> fourNewestNews(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+        return newsRepository.findTop4ByOrderByCreationDateDesc();
+    }
+
     /**
      * {@code GET  /news/:id} : get the "id" news.
      *

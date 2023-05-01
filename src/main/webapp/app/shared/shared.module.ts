@@ -14,12 +14,14 @@ import { ItemCountComponent } from './pagination/item-count.component';
 import { FilterComponent } from './filter/filter.component';
 import { CloudinaryButtonComponent } from './cloudinary/cloudinary-button/cloudinary-button.component';
 import { ModalComponent } from './modal/modal.component';
+import { ModalNoButtonComponent } from './modal-no-button/modal-no-button.component';
 import { VotesComponent } from './votes/votes.component';
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [SharedLibsModule],
   declarations: [
     ModalComponent,
+    ModalNoButtonComponent,
     FindLanguageFromKeyPipe,
     TranslateDirective,
     AlertComponent,
@@ -38,6 +40,7 @@ import { VotesComponent } from './votes/votes.component';
   exports: [
     ModalComponent,
     SharedLibsModule,
+    ModalNoButtonComponent,
     FindLanguageFromKeyPipe,
     TranslateDirective,
     AlertComponent,

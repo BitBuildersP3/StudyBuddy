@@ -3,10 +3,6 @@
   <div class="d-flex justify-content-center">
     <div class="col-md-8">
       <h1 class="mar" data-cy="registerTitle">Registro</h1>
-
-      <div class="alert alert-success" *ngIf="success" jhiTranslate="register.messages.success">
-        <strong>¡Registro guardado!</strong> Por favor, revise su correo electrónico para confirmar.
-      </div>
       <div class="alert alert-danger" *ngIf="error" jhiTranslate="register.messages.error.fail">
         <strong>¡El registro ha fallado!</strong> Por favor, inténtelo de nuevo más tarde.
       </div>
@@ -156,16 +152,6 @@
               <option>Maestría</option>
               <option>Doctorado</option>
             </select>
-            <!--<input
-            type="degree"
-            class="form-control"
-            id="degree"
-            name="degree"
-            placeholder="Nivel Académico"
-            formControlName="degree"
-            data-cy="degree"
-            />-->
-
             <div *ngIf="registerForm.get('degree')!.invalid && (registerForm.get('degree')!.dirty || registerForm.get('degree')!.touched)">
               <small class="form-text text-danger" *ngIf="registerForm.get('degree')?.errors?.minlength">
                 Se requiere de un titulo academico para poder continuar
@@ -301,6 +287,14 @@
               Su contraseña de confirmación no puede tener más de 50 caracteres
             </small>
           </div>
+        </div>
+
+        <jhi-modal [btnLabel]="'Ver EULA'" [typeBtn]="'solo-txt'">
+          <jhi-eula></jhi-eula>
+        </jhi-modal>
+
+        <div>
+          <label> <input type="checkbox" formControlName="checkboxControl" /> Acepto los términos y condiciones </label>
         </div>
 
         <!-- Termina Contrasenna  -->

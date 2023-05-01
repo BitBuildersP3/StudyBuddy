@@ -6,10 +6,6 @@
 
     <div class="d-flex justify-content-end"></div>
   </h2>
-
-  <jhi-alert-error></jhi-alert-error>
-
-  <jhi-alert></jhi-alert>
 </div>
 
 <aside class="profile-card">
@@ -23,9 +19,7 @@
         <span class="sub black">User: {{ extraUserInfo.user?.login }}</span>
       </p>
     </h1>
-    <p>
-      <span class="sub">Id: {{ extraUserInfo.id }}</span>
-    </p>
+
     <p>
       <span class="sub">Grado: {{ extraUserInfo.degree }}</span>
     </p>
@@ -36,8 +30,14 @@
       <span class="sub">Votos de usuario: {{ extraUserInfo.userVotes }} </span>
     </p>
     <p>
-      <jhi-votes label="" [disable]="true"></jhi-votes>
-      <jhi-votes label="Puntua este usuario" [disable]="false"></jhi-votes>
+      <jhi-votes label="" [disable]="true" [votes]="userTotalScore"></jhi-votes>
+      <jhi-votes
+        *ngIf="!isCurrentUser"
+        label="Puntua este usuario"
+        [disable]="false"
+        [userVotes]="currentUserVote"
+        (votesChanges)="scoreUser($event)"
+      ></jhi-votes>
     </p>
 
     <div class="botones" style="">
@@ -49,4 +49,3 @@
 
   <header></header>
 </aside>
-<!-- that’s all folks! -->

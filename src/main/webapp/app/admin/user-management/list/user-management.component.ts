@@ -12,11 +12,11 @@ import { UserManagementService } from '../service/user-management.service';
 import { User } from '../user-management.model';
 import { UserManagementDeleteDialogComponent } from '../delete/user-management-delete-dialog.component';
 import { Title } from '@angular/platform-browser';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'jhi-user-mgmt',
   templateUrl: './user-management.component.html',
-  styleUrls: ['./user-management.component.css'],
+  styleUrls: ['./user-management.css'],
 })
 export class UserManagementComponent implements OnInit {
   currentAccount: Account | null = null;
@@ -45,7 +45,28 @@ export class UserManagementComponent implements OnInit {
   }
 
   setActive(user: User, isActivated: boolean): void {
-    this.userService.update({ ...user, activated: isActivated }).subscribe(() => this.loadAll());
+    Swal.fire({
+      title: '¿Está seguro que desea modificar el estado del usuario?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Sí',
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.userService.update({ ...user, activated: isActivated }).subscribe(() => this.loadAll());
+        Swal.fire({
+          icon: 'success',
+          title: 'Modificado correctamente',
+          showConfirmButton: true,
+          timer: 3000,
+        }).then(result => {
+          if (result.isConfirmed) {
+          }
+        });
+      }
+    });
   }
 
   trackIdentity(_index: number, item: User): number {

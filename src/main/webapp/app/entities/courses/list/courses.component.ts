@@ -49,7 +49,6 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Cursos Existentes');
-    this.load();
     this.extraUser.getInfoByCurrentUser().subscribe({
       next: (res: EntityResponseType) => {
         // @ts-ignore
@@ -61,6 +60,15 @@ export class CoursesComponent implements OnInit {
 
         console.log(res.body);
       },
+    });
+    this.activatedRoute.paramMap.subscribe(params => {
+      let prompt = params.get('prompt');
+      if (prompt != null) {
+        this.promptValue = prompt;
+        this.searchCourse();
+      } else {
+        this.load();
+      }
     });
   }
   saveUrl(URL: string): void {
@@ -110,6 +118,8 @@ export class CoursesComponent implements OnInit {
     });
   }
 
+  setSearch() {}
+
   protected onSaveError(e: any): void {
     console.log(e);
 
@@ -137,6 +147,11 @@ export class CoursesComponent implements OnInit {
           this.router.navigate(['courses/myCourses']);
         },
       });
+  }
+
+  comparation(courseOne: ICourses, courseTwo: ICourses): number {
+    // @ts-ignore
+    return courseOne.score > courseTwo.score ? -1 : 1;
   }
 
   load(): void {
@@ -168,6 +183,7 @@ export class CoursesComponent implements OnInit {
     const dataFromBody = this.fillComponentAttributesFromResponseBody(response.body);
     this.courses = this.refineData(dataFromBody);
     this.courses = this.courses.filter(course => course.status === 'active');
+    this.courses.sort(this.comparation);
   }
 
   protected refineData(data: ICourses[]): ICourses[] {

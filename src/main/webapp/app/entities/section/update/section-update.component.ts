@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'jhi-section-update',
   templateUrl: './section-update.component.html',
+  styleUrls: ['./section-form.scss'],
 })
 export class SectionUpdateComponent implements OnInit {
   @Input() title = '';

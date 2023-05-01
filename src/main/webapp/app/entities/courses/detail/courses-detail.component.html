@@ -1,10 +1,10 @@
 <title>Curso</title>
 
 <ng-container *ngIf="sections.length > 0; else noSections">
-  <div class="d-flex justify-content-center align-items-center wapper">
-    <div class="col-8">
+  <div class="backColorSmoke d-flex justify-content-center align-items-center wapper">
+    <div class="box-shadow col-8">
       <div class="cont-cols" *ngIf="courses">
-        <div class="col-class">
+        <div class="col-class-space col-class">
           <div>
             <h1 data-cy="coursesDetailsHeading" class="titles"><span>Curso:</span> {{ courses.name }}</h1>
           </div>
@@ -64,28 +64,13 @@
           </div>
         </div>
 
-        <div class="col-content" *ngIf="currentSection">
+        <div class="spaceColor col-content" *ngIf="currentSection">
           <h1 data-cy="coursesDetailsHeading" class="titles"><span>Clase:</span> {{ currentSection.name }}</h1>
           <div class="d-flex flex-column gap-4" *ngIf="isRegister || isOwner">
             <!-- start for -->
             <ng-container *ngFor="let file of currentSection.files; let j = index">
               <!-- validation of type video -->
               <ng-container *ngIf="file.type === 'video'" jhiUrlChange [url]="file.url1" (onUrlReady)="sanitizeUrl($event)">
-                <!--<p *ngIf="sanitizeUrl(file.url1)"></p>
-            <ng-container *ngIf="file.type === 'video'" jhiUrlChange [url]="file.url1" (onUrlReady)="sanitizeUrl($event)">
-              <!--<p *ngIf="sanitizeUrl(file.url1)"></p>
-              <div class="cont-video">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  [src]=""
-                  [src]=""
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay;  picture-in-picture;"
-                  allowfullscreen
-                ></iframe>
-              </div>-->
                 <iframe
                   id="existing-iframe-example"
                   width="640"
@@ -134,6 +119,26 @@
               <span *ngIf="currentSection.creationDate && j < 1"><b>Fecha de publicación:</b> {{ currentSection.creationDate }}</span>
               <ng-container *ngIf="currentSection.description && j < 1">
                 <span><b>Descripción:</b> {{ currentSection.description }}</span>
+                <div class="" *ngIf="file.type != 'index' && file.type != 'own'">
+                  <div class="separador"></div>
+                  <div class="row">
+                    <div class="col-4"><jhi-votes label="Puntuacion del curso" [disable]="true" [votes]="TotalVotes"></jhi-votes></div>
+                    <div class="col-5">
+                      <b style="position: relative; top: 57%; margin-left: 10px"
+                        >Calificación {{ TotalVotes | number: '1.1-1' }} por {{ totalUsers }} usuarios</b
+                      >
+                    </div>
+                  </div>
+                  <jhi-votes
+                    label="Puntua este curso"
+                    [disable]="false"
+                    [userVotes]="currentUserVote"
+                    (votesChanges)="scoreCourse($event)"
+                  ></jhi-votes>
+                  <b
+                    >Creado por: <a [routerLink]="['/extra-user-info', ownerPublicId, 'view']">{{ ownerPublicName }}</a> </b
+                  ><img class="profile-image rounded-circle" src="{{ ownerImg }}" />
+                </div>
               </ng-container>
 
               <!-- end constant content -->
@@ -143,15 +148,36 @@
                 <span><b>Nombre del Archivo:</b> {{ file.excerpt }}</span>
                 <div class="cont-links">
                   <span><b>Enlaces:</b></span>
-                  <a title="Abre este enlace." class="btn btn-info text-white" *ngIf="file.url1" href="{{ file.url1 }}" target="_blank">
-                    {{ linkTitle }}</a
+                  <a
+                    title="Abre este enlace."
+                    class="d-flex btn-info text-white btnFilesServer"
+                    *ngIf="file.url1"
+                    href="{{ file.url1 }}"
+                    target="_blank"
                   >
-                  <a title="Abre este enlace." class="btn btn-info text-white" *ngIf="file.url2" href="{{ file.url2 }}" target="_blank">
-                    {{ linkTitle }}</a
+                    <fa-icon icon="link"></fa-icon>
+                    Drive
+                  </a>
+                  <a
+                    title="Abre este enlace."
+                    class="d-flex btn btn-info text-white btnFilesServer"
+                    *ngIf="file.url2"
+                    href="{{ file.url2 }}"
+                    target="_blank"
                   >
-                  <a title="Abre este enlace." class="btn btn-info text-white" *ngIf="file.url3" href="{{ file.url3 }}" target="_blank">
-                    {{ linkTitle }}</a
+                    <fa-icon icon="link"></fa-icon>
+                    MediaFire
+                  </a>
+                  <a
+                    title="Abre este enlace."
+                    class="d-flex btn btn-info text-white btnFilesServer"
+                    *ngIf="file.url3"
+                    href="{{ file.url3 }}"
+                    target="_blank"
                   >
+                    <fa-icon icon="link"></fa-icon>
+                    MegaUpload
+                  </a>
 
                   <!-- <a href="https://www.example.com/my-document.pdf">Link to My Document</a> -->
                 </div>
@@ -190,6 +216,24 @@
                     <span class="d-none d-md-inline"></span>
                   </button>
                 </div>
+                <div class="separador"></div>
+                <div class="row">
+                  <div class="col-4"><jhi-votes label="Puntuacion del curso" [disable]="true" [votes]="TotalVotes"></jhi-votes></div>
+                  <div class="col-5">
+                    <b style="position: relative; top: 57%; margin-left: 10px"
+                      >{{ TotalVotes | number: '1.1-1' }} por {{ totalUsers }} usuarios</b
+                    >
+                  </div>
+                </div>
+                <jhi-votes
+                  label="Puntua este curso"
+                  [disable]="false"
+                  [userVotes]="currentUserVote"
+                  (votesChanges)="scoreCourse($event)"
+                ></jhi-votes>
+                <b
+                  >Creado por: <a [routerLink]="['/extra-user-info', ownerPublicId, 'view']">{{ ownerPublicName }}</a> </b
+                ><img class="profile-image rounded-circle" src="{{ ownerImg }}" />
               </ng-container>
 
               <ng-container *ngIf="file.type === 'own'">
@@ -235,6 +279,24 @@
                     <span class="d-none d-md-inline"></span>
                   </button>
                 </div>
+                <div class="separador"></div>
+                <div class="row">
+                  <div class="col-4"><jhi-votes label="Puntuacion del curso" [disable]="true" [votes]="TotalVotes"></jhi-votes></div>
+                  <div class="col-5">
+                    <b style="position: relative; top: 57%; margin-left: 10px"
+                      >{{ TotalVotes | number: '1.1-1' }} por {{ totalUsers }} usuarios</b
+                    >
+                  </div>
+                </div>
+                <jhi-votes
+                  label="Puntua este curso"
+                  [disable]="false"
+                  [userVotes]="currentUserVote"
+                  (votesChanges)="scoreCourse($event)"
+                ></jhi-votes>
+                <b
+                  >Creado por: <a [routerLink]="['/extra-user-info', ownerPublicId, 'view']">{{ ownerPublicName }}</a> </b
+                ><img class="profile-image rounded-circle" src="{{ ownerImg }}" />
               </ng-container>
 
               <!-- end validation of type index -->
@@ -254,7 +316,9 @@
               <div class="row">
                 <div class="col-4"><jhi-votes label="Puntuacion del curso" [disable]="true" [votes]="TotalVotes"></jhi-votes></div>
                 <div class="col-5">
-                  <b style="position: relative; top: 57%; margin-left: 10px">{{ TotalVotes }} por {{ totalUsers }} usuarios</b>
+                  <b style="position: relative; top: 57%; margin-left: 10px"
+                    >{{ TotalVotes | number: '1.1-1' }} por {{ totalUsers }} usuarios</b
+                  >
                 </div>
               </div>
               <jhi-votes
@@ -263,6 +327,9 @@
                 [userVotes]="currentUserVote"
                 (votesChanges)="scoreCourse($event)"
               ></jhi-votes>
+              <b
+                >Creado por: <a [routerLink]="['/extra-user-info', ownerPublicId, 'view']">{{ ownerPublicName }}</a> </b
+              ><img class="profile-image rounded-circle" src="{{ ownerImg }}" />
             </ng-container>
             <!-- end constant content -->
           </div>

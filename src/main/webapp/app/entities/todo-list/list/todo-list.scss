@@ -1,32 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap');
-
 * {
   box-sizing: border-box;
-}
-
-:root {
-  --checkbox-color: #ee9ca7;
-  --checkbox-shadow: rgba(238, 156, 167, 0.2);
-  --add-button: #ee9ca7;
-  --add-button-shadow: rgba(238, 156, 167, 0.4);
-}
-// #flotante {
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   z-index: 9999;
-// }
-
-#popup {
-  //fixed lo fija a la ventana del navegador
-
-  width: 50rem;
-  height: 25rem;
-  max-height: 50rem;
-  background-color: white;
-  border: 1px solid black;
-  /* Otros estilos aquí */
 }
 
 body {
@@ -55,7 +28,6 @@ ul {
   padding: 0;
 }
 .conteinerTask {
-  margin-top: 3rem;
   gap: 1rem;
   display: flex;
   flex-direction: column;
@@ -71,6 +43,7 @@ ul {
   padding: 24px;
   overflow: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  min-height: 32rem;
 }
 
 .app-header {
@@ -110,7 +83,7 @@ ul {
   padding: 0 4px;
   outline: none;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: solid 3px #de9a38;
   background-color: transparent;
   color: black;
   box-shadow: none;
@@ -120,6 +93,12 @@ ul {
     color: black;
   }
 }
+
+.inputTak,
+.task-list-item-label span {
+  font-size: 1rem;
+}
+
 .inputTak {
   width: 100%;
   min-width: 23rem;
@@ -212,4 +191,14 @@ ul {
     -webkit-appearance: none;
     -moz-appearance: none;
   }
+}
+
+.subt-tools {
+  font-weight: 400 !important;
+  font-size: 30px;
+  line-height: 32px;
+  margin: 0 0 12px 0;
+  color: #15537d !important;
+  text-align: center;
+  width: 100%;
 }
