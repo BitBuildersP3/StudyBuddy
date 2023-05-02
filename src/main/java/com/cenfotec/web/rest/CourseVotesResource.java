@@ -1,6 +1,7 @@
 package com.cenfotec.web.rest;
 
 import com.cenfotec.domain.CourseVotes;
+import com.cenfotec.domain.UserVotes;
 import com.cenfotec.repository.CourseVotesRepository;
 import com.cenfotec.security.SecurityUtils;
 import com.cenfotec.web.rest.errors.BadRequestAlertException;
@@ -70,9 +71,12 @@ public class CourseVotesResource {
 
     @GetMapping("/course-votes/createByProxy/{id}")
     public void createAndAsociateCoursesVotes(@PathVariable Long id) throws URISyntaxException {
-        CourseVotes courseVotes = new CourseVotes();
-        courseVotes.setIdCourse(id);
-        this.createCourseVotes(courseVotes);
+        CourseVotes verifyUserVotes = getByCourseId(id).getBody();
+        if (verifyUserVotes == null) {
+            CourseVotes userVotes = new CourseVotes();
+            userVotes.setIdCourse(id);
+            this.createCourseVotes(userVotes);
+        }
     }
 
     @GetMapping("/course-votes/getByCourse/{id}")
