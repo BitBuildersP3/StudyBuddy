@@ -30,7 +30,7 @@ export class ToolPomComponent implements OnInit {
   timeLength = 25 * 60;
   interval: any;
 
-  timeEditNow= '25';
+  timeEditNow = '25';
 
   constructor() {}
 
@@ -62,7 +62,7 @@ export class ToolPomComponent implements OnInit {
     console.log('tiempo de array 1 ' + arrayTime[1]);
     // this.timeLeft = (actualnumLeft * 60) ;
 
-    this.timeLeft = 60 *  parseInt(this.timeEditNow);
+    this.timeLeft = 60 * parseInt(this.timeEditNow);
     console.log('En donde se hizo el parseo' + this.timeLeft);
   }
 
@@ -157,15 +157,15 @@ export class ToolPomComponent implements OnInit {
       result = ++lengthValue;
       htmlElement.innerText = result.toString();
       console.log('MIRAR ESTO +' + result.toString());
-      this.timeEditNow =  result.toString();
-      this.timeLeft = 60 *  parseInt(this.timeEditNow);
+      this.timeEditNow = result.toString();
+      this.timeLeft = 60 * parseInt(this.timeEditNow);
     } else {
       if (lengthValue !== 1) {
         result = --lengthValue;
         htmlElement.innerText = result.toString();
         console.log('MIRAR ESTO - ' + result.toString());
-        this.timeEditNow =  result.toString();
-        this.timeLeft = 60 *  parseInt(this.timeEditNow);
+        this.timeEditNow = result.toString();
+        this.timeLeft = 60 * parseInt(this.timeEditNow);
       }
     }
     if (!this.playIsClicked) {
@@ -174,9 +174,7 @@ export class ToolPomComponent implements OnInit {
     let resultSeconds = result * 60;
     if (!isBreakLength) {
       this.timeLength = resultSeconds;
-      console.log(
-        'rata ' + this.labelSessionBreak.innerText + ' rata 2 ' + (('0' + result).slice(-2) + ':00') + ' rata 3 ' + resultSeconds
-      );
+
       if (this.labelSessionBreak.innerText === 'TRABAJO') {
         this.timeLeftDOM.innerText = ('0' + result).slice(-2) + ':00';
         this.timeLeft = resultSeconds;

@@ -8,9 +8,8 @@ describe('ModalNoButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalNoButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [ModalNoButtonComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ModalNoButtonComponent);
     component = fixture.componentInstance;

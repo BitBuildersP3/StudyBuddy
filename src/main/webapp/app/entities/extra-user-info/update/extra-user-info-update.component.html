@@ -1,20 +1,14 @@
 <div class="d-flex justify-content-center">
   <div class="col-md-8">
     <form name="editForm" role="form" class="custom-form align-items-center" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2
-        id="jhi-extra-user-info-heading"
-        data-cy="ExtraUserInfoCreateUpdateHeading"
-        class="titulo"
-      >
-       Información extra del usuario
-      </h2>
+      <h2 id="jhi-extra-user-info-heading" data-cy="ExtraUserInfoCreateUpdateHeading" class="titulo">Información extra del usuario</h2>
 
-      <div class="separador"> </div>
+      <div class="separador"></div>
       <!-- align-items-center -->
       <div class="cardForm">
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="mb-3" *ngIf="editForm.controls.id.value !== null" style="display: none;">
+        <div class="mb-3" *ngIf="editForm.controls.id.value !== null" style="display: none">
           <label class="label" jhiTranslate="global.field.id" for="field_id">ID</label>
           <input
             type="number"
@@ -28,12 +22,12 @@
         </div>
 
         <div class="mb-3">
-          <label class="label"  for="field_phone">Teléfono</label>
+          <label class="label" for="field_phone">Teléfono</label>
           <input type="text" class="input" name="phone" id="field_phone" data-cy="phone" formControlName="phone" />
         </div>
 
         <div class="mb-3">
-          <label class="label"  for="field_degree">Grado Académico</label>
+          <label class="label" for="field_degree">Grado Académico</label>
           <!-- Funcion anterior
           <input type="text" class="input" name="degree" id="field_degree" data-cy="degree" formControlName="degree" />
           -->
@@ -49,8 +43,6 @@
             <option>Doctorado</option>
           </select>
         </div>
-
-
 
         <div class="mb-3">
           <label class="label" for="field_birthDay">Fecha de Nacimiento</label>
@@ -70,18 +62,25 @@
         </div>
         <div class="mb-3">
           <label class="label" for="field_score">Puntuación</label>
-          <input type="number" class="input" name="score" id="field_score" data-cy="score" formControlName="score"  [readonly]="true"/>
+          <input type="number" class="input" name="score" id="field_score" data-cy="score" formControlName="score" [readonly]="true" />
         </div>
 
-        <div class="mb-3" >
-          <label class="label"  for="field_userVotes">Vos de Usuario</label>
-          <input type="number" class="input" name="userVotes" id="field_userVotes" data-cy="userVotes" formControlName="userVotes"  [readonly]="true"/>
-        </div>
-
-
-        <div class="separador"> </div>
         <div class="mb-3">
-          <label class="label centero"  for="field_profilePicture">Foto de Perfil</label>
+          <label class="label" for="field_userVotes">Vos de Usuario</label>
+          <input
+            type="number"
+            class="input"
+            name="userVotes"
+            id="field_userVotes"
+            data-cy="userVotes"
+            formControlName="userVotes"
+            [readonly]="true"
+          />
+        </div>
+
+        <div class="separador"></div>
+        <div class="mb-3">
+          <label class="label centero" for="field_profilePicture">Foto de Perfil</label>
           <input
             type="text"
             class="input"
@@ -89,27 +88,32 @@
             id="field_profilePicture"
             data-cy="profilePicture"
             formControlName="profilePicture"
-            style="display: none;"
+            style="display: none"
           />
-          <div class="mb-3 ">
+          <div class="mb-3">
             <jhi-cloudinary-button (urlChanged)="saveUrl($event)" [text]="$any('Subir Foto')" class="cloudBotton"></jhi-cloudinary-button>
           </div>
 
           <div class="mb-3">
-            <label class="label" jhiTranslate="studyBuddyApp.extraUserInfo.user" for="field_user" style="display: none;">User</label>
-            <select style="display: none;" class="b input" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
+            <label class="label" jhiTranslate="studyBuddyApp.extraUserInfo.user" for="field_user" style="display: ">User</label>
+            <select
+              style="display: "
+              class="b input"
+              id="field_user"
+              data-cy="user"
+              name="user"
+              formControlName="user"
+              [compareWith]="compareUser"
+            >
               <option [ngValue]="null"></option>
               <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.login }}</option>
             </select>
           </div>
-
         </div>
-
       </div>
 
-        <div>
-
-          <div  class ="divBtn">
+      <div>
+        <div class="divBtn">
           <button
             type="button"
             id="cancel-save"
@@ -131,7 +135,7 @@
           >
             <fa-icon icon="save"></fa-icon>&nbsp;
           </button>
-          </div>
+        </div>
       </div>
     </form>
   </div>

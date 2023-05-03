@@ -61,16 +61,13 @@ export class EventsDetailComponent implements OnInit {
       console.log('TE ESTOY BUSCANDO' + idEvent.status);
     }
 
-
     if (idEvent.user?.login == this.actualUser) {
       this.mostrarEditar = !this.mostrarEditar;
       console.log('TE ESTOY BUSCANDO' + idEvent.user);
     }
 
-
     console.log('Evento USER: ' + idEvent.user?.login);
     console.log('Evento USER: ' + this.actualUser);
-
   }
 
   previousState(): void {

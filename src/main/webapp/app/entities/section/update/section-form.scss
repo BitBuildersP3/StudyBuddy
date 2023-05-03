@@ -5,9 +5,6 @@ $color-alertas: #983f56;
 $color-bordes: #de9a38;
 $color-fondoBlanc: #dfe2ea;
 
-
-
-
 .titulo {
   color: $color-principal;
   font-weight: bold;
@@ -59,12 +56,10 @@ label {
   font-weight: bold;
   font-size: 22px;
   border-radius: 9px;
-
 }
 label span {
   display: inline-block;
 }
-
 
 .cloudBotton {
   text-align: center;
@@ -72,11 +67,9 @@ label span {
   margin-bottom: 2rem;
   color: white;
   border-color: $color-secundario;
-
 }
 
-.cardForm{
-
+.cardForm {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 9px;
@@ -106,10 +99,8 @@ label span {
   padding: 0 2rem;
 }
 
-.labelForm{
-
+.labelForm {
   text-align: left;
-
 }
 
 .divBtn {
@@ -118,17 +109,14 @@ label span {
   margin-bottom: 1rem;
 }
 
-.acortado{
-
+.acortado {
   width: 860px;
   padding-left: 2rem;
   padding-right: 2rem;
 }
 
-.form-check-label{
-
+.form-check-label {
   margin-bottom: 1rem;
-
 }
 
 .separador {
@@ -140,13 +128,11 @@ label span {
   align-items: center;
 }
 
-.mb-3{
+.mb-3 {
   // background-color:$color-secundario ;
   // border-radius: 1rem;
 }
 
-
-
-.centero{
+.centero {
   text-align: center;
 }
