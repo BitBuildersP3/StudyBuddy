@@ -20,7 +20,6 @@ h6 {
   font-weight: bold;
 }
 
-
 #main {
   margin-top: 60px;
   padding: 20px 30px;
@@ -35,12 +34,10 @@ h6 {
 .negrita {
   font-weight: bold;
   text-align: center;
-
 }
 
 .item-cont {
   width: 50%;
-  margin-left: 16%;
 }
 
 .principalConteiner {
@@ -57,10 +54,8 @@ h6 {
   display: flex;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 1rem;
-
-  width: 65%;
+  width: 100%;
   max-width: 65rem;
-
 }
 
 .card-image {
@@ -73,7 +68,9 @@ h6 {
   width: 100%;
   height: auto;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
+  max-width: 35rem;
 }
 .imgg {
   max-width: 300px;
@@ -97,15 +94,12 @@ h6 {
 .btn {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-
 }
 
 .descrip-recuadro {
-
   height: auto;
   display: flex;
   flex-direction: column;
-
 
   padding: 1rem;
   margin-top: 1rem;
@@ -114,20 +108,26 @@ h6 {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   width: 100%;
   max-width: 50rem;
-
 }
 
-.tilesub{
+.tilesub {
   font-weight: bold;
   justify-content: start;
   color: #15537d;
 }
 
-.descrsub{
+.descrsub {
   justify-content: start;
   text-align: justify;
   font-size: 16px;
   color: #666666;
   padding-left: 2rem;
   padding-right: 5rem;
+}
+.btnBack {
+  background-color: var(--grey) !important;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+  margin-left: 1rem;
 }

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LANGUAGES } from 'app/config/language.constants';
 import { IUser } from '../user-management.model';
 import { UserManagementService } from '../service/user-management.service';
+import Swal from 'sweetalert2';
 
 const userTemplate = {} as IUser;
 
@@ -79,8 +80,14 @@ export class UserManagementUpdateComponent implements OnInit {
   }
 
   private onSaveSuccess(): void {
-    this.isSaving = false;
-    this.previousState();
+    Swal.fire({
+      icon: 'success',
+      title: 'Guardado correctamente',
+      showConfirmButton: true,
+    }).then(result => {
+      this.isSaving = false;
+      this.previousState();
+    });
   }
 
   private onSaveError(): void {

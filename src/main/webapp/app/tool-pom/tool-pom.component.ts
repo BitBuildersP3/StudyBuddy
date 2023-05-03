@@ -30,6 +30,8 @@ export class ToolPomComponent implements OnInit {
   timeLength = 25 * 60;
   interval: any;
 
+  timeEditNow = '25';
+
   constructor() {}
 
   ngOnInit(): void {
@@ -59,7 +61,8 @@ export class ToolPomComponent implements OnInit {
     console.log('tiempo de array 0 ' + arrayTime[0]);
     console.log('tiempo de array 1 ' + arrayTime[1]);
     // this.timeLeft = (actualnumLeft * 60) ;
-    this.timeLeft = 5;
+
+    this.timeLeft = 60 * parseInt(this.timeEditNow);
     console.log('En donde se hizo el parseo' + this.timeLeft);
   }
 
@@ -153,10 +156,16 @@ export class ToolPomComponent implements OnInit {
     if (isAddition) {
       result = ++lengthValue;
       htmlElement.innerText = result.toString();
+      console.log('MIRAR ESTO +' + result.toString());
+      this.timeEditNow = result.toString();
+      this.timeLeft = 60 * parseInt(this.timeEditNow);
     } else {
       if (lengthValue !== 1) {
         result = --lengthValue;
         htmlElement.innerText = result.toString();
+        console.log('MIRAR ESTO - ' + result.toString());
+        this.timeEditNow = result.toString();
+        this.timeLeft = 60 * parseInt(this.timeEditNow);
       }
     }
     if (!this.playIsClicked) {

@@ -200,7 +200,7 @@ jhipster:
     license: unlicensed
     license-url:
   security:
-    content-security-policy: "default-src 'self'; frame-src 'self' https://upload-widget.cloudinary.com/ https://www.youtube.com/iframe_api https://www.youtube.com/ https://deadsimplechat.com/ data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://storage.googleapis.com https://upload-widget.cloudinary.com/global/all.js https://www.youtube.com/iframe_api https://www.youtube.com/; style-src 'self' 'unsafe-inline'; img-src 'self'  https://res.cloudinary.com/ data:; font-src 'self' data:"
+    content-security-policy: "default-src 'self'; frame-src 'self' https://upload-widget.cloudinary.com/ https://www.youtube.com/iframe_api https://www.youtube.com/ https://deadsimplechat.com/ data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://storage.googleapis.com https://upload-widget.cloudinary.com/global/all.js https://www.youtube.com/iframe_api https://www.youtube.com/; style-src 'self' 'unsafe-inline'; img-src 'self'  https://res.cloudinary.com/ https://www.citypng.com data:; font-src 'self' data:"
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class
