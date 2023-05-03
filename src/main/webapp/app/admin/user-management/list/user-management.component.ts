@@ -60,7 +60,6 @@ export class UserManagementComponent implements OnInit {
           icon: 'success',
           title: 'Modificado correctamente',
           showConfirmButton: true,
-          timer: 3000,
         }).then(result => {
           if (result.isConfirmed) {
           }

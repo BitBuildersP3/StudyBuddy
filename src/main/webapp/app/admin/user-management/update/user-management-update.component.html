@@ -6,9 +6,7 @@
       <div class="separador"></div>
 
       <div class="cardForm">
-        <jhi-alert-error></jhi-alert-error>
-
-        <div class="mb-3" [hidden]="!editForm.value.id">
+        <div class="mb-3" style="display: none" [hidden]="!editForm.value.id">
           <label jhiTranslate="global.field.id" class="label">ID</label>
           <input type="text" class="textInput acortado" name="id" formControlName="id" readonly />
         </div>

@@ -97,7 +97,8 @@ export class RegisterComponent implements AfterViewInit {
       console.log(this.registerForm.getRawValue());
 
       // Foto por defecto de perfil
-      const profilePicture = 'https://cdn.shopify.com/s/files/1/1428/7694/articles/smiling_quokka_600x600.png';
+      const profilePicture =
+        'https://www.citypng.com/public/uploads/preview/png-round-blue-contact-user-profile-icon-11639786938sxvzj5ogua.png';
 
       this.registerService
         .save({ login, email, password, langKey: this.translateService.currentLang, phone, degree, profilePicture, birthDay })

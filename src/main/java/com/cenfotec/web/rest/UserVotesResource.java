@@ -195,9 +195,12 @@ public class UserVotesResource {
 
     @GetMapping("/user-votes/createByProxy/{id}")
     public void createAndAsociateUserVotes(@PathVariable String id) throws URISyntaxException {
-        UserVotes userVotes = new UserVotes();
-        userVotes.setIdUser(id);
-        this.createUserVotes(userVotes);
+        UserVotes verifyUserVotes = getByUserId(id).getBody();
+        if (verifyUserVotes == null) {
+            UserVotes userVotes = new UserVotes();
+            userVotes.setIdUser(id);
+            this.createUserVotes(userVotes);
+        }
     }
 
     @GetMapping("/user-votes/getByUser/{id}")

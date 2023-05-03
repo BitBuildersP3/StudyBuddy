@@ -1,5 +1,11 @@
 <div class="container-xxl py-5">
-  <h3 class="text-center">Noticas</h3>
+  <div class="d-flex justify-content-center newsTitle">
+    <h3 class="text-center">Noticias</h3>
+    <button *jhiHasAnyAuthority="'ROLE_ADMIN'" routerLink="/news/new" title="Agregar Noticia" class="circle">
+      <fa-icon icon="plus"></fa-icon>
+    </button>
+  </div>
+
   <div class="separador"></div>
   <div class="container">
     <div class="row g-4">
@@ -20,13 +26,5 @@
       </div>
     </div>
   </div>
-  <button
-    *jhiHasAnyAuthority="'ROLE_ADMIN'"
-    routerLink="/news/new"
-    class="text-uppercase btn btn-primary py-md-3 px-md-5 me-3 w-40 animated"
-    style="margin-top: 5rem"
-  >
-    Nueva noticia
-  </button>
   <div class="separador" style="margin-top: 5rem"></div>
 </div>

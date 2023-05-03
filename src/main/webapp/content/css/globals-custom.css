@@ -805,3 +805,31 @@ p {
 .profile-image {
   height: 13rem;
 }
+
+.leftk {
+  margin-left: 24rem !important;
+}
+
+.conteinerNews {
+  flex: 0 0 auto;
+  width: 66.66666667%;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-top: 2rem;
+}
+.justify-tex {
+  text-align: justify;
+  padding: 1rem;
+}
+
+.circle {
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
+  background-color: #ddd;
+}
+.newsTitle {
+  gap: 1rem;
+  padding-bottom: 1rem;
+  font-size: 1rem;
+}
