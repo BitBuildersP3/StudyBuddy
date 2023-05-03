@@ -42,22 +42,19 @@
       <div class="secondConteiner">
         <div class="txt-cont">
           <div class="info">
-            <h5>
-              <p class="negrita">{{ events.name }}</p>
+            <p class="negrita">{{ events.name }}</p>
 
-              <span>
-                <div class="descrip-recuadro">
-                  <p class="sub tilesub">Descripción:</p>
-                  <p class="sub descrsub">{{ events.description }}</p>
-                </div>
-              </span>
-              <span>
-                <p class="sub">
-                  Inicio: <span class="active"> {{ events.startDate!.toString().slice(6, 16) }} </span>
-                  <span class="sub"> Fin: {{ events.endDate!.toString().slice(6, 16) }} </span>
-                </p>
-              </span>
-            </h5>
+            <div class="descrip-recuadro">
+              <p class="sub tilesub">Descripción:</p>
+              <p class="sub descrsub">{{ events.description }}</p>
+            </div>
+
+            <span>
+              <p class="sub">
+                Inicio: <span class="active"> {{ events.startDate!.toString().slice(6, 16) }} </span>
+                <span class="sub"> Fin: {{ events.endDate!.toString().slice(6, 16) }} </span>
+              </p>
+            </span>
           </div>
         </div>
 
